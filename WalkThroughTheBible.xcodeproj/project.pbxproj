@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BADF21E9828338AD23CA09D /* Pods_WalkThroughTheBible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62187FC9CFFEC8F7B54AEDFB /* Pods_WalkThroughTheBible.framework */; };
+		C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */; };
 		DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */; };
-		DB5C2EA21D870F79002A5FAD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EA11D870F79002A5FAD /* ViewController.swift */; };
+		DB5C2EA21D870F79002A5FAD /* MapAndTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EA11D870F79002A5FAD /* MapAndTextViewController.swift */; };
 		DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EA31D870F79002A5FAD /* Main.storyboard */; };
 		DB5C2EA81D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EA61D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld */; };
 		DB5C2EAA1D870F79002A5FAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EA91D870F79002A5FAD /* Assets.xcassets */; };
 		DB5C2EAD1D870F79002A5FAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */; };
 		DB5C2EB81D870F79002A5FAD /* WalkThroughTheBibleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EB71D870F79002A5FAD /* WalkThroughTheBibleTests.swift */; };
 		DB5C2EC31D870F79002A5FAD /* WalkThroughTheBibleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EC21D870F79002A5FAD /* WalkThroughTheBibleUITests.swift */; };
+		DB5C2ED11D871109002A5FAD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5C2ED01D871109002A5FAD /* MapKit.framework */; };
+		DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */; };
+		DCC32D404B4C83870067E20A /* Pods_WalkThroughTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +40,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C4D0E26537D09BA9FA95504 /* Pods-WalkThroughTheBibleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleUITests/Pods-WalkThroughTheBibleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkThroughTheBibleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62187FC9CFFEC8F7B54AEDFB /* Pods_WalkThroughTheBible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkThroughTheBible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F2A1453F04441325CCCDCB1 /* Pods-WalkThroughTheBible.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBible.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible.release.xcconfig"; sourceTree = "<group>"; };
+		8D1895E0C59D92759D2EB96E /* Pods-WalkThroughTheBibleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A5E271FF4C3D411AE81CF0A3 /* Pods-WalkThroughTheBibleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleUITests/Pods-WalkThroughTheBibleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B5F34327920B7F7BF1A95A05 /* Pods-WalkThroughTheBibleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests.release.xcconfig"; sourceTree = "<group>"; };
+		C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible.debug.xcconfig"; sourceTree = "<group>"; };
 		DB5C2E9C1D870F78002A5FAD /* WalkThroughTheBible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkThroughTheBible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DB5C2EA11D870F79002A5FAD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DB5C2EA11D870F79002A5FAD /* MapAndTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAndTextViewController.swift; sourceTree = "<group>"; };
 		DB5C2EA41D870F79002A5FAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB5C2EA71D870F79002A5FAD /* WalkThroughTheBible.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WalkThroughTheBible.xcdatamodel; sourceTree = "<group>"; };
 		DB5C2EA91D870F79002A5FAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +62,9 @@
 		DB5C2EBE1D870F79002A5FAD /* WalkThroughTheBibleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalkThroughTheBibleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5C2EC21D870F79002A5FAD /* WalkThroughTheBibleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughTheBibleUITests.swift; sourceTree = "<group>"; };
 		DB5C2EC41D870F79002A5FAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB5C2ED01D871109002A5FAD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTableViewController.swift; sourceTree = "<group>"; };
+		FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkThroughTheBibleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5C2ED11D871109002A5FAD /* MapKit.framework in Frameworks */,
+				0BADF21E9828338AD23CA09D /* Pods_WalkThroughTheBible.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCC32D404B4C83870067E20A /* Pods_WalkThroughTheBibleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,19 +89,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18DFE035BEB60144B4124568 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62187FC9CFFEC8F7B54AEDFB /* Pods_WalkThroughTheBible.framework */,
+				2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */,
+				FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DB5C2E931D870F78002A5FAD = {
 			isa = PBXGroup;
 			children = (
+				DB5C2ED01D871109002A5FAD /* MapKit.framework */,
 				DB5C2E9E1D870F78002A5FAD /* WalkThroughTheBible */,
 				DB5C2EB61D870F79002A5FAD /* WalkThroughTheBibleTests */,
 				DB5C2EC11D870F79002A5FAD /* WalkThroughTheBibleUITests */,
 				DB5C2E9D1D870F78002A5FAD /* Products */,
+				F6A610C5D3371974E835E9C0 /* Pods */,
+				18DFE035BEB60144B4124568 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,12 +133,13 @@
 			isa = PBXGroup;
 			children = (
 				DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */,
-				DB5C2EA11D870F79002A5FAD /* ViewController.swift */,
+				DB5C2EA11D870F79002A5FAD /* MapAndTextViewController.swift */,
 				DB5C2EA31D870F79002A5FAD /* Main.storyboard */,
 				DB5C2EA91D870F79002A5FAD /* Assets.xcassets */,
 				DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */,
 				DB5C2EAE1D870F79002A5FAD /* Info.plist */,
 				DB5C2EA61D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld */,
+				DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */,
 			);
 			path = WalkThroughTheBible;
 			sourceTree = "<group>";
@@ -128,6 +162,19 @@
 			path = WalkThroughTheBibleUITests;
 			sourceTree = "<group>";
 		};
+		F6A610C5D3371974E835E9C0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */,
+				6F2A1453F04441325CCCDCB1 /* Pods-WalkThroughTheBible.release.xcconfig */,
+				8D1895E0C59D92759D2EB96E /* Pods-WalkThroughTheBibleTests.debug.xcconfig */,
+				B5F34327920B7F7BF1A95A05 /* Pods-WalkThroughTheBibleTests.release.xcconfig */,
+				0C4D0E26537D09BA9FA95504 /* Pods-WalkThroughTheBibleUITests.debug.xcconfig */,
+				A5E271FF4C3D411AE81CF0A3 /* Pods-WalkThroughTheBibleUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +182,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB5C2EC71D870F79002A5FAD /* Build configuration list for PBXNativeTarget "WalkThroughTheBible" */;
 			buildPhases = (
+				DEC3E82B8C8DE23589BD82EC /* [CP] Check Pods Manifest.lock */,
 				DB5C2E981D870F78002A5FAD /* Sources */,
 				DB5C2E991D870F78002A5FAD /* Frameworks */,
 				DB5C2E9A1D870F78002A5FAD /* Resources */,
+				F16C17B1D2E025B2BD53DCAB /* [CP] Embed Pods Frameworks */,
+				BA45091704C4A839BD178911 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +202,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB5C2ECA1D870F79002A5FAD /* Build configuration list for PBXNativeTarget "WalkThroughTheBibleTests" */;
 			buildPhases = (
+				8CC0E8F2017E0317457C5F2F /* [CP] Check Pods Manifest.lock */,
 				DB5C2EAF1D870F79002A5FAD /* Sources */,
 				DB5C2EB01D870F79002A5FAD /* Frameworks */,
 				DB5C2EB11D870F79002A5FAD /* Resources */,
+				7028F9F0F3B4EBA47C6B7333 /* [CP] Embed Pods Frameworks */,
+				E4A13C4FFC30255F5BA19F29 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +223,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB5C2ECD1D870F79002A5FAD /* Build configuration list for PBXNativeTarget "WalkThroughTheBibleUITests" */;
 			buildPhases = (
+				FFAAD496376DD37F73D81B45 /* [CP] Check Pods Manifest.lock */,
 				DB5C2EBA1D870F79002A5FAD /* Sources */,
 				DB5C2EBB1D870F79002A5FAD /* Frameworks */,
 				DB5C2EBC1D870F79002A5FAD /* Resources */,
+				2B967D5B5D09BDFF977B4D40 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,13 +251,16 @@
 				TargetAttributes = {
 					DB5C2E9B1D870F78002A5FAD = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					DB5C2EB21D870F79002A5FAD = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = DB5C2E9B1D870F78002A5FAD;
 					};
 					DB5C2EBD1D870F79002A5FAD = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = DB5C2E9B1D870F78002A5FAD;
 					};
 				};
@@ -254,13 +312,137 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2B967D5B5D09BDFF977B4D40 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkThroughTheBibleUITests/Pods-WalkThroughTheBibleUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7028F9F0F3B4EBA47C6B7333 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CC0E8F2017E0317457C5F2F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BA45091704C4A839BD178911 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEC3E82B8C8DE23589BD82EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E4A13C4FFC30255F5BA19F29 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F16C17B1D2E025B2BD53DCAB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFAAD496376DD37F73D81B45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DB5C2E981D870F78002A5FAD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DB5C2EA81D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld in Sources */,
-				DB5C2EA21D870F79002A5FAD /* ViewController.swift in Sources */,
+				DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */,
+				DB5C2EA21D870F79002A5FAD /* MapAndTextViewController.swift in Sources */,
 				DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,68 +583,80 @@
 		};
 		DB5C2EC81D870F79002A5FAD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WalkThroughTheBible/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBible;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		DB5C2EC91D870F79002A5FAD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F2A1453F04441325CCCDCB1 /* Pods-WalkThroughTheBible.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WalkThroughTheBible/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBible;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		DB5C2ECB1D870F79002A5FAD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D1895E0C59D92759D2EB96E /* Pods-WalkThroughTheBibleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = WalkThroughTheBibleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBibleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WalkThroughTheBible.app/WalkThroughTheBible";
 			};
 			name = Debug;
 		};
 		DB5C2ECC1D870F79002A5FAD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5F34327920B7F7BF1A95A05 /* Pods-WalkThroughTheBibleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = WalkThroughTheBibleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBibleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WalkThroughTheBible.app/WalkThroughTheBible";
 			};
 			name = Release;
 		};
 		DB5C2ECE1D870F79002A5FAD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C4D0E26537D09BA9FA95504 /* Pods-WalkThroughTheBibleUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = WalkThroughTheBibleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBibleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = WalkThroughTheBible;
 			};
 			name = Debug;
 		};
 		DB5C2ECF1D870F79002A5FAD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5E271FF4C3D411AE81CF0A3 /* Pods-WalkThroughTheBibleUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = WalkThroughTheBibleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBibleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = WalkThroughTheBible;
 			};
 			name = Release;
@@ -486,6 +680,7 @@
 				DB5C2EC91D870F79002A5FAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB5C2ECA1D870F79002A5FAD /* Build configuration list for PBXNativeTarget "WalkThroughTheBibleTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +689,7 @@
 				DB5C2ECC1D870F79002A5FAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DB5C2ECD1D870F79002A5FAD /* Build configuration list for PBXNativeTarget "WalkThroughTheBibleUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +698,7 @@
 				DB5C2ECF1D870F79002A5FAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
