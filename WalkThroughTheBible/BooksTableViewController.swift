@@ -11,8 +11,8 @@ import UIKit
 
 class BooksTableViewController: UIViewController {
     
-    let books = ["Matthew"]
-    let numberOfChapters = [28]
+    let books = ["Matthew","Mark"]
+    let numberOfChapters = [28,2]
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         

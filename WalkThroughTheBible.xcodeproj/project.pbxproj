@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0BADF21E9828338AD23CA09D /* Pods_WalkThroughTheBible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62187FC9CFFEC8F7B54AEDFB /* Pods_WalkThroughTheBible.framework */; };
 		C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */; };
+		DB4EE9961D987A6500A3C48B /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EE9951D987A6500A3C48B /* Books.swift */; };
 		DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */; };
 		DB5C2EA21D870F79002A5FAD /* MapAndTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EA11D870F79002A5FAD /* MapAndTextViewController.swift */; };
 		DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EA31D870F79002A5FAD /* Main.storyboard */; };
@@ -19,6 +20,8 @@
 		DB5C2EC31D870F79002A5FAD /* WalkThroughTheBibleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EC21D870F79002A5FAD /* WalkThroughTheBibleUITests.swift */; };
 		DB5C2ED11D871109002A5FAD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5C2ED01D871109002A5FAD /* MapKit.framework */; };
 		DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */; };
+		DB6F52181D9A14FB00221041 /* BibleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F52171D9A14FB00221041 /* BibleLocation.swift */; };
+		DB6F521A1D9A190600221041 /* BibleLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F52191D9A190600221041 /* BibleLocations.swift */; };
 		DCC32D404B4C83870067E20A /* Pods_WalkThroughTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +51,7 @@
 		A5E271FF4C3D411AE81CF0A3 /* Pods-WalkThroughTheBibleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleUITests/Pods-WalkThroughTheBibleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B5F34327920B7F7BF1A95A05 /* Pods-WalkThroughTheBibleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests.release.xcconfig"; sourceTree = "<group>"; };
 		C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible.debug.xcconfig"; sourceTree = "<group>"; };
+		DB4EE9951D987A6500A3C48B /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 		DB5C2E9C1D870F78002A5FAD /* WalkThroughTheBible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkThroughTheBible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB5C2EA11D870F79002A5FAD /* MapAndTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAndTextViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 		DB5C2EC41D870F79002A5FAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB5C2ED01D871109002A5FAD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTableViewController.swift; sourceTree = "<group>"; };
+		DB6F52171D9A14FB00221041 /* BibleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocation.swift; sourceTree = "<group>"; };
+		DB6F52191D9A190600221041 /* BibleLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocations.swift; sourceTree = "<group>"; };
 		FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkThroughTheBibleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -140,6 +146,9 @@
 				DB5C2EAE1D870F79002A5FAD /* Info.plist */,
 				DB5C2EA61D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld */,
 				DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */,
+				DB4EE9951D987A6500A3C48B /* Books.swift */,
+				DB6F52171D9A14FB00221041 /* BibleLocation.swift */,
+				DB6F52191D9A190600221041 /* BibleLocations.swift */,
 			);
 			path = WalkThroughTheBible;
 			sourceTree = "<group>";
@@ -251,15 +260,18 @@
 				TargetAttributes = {
 					DB5C2E9B1D870F78002A5FAD = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = QA67695N79;
 						LastSwiftMigration = 0800;
 					};
 					DB5C2EB21D870F79002A5FAD = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = QA67695N79;
 						LastSwiftMigration = 0800;
 						TestTargetID = DB5C2E9B1D870F78002A5FAD;
 					};
 					DB5C2EBD1D870F79002A5FAD = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = QA67695N79;
 						LastSwiftMigration = 0800;
 						TestTargetID = DB5C2E9B1D870F78002A5FAD;
 					};
@@ -441,9 +453,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB5C2EA81D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld in Sources */,
+				DB6F52181D9A14FB00221041 /* BibleLocation.swift in Sources */,
 				DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */,
 				DB5C2EA21D870F79002A5FAD /* MapAndTextViewController.swift in Sources */,
 				DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */,
+				DB6F521A1D9A190600221041 /* BibleLocations.swift in Sources */,
+				DB4EE9961D987A6500A3C48B /* Books.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +534,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = QA67695N79;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -564,6 +580,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = QA67695N79;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
