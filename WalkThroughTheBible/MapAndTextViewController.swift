@@ -126,7 +126,10 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
             self.setUpText()
         }
         setUpText()
-        myMapView.selectAnnotation(lastAnnotation!, animated: false)
+        
+        if let lastAnnotation = lastAnnotation {
+            myMapView.selectAnnotation(lastAnnotation, animated: false)
+        }
         
     }
 
@@ -230,7 +233,15 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
             pinView!.annotation = annotation
         }
         
+        let imageView = UIImageView(image: UIImage(named: annotation.title!!))
+        imageView.frame.size = CGSize(width: 40.0, height: 40.0)
+        pinView!.leftCalloutAccessoryView = imageView
+
         return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        lastAnnotation = view.annotation
     }
     
     @IBAction func clearMapButtonPressed(_ sender: AnyObject) {

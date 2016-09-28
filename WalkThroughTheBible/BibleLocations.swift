@@ -64,7 +64,7 @@ struct BibleLocations {
         ,"palace of the high priest" :      BibleLocation(name: "Caiaphas' Palace",         lat: 31.773444, long: 35.229120, delta: 0.10)
         ,"the courtyard" :                  BibleLocation(name: "Caiaphas' Palace",         lat: 31.773444, long: 35.229120, delta: 0.10)
         
-        ,"your house" :                     BibleLocation(name: "Upper Room",               lat: 31.771881, long: 35.229273, delta: 0.10)
+        ,"your house" :                     BibleLocation(name: "The Upper Room",               lat: 31.771881, long: 35.229273, delta: 0.10)
         ,"Gethsemane" :                     BibleLocation(name: "The Garden of Gethsemane", lat: 31.779656, long: 35.239645, delta: 0.10)
         
         ,"the governor's headquarters" :    BibleLocation(name: "The Antonia Fortress",     lat: 31.780229, long: 35.233734, delta: 0.10)
