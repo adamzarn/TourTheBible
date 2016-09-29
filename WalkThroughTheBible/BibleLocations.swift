@@ -15,7 +15,6 @@ struct BibleLocations {
         ,"Bethlehem" :                      BibleLocation(name: "Bethlehem",                lat: 31.705400, long: 35.202400, delta: 0.75)
         
         ,"Jerusalem" :                      BibleLocation(name: "Jerusalem",                lat: 31.768300, long: 35.213700, delta: 0.75)
-        ,"the city" :                       BibleLocation(name: "Jerusalem",                lat: 31.768300, long: 35.213700, delta: 0.75)
         ,"Zion" :                           BibleLocation(name: "Jerusalem",                lat: 31.768300, long: 35.213700, delta: 0.75)
         
         ,"Egypt" :                          BibleLocation(name: "Egypt",                    lat: 30.787419, long: 31.821367, delta: 3.70)
@@ -25,20 +24,24 @@ struct BibleLocations {
         ,"hometown" :                       BibleLocation(name: "Nazareth",                 lat: 32.699600, long: 35.303500, delta: 1.00)
         
         ,"the river Jordan" :               BibleLocation(name: "The Jordan River",         lat: 31.826748, long: 35.547091, delta: 1.00)
-        ,"to the Jordan" :                  BibleLocation(name: "The Jordan River",         lat: 31.826748, long: 35.547091, delta: 1.00)
+        ,"the Jordan" :                     BibleLocation(name: "The Jordan River",         lat: 31.826748, long: 35.547091, delta: 1.00)
         
         ,"The Wilderness" :                 BibleLocation(name: "The Wilderness",           lat: 31.752365, long: 35.384903, delta: 1.00)
+        ,"the wilderness" :                 BibleLocation(name: "The Wilderness",           lat: 31.752365, long: 35.384903, delta: 1.00)
         
         ,"Capernaum" :                      BibleLocation(name: "Capernaum",                lat: 32.880330, long: 35.573307, delta: 0.25)
-        ,"his own city" :                   BibleLocation(name: "Capernaum",                lat: 32.880330, long: 35.573307, delta: 0.25)
         
-        ,"The Sea of Galilee" :             BibleLocation(name: "The Sea of Galilee",       lat: 32.824432, long: 35.587998, delta: 0.50)
-        ,"walking on the sea" :             BibleLocation(name: "The Sea of Galilee",       lat: 32.824432, long: 35.587998, delta: 0.50)
+        ,"the Sea of Galilee" :             BibleLocation(name: "The Sea of Galilee",       lat: 32.824432, long: 35.587998, delta: 0.50)
+        ,"the sea," :                        BibleLocation(name: "The Sea of Galilee",      lat: 32.824432, long: 35.587998, delta: 0.50)
+        ,"the sea." :                        BibleLocation(name: "The Sea of Galilee",      lat: 32.824432, long: 35.587998, delta: 0.50)
+        ,"the sea " :                        BibleLocation(name: "The Sea of Galilee",      lat: 32.824432, long: 35.587998, delta: 0.50)
         
         ,"Syria" :                          BibleLocation(name: "Syria",                    lat: 33.028743, long: 35.781097, delta: 1.00)
-        ,"The Decapolis" :                  BibleLocation(name: "The Decapolis",            lat: 32.386630, long: 36.062622, delta: 2.00)
-        ,"the mountain" :                   BibleLocation(name: "The Mount of Beatitudes",  lat: 32.880787, long: 35.555902, delta: 0.10)
-        ,"the country of the Gadarenes" :   BibleLocation(name: "The Gadarenes",            lat: 32.832376, long: 35.646468, delta: 0.10)
+        ,"the Decapolis" :                  BibleLocation(name: "The Decapolis",            lat: 32.386630, long: 36.062622, delta: 2.00)
+        
+        ,"the country of the Gadarenes" :   BibleLocation(name: "The Gadarenes (Gerasenes)",lat: 32.832376, long: 35.646468, delta: 0.10)
+        ,"the country of the Gerasenes" :   BibleLocation(name: "The Gadarenes (Gerasenes)",lat: 32.832376, long: 35.646468, delta: 0.10)
+        
         ,"Sodom" :                          BibleLocation(name: "Sodom",                    lat: 31.282494, long: 35.552444, delta: 1.50)
         ,"Gomorrah" :                       BibleLocation(name: "Gomorrah",                 lat: 31.132736, long: 35.518112, delta: 1.50)
         ,"Chorazin" :                       BibleLocation(name: "Chorazin",                 lat: 32.911389, long: 35.563889, delta: 0.25)
@@ -55,24 +58,30 @@ struct BibleLocations {
         ,"Galilee" :                        BibleLocation(name: "Galilee (region)",         lat: 32.782007, long: 35.354004, delta: 3.00)
         ,"Judea" :                          BibleLocation(name: "Judea (region)",           lat: 31.577219, long: 35.002441, delta: 3.00)
         ,"beyond the Jordan" :              BibleLocation(name: "Beyond the Jordan",        lat: 31.978813, long: 35.733032, delta: 2.00)
-        ,"Jericho" :                        BibleLocation(name: "Jericho",                  lat: 31.856982, long: 35.460567, delta: 2.00)
-        ,"Bethphage" :                      BibleLocation(name: "Bethphage",                lat: 31.777249, long: 35.250750, delta: 1.00)
-        ,"Mount of Olives" :                BibleLocation(name: "Mount of Olives",          lat: 31.779249, long: 35.242738, delta: 1.00)
-        ,"the temple" :                     BibleLocation(name: "The Temple",               lat: 31.778393, long: 35.235386, delta: 0.50)
-        ,"Bethany" :                        BibleLocation(name: "Bethany",                  lat: 31.771411, long: 35.261325, delta: 0.50)
+        ,"Jericho" :                        BibleLocation(name: "Jericho",                  lat: 31.856982, long: 35.460567, delta: 1.00)
+        ,"Bethphage" :                      BibleLocation(name: "Bethphage",                lat: 31.777249, long: 35.250750, delta: 0.10)
+        ,"Mount of Olives" :                BibleLocation(name: "Mount of Olives",          lat: 31.779249, long: 35.242738, delta: 0.10)
+        ,"the temple" :                     BibleLocation(name: "The Temple",               lat: 31.778393, long: 35.235386, delta: 0.03)
+        ,"Bethany" :                        BibleLocation(name: "Bethany",                  lat: 31.771411, long: 35.261325, delta: 0.10)
         
-        ,"palace of the high priest" :      BibleLocation(name: "Caiaphas' Palace",         lat: 31.773444, long: 35.229120, delta: 0.10)
-        ,"the courtyard" :                  BibleLocation(name: "Caiaphas' Palace",         lat: 31.773444, long: 35.229120, delta: 0.10)
+        ,"palace of the high priest" :      BibleLocation(name: "Caiaphas' Palace",         lat: 31.773444, long: 35.229120, delta: 0.03)
+        ,"the courtyard" :                  BibleLocation(name: "Caiaphas' Palace",         lat: 31.773444, long: 35.229120, delta: 0.03)
         
-        ,"your house" :                     BibleLocation(name: "The Upper Room",               lat: 31.771881, long: 35.229273, delta: 0.10)
-        ,"Gethsemane" :                     BibleLocation(name: "The Garden of Gethsemane", lat: 31.779656, long: 35.239645, delta: 0.10)
+        ,"at your house" :                  BibleLocation(name: "The Upper Room",           lat: 31.771881, long: 35.229273, delta: 0.03)
+        ,"upper room" :                     BibleLocation(name: "The Upper Room",           lat: 31.771881, long: 35.229273, delta: 0.03)
+        ,"Gethsemane" :                     BibleLocation(name: "The Garden of Gethsemane", lat: 31.779656, long: 35.239645, delta: 0.03)
         
-        ,"the governor's headquarters" :    BibleLocation(name: "The Antonia Fortress",     lat: 31.780229, long: 35.233734, delta: 0.10)
-        ,"stood before the governor" :      BibleLocation(name: "The Antonia Fortress",     lat: 31.780229, long: 35.233734, delta: 0.10)
+        ,"the governor's headquarters" :    BibleLocation(name: "The Antonia Fortress",     lat: 31.780229, long: 35.233734, delta: 0.03)
+        ,"stood before the governor" :      BibleLocation(name: "The Antonia Fortress",     lat: 31.780229, long: 35.233734, delta: 0.03)
+        ,"over to Pilate" :                 BibleLocation(name: "The Antonia Fortress",     lat: 31.780229, long: 35.233734, delta: 0.03)
         
-        ,"Golgotha" :                       BibleLocation(name: "Golgotha",                 lat: 31.778341, long: 35.229625, delta: 0.10)
+        ,"Golgotha" :                       BibleLocation(name: "Golgotha",                 lat: 31.778341, long: 35.229625, delta: 0.03)
         ,"Arimathea" :                      BibleLocation(name: "Arimathea",                lat: 31.952992, long: 34.889302, delta: 2.00)
-        ,"tomb" :                           BibleLocation(name: "Jesus' Tomb",              lat: 31.779043, long: 35.228477, delta: 0.10)
+        ,"tomb " :                          BibleLocation(name: "Jesus' Tomb",              lat: 31.779043, long: 35.228477, delta: 0.03)
+        
+        ,"Idumea" :                         BibleLocation(name: "Edom (Idumea)",            lat: 30.688559, long: 35.208435, delta: 1.00)
+        ,"Magdala" :                        BibleLocation(name: "Magdala (Dalmanutha)",     lat: 32.825000, long: 35.515556, delta: 0.25)
+        ,"Dalmanutha" :                     BibleLocation(name: "Magdala (Dalmanutha)",     lat: 32.825000, long: 35.515556, delta: 0.25)
         
     ]
     

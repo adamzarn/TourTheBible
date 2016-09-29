@@ -19,19 +19,20 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
     var refreshControl = UIRefreshControl()
     var chapterTitles = [] as [String]
     var lastAnnotation: MKAnnotation?
+
     
     var menuView: BTNavigationDropdownMenu? = nil
     
-    var index = 0
     var chapterIndex = 1
     var book = ""
     var numberOfChapters = 0
-    var formerContentSize = 0.0 as CGFloat
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        numberOfChapters = (Books.booksDictionary["\(book)"]?.count)!
+
         self.automaticallyAdjustsScrollViewInsets = false
         
         let coordinate = CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
@@ -60,6 +61,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         self.navItem.titleView = menuView
         menuView!.arrowTintColor = UIColor.black
         menuView!.shouldChangeTitleText = true
+        menuView!.navigationBarTitleFont = UIFont(name: "Papyrus", size: 17.0)
         
         menuView!.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             self.chapterIndex = indexPath + 1
@@ -120,6 +122,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         self.navItem.titleView = menuView
         menuView!.arrowTintColor = UIColor.black
         menuView!.shouldChangeTitleText = true
+        menuView!.navigationBarTitleFont = UIFont(name: "Papyrus", size: 17.0)
         
         menuView!.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             self.chapterIndex = indexPath + 1
@@ -152,9 +155,11 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
             let totalCharacters = text.characters.count
             
             while range.location < 10000000 {
+                
+                let value = place.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
 
                 attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:16.0)!, range: range)
-                attributedText.addAttribute(NSLinkAttributeName, value: place, range: range)
+                attributedText.addAttribute(NSLinkAttributeName, value: value!, range: range)
                 
                 offset = range.location + 1
                 let startIndex = text.index(text.startIndex, offsetBy: offset)
@@ -212,7 +217,9 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         
-        let location = BibleLocations.Locations[URL.absoluteString]! as BibleLocation
+        let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
+        
+        let location = BibleLocations.Locations[decodedURL]! as BibleLocation
         setUpMap(name: location.name!, lat: location.lat!, long: location.long!, delta: location.delta!)
         
         return true
