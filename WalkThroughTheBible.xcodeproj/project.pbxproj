@@ -23,6 +23,10 @@
 		DB6F52181D9A14FB00221041 /* BibleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F52171D9A14FB00221041 /* BibleLocation.swift */; };
 		DB6F521A1D9A190600221041 /* BibleLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F52191D9A190600221041 /* BibleLocations.swift */; };
 		DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */; };
+		DBE58B701D9EB358009A7BFA /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6C1D9EB358009A7BFA /* Pin.swift */; };
+		DBE58B711D9EB358009A7BFA /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6D1D9EB358009A7BFA /* Pin+CoreDataProperties.swift */; };
+		DBE58B721D9EB358009A7BFA /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6E1D9EB358009A7BFA /* Book.swift */; };
+		DBE58B731D9EB358009A7BFA /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6F1D9EB358009A7BFA /* Book+CoreDataProperties.swift */; };
 		DCC32D404B4C83870067E20A /* Pods_WalkThroughTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +76,10 @@
 		DB6F52171D9A14FB00221041 /* BibleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocation.swift; sourceTree = "<group>"; };
 		DB6F52191D9A190600221041 /* BibleLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocations.swift; sourceTree = "<group>"; };
 		DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
+		DBE58B6C1D9EB358009A7BFA /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pin.swift; path = ../Pin.swift; sourceTree = "<group>"; };
+		DBE58B6D1D9EB358009A7BFA /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataProperties.swift"; path = "../Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DBE58B6E1D9EB358009A7BFA /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Book.swift; path = ../Book.swift; sourceTree = "<group>"; };
+		DBE58B6F1D9EB358009A7BFA /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataProperties.swift"; path = "../Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkThroughTheBibleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -140,6 +148,10 @@
 		DB5C2E9E1D870F78002A5FAD /* WalkThroughTheBible */ = {
 			isa = PBXGroup;
 			children = (
+				DBE58B6F1D9EB358009A7BFA /* Book+CoreDataProperties.swift */,
+				DBE58B6D1D9EB358009A7BFA /* Pin+CoreDataProperties.swift */,
+				DBE58B6E1D9EB358009A7BFA /* Book.swift */,
+				DBE58B6C1D9EB358009A7BFA /* Pin.swift */,
 				DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */,
 				DB5C2EA11D870F79002A5FAD /* MapAndTextViewController.swift */,
 				DB5C2EA31D870F79002A5FAD /* Main.storyboard */,
@@ -455,12 +467,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBE58B701D9EB358009A7BFA /* Pin.swift in Sources */,
 				DB5C2EA81D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld in Sources */,
+				DBE58B731D9EB358009A7BFA /* Book+CoreDataProperties.swift in Sources */,
 				DB6F52181D9A14FB00221041 /* BibleLocation.swift in Sources */,
+				DBE58B711D9EB358009A7BFA /* Pin+CoreDataProperties.swift in Sources */,
 				DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */,
 				DB5C2EA21D870F79002A5FAD /* MapAndTextViewController.swift in Sources */,
 				DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */,
 				DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */,
+				DBE58B721D9EB358009A7BFA /* Book.swift in Sources */,
 				DB6F521A1D9A190600221041 /* BibleLocations.swift in Sources */,
 				DB4EE9961D987A6500A3C48B /* Books.swift in Sources */,
 			);

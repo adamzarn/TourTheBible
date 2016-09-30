@@ -51,7 +51,7 @@ struct BibleLocations {
         ,"Nineveh" :                        BibleLocation(name: "Nineveh",                  lat: 36.359444, long: 43.152778, delta: 10.0)
         ,"the South" :                      BibleLocation(name: "Sheba",                    lat: 15.416667, long: 45.350000, delta: 30.0)
         ,"Gennesaret" :                     BibleLocation(name: "Gennesaret",               lat: 32.870000, long: 35.539312, delta: 0.50)
-        ,"Israel" :                         BibleLocation(name: "Israel",                   lat: 32.107879, long: 35.167236, delta: 10.0)
+        ,"Israel" :                         BibleLocation(name: "Israel",                   lat: 32.107879, long: 35.167236, delta: 5.00)
         ,"Magadan" :                        BibleLocation(name: "Magadan",                  lat: 32.851286, long: 35.524635, delta: 0.25)
         ,"Caesarea Philippi" :              BibleLocation(name: "Caesarea Philippi",        lat: 33.246111, long: 35.693333, delta: 1.00)
         ,"a high mountain" :                BibleLocation(name: "Mount Hermon",             lat: 33.416111, long: 35.857500, delta: 1.00)
@@ -83,67 +83,6 @@ struct BibleLocations {
         ,"Magdala" :                        BibleLocation(name: "Magdala (Dalmanutha)",     lat: 32.825000, long: 35.515556, delta: 0.25)
         ,"Dalmanutha" :                     BibleLocation(name: "Magdala (Dalmanutha)",     lat: 32.825000, long: 35.515556, delta: 0.25)
         
-    ]
-    
-    let transitionTypeArray = ["Drop Pin" //Babylon
-        , "Drop Pin" //Bethlehem
-        , "Drop Pin" //Jerusalem
-        , "Draw Route" //Bethlehem to Egypt
-        , "Drop Pin" //Ramah
-        , "Draw Route" //Egypt to Nazareth
-        ,"Drop Pin" //The Jordan River
-        ,"Draw Route" //Nazareth to the Jordan
-        ,"Draw Route" //The Jordan to wilderness
-        ,"Draw Route" //Nazareth to Capernaum
-        ,"Drop Pin" //The Sea of Galilee
-        ,"Drop Pin" //Syria
-        ,"Drop Pin" //The Decapolis
-        ,"Draw Route" //Capernaum to the Mount
-        ,"Draw Route" //The Mount to Capernaum
-        ,"Draw Route" //Capernaum to the Gadarenes
-        ,"Draw Route" //The Gadarenes to Capernaum
-        ,"Drop Pin" //Sodom
-        ,"Drop Pin" //Gomorrah
-        ,"Drop Pin" //Chorazin
-        ,"Drop Pin" //Bethsaida
-        ,"Drop Pin" //Tyre
-        ,"Drop Pin" //Sidon
-        ,"Drop Pin" //Nineveh
-        ,"Drop Pin" //Sheba
-        ,"Draw Route" //Capernaum to Nazareth
-        ,"Draw Route" //Out on the Sea
-        ,"Draw Route" //Sea to Gennesaret
-    ]
-    
-    let routes = [
-        [""]
-        ,[""]
-        ,[""]
-        ,["{31.7054,35.2024}","{31.20,34.41}","{31.04,34.01}","{30.92,33.44}","{30.88,32.96}","{30.86,32.40}","{30.787419,31.821367}"]//Bethlehem to Egypt
-        ,[""]
-        ,["{30.787419,31.821367}","{30.90,32.39}","{31.00,33.01}","{31.06,33.62}","{31.21,34.15}","{31.49,34.51}","{32.6996,35.3035}"]//Egypt to Nazareth
-        ,[""]
-        ,["{32.6996,35.3035}","{31.826748,35.547091}"] //Nazareth to the Jordan
-        ,["{31.826748,35.547091}","{31.752365,35.384903}"] //The Jordan to the wilderness
-        ,["{32.6996,35.3035}","{32.770370, 35.375977}","{32.845973, 35.457001}","{32.880330,35.573307}"] //Nazareth to Capernaum
-        ,[""]
-        ,[""]
-        ,[""]
-        ,["{32.880330,35.573307}","{32.880787,35.555902}"] //Capernaum to the Mount
-        ,["{32.880787,35.555902}","{32.880330,35.573307}"] //The Mount to Capernaum
-        ,["{32.880330,35.573307}","{32.832376,35.646468}"] //Capernaum to the Gadarenes
-        ,["{32.832376,35.646468}","{32.880330,35.573307}"] //The Gadarenes to Capernaum
-        ,[""] //Sodom
-        ,[""] //Gomorrah
-        ,[""] //Chorazin
-        ,[""] //Bethsaida
-        ,[""] //Tyre
-        ,[""] //Sidon
-        ,[""] //Nineveh
-        ,[""] //Sheba
-        ,["{32.880330,35.573307}","{32.845973, 35.457001}","{32.770370, 35.375977}","{32.6996,35.3035}"] //Capernaum to Nazareth
-        ,["{32.880787,35.555902}","{32.867396, 35.615959}"] //Out on the Sea
-        ,["{32.867396, 35.615959}","{32.87000, 35.539312}"] //Sea to Gennesaret
     ]
     
     

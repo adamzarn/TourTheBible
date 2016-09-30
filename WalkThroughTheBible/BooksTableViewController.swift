@@ -11,6 +11,8 @@ import UIKit
 
 class BooksTableViewController: UIViewController, UITableViewDelegate {
     
+    @IBOutlet weak var myTableView: UITableView!
+    
     let books = ["Matthew","Mark"]
     
     let details = ["Visit Jesus in the manger, flee from Herod to Egypt, settle down in Nazareth, follow Jesus to Caesarea Philippi, join the disciples for the last supper, and see Jesus resurrected."
@@ -19,8 +21,11 @@ class BooksTableViewController: UIViewController, UITableViewDelegate {
     var hasBeenShown = [Bool](repeating: false, count: Books.booksDictionary.count)
     
     override func viewDidLoad() {
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSFontAttributeName: UIFont(name:"Helvetica-Bold", size:16.0)!]
+        
+        let imageView = UIImageView(image: UIImage(named: "Papyrus"))
+        myTableView.backgroundView = imageView
+        myTableView.backgroundView?.alpha = 0.4
+        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

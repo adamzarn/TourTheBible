@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        autoSave(delayInSeconds: 5)
+        
         return true
     }
 
@@ -106,6 +109,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func autoSave(delayInSeconds : Int) {
+        
+        if delayInSeconds > 0 {
+            
+            saveContext()
+            
+            let time = DispatchTime.now() + .seconds(delayInSeconds)
+            
+            DispatchQueue.main.asyncAfter(deadline: time) {
+                print("test")
+            }
+            
+        }
+    }
+
 
 }
 
