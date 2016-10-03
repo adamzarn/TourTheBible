@@ -91,36 +91,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DP6-Hc-kX1">
-                                <frame key="frameInset" width="1000" height="1000"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-pZ-NjX">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="T0V-SI-4lN"/>
+                                </connections>
+                            </textView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DP6-Hc-kX1">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="des-wn-K9p"/>
+                                    <constraint firstAttribute="height" constant="300" id="YMk-4Q-FdY"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="G5u-DD-6gy"/>
                                 </connections>
                             </mapView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-pZ-NjX">
-                                <frame key="frameInset" width="1000" height="1000"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="T0V-SI-4lN"/>
-                                </connections>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="DP6-Hc-kX1" secondAttribute="trailing" id="5lG-yx-Wx1"/>
-                            <constraint firstItem="DP6-Hc-kX1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="N55-eT-ewp"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="caZ-pZ-NjX" secondAttribute="bottom" id="SSe-Jd-TkY"/>
-                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Sc5-iQ-usv"/>
-                            <constraint firstItem="DP6-Hc-kX1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ZA7-RI-cWQ"/>
-                            <constraint firstAttribute="trailing" secondItem="caZ-pZ-NjX" secondAttribute="trailing" id="atQ-rF-QVh"/>
-                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="top" secondItem="DP6-Hc-kX1" secondAttribute="bottom" id="fdR-DB-5Gj"/>
+                            <constraint firstItem="DP6-Hc-kX1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3og-Lh-Lh7"/>
+                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="top" secondItem="DP6-Hc-kX1" secondAttribute="bottom" id="5is-xY-0ew"/>
+                            <constraint firstItem="DP6-Hc-kX1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="8Kq-VN-wzc"/>
+                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="TA5-AE-6HK"/>
+                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="trailing" secondItem="DP6-Hc-kX1" secondAttribute="trailing" id="btS-q1-2DN"/>
+                            <constraint firstAttribute="trailing" secondItem="DP6-Hc-kX1" secondAttribute="trailing" id="erN-sg-i8m"/>
+                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="leading" secondItem="DP6-Hc-kX1" secondAttribute="leading" id="hIH-15-EpY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JMQ-g1-Xls">
@@ -138,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2036" y="316.19190404797604"/>
+            <point key="canvasLocation" x="1893.5999999999999" y="340.47976011994007"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="b1l-wa-qSm">

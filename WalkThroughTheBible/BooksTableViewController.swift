@@ -13,10 +13,8 @@ class BooksTableViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var myTableView: UITableView!
     
-    let books = ["Matthew","Mark"]
-    
-    let details = ["Visit Jesus in the manger, flee from Herod to Egypt, settle down in Nazareth, follow Jesus to Caesarea Philippi, join the disciples for the last supper, and see Jesus resurrected."
-        , "Witness the baptism of Jesus, watch Jesus calm a storm on the Sea of Galilee, go up the mount of transfiguration, enter Jerusalem for the Passover, and see the empty tomb."]
+    let books = ["Matthew","Mark","Luke","John","Acts"]
+    let summaries = Books.summaries
     
     var hasBeenShown = [Bool](repeating: false, count: Books.booksDictionary.count)
     
@@ -50,7 +48,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomBookCell
         
         cell.book.text = books[indexPath.row]
-        cell.detail.text = details[indexPath.row]
+        cell.detail.text = summaries[indexPath.row]
         
         cell.setUp()
 
