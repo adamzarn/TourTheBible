@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cGx-I7-Rav">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X7R-vP-seI">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -10,7 +10,7 @@
         <!--Books-->
         <scene sceneID="FMc-oE-afM">
             <objects>
-                <viewController id="9yy-wX-d3J" customClass="BooksTableViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BooksTableViewController" id="9yy-wX-d3J" customClass="BooksTableViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eba-ch-lUu"/>
                         <viewControllerLayoutGuide type="bottom" id="Psx-TH-5RE"/>
@@ -77,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvo-f9-r2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085.5999999999999" y="340.47976011994007"/>
+            <point key="canvasLocation" x="2024.8" y="340.47976011994007"/>
         </scene>
         <!--Map And Text View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -91,7 +91,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-pZ-NjX">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-pZ-NjX">
+                                <frame key="frameInset" width="1000" height="1000"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -100,7 +101,8 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="T0V-SI-4lN"/>
                                 </connections>
                             </textView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DP6-Hc-kX1">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DP6-Hc-kX1">
+                                <frame key="frameInset" width="1000" height="1000"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="YMk-4Q-FdY"/>
                                 </constraints>
@@ -135,25 +137,73 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1893.5999999999999" y="340.47976011994007"/>
+            <point key="canvasLocation" x="2772" y="339.58020989505252"/>
+        </scene>
+        <!--Testaments-->
+        <scene sceneID="Wsg-eq-3SJ">
+            <objects>
+                <viewController storyboardIdentifier="TestamentsTableViewController" id="48X-IZ-ba2" customClass="TestamentsTableViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bRq-PB-tJx"/>
+                        <viewControllerLayoutGuide type="bottom" id="at8-lu-zzJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sic-Vd-X3u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ezk-fZ-BeZ">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="miQ-yl-pkh">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="miQ-yl-pkh" id="ar4-M9-F7e">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="48X-IZ-ba2" id="8WW-4I-h3G"/>
+                                    <outlet property="delegate" destination="48X-IZ-ba2" id="JDC-MU-Ld7"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ezk-fZ-BeZ" firstAttribute="leading" secondItem="Sic-Vd-X3u" secondAttribute="leading" id="W7y-Bl-enk"/>
+                            <constraint firstItem="at8-lu-zzJ" firstAttribute="top" secondItem="ezk-fZ-BeZ" secondAttribute="bottom" id="gYt-zy-lO0"/>
+                            <constraint firstItem="ezk-fZ-BeZ" firstAttribute="top" secondItem="Sic-Vd-X3u" secondAttribute="top" id="ioW-Ar-LaT"/>
+                            <constraint firstAttribute="trailing" secondItem="ezk-fZ-BeZ" secondAttribute="trailing" id="yLN-NV-eUR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Testaments" id="xVI-bf-aDt"/>
+                    <connections>
+                        <outlet property="myTableView" destination="ezk-fZ-BeZ" id="IsO-GP-HHg"/>
+                        <segue destination="9yy-wX-d3J" kind="push" id="h92-ok-bcz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dup-ka-Uj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1276" y="339.58020989505252"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="b1l-wa-qSm">
+        <scene sceneID="yvM-Hb-Wok">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cGx-I7-Rav" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X7R-vP-seI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gii-0a-Qwm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nLR-oS-yEw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="9yy-wX-d3J" kind="relationship" relationship="rootViewController" id="Xvd-GZ-vXW"/>
+                        <segue destination="48X-IZ-ba2" kind="relationship" relationship="rootViewController" id="AG9-1o-Jp6"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3PF-ne-mNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fYS-SU-qnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="364" y="349"/>
+            <point key="canvasLocation" x="336.80000000000001" y="339.58020989505252"/>
         </scene>
     </scenes>
 </document>

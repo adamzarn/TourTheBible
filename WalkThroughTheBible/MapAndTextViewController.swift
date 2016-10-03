@@ -219,10 +219,9 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
 
     func setUpText() {
         
-        let text = Books.booksDictionary[book!]![chapterIndex!-1] as! NSString
-        let stringText = text as String
+        let text = Books.booksDictionary[book!]![chapterIndex!-1]
         let attributedText = NSMutableAttributedString(string: text as String)
-        let allTextRange = (text ).range(of: text as String)
+        let allTextRange = (text as NSString).range(of: text)
 
         attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Light", size:16.0)!, range: allTextRange)
         
@@ -231,9 +230,9 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         
         for place in placesArray {
             
-            var range = text.range(of: place)
+            var range = (text as NSString).range(of: place)
             var offset = 0
-            let totalCharacters = stringText.characters.count
+            let totalCharacters = text.characters.count
             
             while range.location < 10000000 {
                 
@@ -243,8 +242,8 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
                 attributedText.addAttribute(NSLinkAttributeName, value: value!, range: range)
                 
                 offset = range.location + 1
-                let startIndex = stringText.index(stringText.startIndex, offsetBy: offset)
-                let newText = stringText.substring(from: startIndex)
+                let startIndex = text.index(text.startIndex, offsetBy: offset)
+                let newText = text.substring(from: startIndex)
                 
                 range = (newText as NSString).range(of: place)
 

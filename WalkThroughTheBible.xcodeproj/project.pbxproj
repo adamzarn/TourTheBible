@@ -22,6 +22,7 @@
 		DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */; };
 		DB6F52181D9A14FB00221041 /* BibleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F52171D9A14FB00221041 /* BibleLocation.swift */; };
 		DB6F521A1D9A190600221041 /* BibleLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F52191D9A190600221041 /* BibleLocations.swift */; };
+		DBA91EFA1DA2C29600E5E00A /* TestamentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EF91DA2C29600E5E00A /* TestamentsTableViewController.swift */; };
 		DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */; };
 		DBE58B701D9EB358009A7BFA /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6C1D9EB358009A7BFA /* Pin.swift */; };
 		DBE58B711D9EB358009A7BFA /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6D1D9EB358009A7BFA /* Pin+CoreDataProperties.swift */; };
@@ -75,6 +76,7 @@
 		DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTableViewController.swift; sourceTree = "<group>"; };
 		DB6F52171D9A14FB00221041 /* BibleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocation.swift; sourceTree = "<group>"; };
 		DB6F52191D9A190600221041 /* BibleLocations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocations.swift; sourceTree = "<group>"; };
+		DBA91EF91DA2C29600E5E00A /* TestamentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestamentsTableViewController.swift; sourceTree = "<group>"; };
 		DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
 		DBE58B6C1D9EB358009A7BFA /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pin.swift; path = ../Pin.swift; sourceTree = "<group>"; };
 		DBE58B6D1D9EB358009A7BFA /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataProperties.swift"; path = "../Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */,
 				DB5C2EAE1D870F79002A5FAD /* Info.plist */,
 				DB5C2EA61D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld */,
+				DBA91EF91DA2C29600E5E00A /* TestamentsTableViewController.swift */,
 				DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */,
 				DB4EE9951D987A6500A3C48B /* Books.swift */,
 				DB6F52171D9A14FB00221041 /* BibleLocation.swift */,
@@ -478,6 +481,7 @@
 				DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */,
 				DBE58B721D9EB358009A7BFA /* Book.swift in Sources */,
 				DB6F521A1D9A190600221041 /* BibleLocations.swift in Sources */,
+				DBA91EFA1DA2C29600E5E00A /* TestamentsTableViewController.swift in Sources */,
 				DB4EE9961D987A6500A3C48B /* Books.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,24 +1,22 @@
 //
-//  BooksTableViewController.swift
+//  TestamentsTableViewController.swift
 //  WalkThroughTheBible
 //
-//  Created by Adam Zarn on 9/13/16.
+//  Created by Adam Zarn on 10/3/16.
 //  Copyright © 2016 Adam Zarn. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class BooksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TestamentsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var myTableView: UITableView!
     
-    let books = [["Genesis","Exodus","Leviticus","Numbers","Deuteronomy"],["Matthew","Mark","Luke","John","Acts"]]
-    let summaries = Books.summaries
+    let testaments = ["Old Testament", "New Testament"]
     
-    var hasBeenShown = [[Bool](repeating: false, count: 5), [Bool](repeating: false, count: 5)]
-    var testamentIndex = 0
-        
+    var hasBeenShown = [Bool](repeating: false, count: 2)
+    
     override func viewDidLoad() {
         
         let imageView = UIImageView(image: UIImage(named: "Papyrus"))
@@ -29,49 +27,46 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        if !hasBeenShown[testamentIndex][indexPath.row] {
-        
+        if !hasBeenShown[indexPath.row] {
+            
             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
             cell.layer.transform = rotationTransform
             
             UIView.animate(withDuration: 0.5, animations: { () -> Void in
                 cell.layer.transform = CATransform3DIdentity
             })
-                
+            
         }
         
-        hasBeenShown[testamentIndex][indexPath.row] = true
+        hasBeenShown[indexPath.row] = true
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomBookCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")! as UITableViewCell
         
-        cell.book.text = books[testamentIndex][indexPath.row]
-        cell.detail.text = summaries[testamentIndex][indexPath.row]
-
+        cell.textLabel?.text = testaments[indexPath.row]
+        cell.backgroundColor = UIColor.clear
         
-        cell.setUp()
-
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books[testamentIndex].count
+        return testaments.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "MapAndTextViewController") as! MapAndTextViewController
-        vc.book = books[testamentIndex][indexPath.row]
-        self.navigationController?.pushViewController(vc, animated: true)
-        
-        tableView.deselectRow(at: indexPath, animated: true)
             
+        let vc = storyboard?.instantiateViewController(withIdentifier: "BooksTableViewController") as! BooksTableViewController
+            vc.testamentIndex = indexPath.row
+        self.navigationController?.pushViewController(vc, animated: true)
+            
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
-
+    
     
 }
+
