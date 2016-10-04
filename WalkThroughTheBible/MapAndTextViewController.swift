@@ -30,6 +30,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
     var numberOfChapters: Int?
     var pinsForBook = [Pin]()
     var currentBook: Book? = nil
+    var verseNumbers = ["[1]"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,6 +155,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         myTextView.isScrollEnabled = false
         myTextView.isEditable = false
         myMapView.showsPointsOfInterest = false
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -219,6 +221,12 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
 
     func setUpText() {
         
+        if verseNumbers.count == 1 {
+            for i in 2...100 {
+                verseNumbers.append("[\(i)]")
+            }
+        }
+        
         let text = Books.booksDictionary[book!]![chapterIndex!-1]
         let attributedText = NSMutableAttributedString(string: text as String)
         let allTextRange = (text as NSString).range(of: text)
@@ -253,6 +261,11 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
                     }
                 }
             }
+        }
+        
+        for verse in verseNumbers {
+            let range = (text as NSString).range(of: verse)
+            attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:12.0)!, range: range)
         }
         
         myTextView.attributedText = attributedText

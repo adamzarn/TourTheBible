@@ -22,7 +22,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="197" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gde-yE-D9j">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="197" id="ktt-2e-Z75" customClass="CustomBookCell" customModule="WalkThroughTheBible" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BookCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookCell" rowHeight="197" id="ktt-2e-Z75" customClass="CustomBookCell" customModule="WalkThroughTheBible" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="383" height="197"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ktt-2e-Z75" id="Llw-Le-Sob">
@@ -53,6 +53,14 @@
                                             <outlet property="book" destination="Unb-2q-Nbq" id="2iw-7d-Hx8"/>
                                             <outlet property="detail" destination="CNu-b9-ZQk" id="Ewt-wi-5vi"/>
                                         </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProductCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductCell" rowHeight="197" id="YhY-HT-rLW" customClass="ProductCell" customModule="WalkThroughTheBible">
+                                        <rect key="frame" x="0.0" y="289" width="383" height="197"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YhY-HT-rLW" id="aNC-Uw-1lf">
+                                            <frame key="frameInset" width="383" height="196"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -151,16 +159,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ezk-fZ-BeZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="198" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ezk-fZ-BeZ">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="miQ-yl-pkh">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="197" id="NOq-kb-GId" customClass="CustomBookCell" customModule="WalkThroughTheBible" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="197"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="miQ-yl-pkh" id="ar4-M9-F7e">
-                                            <frame key="frameInset" width="375" height="43"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NOq-kb-GId" id="deu-Gn-0qj">
+                                            <frame key="frameInset" width="375" height="196"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4A-2q-9Zt">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Detail" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ayt-uT-gsh">
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="j4A-2q-9Zt" firstAttribute="centerX" secondItem="deu-Gn-0qj" secondAttribute="centerX" id="FkU-id-rt6"/>
+                                                <constraint firstItem="Ayt-uT-gsh" firstAttribute="top" secondItem="j4A-2q-9Zt" secondAttribute="bottom" constant="-7" id="Ifo-Kc-v4g"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Ayt-uT-gsh" secondAttribute="bottom" constant="6" id="iqM-Hb-cW7"/>
+                                                <constraint firstItem="Ayt-uT-gsh" firstAttribute="leading" secondItem="deu-Gn-0qj" secondAttribute="leadingMargin" constant="16" id="jPv-42-QQ6"/>
+                                                <constraint firstItem="Ayt-uT-gsh" firstAttribute="centerX" secondItem="deu-Gn-0qj" secondAttribute="centerX" id="ngO-q4-HfH"/>
+                                                <constraint firstItem="j4A-2q-9Zt" firstAttribute="top" secondItem="deu-Gn-0qj" secondAttribute="topMargin" constant="17" id="vNr-yu-4PD"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="book" destination="j4A-2q-9Zt" id="kYE-LL-vpd"/>
+                                            <outlet property="detail" destination="Ayt-uT-gsh" id="JW7-BV-y6Q"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

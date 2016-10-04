@@ -8,16 +8,18 @@
 
 import Foundation
 import UIKit
+import StoreKit
 
 class BooksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var myTableView: UITableView!
     
-    let books = [["Genesis","Exodus","Leviticus","Numbers","Deuteronomy"],["Matthew","Mark","Luke","John","Acts"]]
+    let books = [["Genesis","Exodus","Numbers"],["Matthew","Mark","Luke","John","Acts"]]
     let summaries = Books.summaries
     
-    var hasBeenShown = [[Bool](repeating: false, count: 5), [Bool](repeating: false, count: 5)]
+    var hasBeenShown = [[Bool](repeating: false, count: 3), [Bool](repeating: false, count: 5)]
     var testamentIndex = 0
+    var products = [SKProduct]()
         
     override func viewDidLoad() {
         
@@ -25,6 +27,52 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         myTableView.backgroundView = imageView
         myTableView.backgroundView?.alpha = 0.4
         
+        let restoreButton = UIBarButtonItem(title: "Restore",
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(BooksTableViewController.restoreTapped(_:)))
+        navigationItem.rightBarButtonItem = restoreButton
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(BooksTableViewController.handlePurchaseNotification(_:)),
+                                               name: NSNotification.Name(rawValue: IAPHelper.IAPHelperPurchaseNotification),
+                                               object: nil)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        reload()
+    }
+    
+    func reload() {
+        
+        products = []
+        
+        myTableView.reloadData()
+        
+        Products.store.requestProducts{success, products in
+            if success {
+                print("success")
+                self.products = products!
+                print(products!)
+                print("")
+                self.myTableView.reloadData()
+            }
+        }
+    }
+    
+    func restoreTapped(_ sender: AnyObject) {
+        Products.store.restorePurchases()
+    }
+    
+    func handlePurchaseNotification(_ notification: Notification) {
+        guard let productID = notification.object as? String else { return }
+        
+        for (index, product) in products.enumerated() {
+            guard product.productIdentifier == productID else { continue }
+            
+            self.myTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -46,15 +94,34 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomBookCell
+        let bookName = books[testamentIndex][indexPath.row]
+        let bookDetail = summaries[testamentIndex][indexPath.row]
         
-        cell.book.text = books[testamentIndex][indexPath.row]
-        cell.detail.text = summaries[testamentIndex][indexPath.row]
-
+        if ["Acts","Exodus","Numbers"].contains(bookName) {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as! ProductCell
+            
+            let product = products[0]
+            
+            cell.product = product
+            cell.buyButtonHandler = { product in
+                Products.store.buyProduct(product)
+            }
+            
+            return cell
+            
+        } else {
         
-        cell.setUp()
-
-        return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell") as! CustomBookCell
+        
+            cell.book.text = bookName
+            cell.detail.text = bookDetail
+        
+            cell.setUp()
+            
+            return cell
+            
+        }
         
     }
     

@@ -44,10 +44,12 @@ class TestamentsTableViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")! as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomBookCell
         
-        cell.textLabel?.text = testaments[indexPath.row]
-        cell.backgroundColor = UIColor.clear
+        cell.book.text = testaments[indexPath.row]
+        cell.detail.text = ""
+       
+        cell.setUp()
         
         return cell
         
