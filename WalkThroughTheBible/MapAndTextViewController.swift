@@ -83,7 +83,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         self.navItem.titleView = menuView
         menuView!.arrowTintColor = UIColor.black
         menuView!.shouldChangeTitleText = true
-        menuView!.navigationBarTitleFont = UIFont(name: "Papyrus", size: 21.0)
+        menuView!.navigationBarTitleFont = UIFont(name: "Papyrus", size: 23.0)
         
         menuView!.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             self.chapterIndex = indexPath + 1
@@ -204,7 +204,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         self.navItem.titleView = menuView
         menuView!.arrowTintColor = UIColor.black
         menuView!.shouldChangeTitleText = true
-        menuView!.navigationBarTitleFont = UIFont(name: "Papyrus", size: 21.0)
+        menuView!.navigationBarTitleFont = UIFont(name: "Papyrus", size: 23.0)
         
         menuView!.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             self.chapterIndex = indexPath + 1
@@ -263,9 +263,21 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
             }
         }
         
+        var versesEdited = 0
         for verse in verseNumbers {
             let range = (text as NSString).range(of: verse)
-            attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:12.0)!, range: range)
+            
+            if range.location < 10000000 {
+                let start = range.location - versesEdited*2
+                let len = range.length
+                let firstBracket = NSMakeRange(start, 1)
+                let secondBracket = NSMakeRange(start + len - 1, 1)
+                let newRange = NSMakeRange(start, len - 2)
+                attributedText.replaceCharacters(in: secondBracket, with: "")
+                attributedText.replaceCharacters(in: firstBracket, with: "")
+                attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:12.0)!, range: newRange)
+            }
+            versesEdited += 1
         }
         
         myTextView.attributedText = attributedText

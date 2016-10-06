@@ -120,7 +120,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let time = DispatchTime.now() + .seconds(delayInSeconds)
             
             DispatchQueue.main.asyncAfter(deadline: time) {
-                print("test")
             }
             
         }

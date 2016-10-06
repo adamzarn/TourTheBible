@@ -26,7 +26,7 @@
                                         <rect key="frame" x="0.0" y="92" width="383" height="197"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ktt-2e-Z75" id="Llw-Le-Sob">
-                                            <frame key="frameInset" width="383" height="196"/>
+                                            <frame key="frameInset" width="383" height="197"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-2q-Nbq">
@@ -60,7 +60,44 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YhY-HT-rLW" id="aNC-Uw-1lf">
                                             <frame key="frameInset" width="383" height="196"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-DP-XT7">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Detail" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GbL-Os-83C">
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAQ-2w-MgQ">
+                                                    <state key="normal" title="The Price"/>
+                                                    <connections>
+                                                        <action selector="buyButtonTapped:" destination="YhY-HT-rLW" eventType="touchUpInside" id="5yL-25-Vgg"/>
+                                                    </connections>
+                                                </button>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="TPz-VC-RCf"/>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GbL-Os-83C" firstAttribute="leading" secondItem="aNC-Uw-1lf" secondAttribute="leadingMargin" constant="16" id="3Ma-fu-k19"/>
+                                                <constraint firstItem="TPz-VC-RCf" firstAttribute="centerY" secondItem="aNC-Uw-1lf" secondAttribute="centerY" id="PJ9-ib-o0R"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CAQ-2w-MgQ" secondAttribute="trailing" constant="16" id="U4t-F4-gbB"/>
+                                                <constraint firstItem="F8Y-DP-XT7" firstAttribute="centerX" secondItem="aNC-Uw-1lf" secondAttribute="centerX" id="VeT-RZ-Teo"/>
+                                                <constraint firstItem="GbL-Os-83C" firstAttribute="centerX" secondItem="aNC-Uw-1lf" secondAttribute="centerX" id="j2D-yw-IPo"/>
+                                                <constraint firstItem="F8Y-DP-XT7" firstAttribute="top" secondItem="aNC-Uw-1lf" secondAttribute="topMargin" constant="17" id="j60-5p-Pny"/>
+                                                <constraint firstItem="GbL-Os-83C" firstAttribute="top" secondItem="F8Y-DP-XT7" secondAttribute="bottom" constant="-7" id="njr-IA-kPU"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="GbL-Os-83C" secondAttribute="bottom" constant="6" id="oRt-Hq-cfz"/>
+                                                <constraint firstItem="TPz-VC-RCf" firstAttribute="centerX" secondItem="aNC-Uw-1lf" secondAttribute="centerX" id="v8r-EU-aBN"/>
+                                                <constraint firstItem="CAQ-2w-MgQ" firstAttribute="top" secondItem="aNC-Uw-1lf" secondAttribute="topMargin" constant="17" id="y1y-p8-gPq"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="aiv" destination="TPz-VC-RCf" id="i1y-VJ-uJl"/>
+                                            <outlet property="book" destination="F8Y-DP-XT7" id="ezx-01-brf"/>
+                                            <outlet property="detail" destination="GbL-Os-83C" id="bou-3y-4MI"/>
+                                            <outlet property="price" destination="CAQ-2w-MgQ" id="uXy-IW-0g1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -166,7 +203,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="197"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NOq-kb-GId" id="deu-Gn-0qj">
-                                            <frame key="frameInset" width="375" height="196"/>
+                                            <frame key="frameInset" width="375" height="197"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4A-2q-9Zt">

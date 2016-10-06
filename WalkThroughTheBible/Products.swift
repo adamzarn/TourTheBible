@@ -14,7 +14,11 @@ public struct Products {
     public static let Exodus = "AJZ.WalkThroughTheBible.Exodus"
     public static let Numbers = "AJZ.WalkThroughTheBible.Numbers"
     
-    fileprivate static let productIdentifiers: Set<ProductIdentifier> = [Products.Acts,Products.Exodus,Products.Numbers]
+    //public static let Acts = "Acts"
+    //public static let Exodus = "Exodus"
+    //public static let Numbers = "Numbers"
+    
+    static let productIdentifiers: Set<ProductIdentifier> = [Products.Acts,Products.Exodus,Products.Numbers]
     
     public static let store = IAPHelper(productIds: Products.productIdentifiers)
 }
