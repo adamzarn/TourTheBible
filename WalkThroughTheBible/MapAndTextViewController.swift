@@ -233,31 +233,35 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
 
         attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Light", size:16.0)!, range: allTextRange)
         
-        let dictionary = BibleLocations.Locations as NSDictionary
-        let placesArray = dictionary.allKeys as! [String]
+        let dictionary = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)] as! NSDictionary
         
-        for place in placesArray {
-            
-            var range = (text as NSString).range(of: place)
-            var offset = 0
-            let totalCharacters = text.characters.count
-            
-            while range.location < 10000000 {
-                
-                let value = place.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        if dictionary.count > 0 {
 
-                attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:16.0)!, range: range)
-                attributedText.addAttribute(NSLinkAttributeName, value: value!, range: range)
+            let placesArray = dictionary.allKeys as! [String]
+            
+            for place in placesArray {
                 
-                offset = range.location + 1
-                let startIndex = text.index(text.startIndex, offsetBy: offset)
-                let newText = text.substring(from: startIndex)
+                var range = (text as NSString).range(of: place)
+                var offset = 0
+                let totalCharacters = text.characters.count
                 
-                range = (newText as NSString).range(of: place)
+                while range.location < 10000000 {
+                    
+                    let value = place.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
 
-                if range.location < 10000000 {
-                    if offset + range.location < totalCharacters {
-                        range = NSMakeRange(offset + range.location, range.length)
+                    attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:16.0)!, range: range)
+                    attributedText.addAttribute(NSLinkAttributeName, value: value!, range: range)
+                    
+                    offset = range.location + 1
+                    let startIndex = text.index(text.startIndex, offsetBy: offset)
+                    let newText = text.substring(from: startIndex)
+                    
+                    range = (newText as NSString).range(of: place)
+
+                    if range.location < 10000000 {
+                        if offset + range.location < totalCharacters {
+                            range = NSMakeRange(offset + range.location, range.length)
+                        }
                     }
                 }
             }
@@ -324,7 +328,9 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         
         let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
         
-        let location = BibleLocations.Locations[decodedURL]! as BibleLocation
+        let locationBank = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)] as! NSDictionary
+        
+        let location = locationBank[decodedURL]! as! BibleLocation
         setUpMap(name: location.name!, lat: location.lat!, long: location.long!, delta: location.delta!)
         
         let context = appDelegate.managedObjectContext
@@ -399,6 +405,8 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
             , "latDelta":myMapView.region.span.latitudeDelta
             , "longDelta":myMapView.region.span.longitudeDelta]
         defaults.set(locationData, forKey: "\(book) location")
+        print("latDelta: \(myMapView.region.span.latitudeDelta)")
+        print("longDelta: \(myMapView.region.span.longitudeDelta)")
     }
 
 
