@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X7R-vP-seI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="87n-SZ-fKm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -23,10 +23,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BookCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookCell" rowHeight="197" id="ktt-2e-Z75" customClass="CustomBookCell" customModule="WalkThroughTheBible" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="1000" height="197"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="197"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ktt-2e-Z75" id="Llw-Le-Sob">
-                                            <frame key="frameInset" width="1000" height="197"/>
+                                            <frame key="frameInset" width="375" height="197"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-2q-Nbq">
@@ -55,10 +55,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProductCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductCell" rowHeight="197" id="YhY-HT-rLW" customClass="ProductCell" customModule="WalkThroughTheBible">
-                                        <rect key="frame" x="0.0" y="289" width="1000" height="197"/>
+                                        <rect key="frame" x="0.0" y="289" width="375" height="197"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YhY-HT-rLW" id="aNC-Uw-1lf">
-                                            <frame key="frameInset" width="1000" height="197"/>
+                                            <frame key="frameInset" width="375" height="197"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-DP-XT7">
@@ -108,21 +108,21 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Gde-yE-D9j" secondAttribute="trailing" constant="-20" id="3en-e9-jhj"/>
-                            <constraint firstItem="Psx-TH-5RE" firstAttribute="top" secondItem="Gde-yE-D9j" secondAttribute="bottom" id="Kpk-JN-Hgh"/>
-                            <constraint firstItem="Gde-yE-D9j" firstAttribute="top" secondItem="l06-4h-FKN" secondAttribute="topMargin" id="Nok-el-6OV"/>
-                            <constraint firstItem="Gde-yE-D9j" firstAttribute="leading" secondItem="l06-4h-FKN" secondAttribute="leadingMargin" constant="-20" id="c2K-Iz-CL8"/>
+                            <constraint firstAttribute="bottom" secondItem="Gde-yE-D9j" secondAttribute="bottom" id="4ZQ-17-JEQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Gde-yE-D9j" secondAttribute="trailing" id="6xx-ZV-BQP"/>
+                            <constraint firstItem="Gde-yE-D9j" firstAttribute="leading" secondItem="l06-4h-FKN" secondAttribute="leading" id="JK5-U2-MuJ"/>
+                            <constraint firstItem="Gde-yE-D9j" firstAttribute="top" secondItem="l06-4h-FKN" secondAttribute="top" id="Wn9-jZ-oub"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Books" id="cPM-lt-Me9"/>
                     <connections>
                         <outlet property="myTableView" destination="Gde-yE-D9j" id="fOR-yE-mVX"/>
-                        <segue destination="BYZ-38-t0r" kind="push" id="taK-JN-DRZ"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="BooksToRead" id="RJW-u5-C65"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvo-f9-r2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2024.8" y="340.47976011994007"/>
+            <point key="canvasLocation" x="3308" y="339.58020989505252"/>
         </scene>
         <!--Map And Text View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -136,6 +136,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DP6-Hc-kX1">
+                                <frame key="frameInset" width="1000" height="1000"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="9Zu-Ti-5cq"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="G5u-DD-6gy"/>
+                                </connections>
+                            </mapView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-pZ-NjX">
                                 <frame key="frameInset" width="1000" height="1000"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -146,25 +155,16 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="T0V-SI-4lN"/>
                                 </connections>
                             </textView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DP6-Hc-kX1">
-                                <frame key="frameInset" width="1000" height="1000"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="YMk-4Q-FdY"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="G5u-DD-6gy"/>
-                                </connections>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DP6-Hc-kX1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3og-Lh-Lh7"/>
-                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="top" secondItem="DP6-Hc-kX1" secondAttribute="bottom" id="5is-xY-0ew"/>
-                            <constraint firstItem="DP6-Hc-kX1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="8Kq-VN-wzc"/>
-                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="TA5-AE-6HK"/>
-                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="trailing" secondItem="DP6-Hc-kX1" secondAttribute="trailing" id="btS-q1-2DN"/>
-                            <constraint firstAttribute="trailing" secondItem="DP6-Hc-kX1" secondAttribute="trailing" id="erN-sg-i8m"/>
-                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="leading" secondItem="DP6-Hc-kX1" secondAttribute="leading" id="hIH-15-EpY"/>
+                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2tI-UU-Ice"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="caZ-pZ-NjX" secondAttribute="bottom" id="3Dz-e5-REm"/>
+                            <constraint firstAttribute="trailing" secondItem="caZ-pZ-NjX" secondAttribute="trailing" id="59q-oR-ZqI"/>
+                            <constraint firstItem="caZ-pZ-NjX" firstAttribute="top" secondItem="DP6-Hc-kX1" secondAttribute="bottom" id="IQm-Zu-zXt"/>
+                            <constraint firstItem="DP6-Hc-kX1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ITP-hc-8bs"/>
+                            <constraint firstAttribute="trailing" secondItem="DP6-Hc-kX1" secondAttribute="trailing" id="uHj-Ae-vDl"/>
+                            <constraint firstItem="DP6-Hc-kX1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="zVr-hE-d8h"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JMQ-g1-Xls">
@@ -182,9 +182,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2772" y="339.58020989505252"/>
+            <point key="canvasLocation" x="4262" y="340"/>
         </scene>
-        <!--Testaments-->
+        <!--Read Scripture-->
         <scene sceneID="Wsg-eq-3SJ">
             <objects>
                 <viewController storyboardIdentifier="TestamentsTableViewController" id="48X-IZ-ba2" customClass="TestamentsTableViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
@@ -240,39 +240,178 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ezk-fZ-BeZ" firstAttribute="leading" secondItem="Sic-Vd-X3u" secondAttribute="leading" id="W7y-Bl-enk"/>
-                            <constraint firstItem="at8-lu-zzJ" firstAttribute="top" secondItem="ezk-fZ-BeZ" secondAttribute="bottom" id="gYt-zy-lO0"/>
-                            <constraint firstItem="ezk-fZ-BeZ" firstAttribute="top" secondItem="Sic-Vd-X3u" secondAttribute="top" id="ioW-Ar-LaT"/>
-                            <constraint firstAttribute="trailing" secondItem="ezk-fZ-BeZ" secondAttribute="trailing" id="yLN-NV-eUR"/>
+                            <constraint firstAttribute="trailing" secondItem="ezk-fZ-BeZ" secondAttribute="trailing" id="LJA-V2-Vso"/>
+                            <constraint firstAttribute="bottom" secondItem="ezk-fZ-BeZ" secondAttribute="bottom" id="M95-rh-8hB"/>
+                            <constraint firstItem="ezk-fZ-BeZ" firstAttribute="leading" secondItem="Sic-Vd-X3u" secondAttribute="leading" id="REG-vu-JqO"/>
+                            <constraint firstItem="ezk-fZ-BeZ" firstAttribute="top" secondItem="Sic-Vd-X3u" secondAttribute="top" id="Y0N-9Q-3go"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Testaments" id="xVI-bf-aDt"/>
+                    <navigationItem key="navigationItem" title="Read Scripture" id="xVI-bf-aDt"/>
                     <connections>
                         <outlet property="myTableView" destination="ezk-fZ-BeZ" id="IsO-GP-HHg"/>
-                        <segue destination="9yy-wX-d3J" kind="push" id="h92-ok-bcz"/>
+                        <segue destination="9yy-wX-d3J" kind="show" identifier="TestamentToBooks" id="hx9-eJ-cxX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dup-ka-Uj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1276" y="339.58020989505252"/>
+            <point key="canvasLocation" x="2559.1999999999998" y="339.58020989505252"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="yvM-Hb-Wok">
+        <!--Tab Bar Controller-->
+        <scene sceneID="LBK-GR-UVs">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X7R-vP-seI" sceneMemberID="viewController">
+                <tabBarController id="87n-SZ-fKm" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="mix-sj-RpC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="iEu-8d-efb" kind="relationship" relationship="viewControllers" id="b4U-b8-J5q"/>
+                        <segue destination="yTr-ZA-Wuu" kind="relationship" relationship="viewControllers" id="XnP-fw-dfS"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fhb-ub-zhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="591" y="657"/>
+        </scene>
+        <!--Glossary-->
+        <scene sceneID="6ss-li-deO">
+            <objects>
+                <viewController id="kOu-I4-RaN" customClass="GlossaryViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QPK-fw-RdF"/>
+                        <viewControllerLayoutGuide type="bottom" id="UWy-yh-TYh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wEu-Tl-O3o">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EvM-yz-hqa">
+                                <frame key="frameInset" width="375" height="279"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="9qB-Rk-cau"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="kOu-I4-RaN" id="Vqc-3e-EGD"/>
+                                </connections>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6wr-m9-jUe">
+                                <frame key="frameInset" minY="369" width="375" height="298"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="58" id="kLe-z5-Aja" customClass="GlossaryCell" customModule="WalkThroughTheBible" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="58"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kLe-z5-Aja" id="IXJ-i0-HZM">
+                                            <frame key="frameInset" width="375" height="57"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-ro-Pp6">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="VyB-qV-ubf"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3O-Ri-vhL">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="i3O-Ri-vhL" firstAttribute="leading" secondItem="IB3-ro-Pp6" secondAttribute="trailing" constant="21" id="7tM-n1-ttC"/>
+                                                <constraint firstItem="IB3-ro-Pp6" firstAttribute="centerY" secondItem="IXJ-i0-HZM" secondAttribute="centerY" id="FUg-g5-qgI"/>
+                                                <constraint firstItem="i3O-Ri-vhL" firstAttribute="trailing" secondItem="IXJ-i0-HZM" secondAttribute="trailingMargin" id="Wun-S7-fQm"/>
+                                                <constraint firstItem="IB3-ro-Pp6" firstAttribute="top" secondItem="IXJ-i0-HZM" secondAttribute="topMargin" id="aMR-fr-eRh"/>
+                                                <constraint firstItem="IB3-ro-Pp6" firstAttribute="leading" secondItem="IXJ-i0-HZM" secondAttribute="leadingMargin" constant="13" id="nPR-tZ-j0y"/>
+                                                <constraint firstItem="i3O-Ri-vhL" firstAttribute="centerY" secondItem="IXJ-i0-HZM" secondAttribute="centerY" id="taa-vu-HPQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="myImageView" destination="IB3-ro-Pp6" id="zyP-rB-yma"/>
+                                            <outlet property="myLabel" destination="i3O-Ri-vhL" id="Vm2-yk-Vj7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="kOu-I4-RaN" id="3dl-eV-Yh0"/>
+                                    <outlet property="delegate" destination="kOu-I4-RaN" id="LM0-g3-zvA"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="IXr-WN-BLb">
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EvM-yz-hqa" firstAttribute="leading" secondItem="wEu-Tl-O3o" secondAttribute="leading" id="9Fm-TF-5Qt"/>
+                            <constraint firstItem="IXr-WN-BLb" firstAttribute="top" secondItem="QPK-fw-RdF" secondAttribute="bottom" id="GgX-45-7yz"/>
+                            <constraint firstItem="UWy-yh-TYh" firstAttribute="top" secondItem="6wr-m9-jUe" secondAttribute="bottom" id="KYC-O1-e1Q"/>
+                            <constraint firstAttribute="trailing" secondItem="6wr-m9-jUe" secondAttribute="trailing" id="LyW-5r-OhF"/>
+                            <constraint firstAttribute="trailing" secondItem="IXr-WN-BLb" secondAttribute="trailing" id="OSC-UZ-mdY"/>
+                            <constraint firstItem="EvM-yz-hqa" firstAttribute="top" secondItem="QPK-fw-RdF" secondAttribute="bottom" id="Qiv-As-GbG"/>
+                            <constraint firstItem="6wr-m9-jUe" firstAttribute="top" secondItem="EvM-yz-hqa" secondAttribute="bottom" id="Rzq-M5-MGB"/>
+                            <constraint firstAttribute="trailing" secondItem="EvM-yz-hqa" secondAttribute="trailing" id="oVP-8u-nHf"/>
+                            <constraint firstItem="6wr-m9-jUe" firstAttribute="leading" secondItem="wEu-Tl-O3o" secondAttribute="leading" id="q2F-ID-dKe"/>
+                            <constraint firstItem="IXr-WN-BLb" firstAttribute="leading" secondItem="wEu-Tl-O3o" secondAttribute="leading" id="u9G-aC-9Mg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Glossary" id="z5B-XI-Q0t">
+                        <barButtonItem key="rightBarButtonItem" title="Clear Map" id="g4m-dr-bEW">
+                            <connections>
+                                <action selector="clearMapButtonPressed:" destination="kOu-I4-RaN" id="Nac-Tq-YUy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="myMapView" destination="EvM-yz-hqa" id="0qn-Bs-xxT"/>
+                        <outlet property="myTableView" destination="6wr-m9-jUe" id="vAC-Vz-eRp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yVz-h3-Vvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2559.1999999999998" y="1075.4122938530736"/>
+        </scene>
+        <!--Read Scripture-->
+        <scene sceneID="USM-Yc-Mfq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iEu-8d-efb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Read Scripture" image="Book" id="Ito-nK-fRx"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nLR-oS-yEw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2fJ-hg-5yl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="48X-IZ-ba2" kind="relationship" relationship="rootViewController" id="AG9-1o-Jp6"/>
+                        <segue destination="48X-IZ-ba2" kind="relationship" relationship="rootViewController" id="QeI-iT-OzG"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fYS-SU-qnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xnz-7V-Wdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="336.80000000000001" y="339.58020989505252"/>
+            <point key="canvasLocation" x="1620" y="339.58020989505252"/>
+        </scene>
+        <!--Glossary-->
+        <scene sceneID="d1y-F5-ipI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yTr-ZA-Wuu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Glossary" image="List" id="Xzd-vL-tb7"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z0z-Ud-Q6m">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kOu-I4-RaN" kind="relationship" relationship="rootViewController" id="0Qp-fl-L8f"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ty-rY-Y9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1620" y="1075.4122938530736"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Book" width="25" height="25"/>
+        <image name="List" width="25" height="25"/>
+    </resources>
 </document>

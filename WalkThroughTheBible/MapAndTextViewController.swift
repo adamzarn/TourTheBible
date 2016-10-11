@@ -36,6 +36,9 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isUserInteractionEnabled = false
+        
         if let chapter = defaults.value(forKey: book!) {
             chapterIndex = chapter as? Int
         } else {
@@ -155,6 +158,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         myTextView.isScrollEnabled = false
         myTextView.isEditable = false
         myMapView.showsPointsOfInterest = false
+
         
     }
     
@@ -233,7 +237,8 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
 
         attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Light", size:16.0)!, range: allTextRange)
         
-        let dictionary = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)] as! NSDictionary
+        let dictionary = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)]! as! NSDictionary
+        //let dictionary = BibleLocations.Glossary as! NSDictionary
         
         if dictionary.count > 0 {
 
@@ -299,7 +304,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         var alreadyAddedAnnotation: MKAnnotation?
         
         for annotation in allAnnotations {
-            if annotation.coordinate.latitude == lat {
+            if annotation.coordinate.latitude == lat && annotation.coordinate.longitude == long {
                 shouldAddAnnotation = false
                 alreadyAddedAnnotation = annotation
             }
@@ -328,7 +333,8 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         
         let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
         
-        let locationBank = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)] as! NSDictionary
+        let locationBank = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)]! as! NSDictionary
+        //let locationBank = BibleLocations.Locations2 as! NSDictionary
         
         let location = locationBank[decodedURL]! as! BibleLocation
         setUpMap(name: location.name!, lat: location.lat!, long: location.long!, delta: location.delta!)

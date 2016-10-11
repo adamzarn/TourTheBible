@@ -25,6 +25,11 @@ class TestamentsTableViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isUserInteractionEnabled = true
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if !hasBeenShown[indexPath.row] {

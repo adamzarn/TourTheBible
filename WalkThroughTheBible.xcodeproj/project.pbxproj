@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0BADF21E9828338AD23CA09D /* Pods_WalkThroughTheBible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62187FC9CFFEC8F7B54AEDFB /* Pods_WalkThroughTheBible.framework */; };
 		C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */; };
+		DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4A67B41DACA26500D52665 /* GlossaryCell.swift */; };
 		DB4EE9961D987A6500A3C48B /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EE9951D987A6500A3C48B /* Books.swift */; };
 		DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */; };
 		DB5C2EA21D870F79002A5FAD /* MapAndTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EA11D870F79002A5FAD /* MapAndTextViewController.swift */; };
@@ -27,6 +28,7 @@
 		DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFD1DA4468200E5E00A /* ProductCell.swift */; };
 		DBA91F001DA446C400E5E00A /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFF1DA446C400E5E00A /* Products.swift */; };
 		DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91F011DA446F900E5E00A /* IAPHelper.swift */; };
+		DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */; };
 		DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */; };
 		DBE58B701D9EB358009A7BFA /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6C1D9EB358009A7BFA /* Pin.swift */; };
 		DBE58B711D9EB358009A7BFA /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6D1D9EB358009A7BFA /* Pin+CoreDataProperties.swift */; };
@@ -61,6 +63,7 @@
 		A5E271FF4C3D411AE81CF0A3 /* Pods-WalkThroughTheBibleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleUITests/Pods-WalkThroughTheBibleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B5F34327920B7F7BF1A95A05 /* Pods-WalkThroughTheBibleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests.release.xcconfig"; sourceTree = "<group>"; };
 		C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible.debug.xcconfig"; sourceTree = "<group>"; };
+		DB4A67B41DACA26500D52665 /* GlossaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryCell.swift; sourceTree = "<group>"; };
 		DB4EE9951D987A6500A3C48B /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 		DB5C2E9C1D870F78002A5FAD /* WalkThroughTheBible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkThroughTheBible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +88,7 @@
 		DBA91EFD1DA4468200E5E00A /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		DBA91EFF1DA446C400E5E00A /* Products.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		DBA91F011DA446F900E5E00A /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryViewController.swift; sourceTree = "<group>"; };
 		DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
 		DBE58B6C1D9EB358009A7BFA /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pin.swift; path = ../Pin.swift; sourceTree = "<group>"; };
 		DBE58B6D1D9EB358009A7BFA /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataProperties.swift"; path = "../Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 				DB5C2EA11D870F79002A5FAD /* MapAndTextViewController.swift */,
 				DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */,
 				DBA91EF91DA2C29600E5E00A /* TestamentsTableViewController.swift */,
+				DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				DB5C2EA91D870F79002A5FAD /* Assets.xcassets */,
 				DB5C2EA31D870F79002A5FAD /* Main.storyboard */,
 				DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */,
+				DB4A67B41DACA26500D52665 /* GlossaryCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -517,6 +523,7 @@
 				DBE58B731D9EB358009A7BFA /* Book+CoreDataProperties.swift in Sources */,
 				DB6F52181D9A14FB00221041 /* BibleLocation.swift in Sources */,
 				DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */,
+				DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */,
 				DBE58B711D9EB358009A7BFA /* Pin+CoreDataProperties.swift in Sources */,
 				DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */,
 				DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */,
@@ -526,6 +533,7 @@
 				DBE58B721D9EB358009A7BFA /* Book.swift in Sources */,
 				DB6F521A1D9A190600221041 /* BibleLocations.swift in Sources */,
 				DBA91F001DA446C400E5E00A /* Products.swift in Sources */,
+				DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */,
 				DBA91EFA1DA2C29600E5E00A /* TestamentsTableViewController.swift in Sources */,
 				DB4EE9961D987A6500A3C48B /* Books.swift in Sources */,
 			);
