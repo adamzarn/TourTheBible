@@ -39,6 +39,18 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         self.tabBarController?.tabBar.isHidden = true
         self.tabBarController?.tabBar.isUserInteractionEnabled = false
         
+        let screenSize: CGRect = UIScreen.main.bounds
+        let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+        let height = screenSize.height - y
+        
+        myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height/2)
+        myTextView.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
+        
+        print(screenSize.height)
+        print(height)
+        print(height/2)
+        
+        
         if let chapter = defaults.value(forKey: book!) {
             chapterIndex = chapter as? Int
         } else {
@@ -345,8 +357,8 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         newPin.lat = location.lat!
         newPin.long = location.long!
         newPin.title = location.name!
-        let imageData = UIImagePNGRepresentation(UIImage(named: location.name!)!)
-        newPin.image = imageData as NSData?
+        //let imageData = UIImagePNGRepresentation(UIImage(named: location.name!)!)
+        //newPin.image = imageData as NSData?
         newPin.pinToBook = currentBook
         
         pinsForBook.append(newPin)
@@ -371,10 +383,6 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         else {
             pinView!.annotation = annotation
         }
-        
-        let imageView = UIImageView(image: UIImage(named: annotation.title!!))
-        imageView.frame.size = CGSize(width: 40.0, height: 40.0)
-        pinView!.leftCalloutAccessoryView = imageView
 
         return pinView
     }

@@ -15,7 +15,6 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var myTableView: UITableView!
     
     let books = [["Genesis","Exodus","Numbers"],["Matthew","Mark","Luke","John","Acts"]]
-    let summaries = Books.summaries
     
     var hasBeenShown = [[Bool](repeating: false, count: 3), [Bool](repeating: false, count: 5)]
     var testamentIndex = 0
@@ -97,10 +96,13 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75.0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let bookName = books[testamentIndex][indexPath.row]
-        let bookDetail = summaries[testamentIndex][indexPath.row]
         
         let productID = "AJZ.WalkThroughTheBible.\(books[testamentIndex][indexPath.row])"
         
@@ -115,7 +117,6 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                     cell.aiv.isHidden = true
                     cell.book.isHidden = false
-                    cell.detail.isHidden = false
                     cell.price.isHidden = false
                     cell.price.isEnabled = true
                     
@@ -133,13 +134,11 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
                     }
                 
                     cell.setUp()
-                    cell.detail.text = bookDetail
                     
                 } else {
                     
                     cell.backgroundColor = UIColor.clear
                     cell.book.isHidden = true
-                    cell.detail.isHidden = true
                     cell.aiv.isHidden = false
                     cell.price.isHidden = true
                     cell.price.isEnabled = false
@@ -156,7 +155,6 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell") as! CustomBookCell
             
         cell.book.text = bookName
-        cell.detail.text = bookDetail
             
         cell.setUp()
                 

@@ -47,12 +47,15 @@ class TestamentsTableViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomBookCell
         
         cell.book.text = testaments[indexPath.row]
-        cell.detail.text = ""
        
         cell.setUp()
         
