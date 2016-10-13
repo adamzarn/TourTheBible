@@ -12,6 +12,8 @@ import UIKit
 
 class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate {
     
+    @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var clearMapButton: UIBarButtonItem!
     @IBOutlet weak var myMapView: MKMapView!
     @IBOutlet weak var myTableView: UITableView!
     
@@ -40,7 +42,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
+        searchController.definesPresentationContext = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        
+        self.navigationItem.titleView = searchController.searchBar
         
     }
     
@@ -50,6 +55,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         }
         
         myTableView.reloadData()
+        myTableView.setContentOffset(CGPoint.zero, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,26 +147,27 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         
         if searchController.isActive && searchController.searchBar.text != "" {
             let location = filteredGlossary[indexPath.row] as BibleLocation
-            setUpMap(name: location.name!, lat: location.lat!, long: location.long!, delta: location.delta!)
+            setUpMap(name: location.name!, lat: location.lat!, long: location.long!)
+            searchController.dismiss(animated: true, completion: nil)
+            searchController.searchBar.text = ""
+            y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+            height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
+            myTableView.frame = CGRect(x: 0.0, y: y! + height!/2, width: screenSize.width, height: height!/2)
+            myTableView.reloadData()
         } else {
             let location = glossary[indexPath.section][indexPath.row] as BibleLocation
-            setUpMap(name: location.name!, lat: location.lat!, long: location.long!, delta: location.delta!)
+            setUpMap(name: location.name!, lat: location.lat!, long: location.long!)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
-        searchController.dismiss(animated: true, completion: nil)
-        myTableView.frame = CGRect(x: 0.0, y: y! + height!/2, width: screenSize.width, height: height!/2)
-        myTableView.tableHeaderView = nil
-        myTableView.reloadData()
-        myTableView.setContentOffset(CGPoint.zero, animated: false)
         
     }
     
-    func setUpMap(name: String, lat: Double, long: Double, delta: Double) {
+    func setUpMap(name: String, lat: Double, long: Double) {
         
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)), animated: true)
-        
+        myMapView.setCenter(coordinate, animated: true)
+
         let allAnnotations = myMapView.annotations
         var shouldAddAnnotation = true
         var alreadyAddedAnnotation: MKAnnotation?
@@ -195,7 +202,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
-        let removePins = UIAlertAction(title: "Remove Pins", style: .default) { (action) in
+        let removePins = UIAlertAction(title: "Remove Pins from Map", style: .default) { (action) in
             self.myMapView.removeAnnotations(self.myMapView.annotations)
 
         }
@@ -206,22 +213,18 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         self.present(alertController, animated: true, completion: nil)
         
     }
-
-    @IBAction func searchButtonPressed(_ sender: AnyObject) {
-        myTableView.tableHeaderView = searchController.searchBar
-        searchController.searchBar.becomeFirstResponder()
-        myTableView.frame = CGRect(x: 0.0, y: UIApplication.shared.statusBarFrame.size.height, width: screenSize.width, height: screenSize.height-keyboardHeight!-UIApplication.shared.statusBarFrame.size.height)
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        myTableView.tableHeaderView = nil
+        y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+        height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
+        
         myTableView.frame = CGRect(x: 0.0, y: y! + height!/2, width: screenSize.width, height: height!/2)
-    }
-    
-    func didPresentSearchController(_ searchController: UISearchController) {
-        DispatchQueue.main.async(execute: {
-            self.searchController.searchBar.becomeFirstResponder()
-        })
+        searchController.searchBar.text = ""
+        
     }
     
     func subscribeToKeyboardNotifications() {
@@ -234,10 +237,16 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        keyboardHeight = getKeyboardHeight(notification: notification)
+        y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+        height = screenSize.height - y! - getKeyboardHeight(notification: notification)
+        
+        myTableView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!)
+        clearMapButton.isEnabled = false
+        myTableView.setContentOffset(CGPoint.zero, animated: false)
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        clearMapButton.isEnabled = true
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {

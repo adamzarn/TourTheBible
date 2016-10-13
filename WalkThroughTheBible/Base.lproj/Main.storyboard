@@ -23,10 +23,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BookCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookCell" rowHeight="100" id="ktt-2e-Z75" customClass="CustomBookCell" customModule="WalkThroughTheBible" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="1000" height="100"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ktt-2e-Z75" id="Llw-Le-Sob">
-                                            <frame key="frameInset" width="1000" height="100"/>
+                                            <frame key="frameInset" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-2q-Nbq">
@@ -45,10 +45,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProductCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductCell" rowHeight="100" id="YhY-HT-rLW" customClass="ProductCell" customModule="WalkThroughTheBible">
-                                        <rect key="frame" x="0.0" y="192" width="1000" height="100"/>
+                                        <rect key="frame" x="0.0" y="192" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YhY-HT-rLW" id="aNC-Uw-1lf">
-                                            <frame key="frameInset" width="1000" height="100"/>
+                                            <frame key="frameInset" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-DP-XT7">
@@ -138,7 +138,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="JMQ-g1-Xls">
-                        <barButtonItem key="rightBarButtonItem" title="Clear Map" id="MYf-e7-a6r">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="MYf-e7-a6r">
                             <connections>
                                 <action selector="clearMapButtonPressed:" destination="BYZ-38-t0r" id="l0S-Ka-30H"/>
                             </connections>
@@ -170,10 +170,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="100" id="NOq-kb-GId" customClass="CustomBookCell" customModule="WalkThroughTheBible" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="92" width="1000" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NOq-kb-GId" id="deu-Gn-0qj">
-                                            <frame key="frameInset" width="375" height="100"/>
+                                            <frame key="frameInset" width="1000" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4A-2q-9Zt">
@@ -262,7 +262,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kLe-z5-Aja" id="IXJ-i0-HZM">
-                                            <frame key="frameInset" width="375" height="57"/>
+                                            <frame key="frameInset" width="375" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-ro-Pp6">
@@ -300,20 +300,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Glossary" id="z5B-XI-Q0t">
-                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="zdy-7b-1a8">
-                            <connections>
-                                <action selector="searchButtonPressed:" destination="kOu-I4-RaN" id="MGr-Fl-KJG"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Clear Map" id="g4m-dr-bEW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="g4m-dr-bEW">
                             <connections>
                                 <action selector="clearMapButtonPressed:" destination="kOu-I4-RaN" id="Nac-Tq-YUy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="clearMapButton" destination="g4m-dr-bEW" id="ZbY-h9-4CS"/>
                         <outlet property="myMapView" destination="EvM-yz-hqa" id="0qn-Bs-xxT"/>
                         <outlet property="myTableView" destination="6wr-m9-jUe" id="vAC-Vz-eRp"/>
+                        <outlet property="navItem" destination="z5B-XI-Q0t" id="aYh-OR-TSp"/>
                         <outlet property="searchDisplayController" destination="JJT-qV-zxj" id="sKc-3l-WT9"/>
                     </connections>
                 </viewController>

@@ -249,14 +249,12 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
 
         attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Light", size:16.0)!, range: allTextRange)
         
-        let dictionary = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)]! as! NSDictionary
+        let places = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)]!
         //let dictionary = BibleLocations.Glossary as! NSDictionary
         
-        if dictionary.count > 0 {
-
-            let placesArray = dictionary.allKeys as! [String]
+        if (places?.count)! > 0 {
             
-            for place in placesArray {
+            for place in places! {
                 
                 var range = (text as NSString).range(of: place)
                 var offset = 0
@@ -306,10 +304,10 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
 
     }
     
-    func setUpMap(name: String, lat: Double, long: Double, delta: Double) {
+    func setUpMap(name: String, lat: Double, long: Double) {
         
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta)), animated: true)
+        myMapView.setCenter(coordinate, animated: true)
         
         let allAnnotations = myMapView.annotations
         var shouldAddAnnotation = true
@@ -322,50 +320,51 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
             }
         }
         
-        if shouldAddAnnotation {
-            
-            let annotation = MKPointAnnotation()
-            
-            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            annotation.title = name
-            myMapView.addAnnotation(annotation)
-            myMapView.selectAnnotation(annotation, animated: false)
-            lastAnnotation = annotation
-            
-        } else {
-            
-            myMapView.selectAnnotation(alreadyAddedAnnotation!, animated: false)
-            lastAnnotation = alreadyAddedAnnotation
-            
+        if !shouldAddAnnotation {
+            myMapView.removeAnnotation(alreadyAddedAnnotation!)
         }
+            
+        let annotation = MKPointAnnotation()
+        
+        annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        annotation.title = name
+        myMapView.addAnnotation(annotation)
+        myMapView.selectAnnotation(annotation, animated: false)
+        lastAnnotation = annotation
+        
     
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         
         let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
+        let letters = BibleLocations.Letters as NSDictionary
+        let firstLetter = decodedURL[decodedURL.startIndex]
+        let index = letters[String(firstLetter)] as! Int
         
-        let locationBank = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)]! as! NSDictionary
-        //let locationBank = BibleLocations.Locations2 as! NSDictionary
+        if let location = BibleLocations.Glossary[index][decodedURL] {
+            
+            setUpMap(name: location.name!, lat: location.lat!, long: location.long!)
         
-        let location = locationBank[decodedURL]! as! BibleLocation
-        setUpMap(name: location.name!, lat: location.lat!, long: location.long!, delta: location.delta!)
+            let context = appDelegate.managedObjectContext
         
-        let context = appDelegate.managedObjectContext
+            let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context) as! Pin
+            newPin.lat = location.lat!
+            newPin.long = location.long!
+            newPin.title = location.name!
+            newPin.pinToBook = currentBook
         
-        let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context) as! Pin
-        newPin.lat = location.lat!
-        newPin.long = location.long!
-        newPin.title = location.name!
-        //let imageData = UIImagePNGRepresentation(UIImage(named: location.name!)!)
-        //newPin.image = imageData as NSData?
-        newPin.pinToBook = currentBook
+            pinsForBook.append(newPin)
         
-        pinsForBook.append(newPin)
+            appDelegate.saveContext()
         
-        appDelegate.saveContext()
-        
-        return true
+            return true
+            
+        } else {
+            print("\(decodedURL) : Not Found")
+            return false
+            
+        }
         
     }
     
@@ -397,7 +396,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
-        let removePins = UIAlertAction(title: "Remove Pins", style: .default) { (action) in
+        let removePins = UIAlertAction(title: "Remove Pins from Map", style: .default) { (action) in
             self.myMapView.removeAnnotations(self.myMapView.annotations)
             for pin in self.pinsForBook {
                 self.appDelegate.managedObjectContext.delete(pin)

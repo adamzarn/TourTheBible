@@ -14,13 +14,11 @@ class BibleLocation {
     var name: String?
     var lat: Double?
     var long: Double?
-    var delta: Double?
     
-    init(name: String, lat: Double, long: Double, delta: Double) {
+    init(name: String, lat: Double, long: Double) {
         self.name = name
         self.lat = lat
         self.long = long
-        self.delta = delta
         
     }
     
