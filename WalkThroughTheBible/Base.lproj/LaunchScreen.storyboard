@@ -18,16 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walk Through the Bible" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnj-Yr-Cke">
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="ALC-6b-R8X"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cnj-Yr-Cke" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="AEo-3g-mGh"/>
-                            <constraint firstItem="cnj-Yr-Cke" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="uFB-6Q-tcK"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="ALC-6b-R8X" secondAttribute="bottom" id="85A-tk-Gxz"/>
+                            <constraint firstItem="ALC-6b-R8X" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="bMD-l6-QJL"/>
+                            <constraint firstAttribute="trailing" secondItem="ALC-6b-R8X" secondAttribute="trailing" id="nFc-hm-t4h"/>
+                            <constraint firstItem="ALC-6b-R8X" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="nso-lt-HlD"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,4 +34,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Launch" width="411" height="665"/>
+    </resources>
 </document>

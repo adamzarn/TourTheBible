@@ -19,7 +19,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     var hasBeenShown = [[Bool](repeating: false, count: 3), [Bool](repeating: false, count: 5)]
     var testamentIndex = 0
     var products = [SKProduct]()
-        
+    
     override func viewDidLoad() {
         
         let imageView = UIImageView(image: UIImage(named: "Papyrus"))
@@ -35,6 +35,13 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(BooksTableViewController.handlePurchaseNotification(_:)),
                                                name: NSNotification.Name(rawValue: IAPHelper.IAPHelperPurchaseNotification),
                                                object: nil)
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+        let height = screenSize.height - y - (tabBarController?.tabBar.frame.size.height)!
+        
+        myTableView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height)
+        myTableView.isScrollEnabled = false
         
     }
     
@@ -97,6 +104,11 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let statusBar = UIApplication.shared.statusBarFrame.size.height
+        if let nav = navigationController?.navigationBar.frame.size.height, let tab = tabBarController?.tabBar.frame.size.height {
+            return (screenSize.height-nav-statusBar-tab)/CGFloat(books[testamentIndex].count)
+        }
         return 75.0
     }
     

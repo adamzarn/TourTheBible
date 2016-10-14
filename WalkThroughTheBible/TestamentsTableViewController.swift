@@ -23,30 +23,13 @@ class TestamentsTableViewController: UIViewController, UITableViewDelegate, UITa
         myTableView.backgroundView = imageView
         myTableView.backgroundView?.alpha = 0.4
         
-        let books = (BibleLocations.Locations as NSDictionary).allKeys as! [String]
-        let letters = BibleLocations.Letters as NSDictionary
-        
         let screenSize: CGRect = UIScreen.main.bounds
         let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         let height = screenSize.height - y - (tabBarController?.tabBar.frame.size.height)!
         
-        myTableView.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
+        myTableView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height)
         
         myTableView.isScrollEnabled = false
-        
-        for book in books {
-            for chapter in BibleLocations.Locations[book]! {
-                for item in chapter.value {
-                    let firstLetter = item[item.startIndex]
-                    let index = letters[String(firstLetter)] as! Int
-                    if let value = BibleLocations.Glossary[index][item] {
-                        print("\(item) : Found : \(value.lat!) : \(value.long!)")
-                    } else {
-                        print("\(item) : Not Found")
-                    }
-                }
-            }
-        }
         
     }
     

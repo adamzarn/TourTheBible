@@ -46,11 +46,6 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height/2)
         myTextView.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
         
-        print(screenSize.height)
-        print(height)
-        print(height/2)
-        
-        
         if let chapter = defaults.value(forKey: book!) {
             chapterIndex = chapter as? Int
         } else {
@@ -170,8 +165,6 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         myTextView.isScrollEnabled = false
         myTextView.isEditable = false
         myMapView.showsPointsOfInterest = false
-
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -188,27 +181,21 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
     }
     
     func swipeLeft() {
-        
         if chapterIndex != numberOfChapters {
             chapterIndex! += 1
         } else {
             return
         }
-        
         swipeActions()
-        
     }
     
     func swipeRight() {
-        
         if chapterIndex != 1 {
             chapterIndex! -= 1
         } else {
             return
         }
-        
         swipeActions()
-
     }
     
     func swipeActions() {
@@ -244,13 +231,13 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         }
         
         let text = Books.booksDictionary[book!]![chapterIndex!-1]
+        let totalChars = text.characters.count
         let attributedText = NSMutableAttributedString(string: text as String)
         let allTextRange = (text as NSString).range(of: text)
 
         attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Light", size:16.0)!, range: allTextRange)
         
         let places = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)]!
-        //let dictionary = BibleLocations.Glossary as! NSDictionary
         
         if (places?.count)! > 0 {
             
@@ -260,7 +247,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
                 var offset = 0
                 let totalCharacters = text.characters.count
                 
-                while range.location < 10000000 {
+                while range.location < totalChars {
                     
                     let value = place.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
 
@@ -273,7 +260,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
                     
                     range = (newText as NSString).range(of: place)
 
-                    if range.location < 10000000 {
+                    if range.location < totalChars {
                         if offset + range.location < totalCharacters {
                             range = NSMakeRange(offset + range.location, range.length)
                         }
@@ -286,7 +273,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         for verse in verseNumbers {
             let range = (text as NSString).range(of: verse)
             
-            if range.location < 10000000 {
+            if range.location < totalChars {
                 let start = range.location - versesEdited*2
                 let len = range.length
                 let firstBracket = NSMakeRange(start, 1)
@@ -331,8 +318,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         myMapView.addAnnotation(annotation)
         myMapView.selectAnnotation(annotation, animated: false)
         lastAnnotation = annotation
-        
-    
+
     }
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
@@ -418,8 +404,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
             , "latDelta":myMapView.region.span.latitudeDelta
             , "longDelta":myMapView.region.span.longitudeDelta]
         defaults.set(locationData, forKey: "\(book) location")
-        print("latDelta: \(myMapView.region.span.latitudeDelta)")
-        print("longDelta: \(myMapView.region.span.longitudeDelta)")
+
     }
 
 
