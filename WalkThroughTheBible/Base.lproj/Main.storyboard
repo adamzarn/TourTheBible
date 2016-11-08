@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="87n-SZ-fKm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="87n-SZ-fKm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -22,11 +22,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="197" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gde-yE-D9j">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BookCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookCell" rowHeight="100" id="ktt-2e-Z75" customClass="CustomBookCell" customModule="WalkThroughTheBible" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BookCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookCell" rowHeight="60" id="ktt-2e-Z75" customClass="CustomBookCell" customModule="WalkThroughTheBible" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ktt-2e-Z75" id="Llw-Le-Sob">
-                                            <frame key="frameInset" width="375" height="100"/>
+                                            <frame key="frameInset" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-2q-Nbq">
@@ -44,11 +44,11 @@
                                             <outlet property="book" destination="Unb-2q-Nbq" id="2iw-7d-Hx8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProductCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductCell" rowHeight="100" id="YhY-HT-rLW" customClass="ProductCell" customModule="WalkThroughTheBible">
-                                        <rect key="frame" x="0.0" y="192" width="375" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProductCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductCell" rowHeight="60" id="YhY-HT-rLW" customClass="ProductCell" customModule="WalkThroughTheBible">
+                                        <rect key="frame" x="0.0" y="152" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YhY-HT-rLW" id="aNC-Uw-1lf">
-                                            <frame key="frameInset" width="375" height="100"/>
+                                            <frame key="frameInset" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-DP-XT7">
@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvo-f9-r2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3308" y="339.58020989505252"/>
+            <point key="canvasLocation" x="2558" y="340"/>
         </scene>
         <!--Map And Text View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -152,69 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4261.6000000000004" y="339.58020989505252"/>
-        </scene>
-        <!--Read Scripture-->
-        <scene sceneID="Wsg-eq-3SJ">
-            <objects>
-                <viewController storyboardIdentifier="TestamentsTableViewController" id="48X-IZ-ba2" customClass="TestamentsTableViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bRq-PB-tJx"/>
-                        <viewControllerLayoutGuide type="bottom" id="at8-lu-zzJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Sic-Vd-X3u">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ezk-fZ-BeZ">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="100" id="NOq-kb-GId" customClass="CustomBookCell" customModule="WalkThroughTheBible" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="1000" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NOq-kb-GId" id="deu-Gn-0qj">
-                                            <frame key="frameInset" width="1000" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4A-2q-9Zt">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="j4A-2q-9Zt" firstAttribute="centerX" secondItem="deu-Gn-0qj" secondAttribute="centerX" id="5Me-wc-U2F"/>
-                                                <constraint firstItem="j4A-2q-9Zt" firstAttribute="centerY" secondItem="deu-Gn-0qj" secondAttribute="centerY" id="vt2-Mk-b4i"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="book" destination="j4A-2q-9Zt" id="kYE-LL-vpd"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="48X-IZ-ba2" id="8WW-4I-h3G"/>
-                                    <outlet property="delegate" destination="48X-IZ-ba2" id="JDC-MU-Ld7"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ezk-fZ-BeZ" secondAttribute="trailing" id="LJA-V2-Vso"/>
-                            <constraint firstAttribute="bottom" secondItem="ezk-fZ-BeZ" secondAttribute="bottom" id="M95-rh-8hB"/>
-                            <constraint firstItem="ezk-fZ-BeZ" firstAttribute="leading" secondItem="Sic-Vd-X3u" secondAttribute="leading" id="REG-vu-JqO"/>
-                            <constraint firstItem="ezk-fZ-BeZ" firstAttribute="top" secondItem="Sic-Vd-X3u" secondAttribute="top" id="Y0N-9Q-3go"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Read Scripture" id="xVI-bf-aDt"/>
-                    <connections>
-                        <outlet property="myTableView" destination="ezk-fZ-BeZ" id="IsO-GP-HHg"/>
-                        <segue destination="9yy-wX-d3J" kind="show" identifier="TestamentToBooks" id="hx9-eJ-cxX"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dup-ka-Uj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2559.1999999999998" y="339.58020989505252"/>
+            <point key="canvasLocation" x="3511" y="340"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="LBK-GR-UVs">
@@ -228,6 +166,8 @@
                     <connections>
                         <segue destination="iEu-8d-efb" kind="relationship" relationship="viewControllers" id="b4U-b8-J5q"/>
                         <segue destination="yTr-ZA-Wuu" kind="relationship" relationship="viewControllers" id="XnP-fw-dfS"/>
+                        <segue destination="cGx-wW-KlA" kind="relationship" relationship="viewControllers" id="Jv3-hR-qSZ"/>
+                        <segue destination="IC9-DA-XWY" kind="relationship" relationship="viewControllers" id="9Ze-kA-ug0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fhb-ub-zhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -346,7 +286,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="48X-IZ-ba2" kind="relationship" relationship="rootViewController" id="QeI-iT-OzG"/>
+                        <segue destination="9yy-wX-d3J" kind="relationship" relationship="rootViewController" id="U0w-sh-qhI"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xnz-7V-Wdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -371,6 +311,110 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ty-rY-Y9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1620" y="1075.4122938530736"/>
+        </scene>
+        <!--Bibles-->
+        <scene sceneID="OHV-WV-fU7">
+            <objects>
+                <viewController id="VlG-Zn-faT" customClass="BiblesViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vQd-iC-Kxe"/>
+                        <viewControllerLayoutGuide type="bottom" id="V2T-IS-31y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vup-0L-xcY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tzg-fy-Ig1">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Rf9-i3-xKd">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rf9-i3-xKd" id="b2r-63-WqZ">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="VlG-Zn-faT" id="bfp-Ay-ohS"/>
+                                    <outlet property="delegate" destination="VlG-Zn-faT" id="RJX-bA-cHd"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="tzg-fy-Ig1" secondAttribute="bottom" id="28w-gd-zXX"/>
+                            <constraint firstItem="tzg-fy-Ig1" firstAttribute="leading" secondItem="vup-0L-xcY" secondAttribute="leading" id="6TS-E6-Mhf"/>
+                            <constraint firstItem="tzg-fy-Ig1" firstAttribute="top" secondItem="vup-0L-xcY" secondAttribute="top" id="eLW-LM-URy"/>
+                            <constraint firstAttribute="trailing" secondItem="tzg-fy-Ig1" secondAttribute="trailing" id="l5f-h3-fUm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Bibles" id="OI7-0A-aKD"/>
+                    <connections>
+                        <outlet property="myTableView" destination="tzg-fy-Ig1" id="Eaw-xh-ApQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zzq-SK-ra2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2559.1999999999998" y="1798.6506746626687"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="6iB-he-EDp">
+            <objects>
+                <viewController id="jTS-WN-mB5" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N67-U7-BF6"/>
+                        <viewControllerLayoutGuide type="bottom" id="tkn-lB-t4t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WaL-vb-lZu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="About" id="pFh-XV-AES"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GiM-gd-Cep" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2559.1999999999998" y="2471.5142428785607"/>
+        </scene>
+        <!--Bibles-->
+        <scene sceneID="WCI-OK-lNp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cGx-wW-KlA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Bibles" id="Pk7-L6-1o7"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VLM-Na-IsP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VlG-Zn-faT" kind="relationship" relationship="rootViewController" id="9op-0c-GY9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JZ8-vj-Rz6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1620" y="1798.6506746626687"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="Q1A-RO-jbJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IC9-DA-XWY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="About" id="HHd-U9-v59"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N0n-Yh-764">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jTS-WN-mB5" kind="relationship" relationship="rootViewController" id="F8x-HB-ZyO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="roe-a4-OmK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1620" y="2471.5142428785607"/>
         </scene>
     </scenes>
     <resources>

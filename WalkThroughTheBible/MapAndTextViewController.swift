@@ -24,17 +24,27 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
     var menuView: BTNavigationDropdownMenu? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let defaults = UserDefaults.standard
+    var selectedBible: String? = nil
+    var locations: [String : [String : [String]]] = [:]
+    var glossary: [[String : BibleLocation]] = []
     
     var chapterIndex: Int?
     var book: String?
     var numberOfChapters: Int?
     var pinsForBook = [Pin]()
     var currentBook: Book? = nil
-    var verseNumbers = ["[1]"]
+    var rawText = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
+        
+        if selectedBible == "King James Version" {
+            locations = BibleLocationsKJV.Locations
+            glossary = BibleLocationsKJV.Glossary
+        }
         
         self.tabBarController?.tabBar.isHidden = true
         self.tabBarController?.tabBar.isUserInteractionEnabled = false
@@ -67,7 +77,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         getPinsForBook()
         addSavedPinsToMap()
         
-        numberOfChapters = (Books.booksDictionary[book!]?.count)!
+        numberOfChapters = Books.booksDictionary[book!]
 
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -102,6 +112,13 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         
         setUpText()
     
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
+        myTextView.isScrollEnabled = false
+        myTextView.isEditable = false
+        myMapView.showsPointsOfInterest = false
     }
     
     func getCurrentBook() {
@@ -160,12 +177,6 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
 
         }
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        myTextView.isScrollEnabled = false
-        myTextView.isEditable = false
-        myMapView.showsPointsOfInterest = false
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         myTextView.isScrollEnabled = true
@@ -223,43 +234,72 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
 
 
     func setUpText() {
-        
+        var verseNumbers = ["\(chapterIndex!):1"]
         if verseNumbers.count == 1 {
             for i in 2...100 {
-                verseNumbers.append("[\(i)]")
+                verseNumbers.append("\(chapterIndex!):\(i)")
             }
         }
         
-        let text = Books.booksDictionary[book!]![chapterIndex!-1]
-        let totalChars = text.characters.count
-        let attributedText = NSMutableAttributedString(string: text as String)
-        let allTextRange = (text as NSString).range(of: text)
+        let bible = selectedBible?.stringByRemovingWhitespaces
+        let path = Bundle.main.path(forResource: book, ofType: "txt", inDirectory: bible)
+        print(path!)
 
+        do {
+            rawText = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
+        } catch {
+        }
+        
+        let totalChars = rawText.characters.count
+        
+        if let theRange = rawText.range(of: rawText) {
+
+            let startString = "\(chapterIndex!):1"
+            let endString = "\(chapterIndex!+1):1"
+            let startRange = (rawText as NSString).range(of: startString)
+            let endRange = (rawText as NSString).range(of: endString)
+            let low = rawText.index(theRange.lowerBound, offsetBy: startRange.location)
+            
+            if endRange.location > totalChars {
+                rawText = rawText.substring(from: low)
+            } else {
+                let high = rawText.index(theRange.lowerBound, offsetBy: endRange.location)
+                let subRange = low ..< high
+                rawText = rawText[subRange]
+            }
+        }
+        
+        rawText = rawText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        
+        let attributedText = NSMutableAttributedString(string: rawText as String)
+        let allTextRange = (rawText as NSString).range(of: rawText)
+        
         attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Light", size:16.0)!, range: allTextRange)
         
-        let places = BibleLocations.Locations[book!]?[String(describing: chapterIndex!)]!
+        let places = locations[book!]?[String(describing: chapterIndex!)]!
         
         if (places?.count)! > 0 {
             
             for place in places! {
                 
-                var range = (text as NSString).range(of: place)
+                var range = (rawText as NSString).range(of: place)
                 var offset = 0
-                let totalCharacters = text.characters.count
+                let totalCharacters = rawText.characters.count
                 
                 while range.location < totalChars {
                     
                     let value = place.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-
+                    
                     attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:16.0)!, range: range)
                     attributedText.addAttribute(NSLinkAttributeName, value: value!, range: range)
                     
                     offset = range.location + 1
-                    let startIndex = text.index(text.startIndex, offsetBy: offset)
-                    let newText = text.substring(from: startIndex)
+                    let startIndex = rawText.index(rawText.startIndex, offsetBy: offset)
+                    let newText = rawText.substring(from: startIndex)
                     
                     range = (newText as NSString).range(of: place)
-
+                    
                     if range.location < totalChars {
                         if offset + range.location < totalCharacters {
                             range = NSMakeRange(offset + range.location, range.length)
@@ -268,22 +308,32 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
                 }
             }
         }
-        
-        var versesEdited = 0
+        var charactersRemoved = 0
+        var replacementString = ""
         for verse in verseNumbers {
-            let range = (text as NSString).range(of: verse)
+            let range = (rawText as NSString).range(of: verse)
+            
+            let a = String(describing: chapterIndex!).characters.count + 1
             
             if range.location < totalChars {
-                let start = range.location - versesEdited*2
+                let start = range.location - charactersRemoved
                 let len = range.length
-                let firstBracket = NSMakeRange(start, 1)
-                let secondBracket = NSMakeRange(start + len - 1, 1)
-                let newRange = NSMakeRange(start, len - 2)
-                attributedText.replaceCharacters(in: secondBracket, with: "")
-                attributedText.replaceCharacters(in: firstBracket, with: "")
+                let toDelete = NSMakeRange(start, a)
+                var newRange = NSMakeRange(start, len - a)
+                if charactersRemoved == 0 {
+                    replacementString = ""
+                } else {
+                    replacementString = "\n\n"
+                    if a == 2 {
+                        newRange = NSMakeRange(start + a, len - a)
+                    } else {
+                        newRange = NSMakeRange(start + a - 1, len - a)
+                    }
+                }
+                attributedText.replaceCharacters(in: toDelete, with: replacementString)
                 attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:12.0)!, range: newRange)
             }
-            versesEdited += 1
+            charactersRemoved = charactersRemoved + a - replacementString.characters.count
         }
         
         myTextView.attributedText = attributedText
@@ -324,11 +374,11 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         
         let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
-        let letters = BibleLocations.Letters as NSDictionary
+        let letters = BibleLocationsKJV.Letters as NSDictionary
         let firstLetter = decodedURL[decodedURL.startIndex]
         let index = letters[String(firstLetter)] as! Int
         
-        if let location = BibleLocations.Glossary[index][decodedURL] {
+        if let location = glossary[index][decodedURL] {
             
             setUpMap(name: location.name!, lat: location.lat!, long: location.long!)
         
@@ -347,7 +397,6 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
             return true
             
         } else {
-            print("\(decodedURL) : Not Found")
             return false
             
         }
@@ -407,6 +456,11 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
 
     }
 
+}
 
+extension String {
+    var stringByRemovingWhitespaces: String {
+        return components(separatedBy: .whitespaces).joined(separator: "")
+    }
 }
 

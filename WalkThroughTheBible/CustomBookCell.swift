@@ -15,8 +15,8 @@ class CustomBookCell: UITableViewCell {
     
     func setUp() {
         self.backgroundColor = UIColor.clear
-        book.font = UIFont(name: "Papyrus", size: 35.0)
-        
+        //book.font = UIFont(name: "Papyrus", size: 35.0)
+        book.font = UIFont.systemFont(ofSize: 24.0)
         
     }
     

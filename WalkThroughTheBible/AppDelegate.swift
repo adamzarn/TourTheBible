@@ -19,6 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        let defaults = UserDefaults.standard
+        print(defaults.bool(forKey: "hasBeenLaunched"))
+        if defaults.bool(forKey: "hasBeenLaunched") == true {
+            print("has already been launched")
+        } else {
+            defaults.setValue("King James Version", forKey: "selectedBible")
+            defaults.setValue(true, forKey: "hasBeenLaunched")
+        }
+        
         autoSave(delayInSeconds: 5)
         
         return true

@@ -14,17 +14,17 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var myTableView: UITableView!
     
+    let testaments = ["Old Testament", "New Testament"]
     let books = [["Genesis","Exodus","Numbers"],["Matthew","Mark","Luke","John","Acts"]]
     
     var hasBeenShown = [[Bool](repeating: false, count: 3), [Bool](repeating: false, count: 5)]
-    var testamentIndex = 0
     var products = [SKProduct]()
     
     override func viewDidLoad() {
         
-        let imageView = UIImageView(image: UIImage(named: "Papyrus"))
-        myTableView.backgroundView = imageView
-        myTableView.backgroundView?.alpha = 0.4
+        //let imageView = UIImageView(image: UIImage(named: "Papyrus"))
+        //myTableView.backgroundView = imageView
+        //myTableView.backgroundView?.alpha = 0.4
         
         let restoreButton = UIBarButtonItem(title: "Restore",
                                             style: .plain,
@@ -35,13 +35,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(BooksTableViewController.handlePurchaseNotification(_:)),
                                                name: NSNotification.Name(rawValue: IAPHelper.IAPHelperPurchaseNotification),
                                                object: nil)
-        
-        let screenSize: CGRect = UIScreen.main.bounds
-        let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-        let height = screenSize.height - y - (tabBarController?.tabBar.frame.size.height)!
-        
-        myTableView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height)
-        myTableView.isScrollEnabled = false
+
         
     }
     
@@ -75,20 +69,21 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func handlePurchaseNotification(_ notification: Notification) {
         guard let productID = notification.object as? String else { return }
-        print(productID)
         var index = 0
-        for book in books[testamentIndex] {
-            if productID != "AJZ.WalkThroughTheBible.\(book)" {
-                index += 1
-            } else {
-                self.myTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+        for testament in books {
+            for book in testament {
+                if productID != "AJZ.WalkThroughTheBible.\(book)" {
+                    index += 1
+                } else {
+                    self.myTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                }
             }
         }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        if !hasBeenShown[testamentIndex][indexPath.row] {
+        if !hasBeenShown[indexPath.section][indexPath.row] {
         
             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
             cell.layer.transform = rotationTransform
@@ -99,24 +94,19 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
                 
         }
         
-        hasBeenShown[testamentIndex][indexPath.row] = true
+        hasBeenShown[indexPath.section][indexPath.row] = true
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let screenSize: CGRect = UIScreen.main.bounds
-        let statusBar = UIApplication.shared.statusBarFrame.size.height
-        if let nav = navigationController?.navigationBar.frame.size.height, let tab = tabBarController?.tabBar.frame.size.height {
-            return (screenSize.height-nav-statusBar-tab)/CGFloat(books[testamentIndex].count)
-        }
-        return 75.0
+        return 60.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let bookName = books[testamentIndex][indexPath.row]
+        let bookName = books[indexPath.section][indexPath.row]
         
-        let productID = "AJZ.WalkThroughTheBible.\(books[testamentIndex][indexPath.row])"
+        let productID = "AJZ.WalkThroughTheBible.\(books[indexPath.section][indexPath.row])"
         
         if Products.productIdentifiers.contains(productID) {
             if !Products.store.isProductPurchased(productID) {
@@ -174,18 +164,26 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return testaments[section]
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return books[testamentIndex].count
+        return books[section].count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let productID = "AJZ.WalkThroughTheBible.\(books[testamentIndex][indexPath.row])"
+        let productID = "AJZ.WalkThroughTheBible.\(books[indexPath.section][indexPath.row])"
         
         if (Products.productIdentifiers.contains(productID) && Products.store.isProductPurchased(productID)) || !Products.productIdentifiers.contains(productID) {
         
             let vc = storyboard?.instantiateViewController(withIdentifier: "MapAndTextViewController") as! MapAndTextViewController
-            vc.book = books[testamentIndex][indexPath.row]
+            vc.book = books[indexPath.section][indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)
         
             tableView.deselectRow(at: indexPath, animated: true)
