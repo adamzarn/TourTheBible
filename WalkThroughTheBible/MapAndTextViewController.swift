@@ -14,54 +14,59 @@ import CoreData
 
 class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewDelegate {
 
+//IBOutlets********************************************************************************
+    
     @IBOutlet weak var myMapView: MKMapView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var navItem: UINavigationItem!
 
-    var chapterTitles = [String]()
-    var lastAnnotation: MKAnnotation?
+//Controller Variables*********************************************************************
 
-    var menuView: BTNavigationDropdownMenu? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let defaults = UserDefaults.standard
-    var selectedBible: String? = nil
-    var locations: [String : [String : [String]]] = [:]
-    var glossary: [[String : BibleLocation]] = []
     
+    var chapterTitles = [String]()
     var chapterIndex: Int?
     var book: String?
     var numberOfChapters: Int?
+    var lastAnnotation: MKAnnotation?
+    var menuView: BTNavigationDropdownMenu? = nil
+    var selectedBible: String? = nil
+    var locations: [String : [String : [String]]] = [:]
+    var glossary: [[String : BibleLocation]] = []
     var pinsForBook = [Pin]()
     var currentBook: Book? = nil
     var rawText = ""
     
+//Life Cycle Functions*********************************************************************
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        //Set Bible Translation
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
-        
         if selectedBible == "King James Version" {
             locations = BibleLocationsKJV.Locations
             glossary = BibleLocationsKJV.Glossary
         }
         
+        //Set look of screen
         self.tabBarController?.tabBar.isHidden = true
         self.tabBarController?.tabBar.isUserInteractionEnabled = false
-        
         let screenSize: CGRect = UIScreen.main.bounds
         let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         let height = screenSize.height - y
-        
         myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height/2)
         myTextView.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
         
+        //Set starting chapter
         if let chapter = defaults.value(forKey: book!) {
             chapterIndex = chapter as? Int
         } else {
             chapterIndex = 1
         }
 
+        //Load saved map dimensions
         if let location = defaults.dictionary(forKey: "\(book) location") {
             let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location["lat"] as! Double, location["long"] as! Double)
             let span: MKCoordinateSpan = MKCoordinateSpanMake(location["latDelta"] as! Double, location["longDelta"] as! Double)
@@ -72,110 +77,31 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
             let coordinate = CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
             myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 3.0, longitudeDelta: 3.0)), animated: true)
         }
-        
+
+        //Add previously added pins
         getCurrentBook()
         getPinsForBook()
         addSavedPinsToMap()
         
-        numberOfChapters = Books.booksDictionary[book!]
-
-        self.automaticallyAdjustsScrollViewInsets = false
-        
-        let swipeLeft = UISwipeGestureRecognizer()
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        //Configure swipes
+        let swipeLeft = addSwipeFunction(direction: UISwipeGestureRecognizerDirection.left)
         swipeLeft.addTarget(self, action: #selector(MapAndTextViewController.swipeLeft))
-        self.view.addGestureRecognizer(swipeLeft)
         
-        let swipeRight = UISwipeGestureRecognizer()
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        let swipeRight = addSwipeFunction(direction: UISwipeGestureRecognizerDirection.right)
         swipeRight.addTarget(self, action: #selector(MapAndTextViewController.swipeRight))
-        self.view.addGestureRecognizer(swipeRight)
         
+        //Set up menu view
+        numberOfChapters = Books.booksDictionary[book!]
         for i in 1...numberOfChapters! {
             chapterTitles.append("\(book!) \(String(i))")
         }
-        
-        self.menuView = BTNavigationDropdownMenu(navigationController: self.navigationController,
-                                                containerView: self.navigationController!.view,
-                                                title: "\(book!) \(chapterIndex!)",
-                                                items: chapterTitles as [AnyObject])
-
+        self.menuView = createDropdownMenu(title: "\(book!) \(chapterIndex!)", items: chapterTitles as [AnyObject])
         self.navItem.titleView = menuView
-        menuView!.arrowTintColor = UIColor.black
-        menuView!.shouldChangeTitleText = true
-        menuView!.navigationBarTitleFont = UIFont(name: "Papyrus", size: 23.0)
-        
-        menuView!.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-            self.chapterIndex = indexPath + 1
-            self.setUpText()
-        }
-        
+
         setUpText()
-    
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
-        myTextView.isScrollEnabled = false
-        myTextView.isEditable = false
-        myMapView.showsPointsOfInterest = false
-    }
-    
-    func getCurrentBook() {
-    
-        let context =  appDelegate.managedObjectContext
-        let request: NSFetchRequest<Book> = Book.fetchRequest()
         
-        do {
-            let results = try context.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
-            
-            for book in results as! [Book] {
-                if book.name == self.book! {
-                    currentBook = book
-                    return
-                }
-            }
-            
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-        
-        let newBook = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context) as! Book
-        newBook.name = book
-        currentBook = newBook
-        return
-
-    }
+        self.automaticallyAdjustsScrollViewInsets = false
     
-    func getPinsForBook() {
-        
-        let context = appDelegate.managedObjectContext
-        let request: NSFetchRequest<Pin> = Pin.fetchRequest()
-        
-        print(currentBook!.name!)
-        let p = NSPredicate(format: "pinToBook = %@", currentBook!)
-        request.predicate = p
-        
-        pinsForBook = []
-        do {
-            let results = try context.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
-            pinsForBook = results as! [Pin]
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-        
-    }
-    
-    func addSavedPinsToMap() {
-        for pin in pinsForBook {
-            
-            let annotation = MKPointAnnotation()
-            
-            annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
-            annotation.title = pin.title
-            myMapView.addAnnotation(annotation)
-
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -191,47 +117,133 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         defaults.set(chapterIndex, forKey: book!)
     }
     
-    func swipeLeft() {
-        if chapterIndex != numberOfChapters {
-            chapterIndex! += 1
-        } else {
-            return
-        }
-        swipeActions()
+    override func viewWillAppear(_ animated: Bool) {
+        selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
+        myTextView.isScrollEnabled = false
+        myTextView.isEditable = false
+        myMapView.showsPointsOfInterest = false
     }
     
-    func swipeRight() {
-        if chapterIndex != 1 {
-            chapterIndex! -= 1
+//Text View********************************************************************************
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        
+        let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
+        let letters = BibleLocationsKJV.Letters as NSDictionary
+        let firstLetter = decodedURL[decodedURL.startIndex]
+        let index = letters[String(firstLetter)] as! Int
+        
+        if let location = glossary[index][decodedURL] {
+            
+            setUpMap(name: location.name!, lat: location.lat!, long: location.long!)
+        
+            let context = appDelegate.managedObjectContext
+        
+            let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context) as! Pin
+            newPin.lat = location.lat!
+            newPin.long = location.long!
+            newPin.title = location.name!
+            newPin.pinToBook = currentBook
+            pinsForBook.append(newPin)
+        
+            appDelegate.saveContext()
+        
+            return true
+            
         } else {
-            return
+            return false
         }
-        swipeActions()
+        
     }
     
-    func swipeActions() {
+//IBActions********************************************************************************
+    
+    @IBAction func clearMapButtonPressed(_ sender: AnyObject) {
         
-        self.menuView = BTNavigationDropdownMenu(navigationController: self.navigationController,
-                                                 containerView: self.navigationController!.view,
-                                                 title: "\(book!) \(chapterIndex!)",
-            items: chapterTitles as [AnyObject])
-        self.navItem.titleView = menuView
-        menuView!.arrowTintColor = UIColor.black
-        menuView!.shouldChangeTitleText = true
-        menuView!.navigationBarTitleFont = UIFont(name: "Papyrus", size: 23.0)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        menuView!.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-            self.chapterIndex = indexPath + 1
-            self.setUpText()
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
-        setUpText()
-        
-        if let lastAnnotation = lastAnnotation {
-            myMapView.selectAnnotation(lastAnnotation, animated: false)
+        let removePins = UIAlertAction(title: "Remove Pins from Map", style: .default) { (action) in
+            self.myMapView.removeAnnotations(self.myMapView.annotations)
+            for pin in self.pinsForBook {
+                self.appDelegate.managedObjectContext.delete(pin)
+            }
+            self.appDelegate.saveContext()
         }
         
+        alertController.addAction(cancelAction)
+        alertController.addAction(removePins)
+        
+        self.present(alertController, animated: true, completion: nil)
+
+    }
+    
+//Map View*********************************************************************************
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        lastAnnotation = view.annotation
     }
 
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let locationData =
+            ["lat":myMapView.centerCoordinate.latitude
+            , "long":myMapView.centerCoordinate.longitude
+            , "latDelta":myMapView.region.span.latitudeDelta
+            , "longDelta":myMapView.region.span.longitudeDelta]
+        defaults.set(locationData, forKey: "\(book) location")
+
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let reuseId = "pin"
+        
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = UIColor.red
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        
+        return pinView
+    }
+
+//Helper Functions*************************************************************************
+
+    func setUpMap(name: String, lat: Double, long: Double) {
+        
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        myMapView.setCenter(coordinate, animated: true)
+        
+        let allAnnotations = myMapView.annotations
+        var shouldAddAnnotation = true
+        var alreadyAddedAnnotation: MKAnnotation?
+        
+        for annotation in allAnnotations {
+            if annotation.coordinate.latitude == lat && annotation.coordinate.longitude == long {
+                shouldAddAnnotation = false
+                alreadyAddedAnnotation = annotation
+            }
+        }
+        
+        if !shouldAddAnnotation {
+            myMapView.removeAnnotation(alreadyAddedAnnotation!)
+        }
+        
+        let annotation = MKPointAnnotation()
+        
+        annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        annotation.title = name
+        myMapView.addAnnotation(annotation)
+        myMapView.selectAnnotation(annotation, animated: false)
+        lastAnnotation = annotation
+        
+    }
 
     func setUpText() {
         var verseNumbers = ["\(chapterIndex!):1"]
@@ -244,7 +256,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         let bible = selectedBible?.stringByRemovingWhitespaces
         let path = Bundle.main.path(forResource: book, ofType: "txt", inDirectory: bible)
         print(path!)
-
+        
         do {
             rawText = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
         } catch {
@@ -253,7 +265,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         let totalChars = rawText.characters.count
         
         if let theRange = rawText.range(of: rawText) {
-
+            
             let startString = "\(chapterIndex!):1"
             let endString = "\(chapterIndex!+1):1"
             let startRange = (rawText as NSString).range(of: startString)
@@ -270,7 +282,6 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         }
         
         rawText = rawText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        
         
         let attributedText = NSMutableAttributedString(string: rawText as String)
         let allTextRange = (rawText as NSString).range(of: rawText)
@@ -338,124 +349,110 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         
         myTextView.attributedText = attributedText
         myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
-
+        
     }
     
-    func setUpMap(name: String, lat: Double, long: Double) {
+    func swipeLeft() {
+        if chapterIndex != numberOfChapters { chapterIndex! += 1 } else { return }
+        swipeActions()
+    }
+    
+    func swipeRight() {
+        if chapterIndex != 1 { chapterIndex! -= 1 } else { return }
+        swipeActions()
+    }
+    
+    func swipeActions() {
+        self.menuView = createDropdownMenu(title: "\(book!) \(chapterIndex!)", items: chapterTitles as [AnyObject])
+        self.navItem.titleView = menuView
+        setUpText()
         
-        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        myMapView.setCenter(coordinate, animated: true)
+        if let lastAnnotation = lastAnnotation {
+            myMapView.selectAnnotation(lastAnnotation, animated: false)
+        }
         
-        let allAnnotations = myMapView.annotations
-        var shouldAddAnnotation = true
-        var alreadyAddedAnnotation: MKAnnotation?
+    }
+    
+    func addSwipeFunction(direction: UISwipeGestureRecognizerDirection) -> UISwipeGestureRecognizer {
+        let swipe = UISwipeGestureRecognizer()
+        swipe.direction = direction
+        self.view.addGestureRecognizer(swipe)
+        return swipe
+    }
+    
+    func createDropdownMenu(title: String, items: [AnyObject]) -> BTNavigationDropdownMenu {
+        let dropdownMenu = BTNavigationDropdownMenu(navigationController: self.navigationController,
+                                                    containerView: self.navigationController!.view,
+                                                    title: title,
+                                                    items: items)
         
-        for annotation in allAnnotations {
-            if annotation.coordinate.latitude == lat && annotation.coordinate.longitude == long {
-                shouldAddAnnotation = false
-                alreadyAddedAnnotation = annotation
+        dropdownMenu.arrowTintColor = UIColor.black
+        dropdownMenu.shouldChangeTitleText = true
+        dropdownMenu.navigationBarTitleFont = UIFont(name: "Papyrus", size: 23.0)
+        
+        dropdownMenu.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+            self.chapterIndex = indexPath + 1
+            self.setUpText()
+        }
+        return dropdownMenu
+    }
+    
+    func getCurrentBook() {
+        
+        let context =  appDelegate.managedObjectContext
+        let request: NSFetchRequest<Book> = Book.fetchRequest()
+        
+        do {
+            let results = try context.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
+            
+            for book in results as! [Book] {
+                if book.name == self.book! {
+                    currentBook = book
+                    return
+                }
             }
-        }
-        
-        if !shouldAddAnnotation {
-            myMapView.removeAnnotation(alreadyAddedAnnotation!)
-        }
             
-        let annotation = MKPointAnnotation()
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
         
-        annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        annotation.title = name
-        myMapView.addAnnotation(annotation)
-        myMapView.selectAnnotation(annotation, animated: false)
-        lastAnnotation = annotation
-
+        let newBook = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context) as! Book
+        newBook.name = book
+        currentBook = newBook
+        return
+        
     }
     
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+    func getPinsForBook() {
         
-        let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
-        let letters = BibleLocationsKJV.Letters as NSDictionary
-        let firstLetter = decodedURL[decodedURL.startIndex]
-        let index = letters[String(firstLetter)] as! Int
+        let context = appDelegate.managedObjectContext
+        let request: NSFetchRequest<Pin> = Pin.fetchRequest()
         
-        if let location = glossary[index][decodedURL] {
-            
-            setUpMap(name: location.name!, lat: location.lat!, long: location.long!)
+        print(currentBook!.name!)
+        let p = NSPredicate(format: "pinToBook = %@", currentBook!)
+        request.predicate = p
         
-            let context = appDelegate.managedObjectContext
-        
-            let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context) as! Pin
-            newPin.lat = location.lat!
-            newPin.long = location.long!
-            newPin.title = location.name!
-            newPin.pinToBook = currentBook
-        
-            pinsForBook.append(newPin)
-        
-            appDelegate.saveContext()
-        
-            return true
-            
-        } else {
-            return false
-            
+        pinsForBook = []
+        do {
+            let results = try context.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
+            pinsForBook = results as! [Pin]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
         }
         
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        let reuseId = "pin"
-        
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
-        
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            pinView!.pinTintColor = UIColor.red
+    func addSavedPinsToMap() {
+        for pin in pinsForBook {
+            
+            let annotation = MKPointAnnotation()
+            
+            annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
+            annotation.title = pin.title
+            myMapView.addAnnotation(annotation)
+            
         }
-        else {
-            pinView!.annotation = annotation
-        }
-
-        return pinView
     }
-    
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        lastAnnotation = view.annotation
-    }
-    
-    @IBAction func clearMapButtonPressed(_ sender: AnyObject) {
-        
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-        }
-        let removePins = UIAlertAction(title: "Remove Pins from Map", style: .default) { (action) in
-            self.myMapView.removeAnnotations(self.myMapView.annotations)
-            for pin in self.pinsForBook {
-                self.appDelegate.managedObjectContext.delete(pin)
-            }
-            self.appDelegate.saveContext()
-        }
-        
-        alertController.addAction(cancelAction)
-        alertController.addAction(removePins)
-        
-        self.present(alertController, animated: true, completion: nil)
-
-    }
-
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        let locationData =
-            ["lat":myMapView.centerCoordinate.latitude
-            , "long":myMapView.centerCoordinate.longitude
-            , "latDelta":myMapView.region.span.latitudeDelta
-            , "longDelta":myMapView.region.span.longitudeDelta]
-        defaults.set(locationData, forKey: "\(book) location")
-
-    }
-
 }
 
 extension String {

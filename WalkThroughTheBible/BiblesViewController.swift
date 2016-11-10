@@ -17,10 +17,6 @@ class BiblesViewController: UIViewController, UITableViewDataSource, UITableView
     let activated = [true, false]
     var selectedBible: String? = nil
     
-    override func viewDidLoad() {
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
     }

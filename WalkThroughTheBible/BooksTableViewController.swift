@@ -15,16 +15,26 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var myTableView: UITableView!
     
     let testaments = ["Old Testament", "New Testament"]
-    let books = [["Genesis","Exodus","Numbers"],["Matthew","Mark","Luke","John","Acts"]]
+    let books = [["Genesis","Exodus","Numbers","More OT books coming soon"],["Matthew","Mark","Luke","John","Acts","More NT books coming soon"]]
     
-    var hasBeenShown = [[Bool](repeating: false, count: 3), [Bool](repeating: false, count: 5)]
+    var hasBeenShown = [[Bool](repeating: false, count: 4), [Bool](repeating: false, count: 6)]
     var products = [SKProduct]()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         
-        //let imageView = UIImageView(image: UIImage(named: "Papyrus"))
-        //myTableView.backgroundView = imageView
-        //myTableView.backgroundView?.alpha = 0.4
+        NotificationCenter.default.addObserver(self, selector: #selector(BooksTableViewController.reachabilityChanged), name: NSNotification.Name(rawValue: "ReachabilityChangedNotification"), object: nil)
+        
+        let tabBar = self.tabBarController?.tabBar
+        let bookItem = tabBar?.items?[0]
+        let glossaryItem = tabBar?.items?[1]
+        let biblesItem = tabBar?.items?[2]
+        let aboutItem = tabBar?.items?[3]
+        
+        bookItem?.image = resizeImage(image: UIImage(named:"Book")!)
+        glossaryItem?.image = resizeImage(image: UIImage(named:"List")!)
+        biblesItem?.image = resizeImage(image: UIImage(named:"Bibles")!)
+        aboutItem?.image = resizeImage(image: UIImage(named:"About")!)
         
         let restoreButton = UIBarButtonItem(title: "Restore",
                                             style: .plain,
@@ -36,31 +46,42 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
                                                name: NSNotification.Name(rawValue: IAPHelper.IAPHelperPurchaseNotification),
                                                object: nil)
 
-        
     }
     
+    func reachabilityChanged() {
+        reload()
+    }
+    
+    func resizeImage(image: UIImage) -> UIImage {
+        let newWidth = image.size.width/1.75
+        let newHeight = image.size.height/1.75
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+ 
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.isUserInteractionEnabled = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        products = []
         reload()
     }
     
     func reload() {
         
-        products = []
+        if hasConnectivity() {
         
-        myTableView.reloadData()
-        
-        Products.store.requestProducts{success, products in
-            if success {
-                self.products = products!
-                self.myTableView.reloadData()
+            Products.store.requestProducts{success, products in
+                if success {
+                    self.products = products!
+                    self.myTableView.reloadData()
+                }
             }
         }
+        
+        myTableView.reloadData()
     }
     
     func restoreTapped(_ sender: AnyObject) {
@@ -105,60 +126,66 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let bookName = books[indexPath.section][indexPath.row]
-        
+        let productNames = ["Exodus","Numbers","Acts"]
         let productID = "AJZ.WalkThroughTheBible.\(books[indexPath.section][indexPath.row])"
         
-        if Products.productIdentifiers.contains(productID) {
-            if !Products.store.isProductPurchased(productID) {
-            
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as! ProductCell
+        if productNames.contains(bookName) {
+
+            if !defaults.bool(forKey: productID) {
                 
-                if products.count > 0 {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as! ProductCell
+                    cell.delegate = self
                     
-                    cell.aiv.stopAnimating()
+                    if products.count > 0 {
+                        
+                        cell.aiv.stopAnimating()
+                        cell.setUp(aivHidden: true, bookHidden: false, priceHidden: false, priceEnabled: true)
+                        
+                        var product = SKProduct()
+                        
+                        for prod in products {
+                            if prod.localizedTitle == bookName {
+                                product = prod
+                            }
+                        }
                     
-                    cell.aiv.isHidden = true
-                    cell.book.isHidden = false
-                    cell.price.isHidden = false
-                    cell.price.isEnabled = true
+                        cell.product = product
+                        cell.buyButtonHandler = { product in
+                        Products.store.buyProduct(product)
+                        }
                     
-                    var product = SKProduct()
-                    
-                    for prod in products {
-                        if prod.localizedTitle == bookName {
-                            product = prod
+                        cell.setUp()
+                        
+                    } else {
+                        if hasConnectivity() {
+                            cell.setUp(aivHidden: false, bookHidden: true, priceHidden: true, priceEnabled: false)
+                            cell.aiv.startAnimating()
+                        } else {
+                            cell.setUp(aivHidden: true, bookHidden: false, priceHidden: false, priceEnabled: true)
+                            cell.book.text = bookName
+                            cell.price.isHidden = false
+                            cell.price.isEnabled = true
+                            cell.book.textColor = UIColor.lightGray
+                            let priceString = "  $0.99  "
+                            cell.price.setTitle(priceString, for: .normal)
+                            cell.setUp()
                         }
                     }
-                
-                    cell.product = product
-                    cell.buyButtonHandler = { product in
-                    Products.store.buyProduct(product)
-                    }
-                
-                    cell.setUp()
                     
-                } else {
-                    
-                    cell.backgroundColor = UIColor.clear
-                    cell.book.isHidden = true
-                    cell.aiv.isHidden = false
-                    cell.price.isHidden = true
-                    cell.price.isEnabled = false
-                    
-                    cell.aiv.startAnimating()
-
-                }
-                
-                return cell
-                
+                    return cell
             }
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell") as! CustomBookCell
             
         cell.book.text = bookName
-            
         cell.setUp()
+        
+        if bookName == "More OT books coming soon" || bookName == "More NT books coming soon" {
+            cell.book.textColor = UIColor.lightGray
+            cell.book.font = cell.book.font.italicize()
+            cell.isUserInteractionEnabled = false
+        }
                 
         return cell
     
@@ -192,8 +219,42 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        
     }
 
+    func hasConnectivity() -> Bool {
+        do {
+            let reachability = Reachability()
+            let networkStatus: Int = reachability!.currentReachabilityStatus.hashValue
+            return (networkStatus != 0)
+        }
+        catch {
+            return false
+        }
+    }
+    
+    
+}
+
+extension UIFont {
+    
+    func withTraits(traits:UIFontDescriptorSymbolicTraits...) -> UIFont {
+        let descriptor = self.fontDescriptor
+            .withSymbolicTraits(UIFontDescriptorSymbolicTraits(traits))
+        return UIFont(descriptor: descriptor!, size: 0)
+    }
+    
+    func removeItalics()-> UIFont {
+        var symTraits = self.fontDescriptor.symbolicTraits
+        if symTraits.contains(.traitItalic) {
+            symTraits.remove([.traitItalic])
+            let fontDescriptorVar = fontDescriptor.withSymbolicTraits(symTraits)
+            return UIFont(descriptor: fontDescriptorVar!, size: 0)
+        }
+        return self
+    }
+    
+    func italicize() -> UIFont {
+        return withTraits(traits: .traitItalic)
+    }
     
 }

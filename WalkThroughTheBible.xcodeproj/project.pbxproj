@@ -11,7 +11,10 @@
 		C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */; };
 		DB106FCC1DD0D1D30033FFAA /* BiblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */; };
 		DB106FCF1DD0E9FB0033FFAA /* KingJamesVersion in Resources */ = {isa = PBXBuildFile; fileRef = DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */; };
+		DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB20FBBB1DD2383F0017A8F2 /* About.txt */; };
+		DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */; };
 		DB27FC931DCE8BAB00C3E207 /* BibleLocationsKJV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */; };
+		DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB445EFD1DD4E782002CC686 /* Reachability.swift */; };
 		DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4A67B41DACA26500D52665 /* GlossaryCell.swift */; };
 		DB4EE9961D987A6500A3C48B /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EE9951D987A6500A3C48B /* Books.swift */; };
 		DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */; };
@@ -67,7 +70,10 @@
 		C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible.debug.xcconfig"; sourceTree = "<group>"; };
 		DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiblesViewController.swift; sourceTree = "<group>"; };
 		DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KingJamesVersion; sourceTree = "<group>"; };
+		DB20FBBB1DD2383F0017A8F2 /* About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = About.txt; sourceTree = "<group>"; };
+		DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocationsKJV.swift; sourceTree = "<group>"; };
+		DB445EFD1DD4E782002CC686 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		DB4A67B41DACA26500D52665 /* GlossaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryCell.swift; sourceTree = "<group>"; };
 		DB4EE9951D987A6500A3C48B /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 		DB5C2E9C1D870F78002A5FAD /* WalkThroughTheBible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkThroughTheBible.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,8 +176,10 @@
 			children = (
 				DBBAC8571DC7E10E00305451 /* Books */,
 				DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */,
+				DB20FBBB1DD2383F0017A8F2 /* About.txt */,
 				DB5C2EAE1D870F79002A5FAD /* Info.plist */,
 				DBA91F011DA446F900E5E00A /* IAPHelper.swift */,
+				DB445EFD1DD4E782002CC686 /* Reachability.swift */,
 				DBA91F031DA4480200E5E00A /* Model */,
 				DBA91F051DA4484700E5E00A /* View */,
 				DBA91F041DA4480900E5E00A /* Controller */,
@@ -221,6 +229,7 @@
 				DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */,
 				DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */,
 				DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */,
+				DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -230,10 +239,10 @@
 			children = (
 				DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */,
 				DBA91EFD1DA4468200E5E00A /* ProductCell.swift */,
+				DB4A67B41DACA26500D52665 /* GlossaryCell.swift */,
 				DB5C2EA91D870F79002A5FAD /* Assets.xcassets */,
 				DB5C2EA31D870F79002A5FAD /* Main.storyboard */,
 				DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */,
-				DB4A67B41DACA26500D52665 /* GlossaryCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -330,7 +339,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Adam Zarn";
 				TargetAttributes = {
 					DB5C2E9B1D870F78002A5FAD = {
@@ -386,6 +395,7 @@
 				DB106FCF1DD0E9FB0033FFAA /* KingJamesVersion in Resources */,
 				DB5C2EAA1D870F79002A5FAD /* Assets.xcassets in Resources */,
 				DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */,
+				DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,10 +557,12 @@
 				DB5C2EA21D870F79002A5FAD /* MapAndTextViewController.swift in Sources */,
 				DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */,
 				DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */,
+				DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */,
 				DBE58B721D9EB358009A7BFA /* Book.swift in Sources */,
 				DB6F521A1D9A190600221041 /* BibleLocationsESV.swift in Sources */,
 				DBA91F001DA446C400E5E00A /* Products.swift in Sources */,
 				DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */,
+				DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */,
 				DB4EE9961D987A6500A3C48B /* Books.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,8 +632,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -667,8 +681,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -688,6 +704,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -697,6 +714,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WalkThroughTheBible/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -710,6 +728,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6F2A1453F04441325CCCDCB1 /* Pods-WalkThroughTheBible.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WalkThroughTheBible/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

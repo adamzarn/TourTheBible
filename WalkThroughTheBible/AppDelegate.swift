@@ -13,6 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var reachability: Reachability!
 
     //“‘’”
 
@@ -20,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let defaults = UserDefaults.standard
-        print(defaults.bool(forKey: "hasBeenLaunched"))
         if defaults.bool(forKey: "hasBeenLaunched") == true {
             print("has already been launched")
         } else {
@@ -30,7 +30,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         autoSave(delayInSeconds: 5)
         
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Papyrus", size: 21)!]
+        UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Papyrus", size: 9)!], for: .normal)
+        
+        do {
+            reachability = try Reachability()
+        } catch {
+            print("Unable to create Reachability")
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.reachabilityChanged(note:)), name: ReachabilityChangedNotification,object: reachability)
+        do {
+            try reachability?.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        
         return true
+    }
+    
+    func reachabilityChanged(note: NSNotification) {
+        
+        let reachability = note.object as! Reachability
+        
+        if reachability.isReachable {
+            if reachability.isReachableViaWiFi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        } else {
+            print("Network not reachable")
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

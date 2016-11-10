@@ -268,7 +268,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         return keyboardSize.cgRectValue.height
     }
 
-    
 }
 
 extension GlossaryViewController: UISearchResultsUpdating {

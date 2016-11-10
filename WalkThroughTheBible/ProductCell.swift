@@ -11,10 +11,10 @@ import StoreKit
 
 class ProductCell: UITableViewCell {
     
+    var delegate: UIViewController?
+    
     func setUp() {
         self.backgroundColor = UIColor.clear
-        //book.font = UIFont(name: "Papyrus", size: 35.0)
-        book.font = UIFont.systemFont(ofSize: 24.0)
         price.layer.cornerRadius = 5
         price.layer.borderWidth = 1
         price.backgroundColor = UIColor.white
@@ -66,6 +66,13 @@ class ProductCell: UITableViewCell {
         }
     }
     
+    func setUp(aivHidden: Bool, bookHidden: Bool, priceHidden: Bool, priceEnabled: Bool) {
+        self.aiv.isHidden = aivHidden
+        self.book.isHidden = bookHidden
+        self.price.isHidden = priceHidden
+        self.price.isEnabled = priceEnabled
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -75,7 +82,26 @@ class ProductCell: UITableViewCell {
     }
     
     @IBAction func buyButtonTapped(_ sender: AnyObject) {
-        buyButtonHandler?(product!)
+        if hasConnectivity() {
+            buyButtonHandler?(product!)
+        } else {
+            let alert = UIAlertController(title: "No Internet Connection", message: "You must connect to the internet to buy this book.", preferredStyle: UIAlertControllerStyle.alert)
+            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            alert.addAction(ok)
+            self.delegate?.present(alert,animated:false,completion:nil)
+        }
     }
+    
+    func hasConnectivity() -> Bool {
+        do {
+            let reachability = Reachability()
+            let networkStatus: Int = reachability!.currentReachabilityStatus.hashValue
+            return (networkStatus != 0)
+        }
+        catch {
+            return false
+        }
+    }
+    
 }
 
