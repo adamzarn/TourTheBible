@@ -18,8 +18,8 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     let books = [["Genesis","Exodus","Numbers","More OT books coming soon"],["Matthew","Mark","Luke","John","Acts","More NT books coming soon"]]
     
     var hasBeenShown = [[Bool](repeating: false, count: 4), [Bool](repeating: false, count: 6)]
-    var products = [SKProduct]()
     let defaults = UserDefaults.standard
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         
@@ -65,22 +65,21 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.isUserInteractionEnabled = true
-        products = []
         reload()
     }
     
     func reload() {
         
         if hasConnectivity() {
-        
-            Products.store.requestProducts{success, products in
-                if success {
-                    self.products = products!
-                    self.myTableView.reloadData()
+            if appDelegate.products.count == 0 {
+                Products.store.requestProducts{success, products in
+                    if success {
+                        self.appDelegate.products = products!
+                        self.myTableView.reloadData()
+                    }
                 }
             }
         }
-        
         myTableView.reloadData()
     }
     
@@ -90,15 +89,18 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func handlePurchaseNotification(_ notification: Notification) {
         guard let productID = notification.object as? String else { return }
-        var index = 0
+        var row = 0
+        var section = 0
         for testament in books {
             for book in testament {
                 if productID != "AJZ.WalkThroughTheBible.\(book)" {
-                    index += 1
+                    row += 1
                 } else {
-                    self.myTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                    self.myTableView.reloadRows(at: [IndexPath(row: row, section: section)], with: .fade)
                 }
             }
+            row = 0
+            section += 1
         }
     }
     
@@ -136,14 +138,14 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell") as! ProductCell
                     cell.delegate = self
                     
-                    if products.count > 0 {
+                    if appDelegate.products.count > 0 {
                         
                         cell.aiv.stopAnimating()
                         cell.setUp(aivHidden: true, bookHidden: false, priceHidden: false, priceEnabled: true)
                         
                         var product = SKProduct()
                         
-                        for prod in products {
+                        for prod in appDelegate.products {
                             if prod.localizedTitle == bookName {
                                 product = prod
                             }
@@ -207,7 +209,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let productID = "AJZ.WalkThroughTheBible.\(books[indexPath.section][indexPath.row])"
         
-        if (Products.productIdentifiers.contains(productID) && Products.store.isProductPurchased(productID)) || !Products.productIdentifiers.contains(productID) {
+        if !["Exodus","Numbers","Acts"].contains(books[indexPath.section][indexPath.row]) || defaults.bool(forKey: productID) {
         
             let vc = storyboard?.instantiateViewController(withIdentifier: "MapAndTextViewController") as! MapAndTextViewController
             vc.book = books[indexPath.section][indexPath.row]

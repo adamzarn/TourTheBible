@@ -262,7 +262,7 @@ struct BibleLocationsKJV {
                                     ,
     
                                     "Acts" : [
-                                        "1":	["Jerusalem","Israel","Judaea","Samaria","Galilee","mount called Olivet","upper room"]
+                                        "1":	["Jerusalem","Israel","Judaea","Samaria","Galilee","mount called Olivet","upper room","The field of blood"]
                                         ,    "2":	["Jerusalem","Mesopotamia","Judaea","Cappadocia","Pontus","Asia","Phrygia","Pamphylia","Egypt","Libya","Cyrene","Rome","Israel","Nazareth","temple"]
                                         ,    "3":	["temple","Nazareth","Israel"]
                                         ,    "4":	["temple","Jerusalem","Israel","Nazareth","Cyprus"]
@@ -653,8 +653,7 @@ struct BibleLocationsKJV {
             ,"Euphrates" : BibleLocation(name: "Euphrates", lat: 35.090577, long: 40.427780)
             ,"Ezem" : BibleLocation(name: "Ezem", lat: 32.049953, long: 35.733402)
             ,"Eziongaber" : BibleLocation(name: "Eziongaber", lat: 29.662847, long: 35.027161)]
-        ,["Field of Blood" : BibleLocation(name: "Field of Blood", lat: 31.777444, long: 35.234935)
-            ,"Fish Gate" : BibleLocation(name: "Fish Gate", lat: 31.777444, long: 35.234935)
+        ,["Fish Gate" : BibleLocation(name: "Fish Gate", lat: 31.777444, long: 35.234935)
             ,"Fountain Gate" : BibleLocation(name: "Fountain Gate", lat: 31.777444, long: 35.234935)]
         ,["Gaash" : BibleLocation(name: "Gaash", lat: 32.121473, long: 35.150392)
             ,"Gabbatha" : BibleLocation(name: "Gabbatha (The Pavement)", lat: 31.779907, long: 35.232307)
@@ -1268,6 +1267,7 @@ struct BibleLocationsKJV {
                     ,"Teman" : BibleLocation(name: "Teman", lat: 30.203813, long: 35.732568)
                     ,"temple" : BibleLocation(name: "The Temple", lat: 31.77765, long: 35.23547)
                     ,"Terah" : BibleLocation(name: "Terah", lat : 30.43, long : 34.58)
+                    ,"The field of blood" : BibleLocation(name: "Field of Blood", lat: 31.777444, long: 35.234935)
                     ,"the hall" : BibleLocation(name: "The Hall (Caiaphas' Palace)", lat: 31.774416, long: 35.228294)
                     ,"the river" : BibleLocation(name: "The River (Nile)", lat: 30.092632, long: 31.230987)
                     ,"The Skull" : BibleLocation(name: "The Skull", lat: 31.777444, long: 35.234935)

@@ -8,12 +8,14 @@
 
 import UIKit
 import CoreData
+import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var reachability: Reachability!
+    var products = [SKProduct]()
 
     //“‘’”
 
