@@ -179,6 +179,7 @@
                     <connections>
                         <segue destination="iEu-8d-efb" kind="relationship" relationship="viewControllers" id="b4U-b8-J5q"/>
                         <segue destination="yTr-ZA-Wuu" kind="relationship" relationship="viewControllers" id="XnP-fw-dfS"/>
+                        <segue destination="fi0-Kd-mBq" kind="relationship" relationship="viewControllers" id="IDt-PF-YN5"/>
                         <segue destination="cGx-wW-KlA" kind="relationship" relationship="viewControllers" id="Jv3-hR-qSZ"/>
                         <segue destination="IC9-DA-XWY" kind="relationship" relationship="viewControllers" id="9Ze-kA-ug0"/>
                     </connections>
@@ -289,6 +290,70 @@
             </objects>
             <point key="canvasLocation" x="2559" y="1075"/>
         </scene>
+        <!--Virtual Tour View Controller-->
+        <scene sceneID="gj4-Kc-Sa2">
+            <objects>
+                <viewController id="CS3-AV-9gT" customClass="VirtualTourViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QTu-RY-yfe"/>
+                        <viewControllerLayoutGuide type="bottom" id="hDa-KN-5NF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8wT-mD-f5k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1Ax-mm-0zn">
+                                <rect key="frame" x="16" y="332" width="343" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Sites"/>
+                                    <segment title="Hotels"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fAt-zP-Hfg">
+                                <rect key="frame" x="0.0" y="368" width="375" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Yw0-K7-AN5">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yw0-K7-AN5" id="Waw-UK-8pr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="CS3-AV-9gT" id="Xtb-1J-NtV"/>
+                                    <outlet property="delegate" destination="CS3-AV-9gT" id="7oR-B5-7p3"/>
+                                </connections>
+                            </tableView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qGl-tN-6l0">
+                                <rect key="frame" x="67" y="111" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="e5g-cX-Pxv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="e8P-RH-EEd">
+                            <connections>
+                                <action selector="clearMapButtonPressed:" destination="CS3-AV-9gT" id="knc-xB-oDP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="clearMapButton" destination="e8P-RH-EEd" id="Xy3-1x-GLM"/>
+                        <outlet property="myMapView" destination="qGl-tN-6l0" id="9xJ-me-UCI"/>
+                        <outlet property="myTableView" destination="fAt-zP-Hfg" id="PzI-Hd-Y0k"/>
+                        <outlet property="segmentedControl" destination="1Ax-mm-0zn" id="Y6S-OA-ewM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8XF-YK-21D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2557.5999999999999" y="1800.4497751124438"/>
+        </scene>
         <!--Books-->
         <scene sceneID="USM-Yc-Mfq">
             <objects>
@@ -373,7 +438,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zzq-SK-ra2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2559.1999999999998" y="1798.6506746626687"/>
+            <point key="canvasLocation" x="2558" y="2517"/>
         </scene>
         <!--About-->
         <scene sceneID="6iB-he-EDp">
@@ -427,7 +492,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GiM-gd-Cep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2559.1999999999998" y="2471.5142428785607"/>
+            <point key="canvasLocation" x="2559" y="3190"/>
         </scene>
         <!--Bibles-->
         <scene sceneID="WCI-OK-lNp">
@@ -448,7 +513,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JZ8-vj-Rz6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1620" y="1798.6506746626687"/>
+            <point key="canvasLocation" x="1620" y="2517"/>
         </scene>
         <!--About-->
         <scene sceneID="Q1A-RO-jbJ">
@@ -469,7 +534,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="roe-a4-OmK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1620" y="2471.5142428785607"/>
+            <point key="canvasLocation" x="1620" y="3190"/>
+        </scene>
+        <!--Virtual Tour-->
+        <scene sceneID="mVL-lf-t69">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fi0-Kd-mBq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Virtual Tour" id="8Qn-k1-Bbt"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RXx-Mg-ifZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CS3-AV-9gT" kind="relationship" relationship="rootViewController" id="IZu-6b-tQa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eX2-Lh-iG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1620" y="1801"/>
         </scene>
     </scenes>
 </document>

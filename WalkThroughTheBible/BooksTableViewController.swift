@@ -15,9 +15,9 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var myTableView: UITableView!
     
     let testaments = ["Old Testament", "New Testament"]
-    let books = [["Genesis","Exodus","Numbers","More OT books coming soon"],["Matthew","Mark","Luke","John","Acts","More NT books coming soon"]]
+    let books = [["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi"],["Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]]
     
-    var hasBeenShown = [[Bool](repeating: false, count: 4), [Bool](repeating: false, count: 6)]
+    var hasBeenShown = [[Bool](repeating: false, count: 39), [Bool](repeating: false, count: 27)]
     let defaults = UserDefaults.standard
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -28,8 +28,8 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let tabBar = self.tabBarController?.tabBar
         let bookItem = tabBar?.items?[0]
         let glossaryItem = tabBar?.items?[1]
-        let biblesItem = tabBar?.items?[2]
-        let aboutItem = tabBar?.items?[3]
+        let biblesItem = tabBar?.items?[3]
+        let aboutItem = tabBar?.items?[4]
         
         bookItem?.image = resizeImage(image: UIImage(named:"Book")!)
         glossaryItem?.image = resizeImage(image: UIImage(named:"List")!)
@@ -182,12 +182,6 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
             
         cell.book.text = bookName
         cell.setUp()
-        
-        if bookName == "More OT books coming soon" || bookName == "More NT books coming soon" {
-            cell.book.textColor = UIColor.lightGray
-            cell.book.font = cell.book.font.italicize()
-            cell.isUserInteractionEnabled = false
-        }
                 
         return cell
     

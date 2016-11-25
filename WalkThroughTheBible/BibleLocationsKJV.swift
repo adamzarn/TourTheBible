@@ -111,6 +111,39 @@ struct BibleLocationsKJV {
         
         ,
         
+        "Leviticus" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+
+        ]
+
+        ,
+        
         "Numbers" : [
             "1":   ["wilderness of Sinai","Egypt"]
             ,    "2":   []
@@ -150,6 +183,992 @@ struct BibleLocationsKJV {
             ,   "36":   ["Gilead","Moab","Jordan","Jericho"]
         ]
         
+        ,
+        
+        "Deuteronomy" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+            ,   "28":   []
+            ,   "29":   []
+            ,   "30":   []
+            ,   "31":   []
+            ,   "32":   []
+            ,   "33":   []
+            ,   "34":   []
+            
+        ]
+        
+        ,
+        
+        "Joshua" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            
+        ]
+        
+        ,
+        
+        "Judges" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            
+        ]
+        
+        ,
+        
+        "Ruth" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            
+        ]
+        
+        ,
+        
+        "1 Samuel" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+            ,   "28":   []
+            ,   "29":   []
+            ,   "30":   []
+            ,   "31":   []
+            
+        ]
+        
+        ,
+        
+        "2 Samuel" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            
+        ]
+
+        ,
+        
+        "1 Kings" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            
+        ]
+
+        ,
+        
+        "2 Kings" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            
+        ]
+
+        ,
+        
+        "1 Chronicles" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+            ,   "28":   []
+            ,   "29":   []
+            
+        ]
+
+        ,
+        
+        "2 Chronicles" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+            ,   "28":   []
+            ,   "29":   []
+            ,   "30":   []
+            ,   "31":   []
+            ,   "32":   []
+            ,   "33":   []
+            ,   "34":   []
+            ,   "35":   []
+            ,   "36":   []
+            
+        ]
+
+        ,
+        
+        "Ezra" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            
+        ]
+
+        ,
+        
+        "Nehemiah" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            
+        ]
+
+        ,
+        
+        "Esther" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            
+        ]
+
+        ,
+        
+        "Job" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+            ,   "28":   []
+            ,   "29":   []
+            ,   "30":   []
+            ,   "31":   []
+            ,   "32":   []
+            ,   "33":   []
+            ,   "34":   []
+            ,   "35":   []
+            ,   "36":   []
+            ,   "37":   []
+            ,   "38":   []
+            ,   "39":   []
+            ,   "40":   []
+            ,   "41":   []
+            ,   "42":   []
+            
+        ]
+
+        ,
+        
+        "Psalms" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+            ,   "28":   []
+            ,   "29":   []
+            ,   "30":   []
+            ,   "31":   []
+            ,   "32":   []
+            ,   "33":   []
+            ,   "34":   []
+            ,   "35":   []
+            ,   "36":   []
+            ,   "37":   []
+            ,   "38":   []
+            ,   "39":   []
+            ,   "40":   []
+            ,   "41":   []
+            ,   "42":   []
+            ,   "43":   []
+            ,   "44":   []
+            ,   "45":   []
+            ,   "46":   []
+            ,   "47":   []
+            ,   "48":   []
+            ,   "49":   []
+            ,   "50":   []
+            ,   "51":   []
+            ,   "52":   []
+            ,   "53":   []
+            ,   "54":   []
+            ,   "55":   []
+            ,   "56":   []
+            ,   "57":   []
+            ,   "58":   []
+            ,   "59":   []
+            ,   "60":   []
+            ,   "61":   []
+            ,   "62":   []
+            ,   "63":   []
+            ,   "64":   []
+            ,   "65":   []
+            ,   "66":   []
+            ,   "67":   []
+            ,   "68":   []
+            ,   "69":   []
+            ,   "70":   []
+            ,   "71":   []
+            ,   "72":   []
+            ,   "73":   []
+            ,   "74":   []
+            ,   "75":   []
+            ,   "76":   []
+            ,   "77":   []
+            ,   "78":   []
+            ,   "79":   []
+            ,   "80":   []
+            ,   "81":   []
+            ,   "82":   []
+            ,   "83":   []
+            ,   "84":   []
+            ,   "85":   []
+            ,   "86":   []
+            ,   "87":   []
+            ,   "88":   []
+            ,   "89":   []
+            ,   "90":   []
+            ,   "91":   []
+            ,   "92":   []
+            ,   "93":   []
+            ,   "94":   []
+            ,   "95":   []
+            ,   "96":   []
+            ,   "97":   []
+            ,   "98":   []
+            ,   "99":   []
+            ,  "100":   []
+            ,  "101":   []
+            ,  "102":   []
+            ,  "103":   []
+            ,  "104":   []
+            ,  "105":   []
+            ,  "106":   []
+            ,  "107":   []
+            ,  "108":   []
+            ,  "109":   []
+            ,  "110":   []
+            ,  "111":   []
+            ,  "112":   []
+            ,  "113":   []
+            ,  "114":   []
+            ,  "115":   []
+            ,  "116":   []
+            ,  "117":   []
+            ,  "118":   []
+            ,  "119":   []
+            ,  "120":   []
+            ,  "121":   []
+            ,  "122":   []
+            ,  "123":   []
+            ,  "124":   []
+            ,  "125":   []
+            ,  "126":   []
+            ,  "127":   []
+            ,  "128":   []
+            ,  "129":   []
+            ,  "130":   []
+            ,  "131":   []
+            ,  "132":   []
+            ,  "133":   []
+            ,  "134":   []
+            ,  "135":   []
+            ,  "136":   []
+            ,  "137":   []
+            ,  "138":   []
+            ,  "139":   []
+            ,  "140":   []
+            ,  "141":   []
+            ,  "142":   []
+            ,  "143":   []
+            ,  "144":   []
+            ,  "145":   []
+            ,  "146":   []
+            ,  "147":   []
+            ,  "148":   []
+            ,  "149":   []
+            ,  "150":   []
+            
+        ]
+
+        ,
+        
+        "Proverbs" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+            ,   "28":   []
+            ,   "29":   []
+            ,   "30":   []
+            ,   "31":   []
+            
+        ]
+
+        ,
+        
+        "Ecclesiastes" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            
+        ]
+
+        ,
+        
+        "Song of Solomon" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            
+        ]
+
+        ,
+        
+        "Isaiah" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+            ,   "28":   []
+            ,   "29":   []
+            ,   "30":   []
+            ,   "31":   []
+            ,   "32":   []
+            ,   "33":   []
+            ,   "34":   []
+            ,   "35":   []
+            ,   "36":   []
+            ,   "37":   []
+            ,   "38":   []
+            ,   "39":   []
+            ,   "40":   []
+            ,   "41":   []
+            ,   "42":   []
+            ,   "43":   []
+            ,   "44":   []
+            ,   "45":   []
+            ,   "46":   []
+            ,   "47":   []
+            ,   "48":   []
+            ,   "49":   []
+            ,   "50":   []
+            ,   "51":   []
+            ,   "52":   []
+            ,   "53":   []
+            ,   "54":   []
+            ,   "55":   []
+            ,   "56":   []
+            ,   "57":   []
+            ,   "58":   []
+            ,   "59":   []
+            ,   "60":   []
+            ,   "61":   []
+            ,   "62":   []
+            ,   "63":   []
+            ,   "64":   []
+            ,   "65":   []
+            ,   "66":   []
+            
+        ]
+
+        ,
+        
+        "Jeremiah" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+            ,   "28":   []
+            ,   "29":   []
+            ,   "30":   []
+            ,   "31":   []
+            ,   "32":   []
+            ,   "33":   []
+            ,   "34":   []
+            ,   "35":   []
+            ,   "36":   []
+            ,   "37":   []
+            ,   "38":   []
+            ,   "39":   []
+            ,   "40":   []
+            ,   "41":   []
+            ,   "42":   []
+            ,   "43":   []
+            ,   "44":   []
+            ,   "45":   []
+            ,   "46":   []
+            ,   "47":   []
+            ,   "48":   []
+            ,   "49":   []
+            ,   "50":   []
+            ,   "51":   []
+            ,   "52":   []
+            
+        ]
+
+        ,
+        
+        "Lamentations" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            
+        ]
+
+        ,
+        
+        "Ezekiel" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+            ,   "23":   []
+            ,   "24":   []
+            ,   "25":   []
+            ,   "26":   []
+            ,   "27":   []
+            ,   "28":   []
+            ,   "29":   []
+            ,   "30":   []
+            ,   "31":   []
+            ,   "32":   []
+            ,   "33":   []
+            ,   "34":   []
+            ,   "35":   []
+            ,   "36":   []
+            ,   "37":   []
+            ,   "38":   []
+            ,   "39":   []
+            ,   "40":   []
+            ,   "41":   []
+            ,   "42":   []
+            ,   "43":   []
+            ,   "44":   []
+            ,   "45":   []
+            ,   "46":   []
+            ,   "47":   []
+            ,   "48":   []
+            
+        ]
+
+        ,
+        
+        "Daniel" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            
+        ]
+
+        ,
+        
+        "Hosea" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            
+        ]
+
+        ,
+        
+        "Joel" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            
+        ]
+
+        ,
+        
+        "Amos" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            
+        ]
+
+        ,
+        
+        "Obadiah" : [
+            "1":   []
+            
+        ]
+
+        ,
+        
+        "Jonah" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            
+        ]
+
+        ,
+        
+        "Micah" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            
+        ]
+
+        ,
+        
+        "Nahum" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+
+        ]
+        
+        ,
+        
+        "Habakkuk" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+
+        ]
+        
+        ,
+        
+        "Zephaniah" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            
+        ]
+        
+        ,
+        
+        "Haggai" : [
+            "1":   []
+            ,    "2":   []
+            
+        ]
+        
+        ,
+        
+        "Zechariah" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            
+        ]
+        
+        ,
+        
+        "Malachi" : [
+            "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            
+        ]
+
         ,
         
         "Matthew" : [
@@ -204,94 +1223,375 @@ struct BibleLocationsKJV {
             ,   "16":	["Nazareth","Galilee"]
             ]
                     
-                    ,
-                        
-                        "Luke" : [
-                            "1":	["Judaea","temple","Israel","Galilee","Nazareth","the wilderness"]
-                            ,    "2":	["Syria","Galilee","Nazareth","Judaea","Bethlehem","Jerusalem","Israel","temple"]
-                            ,    "3":	["Judaea","Galilee","Ituraea","Trachonitis","Abilene","the wilderness","Jordan"]
-                            ,    "4":	["Jordan","the wilderness","Jerusalem","temple","Galilee","Nazareth","Capernaum","his own country","Israel","Sidon","Judaea"]
-                            ,    "5":	["lake of Gennesaret","Galilee","Judaea","Jerusalem"]
-                            ,    "6":	["Judaea","Jerusalem","Tyre","Sidon"]
-                            ,    "7":	["Capernaum","Israel","Nain","Judaea","the wilderness"]
-                            ,    "8":	["country of the Gadarenes","Galilee"]
-                            ,    "9":	["Bethsaida","Jerusalem"]
-                            ,   "10":	["Sodom","Chorazin","Bethsaida","Tyre","Sidon","Capernaum","Jerusalem","Jericho"]
-                            ,   "11":	["Nineveh","the south"]
-                            ,   "12":	[]
-                            ,   "13":	["Siloam","Jerusalem"]
-                            ,   "14":	[]
-                            ,   "15":	[]
-                            ,   "16":	[]
-                            ,   "17":	["Jerusalem","Samaria","Galilee","Sodom"]
-                            ,   "18":	["temple","Jerusalem","Jericho","Nazareth"]
-                            ,   "19":	["Jericho","Jerusalem","Bethphage","Bethany","mount of Olives","temple"]
-                            ,   "20":	["temple"]
-                            ,   "21":	["temple","Jerusalem","Judaea","mount called Olivet"]
-                            ,   "22":	["upper room","Israel","mount of Olives","temple","the hall"]
-                            ,   "23":	["unto Pilate","Judaea","Galilee","Jerusalem","Cyrene","The Skull","temple","Arimathaea","sepulchre"]
-                            ,   "24":	["Galilee","Emmaus","Jerusalem","Nazareth","Israel","Bethany","temple"]
-                            ]
+            ,
+            
+            "Luke" : [
+                "1":	["Judaea","temple","Israel","Galilee","Nazareth","the wilderness"]
+            ,    "2":	["Syria","Galilee","Nazareth","Judaea","Bethlehem","Jerusalem","Israel","temple"]
+            ,    "3":	["Judaea","Galilee","Ituraea","Trachonitis","Abilene","the wilderness","Jordan"]
+            ,    "4":	["Jordan","the wilderness","Jerusalem","temple","Galilee","Nazareth","Capernaum","his own country","Israel","Sidon","Judaea"]
+            ,    "5":	["lake of Gennesaret","Galilee","Judaea","Jerusalem"]
+            ,    "6":	["Judaea","Jerusalem","Tyre","Sidon"]
+            ,    "7":	["Capernaum","Israel","Nain","Judaea","the wilderness"]
+            ,    "8":	["country of the Gadarenes","Galilee"]
+            ,    "9":	["Bethsaida","Jerusalem"]
+            ,   "10":	["Sodom","Chorazin","Bethsaida","Tyre","Sidon","Capernaum","Jerusalem","Jericho"]
+            ,   "11":	["Nineveh","the south"]
+            ,   "12":	[]
+            ,   "13":	["Siloam","Jerusalem"]
+            ,   "14":	[]
+            ,   "15":	[]
+            ,   "16":	[]
+            ,   "17":	["Jerusalem","Samaria","Galilee","Sodom"]
+            ,   "18":	["temple","Jerusalem","Jericho","Nazareth"]
+            ,   "19":	["Jericho","Jerusalem","Bethphage","Bethany","mount of Olives","temple"]
+            ,   "20":	["temple"]
+            ,   "21":	["temple","Jerusalem","Judaea","mount called Olivet"]
+            ,   "22":	["upper room","Israel","mount of Olives","temple","the hall"]
+            ,   "23":	["unto Pilate","Judaea","Galilee","Jerusalem","Cyrene","The Skull","temple","Arimathaea","sepulchre"]
+            ,   "24":	["Galilee","Emmaus","Jerusalem","Nazareth","Israel","Bethany","temple"]
+            ]
                             
-                            ,
-                                
-                                "John" : [
-                                    "1":	["Jerusalem","the wilderness","Bethabara beyond Jordan","Israel","Galilee","Bethsaida","Nazareth"]
-                                    ,    "2":	["Cana","Galilee","Capernaum","Jerusalem","temple"]
-                                    ,    "3":	["Israel","the wilderness","Judaea","Aenon","Salim","Jordan"]
-                                    ,    "4":	["Judaea","Galilee","Samaria","Sychar","Jerusalem","his own country","Cana","Capernaum"]
-                                    ,    "5":	["Jerusalem","Bethesda","temple"]
-                                    ,    "6":	["sea of Galilee","sea of Tiberias","Capernaum","Tiberias","the wilderness"]
-                                    ,    "7":	["Galilee","Judaea","temple","Jerusalem","Bethlehem"]
-                                    ,    "8":	["mount of Olives","temple"]
-                                    ,    "9":	["Siloam"]
-                                    ,   "10":	["Jerusalem","temple","across the Jordan"]
-                                    ,   "11":	["Bethany","Judaea","Jerusalem","the wilderness","Ephraim","temple"]
-                                    ,   "12":	["Bethany","Jerusalem","Israel","Sion","Bethsaida","Galilee"]
-                                    ,   "13":	[]
-                                    ,   "14":	[]
-                                    ,   "15":	[]
-                                    ,   "16":	[]
-                                    ,   "17":	[]
-                                    ,   "18":	["brook Cedron","garden","Nazareth","palace","hall of judgment","judgment hall"]
-                                        ,   "19":	["the Pavement","Gabbatha","place of a skull","Golgotha","Arimathaea","Jesus' Tomb"]
-                                        ,   "20":	[]
-                                        ,   "21":	["sea of Tiberias","Cana","Galilee"]
-                                    ]
+            ,
+            
+            "John" : [
+                "1":	["Jerusalem","the wilderness","Bethabara beyond Jordan","Israel","Galilee","Bethsaida","Nazareth"]
+            ,    "2":	["Cana","Galilee","Capernaum","Jerusalem","temple"]
+            ,    "3":	["Israel","the wilderness","Judaea","Aenon","Salim","Jordan"]
+            ,    "4":	["Judaea","Galilee","Samaria","Sychar","Jerusalem","his own country","Cana","Capernaum"]
+            ,    "5":	["Jerusalem","Bethesda","temple"]
+            ,    "6":	["sea of Galilee","sea of Tiberias","Capernaum","Tiberias","the wilderness"]
+            ,    "7":	["Galilee","Judaea","temple","Jerusalem","Bethlehem"]
+            ,    "8":	["mount of Olives","temple"]
+            ,    "9":	["Siloam"]
+            ,   "10":	["Jerusalem","temple","across the Jordan"]
+            ,   "11":	["Bethany","Judaea","Jerusalem","the wilderness","Ephraim","temple"]
+            ,   "12":	["Bethany","Jerusalem","Israel","Sion","Bethsaida","Galilee"]
+            ,   "13":	[]
+            ,   "14":	[]
+            ,   "15":	[]
+            ,   "16":	[]
+            ,   "17":	[]
+            ,   "18":	["brook Cedron","garden","Nazareth","palace","hall of judgment","judgment hall"]
+            ,   "19":	["the Pavement","Gabbatha","place of a skull","Golgotha","Arimathaea","Jesus' Tomb"]
+            ,   "20":	[]
+            ,   "21":	["sea of Tiberias","Cana","Galilee"]
+            ]
                                     
-                                    ,
+            ,
     
-                                    "Acts" : [
-                                        "1":	["Jerusalem","Israel","Judaea","Samaria","Galilee","mount called Olivet","upper room","The field of blood"]
-                                        ,    "2":	["Jerusalem","Mesopotamia","Judaea","Cappadocia","Pontus","Asia","Phrygia","Pamphylia","Egypt","Libya","Cyrene","Rome","Israel","Nazareth","temple"]
-                                        ,    "3":	["temple","Nazareth","Israel"]
-                                        ,    "4":	["temple","Jerusalem","Israel","Nazareth","Cyprus"]
-                                        ,    "5":	["Jerusalem","temple","Israel"]
-                                        ,    "6":	["Syrian Antioch","Jerusalem","Cilicia","Asia","Nazareth"]
-                                        ,    "7":	["Mesopotamia","Haran","land of the Chaldaeans","Egypt","Israel","wilderness","mount Sinai","Babylon"]
-                                        ,    "8":	["Jerusalem","Judaea","Samaria","Gaza","Azotus","Caesarea"]
-                                        ,    "9":	["Damascus","Jerusalem","Tarsus","Israel","Caesarea","Judaea","Galilee","Samaria","Lydda","Saron","Joppa"]
-                                        ,   "10":	["Caesarea","Joppa","Israel","Judaea","Galilee","Nazareth","Jerusalem"]
-                                        ,   "11":	["Judaea","Jerusalem","Caesarea","Phenice","Cyprus","Syrian Antioch","Cyrene","Tarsus"]
-                                        ,   "12":	["Judaea","Caesarea","Tyre","Sidon","Jerusalem"]
-                                        ,   "13":	["Syrian Antioch","Cyrene","Seleucia","Cyprus","Salamis","Paphos","Perga","Pamphylia","Jerusalem","Pisidian Antioch","Israel","Egypt","wilderness","Canaan","Galatia","Iconium"]
-                                        ,   "14":	["Iconium","Lystra","Derbe","Lycaonia","Pisidian Antioch","Pisidia","Pamphylia","Perga","Attalia","Syrian Antioch"]
-                                        ,   "15":	["Judaea","Jerusalem","Phenice","Samaria","Syrian Antioch","Syria","Cilicia","Pamphylia","Cyprus"]
-                                        ,   "16":	["Derbe","Lystra","Iconium","Jerusalem","Phrygia","Galatia","Asia","Mysia","Bithynia","Troas","Macedonia","Samothracia","Neapolis","Philippi"]
-                                        ,   "17":	["Amphipolis","Apollonia","Thessalonica","Berea","Athens"]
-                                        ,   "18":	["Athens","Corinth","Pontus","Italy","Rome","Macedonia","Achaia","Syria","Cenchrea","Ephesus","Caesarea","Syrian Antioch","Galatia","Phrygia","Alexandria"]
-                                        ,   "19":	["Corinth","Ephesus","Macedonia","Achaia","Jerusalem","Rome","Asia"]
-                                        ,   "20":	["Macedonia","Greece","Syria","Berea","Derbe","Troas","Philippi","Assos","Mitylene","Chios","Samos","Miletus","Ephesus","Asia","Jerusalem"]
-                                        ,   "21":	["Cos","Rhodes","Patara","Phenice","Cyprus","Syria","Tyre","Jerusalem","Ptolemais","Caesarea","Judaea","temple","Asia","Israel","Egypt","Tarsus","Cilicia"]
-                                        ,   "22":	["Tarsus","Cilicia","Damascus","Jerusalem","Nazareth","temple"]
-                                        ,   "23":	["Jerusalem","Rome","Caesarea","Antipatris","Cilicia"]
-                                        ,   "24":	["temple","Jerusalem","Asia"]
-                                        ,   "25":	["Jerusalem","Caesarea","temple"]
-                                        ,   "26":	["Jerusalem","Nazareth","Damascus","Judaea","temple"]
-                                        ,   "27":	["Adramyttium","Asia","Macedonia","Thessalonica","Sidon","Cyprus","Cilicia","Pamphylia","Myra","Lycia","Alexandria","Italy","Cnidus","Crete","Salmone","The fair havens","Lasea","Phoenix","Clauda"]
-                                        ,   "28":	["Melita","Alexandria","Syracuse","Rhegium","Puteoli","Rome","Appii","The three taverns","Jerusalem","Israel","Judaea"]
-                                    ]
-                                    ] as [String : [String : [String]]]
+            "Acts" : [
+                "1":	["Jerusalem","Israel","Judaea","Samaria","Galilee","mount called Olivet","upper room","The field of blood"]
+            ,    "2":	["Jerusalem","Mesopotamia","Judaea","Cappadocia","Pontus","Asia","Phrygia","Pamphylia","Egypt","Libya","Cyrene","Rome","Israel","Nazareth","temple"]
+            ,    "3":	["temple","Nazareth","Israel"]
+            ,    "4":	["temple","Jerusalem","Israel","Nazareth","Cyprus"]
+            ,    "5":	["Jerusalem","temple","Israel"]
+            ,    "6":	["Syrian Antioch","Jerusalem","Cilicia","Asia","Nazareth"]
+            ,    "7":	["Mesopotamia","Haran","land of the Chaldaeans","Egypt","Israel","wilderness","mount Sinai","Babylon"]
+            ,    "8":	["Jerusalem","Judaea","Samaria","Gaza","Azotus","Caesarea"]
+            ,    "9":	["Damascus","Jerusalem","Tarsus","Israel","Caesarea","Judaea","Galilee","Samaria","Lydda","Saron","Joppa"]
+            ,   "10":	["Caesarea","Joppa","Israel","Judaea","Galilee","Nazareth","Jerusalem"]
+            ,   "11":	["Judaea","Jerusalem","Caesarea","Phenice","Cyprus","Syrian Antioch","Cyrene","Tarsus"]
+            ,   "12":	["Judaea","Caesarea","Tyre","Sidon","Jerusalem"]
+            ,   "13":	["Syrian Antioch","Cyrene","Seleucia","Cyprus","Salamis","Paphos","Perga","Pamphylia","Jerusalem","Pisidian Antioch","Israel","Egypt","wilderness","Canaan","Galatia","Iconium"]
+            ,   "14":	["Iconium","Lystra","Derbe","Lycaonia","Pisidian Antioch","Pisidia","Pamphylia","Perga","Attalia","Syrian Antioch"]
+            ,   "15":	["Judaea","Jerusalem","Phenice","Samaria","Syrian Antioch","Syria","Cilicia","Pamphylia","Cyprus"]
+            ,   "16":	["Derbe","Lystra","Iconium","Jerusalem","Phrygia","Galatia","Asia","Mysia","Bithynia","Troas","Macedonia","Samothracia","Neapolis","Philippi"]
+            ,   "17":	["Amphipolis","Apollonia","Thessalonica","Berea","Athens"]
+            ,   "18":	["Athens","Corinth","Pontus","Italy","Rome","Macedonia","Achaia","Syria","Cenchrea","Ephesus","Caesarea","Syrian Antioch","Galatia","Phrygia","Alexandria"]
+            ,   "19":	["Corinth","Ephesus","Macedonia","Achaia","Jerusalem","Rome","Asia"]
+            ,   "20":	["Macedonia","Greece","Syria","Berea","Derbe","Troas","Philippi","Assos","Mitylene","Chios","Samos","Miletus","Ephesus","Asia","Jerusalem"]
+            ,   "21":	["Cos","Rhodes","Patara","Phenice","Cyprus","Syria","Tyre","Jerusalem","Ptolemais","Caesarea","Judaea","temple","Asia","Israel","Egypt","Tarsus","Cilicia"]
+            ,   "22":	["Tarsus","Cilicia","Damascus","Jerusalem","Nazareth","temple"]
+            ,   "23":	["Jerusalem","Rome","Caesarea","Antipatris","Cilicia"]
+            ,   "24":	["temple","Jerusalem","Asia"]
+            ,   "25":	["Jerusalem","Caesarea","temple"]
+            ,   "26":	["Jerusalem","Nazareth","Damascus","Judaea","temple"]
+            ,   "27":      ["Adramyttium","Asia","Macedonia","Thessalonica","Sidon","Cyprus","Cilicia","Pamphylia","Myra","Lycia","Alexandria","Italy","Cnidus","Crete","Salmone","The fair havens","Lasea","Phoenix","Clauda"]
+            ,   "28":	["Melita","Alexandria","Syracuse","Rhegium","Puteoli","Rome","Appii","The three taverns","Jerusalem","Israel","Judaea"]
+            
+            ]
+        
+            ,
+            
+            "Romans" : [
+                "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+                
+            ]
+        
+        ,
+            
+            "1 Corinthians" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                ,    "5":   []
+                ,    "6":   []
+                ,    "7":   []
+                ,    "8":   []
+                ,    "9":   []
+                ,   "10":   []
+                ,   "11":   []
+                ,   "12":   []
+                ,   "13":   []
+                ,   "14":   []
+                ,   "15":   []
+                ,   "16":   []
+                
+        ]
+        
+        ,
+            
+            "2 Corinthians" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                ,    "5":   []
+                ,    "6":   []
+                ,    "7":   []
+                ,    "8":   []
+                ,    "9":   []
+                ,   "10":   []
+                ,   "11":   []
+                ,   "12":   []
+                ,   "13":   []
+                
+        ]
+        
+        ,
+            
+            "Galatians" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                ,    "5":   []
+                ,    "6":   []
+                
+        ]
+        
+        ,
+            
+            "Ephesians" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                ,    "5":   []
+                ,    "6":   []
+                
+        ]
+        
+        ,
+            
+            "Philippians" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                
+        ]
+        
+        ,
+            
+            "Colossians" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                
+        ]
+        
+        ,
+            
+            "1 Thessalonians" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                ,    "5":   []
+                
+        ]
+        
+        ,
+            
+            "2 Thessalonians" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                
+        ]
+        
+        ,
+            
+            "1 Timothy" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                ,    "5":   []
+                ,    "6":   []
+                
+        ]
+        
+        ,
+            
+            "2 Timothy" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                
+        ]
+        
+        ,
+            
+            "Titus" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                
+        ]
+        
+        ,
+            
+            "Philemon" : [
+                "1":   []
+
+        ]
+        
+        ,
+            
+            "Hebrews" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                ,    "5":   []
+                ,    "6":   []
+                ,    "7":   []
+                ,    "8":   []
+                ,    "9":   []
+                ,   "10":   []
+                ,   "11":   []
+                ,   "12":   []
+                ,   "13":   []
+                
+        ]
+        
+        ,
+            
+            "James" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                ,    "5":   []
+                
+        ]
+        
+        ,
+            
+            "1 Peter" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                ,    "5":   []
+                
+        ]
+        
+        ,
+            
+            "2 Peter" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                
+        ]
+        
+        ,
+            
+            "1 John" : [
+                "1":   []
+                ,    "2":   []
+                ,    "3":   []
+                ,    "4":   []
+                ,    "5":   []
+                
+        ]
+        
+        ,
+            
+            "2 John" : [
+                "1":   []
+
+        ]
+        
+        ,
+            
+            "3 John" : [
+                "1":   []
+                
+        ]
+        
+        ,
+            
+            "Jude" : [
+                "1":   []
+                
+        ]
+        
+        ,
+        
+            "Revelation" : [
+                "1":   []
+            ,    "2":   []
+            ,    "3":   []
+            ,    "4":   []
+            ,    "5":   []
+            ,    "6":   []
+            ,    "7":   []
+            ,    "8":   []
+            ,    "9":   []
+            ,   "10":   []
+            ,   "11":   []
+            ,   "12":   []
+            ,   "13":   []
+            ,   "14":   []
+            ,   "15":   []
+            ,   "16":   []
+            ,   "17":   []
+            ,   "18":   []
+            ,   "19":   []
+            ,   "20":   []
+            ,   "21":   []
+            ,   "22":   []
+                
+        ]
+
+        
+        
+        ] as [String : [String : [String]]]
+    
+    
 
     
     static let Glossary = [
@@ -712,680 +2012,679 @@ struct BibleLocationsKJV {
             ,"Goshen 2" : BibleLocation(name: "Goshen 2", lat: 31.450000, long: 34.916667)
             ,"Gozan" : BibleLocation(name: "Gozan", lat: 36.840013, long: 40.068890)
             ,"great sea" : BibleLocation(name: "Great Sea (Mediterranean)", lat: 33.240000, long: 33.470000)
-                ,"Greece" : BibleLocation(name: "Greece", lat: 37.983333, long: 23.733333)
-                ,"Gur" : BibleLocation(name: "Gur", lat: 32.450000, long: 35.283300)
-                ,"Gurbaal" : BibleLocation(name: "Gurbaal", lat: 30.734691, long: 35.606250)]
-                ,["Habor" : BibleLocation(name: "Habor", lat: 36.344972, long: 40.789333)
-                    ,"Hachilah" : BibleLocation(name: "Hachilah", lat: 31.466604, long: 35.216691)
-                    ,"Hadadrimmon" : BibleLocation(name: "Hadadrimmon", lat: 32.524106, long: 35.205136)
-                    ,"Hadashah" : BibleLocation(name: "Hadashah", lat: 31.679512, long: 34.695903)
-                    ,"Hadid" : BibleLocation(name: "Hadid", lat: 31.963575, long: 34.952536)
-                    ,"Hadrach" : BibleLocation(name: "Hadrach", lat: 33.519299, long: 36.313450)
-                    ,"Haeleph" : BibleLocation(name: "Haeleph", lat: 31.792733, long: 35.196862)
-                    ,"Hai" : BibleLocation(name: "Hai", lat: 31.916978, long: 35.261226)
-                    ,"Halah" : BibleLocation(name: "Halah", lat: 36.344972, long: 40.789333)
-                    ,"Halhul" : BibleLocation(name: "Halhul", lat: 31.579549, long: 35.099103)
-                    ,"Hali" : BibleLocation(name: "Hali", lat: 32.934736, long: 35.270799)
-                    ,"hall of judgment" : BibleLocation(name: "Hall of Judgment (The Antonia Fortress)", lat: 31.780381, long: 35.232135)
-                    ,"Hall of Pillars" : BibleLocation(name: "Hall of Pillars", lat: 31.777444, long: 35.234935)
-                    ,"Hall of the Throne" : BibleLocation(name: "Hall of the Throne", lat: 31.777444, long: 35.234935)
-                    ,"Ham" : BibleLocation(name: "Ham (Ammon)", lat: 31.950189, long: 35.924131)
-                    ,"Ham 2" : BibleLocation(name: "Ham 2", lat: 30.108086, long: 31.338220)
-                    ,"Hamath" : BibleLocation(name: "Hamath", lat: 35.136204, long: 36.749488)
-                    ,"Hammath" : BibleLocation(name: "Hammath", lat: 33.125828, long: 35.165000)
-                    ,"Hamonah" : BibleLocation(name: "Hamonah", lat: 31.496845, long: 35.782841)
-                    ,"Hanes" : BibleLocation(name: "Hanes", lat: 29.085425, long: 30.934402)
-                    ,"Hannathon" : BibleLocation(name: "Hannathon", lat: 32.916002, long: 35.426637)
-                    ,"Hara" : BibleLocation(name: "Hara", lat: 36.344972, long: 40.789333)
-                    ,"Haradah" : BibleLocation(name: "Haradah", lat : 30.25, long : 34.64)
-                    ,"Haran" : BibleLocation(name: "Haran", lat: 36.863864, long: 39.032197)
-                    ,"Harmon" : BibleLocation(name: "Harmon", lat: 32.280231, long: 35.197929)
-                    ,"Harod" : BibleLocation(name: "Harod", lat: 32.549638, long: 35.355647)
-                    ,"Haroshethhagoyim" : BibleLocation(name: "Haroshethhagoyim", lat: 32.691177, long: 35.110039)
-                    ,"Hashmonah" : BibleLocation(name: "Hashmonah", lat : 30.55, long : 34.54)
-                    ,"Hauran" : BibleLocation(name: "Hauran", lat: 32.800076, long: 35.937301)
-                    ,"Havilah" : BibleLocation(name: "Havilah", lat: 30.140000, long: 35.220000)
-                    ,"Havothjair" : BibleLocation(name: "Havothjair", lat: 32.042523, long: 35.724241)
-                    ,"Hazaraddar" : BibleLocation(name: "Hazaraddar", lat: 30.952200, long: 34.718700)
-                    ,"Hazarenan" : BibleLocation(name: "Hazarenan", lat: 34.229499, long: 37.240077)
-                    ,"Hazargaddah" : BibleLocation(name: "Hazargaddah", lat: 31.162327, long: 35.057114)
-                    ,"Hazarshual" : BibleLocation(name: "Hazarshual", lat: 31.215418, long: 34.942986)
-                    ,"Hazarsusah" : BibleLocation(name: "Hazarsusah", lat: 31.391668, long: 34.940502)
-                    ,"Hazarsusim" : BibleLocation(name: "Hazarsusim", lat: 31.391668, long: 34.940502)
-                    ,"Hazezontamar" : BibleLocation(name: "Hazezontamar (Engedi)", lat: 31.461525, long: 35.392411)
-                    ,"Hazerhatticon" : BibleLocation(name: "Hazerhatticon", lat: 35.136204, long: 36.749488)
-                    ,"Hazeroth" : BibleLocation(name: "Hazeroth", lat: 28.916667, long: 34.483333)
-                    ,"Hazorhadattah" : BibleLocation(name: "Hazorhadattah", lat: 31.162327, long: 35.057114)
-                    ,"Hazor" : BibleLocation(name: "Hazor", lat: 33.017182, long: 35.568049)
-                    ,"Hazor 2" : BibleLocation(name: "Hazor 2", lat: 30.687713, long: 34.494796)
-                    ,"Hazor 3" : BibleLocation(name: "Hazor 3", lat: 31.162327, long: 35.057114)
-                    ,"Hazor 4" : BibleLocation(name: "Hazor 4", lat: 31.833333, long: 35.200000)
-                    ,"Hebron" : BibleLocation(name: "Hebron (Kirjatharba)", lat: 31.535774, long: 35.094100)
-                    ,"Helam" : BibleLocation(name: "Helam", lat: 32.184373, long: 35.702870)
-                    ,"Helbah" : BibleLocation(name: "Helbah", lat: 34.066067, long: 35.865801)
-                    ,"Helbon" : BibleLocation(name: "Helbon", lat: 33.664912, long: 36.248576)
-                    ,"Helech" : BibleLocation(name: "Helech", lat: 34.856082, long: 35.858485)
-                    ,"Heleph" : BibleLocation(name: "Heleph", lat: 33.134416, long: 35.332157)
-                    ,"Helkath" : BibleLocation(name: "Helkath", lat: 32.955448, long: 35.211971)
-                    ,"Helkathhazzurim" : BibleLocation(name: "Helkathhazzurim", lat: 31.880126, long: 35.280188)
-                    ,"Hena" : BibleLocation(name: "Hena", lat: 34.467725, long: 41.964955)
-                    ,"Hepher" : BibleLocation(name: "Hepher", lat: 32.366700, long: 34.883300)
-                    ,"Heres" : BibleLocation(name: "Heres", lat: 32.199983, long: 35.633313)
-                    ,"Hereth" : BibleLocation(name: "Hereth", lat: 31.621492, long: 35.029273)
-                    ,"Heshbon" : BibleLocation(name: "Heshbon", lat: 31.800520, long: 35.809019)
-                    ,"Heshmon" : BibleLocation(name: "Heshmon", lat: 31.215418, long: 34.942986)
-                    ,"Hethlon" : BibleLocation(name: "Hethlon", lat: 34.737990, long: 36.340918)
-                    ,"Hiddekel" : BibleLocation(name: "Hiddekel (Tigris)", lat: 35.983343, long: 43.346466)
-                    ,"Hierapolis" : BibleLocation(name: "Hierapolis", lat: 37.924517, long: 29.124525)
-                    ,"Hobah" : BibleLocation(name: "Hobah", lat: 33.500000, long: 36.466667)
-                    ,"Holon" : BibleLocation(name: "Holon", lat: 31.583333, long: 34.950000)
-                    ,"Holon 2" : BibleLocation(name: "Holon 2", lat: 31.501003, long: 35.920631)
-                    ,"Holy Place" : BibleLocation(name: "Holy Place", lat: 31.777444, long: 35.234935)
-                    ,"his own country" : BibleLocation(name: "His own country (Nazareth)", lat: 32.706745, long: 35.301528)
-                    ,"his own new tomb" : BibleLocation(name: "Sepulchre (Jesus' Tomb)", lat: 31.778489, long: 35.229592)
-                    ,"Horhagidgad" : BibleLocation(name: "Horhagidgad", lat: 30.358285, long: 35.190270)
-                    ,"Horeb" : BibleLocation(name: "Horeb", lat: 28.539722, long: 33.973333)
-                    ,"Horem" : BibleLocation(name: "Horem", lat: 33.166667, long: 35.433333)
-                    ,"Horesh" : BibleLocation(name: "Horesh", lat: 31.451139, long: 35.088403)
-                    ,"Hormah" : BibleLocation(name: "Hormah", lat: 31.334211, long: 34.641266)
-                    ,"Horonaim" : BibleLocation(name: "Horonaim", lat: 31.288056, long: 35.515000)
-                    ,"Horse Gate" : BibleLocation(name: "Horse Gate", lat: 31.777444, long: 35.234935)
-                    ,"Hosah" : BibleLocation(name: "Hosah", lat: 32.178502, long: 35.227580)
-                    ,"house of Caiaphas" : BibleLocation(name: "House of Caiaphas (Caiaphas' Palace)", lat: 31.774416, long: 35.228294)
-                    ,"House of the Forest" : BibleLocation(name: "House of the Forest", lat: 31.777444, long: 35.234935)
-                    ,"House of the Forest of Lebanon" : BibleLocation(name: "House of the Forest of Lebanon", lat: 31.777444, long: 35.234935)
-                    ,"Hukkok" : BibleLocation(name: "Hukkok", lat: 32.882153, long: 35.496694)
-                    ,"Humtah" : BibleLocation(name: "Humtah", lat: 31.535774, long: 35.094100)]
-                ,["Ibleam" : BibleLocation(name: "Ibleam", lat: 32.450000, long: 35.283300)
-                    ,"Iconium" : BibleLocation(name: "Iconium", lat: 37.883530, long: 32.494263)
-                    ,"Idalah" : BibleLocation(name: "Idalah", lat: 32.733333, long: 35.166667)
-                    ,"Idumaea" : BibleLocation(name: "Idumaea", lat: 30.734691, long: 35.606250)
-                    ,"Ijon" : BibleLocation(name: "Ijon", lat: 33.328044, long: 35.611875)
-                    ,"Illyricum" : BibleLocation(name: "Illyricum", lat: 43.515484, long: 16.071538)
-                    ,"Immer" : BibleLocation(name: "Immer", lat: 36.359410, long: 43.152887)
-                    ,"India" : BibleLocation(name: "India", lat: 22.000000, long: 77.000000)
-                    ,"Iphtah" : BibleLocation(name: "Iphtah", lat: 31.809900, long: 34.936500)
-                    ,"Irpeel" : BibleLocation(name: "Irpeel", lat: 31.869343, long: 35.197712)
-                    ,"Israel" : BibleLocation(name: "Israel", lat: 31.046051, long: 34.851612)
-                    ,"Italy" : BibleLocation(name: "Italy", lat: 41.900000, long: 12.483333)
-                    ,"Ithlah" : BibleLocation(name: "Ithlah", lat: 31.823593, long: 35.075769)
-                    ,"Ithnan" : BibleLocation(name: "Ithnan", lat: 32.049953, long: 35.733402)
-                    ,"Ituraea" : BibleLocation(name: "Ituraea", lat: 33.416160, long: 35.857256)
-                    ,"Ivvah" : BibleLocation(name: "Ivvah", lat: 34.467725, long: 41.964955)
-                    ,"Ijeabarim" : BibleLocation(name: "Ijeabarim", lat: 30.995122, long: 35.631409)
-                    ,"Iim" : BibleLocation(name: "Iim", lat: 31.496845, long: 35.782841)]
-                ,["Jabbok" : BibleLocation(name: "Jabbok", lat: 32.193237, long: 35.676305)
-                    ,"Jabeshgilead" : BibleLocation(name: "Jabeshgilead", lat: 32.379822, long: 35.611587)
-                    ,"Jabez" : BibleLocation(name: "Jabez", lat: 31.705361, long: 35.210266)
-                    ,"Jabneel" : BibleLocation(name: "Jabneel", lat: 31.865518, long: 34.746856)
-                    ,"Jabneel 2" : BibleLocation(name: "Jabneel 2", lat: 32.700000, long: 35.500000)
-                    ,"Jagur" : BibleLocation(name: "Jagur", lat: 31.185800, long: 34.967450)
-                    ,"Jahaz" : BibleLocation(name: "Jahaz", lat: 31.501003, long: 35.920631)
-                    ,"Jair" : BibleLocation(name: "Jair", lat: 32.042523, long: 35.724241)
-                    ,"Janim" : BibleLocation(name: "Janim", lat: 31.516667, long: 35.166667)
-                    ,"Janoah" : BibleLocation(name: "Janoah", lat: 33.260246, long: 35.302915)
-                    ,"Janoah 2" : BibleLocation(name: "Janoah 2", lat: 32.155895, long: 35.361606)
-                    ,"Japhia" : BibleLocation(name: "Japhia", lat: 32.691633, long: 35.274955)
-                    ,"Jarmuth" : BibleLocation(name: "Jarmuth", lat: 31.709269, long: 34.969954)
-                    ,"Jarmuth 2" : BibleLocation(name: "Jarmuth 2", lat: 32.555963, long: 35.330789)
-                    ,"Jattir" : BibleLocation(name: "Jattir", lat: 31.401439, long: 35.069413)
-                    ,"Javan" : BibleLocation(name: "Javan", lat: 37.953314, long: 27.367825)
-                    ,"Jazer" : BibleLocation(name: "Jazer", lat: 31.943530, long: 35.727770)
-                    ,"Jegarsahadutha" : BibleLocation(name: "Jegarsahadutha (Ramothgilead)", lat: 32.565268, long: 36.005559)
-                    ,"Jehud" : BibleLocation(name: "Jehud", lat: 32.033636, long: 34.889599)
-                    ,"Jekabzeel" : BibleLocation(name: "Jekabzeel", lat: 31.185800, long: 34.967450)
-                    ,"Jericho" : BibleLocation(name: "Jericho", lat: 31.870601, long: 35.443864)
-                    ,"Jeruel" : BibleLocation(name: "Jeruel", lat: 31.572903, long: 35.406346)
-                    ,"Jerusalem" : BibleLocation(name: "Jerusalem", lat: 31.777444, long: 35.234935)
-                    ,"Jeshanah" : BibleLocation(name: "Jeshanah", lat: 31.980029, long: 35.229709)
-                    ,"Jeshimon" : BibleLocation(name: "Jeshimon", lat: 31.461525, long: 35.392411)
-                    ,"Jeshua" : BibleLocation(name: "Jeshua", lat: 31.162327, long: 35.057114)
-                    ,"Jetur" : BibleLocation(name: "Jetur", lat: 33.416160, long: 35.857256)
-                    ,"Jezreel" : BibleLocation(name: "Jezreel", lat: 31.535774, long: 35.094100)
-                    ,"Jezreel 2" : BibleLocation(name: "Jezreel 2", lat: 32.555963, long: 35.330789)
-                    ,"Jezreel 3" : BibleLocation(name: "Jezreel 3", lat: 32.555963, long: 35.330789)
-                    ,"Jogbehah" : BibleLocation(name: "Jogbehah", lat: 32.028743, long: 35.862887)
-                    ,"Jokdeam" : BibleLocation(name: "Jokdeam", lat: 31.366667, long: 35.000000)
-                    ,"Jokneam" : BibleLocation(name: "Jokneam", lat: 32.664546, long: 35.108918)
-                    ,"Joktheel" : BibleLocation(name: "Joktheel", lat: 31.564851, long: 34.846726)
-                    ,"Joppa" : BibleLocation(name: "Joppa", lat: 32.053520, long: 34.750426)
-                    ,"Jordan" : BibleLocation(name: "Jordan", lat: 31.887306, long: 35.537682)
-                    ,"Jotbah" : BibleLocation(name: "Jotbah", lat: 29.758043, long: 35.030602)
-                    ,"Jotbathah" : BibleLocation(name: "Jotbathah", lat: 29.810710, long: 35.131531)
-                    ,"Judaea" : BibleLocation(name: "Judaea", lat: 31.777444, long: 35.234935)
-                    ,"Judaean" : BibleLocation(name: "Judaean", lat: 31.777444, long: 35.234935)
-                    ,"judgment hall" : BibleLocation(name: "Judgment Hall (The Antonia Fortress)", lat: 31.780381, long: 35.232135)
-                    ,"Juttah" : BibleLocation(name: "Juttah", lat: 31.450000, long: 35.083333)]
-                ,["Kabzeel" : BibleLocation(name: "Kabzeel", lat: 31.185800, long: 34.967450)
-                    ,"Kadesh" : BibleLocation(name: "Kadesh (Enmishpat)", lat: 30.687713, long: 34.494796)
-                    ,"Kadeshbarnea" : BibleLocation(name: "Kadeshbarnea", lat: 30.687713, long: 34.494796)
-                    ,"Kadesh 2" : BibleLocation(name: "Kadesh 2", lat: 34.558327, long: 36.522943)
-                    ,"Kain" : BibleLocation(name: "Kain", lat: 31.500000, long: 35.166667)
-                    ,"Kamon" : BibleLocation(name: "Kamon", lat: 32.042523, long: 35.724241)
-                    ,"Kanah" : BibleLocation(name: "Kanah", lat: 32.138219, long: 35.038971)
-                    ,"Karka" : BibleLocation(name: "Karka", lat: 30.958506, long: 34.380500)
-                    ,"Karkor" : BibleLocation(name: "Karkor", lat: 32.184373, long: 35.702870)
-                    ,"Kartan" : BibleLocation(name: "Kartan", lat: 33.125828, long: 35.165000)
-                    ,"Kedar" : BibleLocation(name: "Kedar", lat: 27.400000, long: 37.700000)
-                    ,"Kedemoth" : BibleLocation(name: "Kedemoth", lat: 31.646073, long: 35.894537)
-                    ,"Kedesh" : BibleLocation(name: "Kedesh", lat: 33.112984, long: 35.533613)
-                    ,"Kehelathah" : BibleLocation(name: "Kehelathah", lat : 30.13, long : 34.68)
-                    ,"Keilah" : BibleLocation(name: "Keilah", lat: 31.614175, long: 35.002752)
-                    ,"Kenath" : BibleLocation(name: "Kenath (Nobah)", lat: 32.756919, long: 36.616400)
-                    ,"Keriothhezron" : BibleLocation(name: "Keriothhezron", lat: 31.162327, long: 35.057114)
-                    ,"Kibrothhattaavah" : BibleLocation(name: "Kibrothhattaavah", lat: 28.916667, long: 34.500000)
-                    ,"Kibzaim" : BibleLocation(name: "Kibzaim", lat: 31.833333, long: 35.300000)
-                    ,"Kidron" : BibleLocation(name: "Kidron", lat: 31.772134, long: 35.236596)
-                    ,"Kinah" : BibleLocation(name: "Kinah", lat: 31.185800, long: 34.967450)
-                    ,"king's dale" : BibleLocation(name: "King's Dale", lat: 31.777444, long: 35.234935)
-                    ,"Kir" : BibleLocation(name: "Kir", lat: 31.181326, long: 35.702148)
-                    ,"Kirjatharba" : BibleLocation(name: "Kirjatharba (Hebron)", lat: 31.535774, long: 35.094100)
-                    ,"Kirjathhuzoth" : BibleLocation(name: "Kirjathhuzoth", lat: 31.765031, long: 35.718566)
-                    ,"Kiriathjearim" : BibleLocation(name: "Kiriathjearim", lat: 31.771104, long: 34.993812)
-                    ,"Kiriathaim" : BibleLocation(name: "Kiriathaim", lat: 31.583333, long: 35.700000)
-                    ,"Kiriathaim 2" : BibleLocation(name: "Kiriathaim 2", lat: 33.125828, long: 35.165000)
-                    ,"Kishion" : BibleLocation(name: "Kishion", lat: 32.559061, long: 35.246206)
-                    ,"Kishon" : BibleLocation(name: "Kishon", lat: 32.761948, long: 35.064096)
-                    ,"Kitron" : BibleLocation(name: "Kitron", lat: 32.753141, long: 35.279335)
-                    ,"Kittim" : BibleLocation(name: "Kittim (Cyprus)", lat: 35.018306, long: 33.207693)
-                    ,"Koa" : BibleLocation(name: "Koa", lat: 34.798311, long: 48.514966)
-                    ,"Kue" : BibleLocation(name: "Kue", lat: 36.918027, long: 34.891534)]
-                ,["Laban" : BibleLocation(name: "Laban", lat: 31.809900, long: 34.936500)
-                    ,"Lachish" : BibleLocation(name: "Lachish", lat: 31.564851, long: 34.846726)
-                    ,"Lahmam" : BibleLocation(name: "Lahmam", lat: 31.566667, long: 34.900000)
-                    ,"Laishah" : BibleLocation(name: "Laishah", lat: 31.800000, long: 35.250000)
-                    ,"lake of Gennesaret" : BibleLocation(name: "Lake of Gennesaret (Sea of Galilee)", lat: 32.806776, long: 35.589361)
-                    ,"Lakkum" : BibleLocation(name: "Lakkum", lat: 32.686956, long: 35.390913)
-                    ,"land of the Chaldaeans" : BibleLocation(name: "Land of the Chaldaeans", lat: 32.154687, long: 48.647461)
-                    ,"Laodicea" : BibleLocation(name: "Laodicea", lat: 37.769867, long: 29.064501)
-                    ,"Lasea" : BibleLocation(name: "Lasea", lat: 34.934917, long: 24.809199)
-                    ,"Lasha" : BibleLocation(name: "Lasha", lat: 31.718148, long: 35.584826)
-                    ,"LaSaron" : BibleLocation(name: "LaSaron", lat: 32.725440, long: 35.467002)
-                    ,"Lebkamai" : BibleLocation(name: "Lebkamai", lat: 30.962052, long: 46.103742)
-                    ,"Lebanon" : BibleLocation(name: "Lebanon", lat: 33.752479, long: 35.590804)
-                    ,"Lebaoth" : BibleLocation(name: "Lebaoth", lat: 31.391668, long: 34.940502)
-                    ,"Lebonah" : BibleLocation(name: "Lebonah", lat: 32.070770, long: 35.239871)
-                    ,"Lehi" : BibleLocation(name: "Lehi", lat: 31.752748, long: 34.976609)
-                    ,"Libnah 2" : BibleLocation(name: "Libnah 2", lat: 31.564851, long: 34.846726)
-                    ,"Libnah" : BibleLocation(name: "Libnah", lat: 29.905990, long: 34.670105)
-                    ,"Libya" : BibleLocation(name: "Libya", lat: 32.824979, long: 21.858301)
-                    ,"Lodebar" : BibleLocation(name: "Lodebar", lat: 32.662488, long: 35.783568)
-                    ,"Lod" : BibleLocation(name: "Lod (Lydda)", lat: 31.951389, long: 34.895278)
-                    ,"Lower Bethhoron" : BibleLocation(name: "Lower Bethhoron", lat: 31.878926, long: 35.123567)
-                    ,"Luhith" : BibleLocation(name: "Luhith", lat: 31.288056, long: 35.515000)
-                    ,"Luz" : BibleLocation(name: "Luz (Bethel)", lat: 31.930539, long: 35.221033)
-                    ,"Lycaonia" : BibleLocation(name: "Lycaonia", lat: 37.883530, long: 32.494263)
-                    ,"Lycia" : BibleLocation(name: "Lycia", lat: 36.274718, long: 29.318638)
-                    ,"Lydda" : BibleLocation(name: "Lydda (Lod)", lat: 31.951389, long: 34.895278)
-                    ,"Lystra" : BibleLocation(name: "Lystra", lat: 37.578135, long: 32.453183)]
-                ,["Maacah" : BibleLocation(name: "Maacah", lat: 33.200000, long: 36.500000)
-                    ,"Maacath" : BibleLocation(name: "Maacath", lat: 33.200000, long: 36.500000)
-                    ,"Maarath" : BibleLocation(name: "Maarath", lat: 31.621003, long: 35.102328)
-                    ,"Maarehgeba" : BibleLocation(name: "Maarehgeba", lat: 31.823781, long: 35.231009)
-                    ,"Macedonia" : BibleLocation(name: "Macedonia", lat: 40.632156, long: 22.932087)
-                    ,"Machpelah" : BibleLocation(name: "Machpelah", lat: 31.524648, long: 35.110735)
-                    ,"Madmannah" : BibleLocation(name: "Madmannah", lat: 31.391668, long: 34.940502)
-                    ,"Madmenah" : BibleLocation(name: "Madmenah", lat: 31.800000, long: 35.250000)
-                    ,"Madon" : BibleLocation(name: "Madon", lat: 32.799879, long: 35.459506)
-                    ,"Magdala" : BibleLocation(name: "Magdala (Dalmanutha)", lat: 32.847335, long: 35.522936)
-                    ,"Magog" : BibleLocation(name: "Magog", lat: 46.000000, long: 47.000000)
-                    ,"Mahanaim" : BibleLocation(name: "Mahanaim", lat: 32.214708, long: 35.632914)
-                    ,"Mahanehdan" : BibleLocation(name: "Mahanehdan", lat: 31.758315, long: 34.994252)
-                    ,"Makaz" : BibleLocation(name: "Makaz", lat: 31.870364, long: 34.981728)
-                    ,"Makheloth" : BibleLocation(name: "Makheloth", lat : 30.31, long : 34.62)
-                    ,"Makkedah" : BibleLocation(name: "Makkedah", lat: 31.935117, long: 34.781326)
-                    ,"Melita" : BibleLocation(name: "Melita", lat: 35.852827, long: 14.532436)
-                    ,"Mamre" : BibleLocation(name: "Mamre", lat: 31.549099, long: 35.093561)
-                    ,"Manahath" : BibleLocation(name: "Manahath", lat: 31.752603, long: 35.181972)
-                    ,"Maon" : BibleLocation(name: "Maon", lat: 31.416667, long: 35.116667)
-                    ,"Marah" : BibleLocation(name: "Marah", lat: 29.350000, long: 32.933333)
-                    ,"Mareal" : BibleLocation(name: "Mareal", lat: 32.697409, long: 35.241789)
-                    ,"Mareshah" : BibleLocation(name: "Mareshah", lat: 31.603933, long: 34.902378)
-                    ,"Maroth" : BibleLocation(name: "Maroth", lat: 31.743719, long: 34.694006)
-                    ,"Mashal" : BibleLocation(name: "Mashal", lat: 33.047808, long: 35.146201)
-                    ,"Masrekah" : BibleLocation(name: "Masrekah", lat: 30.734691, long: 35.606250)
-                    ,"Massah" : BibleLocation(name: "Massah", lat: 28.731061, long: 33.841700)
-                    ,"Mattanah" : BibleLocation(name: "Mattanah", lat: 31.718148, long: 35.584826)
-                    ,"Mejarkon" : BibleLocation(name: "Mejarkon", lat: 32.132898, long: 34.788144)
-                    ,"Mearah" : BibleLocation(name: "Mearah", lat: 33.633333, long: 35.433333)
-                    ,"Meconah" : BibleLocation(name: "Meconah", lat: 31.370835, long: 34.860665)
-                    ,"Medeba" : BibleLocation(name: "Medeba", lat: 31.720458, long: 35.791972)
-                    ,"Media" : BibleLocation(name: "Media", lat: 34.798311, long: 48.514966)
-                    ,"Megiddo" : BibleLocation(name: "Megiddo", lat: 32.584183, long: 35.182292)
-                    ,"Memphis" : BibleLocation(name: "Memphis", lat: 29.849632, long: 31.253958)
-                    ,"Mephaath" : BibleLocation(name: "Mephaath", lat: 31.850000, long: 35.933333)
-                    ,"Meribahkadesh" : BibleLocation(name: "Meribahkadesh", lat: 30.687713, long: 34.494796)
-                    ,"Meribah" : BibleLocation(name: "Meribah", lat: 30.687713, long: 34.494796)
-                    ,"Meribah in Sinai" : BibleLocation(name: "Meribah in Sinai", lat: 28.731061, long: 33.841700)
-                    ,"Merom" : BibleLocation(name: "Merom", lat: 33.075269, long: 35.605480)
-                    ,"Meroz" : BibleLocation(name: "Meroz", lat: 32.686956, long: 35.390913)
-                    ,"Mesha" : BibleLocation(name: "Mesha", lat: 28.857260, long: 34.859127)
-                    ,"Meshech" : BibleLocation(name: "Meshech", lat: 46.000000, long: 47.000000)
-                    ,"MeshechTubal" : BibleLocation(name: "MeshechTubal", lat: 46.000000, long: 47.000000)
-                    ,"Mesopotamia" : BibleLocation(name: "Mesopotamia", lat: 32.536504, long: 44.420883)
-                    ,"Michmash" : BibleLocation(name: "Michmash", lat: 31.870184, long: 35.279236)
-                    ,"Michmethath" : BibleLocation(name: "Michmethath", lat: 32.183333, long: 35.283333)
-                    ,"Middin" : BibleLocation(name: "Middin", lat: 31.743894, long: 35.401591)
-                    ,"Midian" : BibleLocation(name: "Midian", lat: 28.932881, long: 34.908320)
-                    ,"Migdalel" : BibleLocation(name: "Migdalel", lat: 33.232131, long: 35.362942)
-                    ,"Migdalgad" : BibleLocation(name: "Migdalgad", lat: 31.666667, long: 34.583333)
-                    ,"Migdol" : BibleLocation(name: "Migdol", lat: 30.020296, long: 32.372233)
-                    ,"Migron" : BibleLocation(name: "Migron", lat: 31.823781, long: 35.231009)
-                    ,"Miletus" : BibleLocation(name: "Miletus", lat: 37.500000, long: 27.300000)
-                    ,"Millo" : BibleLocation(name: "Millo", lat: 31.777444, long: 35.234935)
-                    ,"Minni" : BibleLocation(name: "Minni", lat: 40.600000, long: 44.600000)
-                    ,"Minnith" : BibleLocation(name: "Minnith", lat: 31.750000, long: 35.850000)
-                    ,"Mishal" : BibleLocation(name: "Mishal", lat: 33.047808, long: 35.146201)
-                    ,"Misrephothmaim" : BibleLocation(name: "Misrephothmaim", lat: 33.118952, long: 35.139434)
-                    ,"Mithcah" : BibleLocation(name: "Mithcah", lat : 30.49, long : 34.56)
-                    ,"Mitylene" : BibleLocation(name: "Mitylene", lat: 39.100336, long: 26.551805)
-                    ,"Mizpah" : BibleLocation(name: "Mizpah (Ramothgilead)", lat: 32.565268, long: 36.005559)
-                    ,"Mizpah 2" : BibleLocation(name: "Mizpah 2", lat: 31.832739, long: 35.180163)
-                    ,"Mizpeh" : BibleLocation(name: "Mizpeh", lat: 31.564851, long: 34.846726)
-                    ,"Moab" : BibleLocation(name: "Moab", lat: 31.496845, long: 35.782841)
-                    ,"Moladah" : BibleLocation(name: "Moladah", lat: 31.162327, long: 35.057114)
-                    ,"Moreh" : BibleLocation(name: "Moreh", lat: 32.213691, long: 35.281799)
-                    ,"Moreh 2" : BibleLocation(name: "Moreh 2", lat: 32.617731, long: 35.357376)
-                    ,"Moresheth" : BibleLocation(name: "Moresheth", lat: 31.603933, long: 34.902378)
-                    ,"Moreshethgath" : BibleLocation(name: "Moreshethgath", lat: 31.603933, long: 34.902378)
-                    ,"Moriah" : BibleLocation(name: "Moriah", lat: 31.777594, long: 35.235251)
-                    ,"Mortar" : BibleLocation(name: "Mortar", lat: 31.777444, long: 35.234935)
-                    ,"Moserah" : BibleLocation(name: "Moserah", lat: 30.317396, long: 35.407152)
-                    ,"Moseroth" : BibleLocation(name: "Moseroth", lat : 30.61, long : 34.52)
-                    ,"Most Holy Place" : BibleLocation(name: "Most Holy Place", lat: 31.777444, long: 35.234935)
-                    ,"mount Baalah" : BibleLocation(name: "Mount Baalah", lat: 31.865518, long: 34.746856)
-                    ,"mount called Olivet" : BibleLocation(name: "Mount of Olives", lat: 31.778095, long: 35.247198)
-                    ,"mount Carmel" : BibleLocation(name: "Mount Carmel", lat: 32.729350, long: 35.049790)
-                    ,"mount Ebal" : BibleLocation(name: "Mount Ebal", lat: 32.232938, long: 35.273042)
-                    ,"mount Ephron" : BibleLocation(name: "Mount Ephron", lat: 31.675746, long: 35.042407)
-                    ,"mount Esau" : BibleLocation(name: "Mount Esau", lat: 30.734691, long: 35.606250)
-                    ,"mount Gerizim" : BibleLocation(name: "Mount Gerizim", lat: 32.199562, long: 35.272852)
-                    ,"mount Gilboa" : BibleLocation(name: "Mount Gilboa", lat: 32.509841, long: 35.408435)
-                    ,"mount Halak" : BibleLocation(name: "Mount Halak", lat: 30.916667, long: 34.833333)
-                    ,"mount Hermon" : BibleLocation(name: "Mount Hermon", lat: 33.416160, long: 35.857256)
-                    ,"mount Hor" : BibleLocation(name: "Mount Hor", lat: 30.317396, long: 35.407152)
-                    ,"mount Hor 2" : BibleLocation(name: "Mount Hor 2", lat: 35.710069, long: 36.188080)
-                    ,"mount Horeb" : BibleLocation(name: "Mount Horeb (Mount Sinai)", lat: 35.710069, long: 36.188080)
-                    ,"mount Lebanon" : BibleLocation(name: "Mount Lebanon", lat: 33.752479, long: 35.590804)
-                    ,"mount Mizar" : BibleLocation(name: "Mount Mizar", lat: 33.416160, long: 35.857256)
-                    ,"mount Nebo" : BibleLocation(name: "Mount Nebo", lat: 31.761358, long: 35.746148)
-                    ,"mount of Olives" : BibleLocation(name: "Mount of Olives", lat: 31.778095, long: 35.247198)
-                    ,"mount Paran" : BibleLocation(name: "Mount Paran", lat: 29.151667, long: 33.541944)
-                    ,"mount Perazim" : BibleLocation(name: "Mount Perazim", lat: 31.756332, long: 35.223059)
-                    ,"mount Seir" : BibleLocation(name: "Mount Seir", lat: 30.734691, long: 35.606250)
-                    ,"mount Seir 2" : BibleLocation(name: "Mount Seir 2", lat: 31.783333, long: 34.994000)
-                    ,"mount Shapher" : BibleLocation(name: "Mount Shapher", lat : 30.19, long : 34.66)
-                    ,"mount Sinai" : BibleLocation(name: "Mount Sinai (Sinai)", lat: 28.539722, long: 33.973333)
-                    ,"mount Tabor" : BibleLocation(name: "Mount Tabor", lat: 32.686956, long: 35.390913)
-                    ,"mount Zion" : BibleLocation(name: "Mount Zion", lat: 31.777444, long: 35.234935)
-                    ,"Mozah" : BibleLocation(name: "Mozah", lat: 31.802641, long: 35.158376)
-                    ,"Muster Gate" : BibleLocation(name: "Muster Gate", lat: 31.777444, long: 35.234935)
-                    ,"Myra" : BibleLocation(name: "Myra", lat: 36.230772, long: 30.011459)
-                    ,"Mysia" : BibleLocation(name: "Mysia", lat: 39.506643, long: 26.080593)]
-                ,["Naamah" : BibleLocation(name: "Naamah", lat: 31.871782, long: 34.871894)
-                    ,"Naaran" : BibleLocation(name: "Naaran", lat: 31.949518, long: 35.458730)
-                    ,"Nahalol" : BibleLocation(name: "Nahalol", lat: 32.722209, long: 35.352820)
-                    ,"Nahor" : BibleLocation(name: "Nahor (Aramnaharaim)", lat: 35.100000, long: 42.000000)
-                    ,"Nain" : BibleLocation(name: "Nain", lat: 32.630833, long: 35.347827)
-                    ,"Naioth" : BibleLocation(name: "Naioth", lat: 31.832739, long: 35.180163)
-                    ,"Naphath" : BibleLocation(name: "Naphath", lat: 32.584183, long: 35.182292)
-                    ,"Naphish" : BibleLocation(name: "Naphish", lat: 32.800076, long: 35.937301)
-                    ,"Nazareth" : BibleLocation(name: "Nazareth", lat: 32.706745, long: 35.301528)
-                    ,"Neapolis" : BibleLocation(name: "Neapolis", lat: 40.944132, long: 24.417680)
-                    ,"Nebaioth" : BibleLocation(name: "Nebaioth", lat: 30.322436, long: 35.456279)
-                    ,"Neballat" : BibleLocation(name: "Neballat", lat: 31.992079, long: 34.957563)
-                    ,"Nebo" : BibleLocation(name: "Nebo", lat: 31.748024, long: 35.743257)
-                    ,"Nebo 2" : BibleLocation(name: "Nebo 2", lat: 31.606256, long: 35.037417)
-                    ,"Negeb" : BibleLocation(name: "Negeb", lat: 30.300000, long: 34.200000)
-                    ,"Neiel" : BibleLocation(name: "Neiel", lat: 32.894254, long: 35.221877)
-                    ,"Nephtoah" : BibleLocation(name: "Nephtoah", lat: 31.683036, long: 35.167987)
-                    ,"Netaim" : BibleLocation(name: "Netaim", lat: 31.823337, long: 34.777779)
-                    ,"Netophah" : BibleLocation(name: "Netophah", lat: 31.735465, long: 35.220503)
-                    ,"New Gate" : BibleLocation(name: "New Gate", lat: 31.777444, long: 35.234935)
-                    ,"Nezib" : BibleLocation(name: "Nezib", lat: 31.588050, long: 34.992389)
-                    ,"Nibshan" : BibleLocation(name: "Nibshan", lat: 31.461525, long: 35.392411)
-                    ,"Nicopolis" : BibleLocation(name: "Nicopolis", lat: 39.024033, long: 20.735730)
-                    ,"Nimrah" : BibleLocation(name: "Nimrah (Bethnimrah)", lat: 31.900811, long: 35.625693)
-                    ,"Nimrim" : BibleLocation(name: "Nimrim", lat: 31.133191, long: 35.531138)
-                    ,"Nimrod" : BibleLocation(name: "Nimrod", lat: 32.536504, long: 44.420883)
-                    ,"Nineveh" : BibleLocation(name: "Nineveh", lat: 36.359410, long: 43.152887)
-                    ,"Nob" : BibleLocation(name: "Nob", lat: 31.799605, long: 35.232980)
-                    ,"Nobah" : BibleLocation(name: "Nobah (Kenath)", lat: 32.756919, long: 36.616400)
-                    ,"Nodab" : BibleLocation(name: "Nodab", lat: 32.800076, long: 35.937301)
-                    ,"Nophah" : BibleLocation(name: "Nophah (Kenath)", lat: 32.756919, long: 36.616400)]
-                ,["Oboth" : BibleLocation(name: "Oboth", lat: 30.882043, long: 35.620422)
-                    ,"On" : BibleLocation(name: "On", lat: 30.108086, long: 31.338220)
-                    ,"Ono" : BibleLocation(name: "Ono", lat: 32.022222, long: 34.866667)
-                    ,"Ophel" : BibleLocation(name: "Ophel", lat: 31.777444, long: 35.234935)
-                    ,"Ophir" : BibleLocation(name: "Ophir", lat: 22.000000, long: 77.000000)
-                    ,"Ophni" : BibleLocation(name: "Ophni", lat: 31.961989, long: 35.215483)
-                    ,"Ophrah" : BibleLocation(name: "Ophrah (Ephraim)", lat: 31.953790, long: 35.299136)
-                    ,"Ophrah 2" : BibleLocation(name: "Ophrah 2", lat: 32.608683, long: 35.288264)
-                    ,"over to Pilate" : BibleLocation(name: "Over to Pilate (The Antonia Fortress)", lat: 31.780381, long: 35.232135)]
-                ,["Padan" : BibleLocation(name: "Padan", lat: 36.863864, long: 39.032197)
-                    ,"Padanaram" : BibleLocation(name: "Padanaram", lat: 36.863864, long: 39.032197)
-                    ,"Pai" : BibleLocation(name: "Pai", lat: 30.734691, long: 35.606250)
-                    ,"palace" : BibleLocation(name: "Palace (Caiaphas' Palace)", lat: 31.774416, long: 35.228294)
-                    ,"Pamphylia" : BibleLocation(name: "Pamphylia", lat: 37.005208, long: 30.904946)
-                    ,"Paphos" : BibleLocation(name: "Paphos", lat: 34.754106, long: 32.400162)
-                    ,"Parah" : BibleLocation(name: "Parah", lat: 31.833333, long: 35.300000)
-                    ,"Patara" : BibleLocation(name: "Patara", lat: 36.274718, long: 29.318638)
-                    ,"Pathros" : BibleLocation(name: "Pathros", lat: 28.322364, long: 30.692312)
-                    ,"Patmos" : BibleLocation(name: "Patmos", lat: 37.307520, long: 26.548274)
-                    ,"Pau" : BibleLocation(name: "Pau", lat: 30.734691, long: 35.606250)
-                    ,"Pelusium" : BibleLocation(name: "Pelusium", lat: 28.838778, long: 33.420573)
-                    ,"Peniel" : BibleLocation(name: "Peniel (Penuel)", lat: 32.184373, long: 35.702870)
-                    ,"Penuel" : BibleLocation(name: "Penuel (Peniel)", lat: 32.184373, long: 35.702870)
-                    ,"People" : BibleLocation(name: "People", lat: 31.777444, long: 35.234935)
-                    ,"Peor" : BibleLocation(name: "Peor (Pisgah)", lat: 31.765031, long: 35.718566)
-                    ,"Perezuzza" : BibleLocation(name: "Perezuzza", lat: 31.777444, long: 35.234935)
-                    ,"Perezuzzah" : BibleLocation(name: "Perezuzzah", lat: 31.777444, long: 35.234935)
-                    ,"Perga" : BibleLocation(name: "Perga", lat: 37.005208, long: 30.904946)
-                    ,"Pergamum" : BibleLocation(name: "Pergamum", lat: 39.118946, long: 27.165126)
-                    ,"Persia" : BibleLocation(name: "Persia", lat: 34.798311, long: 48.514966)
-                    ,"Pethor" : BibleLocation(name: "Pethor", lat: 36.654616, long: 38.068879)
-                    ,"Pharpar" : BibleLocation(name: "Pharpar", lat: 33.379601, long: 36.306085)
-                    ,"Philadelphia" : BibleLocation(name: "Philadelphia", lat: 38.349048, long: 28.519462)
-                    ,"Philippi" : BibleLocation(name: "Philippi", lat: 41.011959, long: 24.286191)
-                    ,"Palestina" : BibleLocation(name: "Palestina", lat: 31.580217, long: 34.520416)
-                    ,"Phenice" : BibleLocation(name: "Phenice", lat: 33.563167, long: 35.366346)
-                    ,"Phoenix" : BibleLocation(name: "Phoenix", lat: 35.198886, long: 24.080982)
-                    ,"Phrygia" : BibleLocation(name: "Phrygia", lat: 37.769867, long: 29.064501)
-                    ,"Pibeseth" : BibleLocation(name: "Pibeseth", lat: 30.583333, long: 31.500000)
-                    ,"Pihahiroth" : BibleLocation(name: "Pihahiroth (Hahiroth)", lat: 29.946580, long: 32.425144)
-                    ,"Pirathon" : BibleLocation(name: "Pirathon", lat: 32.286022, long: 35.022944)
-                    ,"Pisgah" : BibleLocation(name: "Pisgah (Peor)", lat: 31.765031, long: 35.718566)
-                    ,"Pison" : BibleLocation(name: "Pison", lat: 29.130571, long: 47.241211)
-                    ,"Pisidia" : BibleLocation(name: "Pisidia", lat: 38.316431, long: 31.179487)
-                    ,"Pisidian Antioch" : BibleLocation(name: "Pisidian Antioch", lat: 38.316431, long: 31.179487)
-                    ,"Pithom" : BibleLocation(name: "Pithom", lat: 30.593851, long: 32.185558)
-                    ,"place of a skull" : BibleLocation(name: "The place of a skull", lat: 31.778904, long: 35.228659)
-                    ,"Plain" : BibleLocation(name: "Plain", lat: 31.870601, long: 35.443864)
-                    ,"plain of Jordan" : BibleLocation(name: "Plain of Jordan (Jordan Valley)", lat: 32.309099, long: 35.559900)
-                    ,"Pontus" : BibleLocation(name: "Pontus", lat: 40.905222, long: 37.799969)
-                    ,"Pool of Shelah" : BibleLocation(name: "Pool of Shelah", lat: 31.777444, long: 35.234935)
-                    ,"Potsherd Gate" : BibleLocation(name: "Potsherd Gate", lat: 31.777444, long: 35.234935)
-                    ,"Praetorium" : BibleLocation(name: "Praetorium (The Antonia Fortress)", lat: 31.780381, long: 35.232135)
-                    ,"Ptolemais" : BibleLocation(name: "Ptolemais (Acco)", lat: 32.927583, long: 35.081555)
-                    ,"Pul" : BibleLocation(name: "Pul", lat: 32.824979, long: 21.858301)
-                    ,"Punon" : BibleLocation(name: "Punon", lat: 30.683835, long: 35.422668)
-                    ,"Put" : BibleLocation(name: "Put", lat: 32.824979, long: 21.858301)
-                    ,"Puteoli" : BibleLocation(name: "Puteoli", lat: 40.835631, long: 14.267744)]
-                ,["Raamah" : BibleLocation(name: "Raamah", lat: 15.680000, long: 42.780000)
-                    ,"Raamses" : BibleLocation(name: "Raamses", lat: 30.593851, long: 32.185558)
-                    ,"Rabbith" : BibleLocation(name: "Rabbith", lat: 32.391416, long: 35.377302)
-                    ,"Rahab" : BibleLocation(name: "Rahab", lat: 30.108086, long: 31.338220)
-                    ,"Rakkon" : BibleLocation(name: "Rakkon", lat: 32.132898, long: 34.788144)
-                    ,"Rama" : BibleLocation(name: "Rama", lat: 31.896379, long: 35.201731)
-                    ,"Rama 2" : BibleLocation(name: "Rama 2", lat: 33.111078, long: 35.310464)
-                    ,"Rama 3" : BibleLocation(name: "Rama 3", lat: 32.939010, long: 35.368123)
-                    ,"Ramathlehi" : BibleLocation(name: "Ramathlehi", lat: 31.752748, long: 34.976609)
-                    ,"Rameses" : BibleLocation(name: "Rameses", lat: 30.799370, long: 31.834217)
-                    ,"Ramothgilead" : BibleLocation(name: "Ramothgilead (Galeed)", lat: 32.565268, long: 36.005559)
-                    ,"Ramoth" : BibleLocation(name: "Ramoth", lat: 32.555963, long: 35.330789)
-                    ,"Recah" : BibleLocation(name: "Recah", lat: 31.705361, long: 35.210266)
-                    ,"Red sea" : BibleLocation(name: "Red sea", lat: 29.744631, long: 32.553864)
-                    ,"Rehob" : BibleLocation(name: "Rehob (Bethrehob)", lat: 33.219354, long: 35.544122)
-                    ,"Rehob 2" : BibleLocation(name: "Rehob 2", lat: 33.125828, long: 35.165000)
-                    ,"Rehob 3" : BibleLocation(name: "Rehob 3", lat: 32.955448, long: 35.211971)
-                    ,"Rehoboth" : BibleLocation(name: "Rehoboth", lat: 31.066829, long: 34.597830)
-                    ,"Rehoboth 2" : BibleLocation(name: "Rehoboth 2", lat: 30.884128, long: 35.897633)
-                    ,"Rekem" : BibleLocation(name: "Rekem", lat: 31.869343, long: 35.197712)
-                    ,"Remeth" : BibleLocation(name: "Remeth", lat: 32.555963, long: 35.330789)
-                    ,"Rephaim" : BibleLocation(name: "Rephaim", lat: 32.800076, long: 35.937301)
-                    ,"Rephidim" : BibleLocation(name: "Rephidim", lat: 28.731061, long: 33.841700)
-                    ,"Resen" : BibleLocation(name: "Resen", lat: 36.268013, long: 43.222961)
-                    ,"Rezeph" : BibleLocation(name: "Rezeph", lat: 35.950000, long: 39.016667)
-                    ,"Rhegium" : BibleLocation(name: "Rhegium", lat: 38.111580, long: 15.643279)
-                    ,"Rhodes" : BibleLocation(name: "Rhodes", lat: 36.441926, long: 28.226722)
-                    ,"Riblah 2" : BibleLocation(name: "Riblah 2", lat: 34.431703, long: 36.545259)
-                    ,"Riblah" : BibleLocation(name: "Riblah", lat: 34.353071, long: 36.385705)
-                    ,"Rimmonparez" : BibleLocation(name: "Rimmonparez", lat: 29.524326, long: 34.703064)
-                    ,"Rimmon" : BibleLocation(name: "Rimmon", lat: 31.934660, long: 35.297063)
-                    ,"Rissah" : BibleLocation(name: "Rissah", lat : 30.07, long : 34.7)
-                    ,"Rithmah" : BibleLocation(name: "Rithmah", lat: 29.217954, long: 34.538269)
-                    ,"Rock of Escape" : BibleLocation(name: "Rock of Escape", lat: 31.416667, long: 35.116667)
-                    ,"Rogelim" : BibleLocation(name: "Rogelim", lat: 32.214708, long: 35.632914)
-                    ,"Rome" : BibleLocation(name: "Rome", lat: 41.900000, long: 12.483333)]
-                ,["Sahar" : BibleLocation(name: "Sahar", lat: 33.664912, long: 36.248576)
-                    ,"Salamis" : BibleLocation(name: "Salamis", lat: 35.177246, long: 33.907552)
-                    ,"Salecah" : BibleLocation(name: "Salecah", lat: 32.493941, long: 36.710337)
-                    ,"Salem" : BibleLocation(name: "Salem (Jerusalem)", lat: 31.777444, long: 35.234935)
-                    ,"Salim" : BibleLocation(name: "Salim", lat: 32.399334, long: 35.526443)
-                    ,"Salmone" : BibleLocation(name: "Salmone", lat: 35.212297, long: 26.274492)
-                    ,"salt sea" : BibleLocation(name: "Salt Sea", lat: 31.538593, long: 35.482268)
-                    ,"Samaria" : BibleLocation(name: "Samaria", lat: 32.280231, long: 35.197929)
-                    ,"Samos" : BibleLocation(name: "Samos", lat: 37.715172, long: 26.934167)
-                    ,"Samothracia" : BibleLocation(name: "Samothracia", lat: 40.467279, long: 25.486069)
-                    ,"Sansannah" : BibleLocation(name: "Sansannah", lat: 31.391668, long: 34.940502)
-                    ,"Sardis" : BibleLocation(name: "Sardis", lat: 38.476827, long: 28.114131)
-                    ,"Sarid" : BibleLocation(name: "Sarid", lat: 32.689786, long: 35.196669)
-                    ,"sea of Chinnereth" : BibleLocation(name: "Sea of Chinnereth (Galilee)", lat: 32.806776, long: 35.589361)
-                    ,"sea of Egypt" : BibleLocation(name: "Sea of Egypt", lat: 27.088473, long: 34.771729)
-                    ,"sea of Galilee" : BibleLocation(name: "Sea of Galilee", lat: 32.806776, long: 35.589361)
-                    ,"sea of Jazer" : BibleLocation(name: "Sea of Jazer", lat: 31.943530, long: 35.727770)
-                    ,"sea of the Philistines" : BibleLocation(name: "Sea of the Philistines", lat: 33.240000, long: 33.470000)
-                    ,"sea of Tiberias" : BibleLocation(name: "Sea of Tiberias (Galilee)", lat: 32.806776, long: 35.589361)
-                    ,"Seba" : BibleLocation(name: "Seba", lat: 09.022736, long: 38.746799)
-                    ,"Shebam" : BibleLocation(name: "Shebam", lat: 31.815283, long: 35.766738)
-                    ,"Secacah" : BibleLocation(name: "Secacah", lat: 31.766667, long: 35.283333)
-                    ,"Second Quarter" : BibleLocation(name: "Second Quarter", lat: 31.777444, long: 35.234935)
-                    ,"Secu" : BibleLocation(name: "Secu", lat: 31.883333, long: 35.200000)
-                    ,"Seir" : BibleLocation(name: "Seir (Edom)", lat: 30.734691, long: 35.606250)
-                    ,"Seirah" : BibleLocation(name: "Seirah", lat: 31.930539, long: 35.221033)
-                    ,"Sela" : BibleLocation(name: "Sela", lat: 30.322436, long: 35.456279)
-                    ,"Seleucia" : BibleLocation(name: "Seleucia", lat: 36.111018, long: 35.926808)
-                    ,"Seneh" : BibleLocation(name: "Seneh", lat: 31.853094, long: 35.286169)
-                    ,"Sephar" : BibleLocation(name: "Sephar", lat: 14.550219, long: 44.392642)
-                    ,"Sepharvaim" : BibleLocation(name: "Sepharvaim", lat: 33.789693, long: 44.459399)
-                    ,"sepulchre" : BibleLocation(name: "Sepulchre (Jesus' Tomb)", lat: 31.778489, long: 35.229592)
-                    ,"Shaalbim" : BibleLocation(name: "Shaalbim", lat: 31.870364, long: 34.981728)
-                    ,"Shaalim" : BibleLocation(name: "Shaalim", lat: 31.846848, long: 35.184912)
-                    ,"Shaaraim" : BibleLocation(name: "Shaaraim", lat: 31.700100, long: 34.895320)
-                    ,"Shahazumah" : BibleLocation(name: "Shahazumah", lat: 32.406430, long: 35.504628)
-                    ,"Shalishah" : BibleLocation(name: "Shalishah", lat: 31.846848, long: 35.184912)
-                    ,"Shallecheth" : BibleLocation(name: "Shallecheth", lat: 31.777444, long: 35.234935)
-                    ,"Shamir" : BibleLocation(name: "Shamir", lat: 31.416667, long: 34.933333)
-                    ,"Shamir 2" : BibleLocation(name: "Shamir 2", lat: 32.360470, long: 35.250054)
-                    ,"Shaphir" : BibleLocation(name: "Shaphir", lat: 31.743719, long: 34.694006)
-                    ,"Saron" : BibleLocation(name: "Saron", lat: 32.639068, long: 34.945929)
-                    ,"Saron 2" : BibleLocation(name: "Saron 2", lat: 33.416160, long: 35.857256)
-                    ,"Sharuhen" : BibleLocation(name: "Sharuhen", lat: 31.282222, long: 34.482500)
-                    ,"Shaveh Kiriathaim" : BibleLocation(name: "Shaveh Kiriathaim", lat: 31.583333, long: 35.700000)
-                    ,"Sheba" : BibleLocation(name: "Sheba", lat: 09.022736, long: 38.746799)
-                    ,"Shebarim" : BibleLocation(name: "Shebarim", lat: 31.916978, long: 35.261226)
-                    ,"Shechem" : BibleLocation(name: "Shechem", lat: 32.213691, long: 35.281799)
-                    ,"Sheep Gate" : BibleLocation(name: "Sheep Gate", lat: 31.777444, long: 35.234935)
-                    ,"Shema" : BibleLocation(name: "Shema", lat: 31.162327, long: 35.057114)
-                    ,"Shen" : BibleLocation(name: "Shen", lat: 31.832739, long: 35.180163)
-                    ,"Shepham" : BibleLocation(name: "Shepham", lat: 34.353071, long: 36.385705)
-                    ,"Shephelah" : BibleLocation(name: "Shephelah", lat: 31.777614, long: 34.852146)
-                    ,"Shihorlibnath" : BibleLocation(name: "Shihorlibnath", lat: 32.538496, long: 34.907697)
-                    ,"Shikkeron" : BibleLocation(name: "Shikkeron", lat: 31.777614, long: 34.852146)
-                    ,"Shiloah" : BibleLocation(name: "Shiloah", lat: 31.777444, long: 35.234935)
-                    ,"Shiloh" : BibleLocation(name: "Shiloh", lat: 32.055701, long: 35.289529)
-                    ,"Shimron" : BibleLocation(name: "Shimron", lat: 32.705289, long: 35.213333)
-                    ,"Shinar" : BibleLocation(name: "Shinar (Babel)", lat: 32.536504, long: 44.420883)
-                    ,"Shion" : BibleLocation(name: "Shion", lat: 32.716666, long: 35.333334)
-                    ,"Shittim" : BibleLocation(name: "Shittim (Abelshittim)", lat: 31.858262, long: 35.641567)
-                    ,"Shoa" : BibleLocation(name: "Shoa", lat: 34.798311, long: 48.514966)
-                    ,"Shual" : BibleLocation(name: "Shual", lat: 31.953790, long: 35.299136)
-                    ,"Shunem" : BibleLocation(name: "Shunem", lat: 32.605631, long: 35.334306)
-                    ,"Shur" : BibleLocation(name: "Shur", lat: 30.235400, long: 33.247000)
-                    ,"Shibmah" : BibleLocation(name: "Shibmah", lat: 31.815283, long: 35.766738)
-                    ,"Sibraim" : BibleLocation(name: "Sibraim", lat: 35.136204, long: 36.749488)
-                    ,"Sidon" : BibleLocation(name: "Sidon", lat: 33.563167, long: 35.366346)
-                    ,"Silla" : BibleLocation(name: "Silla", lat: 31.777444, long: 35.234935)
-                    ,"Sinai" : BibleLocation(name: "Sinai (Mount Sinai)", lat: 28.539722, long: 33.973333)
-                    ,"Siloam" : BibleLocation(name: "Siloam", lat: 31.777444, long: 35.234935)
-                    ,"Sion" : BibleLocation(name: "Sion (Jerusalem)", lat: 31.777444, long: 35.234935)
-                    ,"Siphmoth" : BibleLocation(name: "Siphmoth", lat: 31.373521, long: 35.074552)
-                    ,"Sirah" : BibleLocation(name: "Sirah", lat: 31.550000, long: 35.100000)
-                    ,"Sitnah" : BibleLocation(name: "Sitnah", lat: 31.391290, long: 34.560570)
-                    ,"Smyrna" : BibleLocation(name: "Smyrna", lat: 38.451960, long: 27.161921)
-                    ,"Socoh" : BibleLocation(name: "Socoh", lat: 31.681235, long: 34.976398)
-                    ,"Socoh 2" : BibleLocation(name: "Socoh 2", lat: 31.416670, long: 34.966670)
-                    ,"Sodom" : BibleLocation(name: "Sodom", lat: 31.275543, long: 35.521545)
-                    ,"Solomon" : BibleLocation(name: "Solomon", lat: 31.777444, long: 35.234935)
-                    ,"Spain" : BibleLocation(name: "Spain", lat: 40.481391, long: 03.175332)
-                    ,"stood before the governor" : BibleLocation(name: "Stood before the governor (The Antonia Fortress)", lat: 31.780381, long: 35.232135)
-                    ,"Straight" : BibleLocation(name: "Straight", lat: 33.519299, long: 36.313450)
-                    ,"Succoth" : BibleLocation(name: "Succoth", lat: 32.199983, long: 35.633313)
-                    ,"Succoth (Egypt)" : BibleLocation(name: "Succoth (Egypt)", lat: 30.620774, long: 32.258693)
-                    ,"Suph" : BibleLocation(name: "Suph", lat: 27.088473, long: 34.771729)
-                    ,"Suphah" : BibleLocation(name: "Suphah (Red sea)", lat: 27.088473, long: 34.771729)
-                    ,"Sur" : BibleLocation(name: "Sur", lat: 31.777444, long: 35.234935)
-                    ,"Susa" : BibleLocation(name: "Susa", lat: 32.189191, long: 48.257886)
-                    ,"Sychar" : BibleLocation(name: "Sychar", lat: 32.203077, long: 35.311921)
-                    ,"Syene" : BibleLocation(name: "Syene", lat: 24.066181, long: 32.895862)
-                    ,"Syracuse" : BibleLocation(name: "Syracuse", lat: 37.068232, long: 15.294824)
-                    ,"Syria" : BibleLocation(name: "Syria", lat: 33.519299, long: 36.313450)
-                    ,"Syrian Antioch" : BibleLocation(name: "Syrian Antioch", lat: 36.202331, long: 36.162388)
-                    ,"Syrtis" : BibleLocation(name: "Syrtis", lat: 31.766667, long: 18.505556)]
-                ,["Taanach" : BibleLocation(name: "Taanach", lat: 32.517240, long: 35.216325)
-                    ,"Taanathshiloh" : BibleLocation(name: "Taanathshiloh", lat: 32.150000, long: 35.383333)
-                    ,"Tabbath" : BibleLocation(name: "Tabbath", lat: 32.356010, long: 35.536929)
-                    ,"Taberah" : BibleLocation(name: "Taberah", lat: 28.793838, long: 34.348755)
-                    ,"Tabor" : BibleLocation(name: "Tabor", lat: 31.930539, long: 35.221033)
-                    ,"Tadmor" : BibleLocation(name: "Tadmor", lat: 34.554049, long: 38.265905)
-                    ,"Tahath" : BibleLocation(name: "Tahath", lat : 30.37, long : 34.6)
-                    ,"Tahpanhes" : BibleLocation(name: "Tahpanhes", lat: 30.860556, long: 32.171389)
-                    ,"Tamar" : BibleLocation(name: "Tamar", lat: 31.024923, long: 35.064154)
-                    ,"Tappuah" : BibleLocation(name: "Tappuah", lat: 32.116667, long: 35.233333)
-                    ,"Tappuah 2" : BibleLocation(name: "Tappuah 2", lat: 32.150000, long: 35.126000)
-                    ,"Taralah" : BibleLocation(name: "Taralah", lat: 31.792733, long: 35.196862)
-                    ,"Tarshish" : BibleLocation(name: "Tarshish", lat: 36.952995, long: 06.379340)
-                    ,"Tarsus" : BibleLocation(name: "Tarsus", lat: 36.918027, long: 34.891534)
-                    ,"Tekoa" : BibleLocation(name: "Tekoa", lat: 31.636221, long: 35.214077)
-                    ,"Telabib" : BibleLocation(name: "Telabib", lat: 32.127213, long: 45.229995)
-                    ,"Telharsha" : BibleLocation(name: "Telharsha", lat: 32.127213, long: 45.229995)
-                    ,"Telmelah" : BibleLocation(name: "Telmelah", lat: 32.127213, long: 45.229995)
-                    ,"Telaim" : BibleLocation(name: "Telaim", lat: 32.049953, long: 35.733402)
-                    ,"Telassar" : BibleLocation(name: "Telassar", lat: 32.189191, long: 48.257886)
-                    ,"Telem" : BibleLocation(name: "Telem", lat: 32.049953, long: 35.733402)
-                    ,"Tema" : BibleLocation(name: "Tema", lat: 27.633172, long: 38.554125)
-                    ,"Teman" : BibleLocation(name: "Teman", lat: 30.203813, long: 35.732568)
-                    ,"temple" : BibleLocation(name: "The Temple", lat: 31.77765, long: 35.23547)
-                    ,"Terah" : BibleLocation(name: "Terah", lat : 30.43, long : 34.58)
-                    ,"The field of blood" : BibleLocation(name: "Field of Blood", lat: 31.777444, long: 35.234935)
-                    ,"the hall" : BibleLocation(name: "The Hall (Caiaphas' Palace)", lat: 31.774416, long: 35.228294)
-                    ,"the river" : BibleLocation(name: "The River (Nile)", lat: 30.092632, long: 31.230987)
-                    ,"The Skull" : BibleLocation(name: "The Skull", lat: 31.777444, long: 35.234935)
-                    ,"the south" : BibleLocation(name: "The South (Sheba)", lat: 09.022736, long: 38.746799)
-                    ,"the Pavement" : BibleLocation(name: "The Pavement (Gabbatha)", lat: 31.779907, long: 35.232307)
-                    ,"the wilderness" : BibleLocation(name: "The Judaean Wilderness", lat: 31.716157, long: 35.362930)
-                    ,"Thebes" : BibleLocation(name: "Thebes", lat: 25.700025, long: 32.639441)
-                    ,"Thebez" : BibleLocation(name: "Thebez", lat: 32.324102, long: 35.368253)
-                    ,"Thessalonica" : BibleLocation(name: "Thessalonica", lat: 40.632156, long: 22.932087)
-                    ,"The fair havens" : BibleLocation(name: "The fair havens", lat: 34.921384, long: 24.731141)
-                    ,"The three taverns" : BibleLocation(name: "The three taverns", lat: 41.591320, long: 12.828636)
-                    ,"Thyatira" : BibleLocation(name: "Thyatira", lat: 38.925791, long: 27.856556)
-                    ,"Tiberias" : BibleLocation(name: "Tiberias", lat: 32.795538, long: 35.529220)
-                    ,"Tibhath" : BibleLocation(name: "Tibhath", lat: 33.931480, long: 36.152049)
-                    ,"Timnah" : BibleLocation(name: "Timnah", lat: 31.784368, long: 34.909680)
-                    ,"Timnah 2" : BibleLocation(name: "Timnah 2", lat: 31.699323, long: 35.040359)
-                    ,"Timnathheres" : BibleLocation(name: "Timnathheres", lat: 32.121473, long: 35.150392)
-                    ,"Tiphsah" : BibleLocation(name: "Tiphsah", lat: 35.847967, long: 38.732350)
-                    ,"Tiphsah 2" : BibleLocation(name: "Tiphsah 2", lat: 32.166667, long: 35.166667)
-                    ,"Tirzah" : BibleLocation(name: "Tirzah", lat: 32.271369, long: 35.294304)
-                    ,"Tishbe" : BibleLocation(name: "Tishbe", lat: 33.017182, long: 35.568049)
-                    ,"Tob" : BibleLocation(name: "Tob", lat: 32.561735, long: 36.240494)
-                    ,"Tochen" : BibleLocation(name: "Tochen", lat: 31.809900, long: 34.936500)
-                    ,"Tolad" : BibleLocation(name: "Tolad", lat: 32.049953, long: 35.733402)
-                    ,"Tophel" : BibleLocation(name: "Tophel", lat: 30.936991, long: 35.616870)
-                    ,"Tower of Hananel" : BibleLocation(name: "Tower of Hananel", lat: 31.777444, long: 35.234935)
-                    ,"Tower of Shechem" : BibleLocation(name: "Tower of Shechem", lat: 32.213691, long: 35.281799)
-                    ,"Tower of the Hundred" : BibleLocation(name: "Tower of the Hundred", lat: 31.777444, long: 35.234935)
-                    ,"Tower of the Ovens" : BibleLocation(name: "Tower of the Ovens", lat: 31.777444, long: 35.234935)
-                    ,"Trachonitis" : BibleLocation(name: "Trachonitis", lat: 32.833333, long: 36.500000)
-                    ,"Troas" : BibleLocation(name: "Troas", lat: 39.506643, long: 26.080593)
-                    ,"Tubal" : BibleLocation(name: "Tubal", lat: 40.905222, long: 37.799969)
-                    ,"Tyre" : BibleLocation(name: "Tyre", lat: 33.275828, long: 35.192575)]
-                ,["Ulai" : BibleLocation(name: "Ulai", lat: 32.178696, long: 48.224890)
-                    ,"Ummah" : BibleLocation(name: "Ummah", lat: 33.104377, long: 35.180623)
-                    ,"unto Pilate" : BibleLocation(name: "Unto Pilate (The Antonia Fortress)", lat: 31.780381, long: 35.232135)
-                    ,"Uphaz" : BibleLocation(name: "Uphaz", lat: 22.000000, long: 77.000000)
-                    ,"Upper Bethhoron" : BibleLocation(name: "Upper Bethhoron", lat: 31.858918, long: 35.128313)
-                    ,"upper room" : BibleLocation(name: "Upper Room", lat: 31.771461, long: 35.229324)
-                    ,"Ur" : BibleLocation(name: "Ur", lat: 30.962052, long: 46.103742)
-                    ,"Ur of the Chaldees" : BibleLocation(name: "Ur of the Chaldees", lat: 30.962052, long: 46.103742)
-                    ,"Uz" : BibleLocation(name: "Uz", lat: 30.033400, long: 36.448390)
-                    ,"Uzal" : BibleLocation(name: "Uzal", lat: 15.354879, long: 44.215092)
-                    ,"Uzza" : BibleLocation(name: "Uzza", lat: 31.777444, long: 35.234935)
-                    ,"Uzzensheerah" : BibleLocation(name: "Uzzensheerah", lat: 31.887821, long: 35.045649)]
-                ,["Valley Gate" : BibleLocation(name: "Valley Gate", lat: 31.777444, long: 35.234935)
-                    ,"valley of Achor" : BibleLocation(name: "Valley of Achor", lat: 31.836890, long: 35.399737)
-                    ,"valley of Aven" : BibleLocation(name: "Valley of Aven", lat: 34.006944, long: 36.203889)
-                    ,"valley of Beracah" : BibleLocation(name: "Valley of Beracah", lat: 31.610650, long: 35.165648)
-                    ,"valley of Elah" : BibleLocation(name: "Valley of Elah", lat: 31.690629, long: 34.963136)
-                    ,"valley of Eshcol" : BibleLocation(name: "Valley of Eshcol", lat: 31.549099, long: 35.093561)
-                    ,"valley of Gerar" : BibleLocation(name: "Valley of Gerar", lat: 31.391291, long: 34.560570)
-                    ,"valley of Gibeon" : BibleLocation(name: "Valley of Gibeon", lat: 31.846848, long: 35.184912)
-                    ,"valley of Hamongog" : BibleLocation(name: "Valley of Hamongog", lat: 31.496845, long: 35.782841)
-                    ,"vale of Hebron" : BibleLocation(name: "Vale of Hebron", lat: 31.549099, long: 35.093561)
-                    ,"valley of Hinnom" : BibleLocation(name: "Valley of Hinnom", lat: 31.769079, long: 35.227994)
-                    ,"valley of Iphtahel" : BibleLocation(name: "Valley of Iphtahel", lat: 32.832774, long: 35.277225)
-                    ,"valley of Jericho" : BibleLocation(name: "Valley of Jericho", lat: 31.870601, long: 35.443864)
-                    ,"valley of Jezreel" : BibleLocation(name: "Valley of Jezreel", lat: 32.555963, long: 35.330789)
-                    ,"valley of Mizpeh" : BibleLocation(name: "Valley of Mizpeh", lat: 33.281770, long: 35.573371)
-                    ,"valley of Rephaim" : BibleLocation(name: "Valley of Rephaim", lat: 31.756332, long: 35.223059)
-                    ,"valley of Salt" : BibleLocation(name: "Valley of Salt", lat: 31.087328, long: 35.383740)
-                    ,"valley of Shaveh" : BibleLocation(name: "Valley of Shaveh", lat: 31.777444, long: 35.234935)
-                    ,"valley of Shittim" : BibleLocation(name: "Valley of Shittim", lat: 31.858262, long: 35.641567)
-                    ,"vale of Siddim" : BibleLocation(name: "Vale of Siddim", lat: 31.235341, long: 35.517624)
-                    ,"valley of Sorek" : BibleLocation(name: "Valley of Sorek", lat: 31.825731, long: 34.989013)
-                    ,"valley of the Travelers" : BibleLocation(name: "Valley of the Travelers", lat: 31.496845, long: 35.782841)
-                    ,"valley of Zeboim" : BibleLocation(name: "Valley of Zeboim", lat: 31.936283, long: 35.424836)
-                    ,"valley of Zephathah" : BibleLocation(name: "Valley of Zephathah", lat: 31.615198, long: 34.910085)
-                    ,"valley of Zared" : BibleLocation(name: "Valley of Zared (Zared)", lat: 30.884128, long: 35.897633)]
-                ,["Waheb" : BibleLocation(name: "Waheb", lat: 27.088473, long: 34.771729)
-                    ,"Washer" : BibleLocation(name: "Washer", lat: 31.769079, long: 35.227994)
-                    ,"Water Gate" : BibleLocation(name: "Water Gate", lat: 31.777444, long: 35.234935)
-                    ,"Way of Holiness" : BibleLocation(name: "Way of Holiness", lat: 31.777444, long: 35.234935)
-                    ,"wilderness" : BibleLocation(name: "Wilderness of Wandering", lat: 30.687713, long: 34.494796)
-                    ,"wilderness of Paran" : BibleLocation(name: "Wilderness of Paran", lat: 30.151955, long: 34.392700)
-                    ,"wilderness of Sin" : BibleLocation(name: "Wilderness of Sin", lat: 28.838778, long: 33.420573)
-                    ,"wilderness of Sinai" : BibleLocation(name: "Wilderness of Sinai", lat: 29.360334, long: 33.931274)
-                    ,"wilderness of Zin" : BibleLocation(name: "Wilderness of Zin", lat: 30.379688, long: 34.920044)
-                    ,"Wildgoats" : BibleLocation(name: "Wildgoats", lat: 31.461525, long: 35.392411)]
-                ,["Yiron" : BibleLocation(name: "Yiron", lat: 33.088748, long: 35.414111)]
-                ,["Zaanan" : BibleLocation(name: "Zaanan", lat: 31.743719, long: 34.694006)
-                    ,"Zaanannim" : BibleLocation(name: "Zaanannim", lat: 33.112984, long: 35.533613)
-                    ,"Zalmonah" : BibleLocation(name: "Zalmonah", lat: 30.749950, long: 35.351257)
-                    ,"Zanoah" : BibleLocation(name: "Zanoah", lat: 31.716667, long: 35.000000)
-                    ,"Zanoah 2" : BibleLocation(name: "Zanoah 2", lat: 31.366667, long: 35.000000)
-                    ,"Zaphon" : BibleLocation(name: "Zaphon", lat: 32.237710, long: 35.585865)
-                    ,"Zarephath" : BibleLocation(name: "Zarephath", lat: 33.433300, long: 35.300000)
-                    ,"Zarethan" : BibleLocation(name: "Zarethan", lat: 32.267821, long: 35.576613)
-                    ,"Zeboiim" : BibleLocation(name: "Zeboiim", lat: 30.934550, long: 35.414429)
-                    ,"Zeboim" : BibleLocation(name: "Zeboim", lat: 31.101822, long: 35.476337)
-                    ,"Zedad" : BibleLocation(name: "Zedad", lat: 34.312571, long: 36.925484)
-                    ,"Zela" : BibleLocation(name: "Zela", lat: 31.792733, long: 35.196862)
-                    ,"Zelzah" : BibleLocation(name: "Zelzah", lat: 31.717666, long: 35.187019)
-                    ,"Zemaraim" : BibleLocation(name: "Zemaraim", lat: 31.910999, long: 35.457280)
-                    ,"Zenan" : BibleLocation(name: "Zenan", lat: 31.743719, long: 34.694006)
-                    ,"Zephath" : BibleLocation(name: "Zephath", lat: 30.880918, long: 34.630620)
-                    ,"Zer" : BibleLocation(name: "Zer", lat: 33.125828, long: 35.165000)
-                    ,"Zared" : BibleLocation(name: "Zared (Valley of Zared)", lat: 30.884128, long: 35.897633)
-                    ,"Zeredah" : BibleLocation(name: "Zeredah", lat: 32.232938, long: 35.273042)
-                    ,"Zerethshahar" : BibleLocation(name: "Zerethshahar", lat: 31.616962, long: 35.567522)
-                    ,"Ziddim" : BibleLocation(name: "Ziddim", lat: 32.814279, long: 35.435872)
-                    ,"Ziklag" : BibleLocation(name: "Ziklag", lat: 31.377600, long: 34.873562)
-                    ,"Zimri" : BibleLocation(name: "Zimri", lat: 32.189191, long: 48.257886)
-                    ,"Zin" : BibleLocation(name: "Zin", lat: 30.687713, long: 34.494796)
-                    ,"Zior" : BibleLocation(name: "Zior", lat: 31.589719, long: 35.148296)
-                    ,"Ziph" : BibleLocation(name: "Ziph", lat: 31.483300, long: 35.133300)
-                    ,"Ziph 2" : BibleLocation(name: "Ziph 2", lat: 32.049953, long: 35.733402)
-                    ,"Ziphron" : BibleLocation(name: "Ziphron", lat: 34.229499, long: 37.240077)
-                    ,"Ziz" : BibleLocation(name: "Ziz", lat: 31.572903, long: 35.406346)
-                    ,"Zoan" : BibleLocation(name: "Zoan", lat: 30.974620, long: 31.884173)
-                    ,"Zoar" : BibleLocation(name: "Zoar (Bela)", lat: 30.926523, long: 35.419061)
-                    ,"Zobah" : BibleLocation(name: "Zobah", lat: 34.312571, long: 36.925484)
-                    ,"ZobahHamath" : BibleLocation(name: "ZobahHamath", lat: 34.312571, long: 36.925484)
-                    ,"Zophim" : BibleLocation(name: "Zophim", lat: 31.767811, long: 35.725296)
-                    ,"Zorah" : BibleLocation(name: "Zorah", lat: 31.762141, long: 34.969319)
-                    ,"Zuph" : BibleLocation(name: "Zuph", lat: 31.846848, long: 35.184912)]
-                ] as [[String : BibleLocation]]
+            ,"Greece" : BibleLocation(name: "Greece", lat: 37.983333, long: 23.733333)
+            ,"Gur" : BibleLocation(name: "Gur", lat: 32.450000, long: 35.283300)
+            ,"Gurbaal" : BibleLocation(name: "Gurbaal", lat: 30.734691, long: 35.606250)]
+        ,["Habor" : BibleLocation(name: "Habor", lat: 36.344972, long: 40.789333)
+            ,"Hachilah" : BibleLocation(name: "Hachilah", lat: 31.466604, long: 35.216691)
+            ,"Hadadrimmon" : BibleLocation(name: "Hadadrimmon", lat: 32.524106, long: 35.205136)
+            ,"Hadashah" : BibleLocation(name: "Hadashah", lat: 31.679512, long: 34.695903)
+            ,"Hadid" : BibleLocation(name: "Hadid", lat: 31.963575, long: 34.952536)
+            ,"Hadrach" : BibleLocation(name: "Hadrach", lat: 33.519299, long: 36.313450)
+            ,"Haeleph" : BibleLocation(name: "Haeleph", lat: 31.792733, long: 35.196862)
+            ,"Hai" : BibleLocation(name: "Hai", lat: 31.916978, long: 35.261226)
+            ,"Halah" : BibleLocation(name: "Halah", lat: 36.344972, long: 40.789333)
+            ,"Halhul" : BibleLocation(name: "Halhul", lat: 31.579549, long: 35.099103)
+            ,"Hali" : BibleLocation(name: "Hali", lat: 32.934736, long: 35.270799)
+            ,"hall of judgment" : BibleLocation(name: "Hall of Judgment (The Antonia Fortress)", lat: 31.780381, long: 35.232135)
+            ,"Hall of Pillars" : BibleLocation(name: "Hall of Pillars", lat: 31.777444, long: 35.234935)
+            ,"Hall of the Throne" : BibleLocation(name: "Hall of the Throne", lat: 31.777444, long: 35.234935)
+            ,"Ham" : BibleLocation(name: "Ham (Ammon)", lat: 31.950189, long: 35.924131)
+            ,"Ham 2" : BibleLocation(name: "Ham 2", lat: 30.108086, long: 31.338220)
+            ,"Hamath" : BibleLocation(name: "Hamath", lat: 35.136204, long: 36.749488)
+            ,"Hammath" : BibleLocation(name: "Hammath", lat: 33.125828, long: 35.165000)
+            ,"Hamonah" : BibleLocation(name: "Hamonah", lat: 31.496845, long: 35.782841)
+            ,"Hanes" : BibleLocation(name: "Hanes", lat: 29.085425, long: 30.934402)
+            ,"Hannathon" : BibleLocation(name: "Hannathon", lat: 32.916002, long: 35.426637)
+            ,"Hara" : BibleLocation(name: "Hara", lat: 36.344972, long: 40.789333)
+            ,"Haradah" : BibleLocation(name: "Haradah", lat : 30.25, long : 34.64)
+            ,"Haran" : BibleLocation(name: "Haran", lat: 36.863864, long: 39.032197)
+            ,"Harmon" : BibleLocation(name: "Harmon", lat: 32.280231, long: 35.197929)
+            ,"Harod" : BibleLocation(name: "Harod", lat: 32.549638, long: 35.355647)
+            ,"Haroshethhagoyim" : BibleLocation(name: "Haroshethhagoyim", lat: 32.691177, long: 35.110039)
+            ,"Hashmonah" : BibleLocation(name: "Hashmonah", lat : 30.55, long : 34.54)
+            ,"Hauran" : BibleLocation(name: "Hauran", lat: 32.800076, long: 35.937301)
+            ,"Havilah" : BibleLocation(name: "Havilah", lat: 30.140000, long: 35.220000)
+            ,"Havothjair" : BibleLocation(name: "Havothjair", lat: 32.042523, long: 35.724241)
+            ,"Hazaraddar" : BibleLocation(name: "Hazaraddar", lat: 30.952200, long: 34.718700)
+            ,"Hazarenan" : BibleLocation(name: "Hazarenan", lat: 34.229499, long: 37.240077)
+            ,"Hazargaddah" : BibleLocation(name: "Hazargaddah", lat: 31.162327, long: 35.057114)
+            ,"Hazarshual" : BibleLocation(name: "Hazarshual", lat: 31.215418, long: 34.942986)
+            ,"Hazarsusah" : BibleLocation(name: "Hazarsusah", lat: 31.391668, long: 34.940502)
+            ,"Hazarsusim" : BibleLocation(name: "Hazarsusim", lat: 31.391668, long: 34.940502)
+            ,"Hazezontamar" : BibleLocation(name: "Hazezontamar (Engedi)", lat: 31.461525, long: 35.392411)
+            ,"Hazerhatticon" : BibleLocation(name: "Hazerhatticon", lat: 35.136204, long: 36.749488)
+            ,"Hazeroth" : BibleLocation(name: "Hazeroth", lat: 28.916667, long: 34.483333)
+            ,"Hazorhadattah" : BibleLocation(name: "Hazorhadattah", lat: 31.162327, long: 35.057114)
+            ,"Hazor" : BibleLocation(name: "Hazor", lat: 33.017182, long: 35.568049)
+            ,"Hazor 2" : BibleLocation(name: "Hazor 2", lat: 30.687713, long: 34.494796)
+            ,"Hazor 3" : BibleLocation(name: "Hazor 3", lat: 31.162327, long: 35.057114)
+            ,"Hazor 4" : BibleLocation(name: "Hazor 4", lat: 31.833333, long: 35.200000)
+            ,"Hebron" : BibleLocation(name: "Hebron (Kirjatharba)", lat: 31.535774, long: 35.094100)
+            ,"Helam" : BibleLocation(name: "Helam", lat: 32.184373, long: 35.702870)
+            ,"Helbah" : BibleLocation(name: "Helbah", lat: 34.066067, long: 35.865801)
+            ,"Helbon" : BibleLocation(name: "Helbon", lat: 33.664912, long: 36.248576)
+            ,"Helech" : BibleLocation(name: "Helech", lat: 34.856082, long: 35.858485)
+            ,"Heleph" : BibleLocation(name: "Heleph", lat: 33.134416, long: 35.332157)
+            ,"Helkath" : BibleLocation(name: "Helkath", lat: 32.955448, long: 35.211971)
+            ,"Helkathhazzurim" : BibleLocation(name: "Helkathhazzurim", lat: 31.880126, long: 35.280188)
+            ,"Hena" : BibleLocation(name: "Hena", lat: 34.467725, long: 41.964955)
+            ,"Hepher" : BibleLocation(name: "Hepher", lat: 32.366700, long: 34.883300)
+            ,"Heres" : BibleLocation(name: "Heres", lat: 32.199983, long: 35.633313)
+            ,"Hereth" : BibleLocation(name: "Hereth", lat: 31.621492, long: 35.029273)
+            ,"Heshbon" : BibleLocation(name: "Heshbon", lat: 31.800520, long: 35.809019)
+            ,"Heshmon" : BibleLocation(name: "Heshmon", lat: 31.215418, long: 34.942986)
+            ,"Hethlon" : BibleLocation(name: "Hethlon", lat: 34.737990, long: 36.340918)
+            ,"Hiddekel" : BibleLocation(name: "Hiddekel (Tigris)", lat: 35.983343, long: 43.346466)
+            ,"Hierapolis" : BibleLocation(name: "Hierapolis", lat: 37.924517, long: 29.124525)
+            ,"Hobah" : BibleLocation(name: "Hobah", lat: 33.500000, long: 36.466667)
+            ,"Holon" : BibleLocation(name: "Holon", lat: 31.583333, long: 34.950000)
+            ,"Holon 2" : BibleLocation(name: "Holon 2", lat: 31.501003, long: 35.920631)
+            ,"Holy Place" : BibleLocation(name: "Holy Place", lat: 31.777444, long: 35.234935)
+            ,"his own country" : BibleLocation(name: "His own country (Nazareth)", lat: 32.706745, long: 35.301528)
+            ,"his own new tomb" : BibleLocation(name: "Sepulchre (Jesus' Tomb)", lat: 31.778489, long: 35.229592)
+            ,"Horhagidgad" : BibleLocation(name: "Horhagidgad", lat: 30.358285, long: 35.190270)
+            ,"Horeb" : BibleLocation(name: "Horeb", lat: 28.539722, long: 33.973333)
+            ,"Horem" : BibleLocation(name: "Horem", lat: 33.166667, long: 35.433333)
+            ,"Horesh" : BibleLocation(name: "Horesh", lat: 31.451139, long: 35.088403)
+            ,"Hormah" : BibleLocation(name: "Hormah", lat: 31.334211, long: 34.641266)
+            ,"Horonaim" : BibleLocation(name: "Horonaim", lat: 31.288056, long: 35.515000)
+            ,"Horse Gate" : BibleLocation(name: "Horse Gate", lat: 31.777444, long: 35.234935)
+            ,"Hosah" : BibleLocation(name: "Hosah", lat: 32.178502, long: 35.227580)
+            ,"house of Caiaphas" : BibleLocation(name: "House of Caiaphas (Caiaphas' Palace)", lat: 31.774416, long: 35.228294)
+            ,"House of the Forest" : BibleLocation(name: "House of the Forest", lat: 31.777444, long: 35.234935)
+            ,"House of the Forest of Lebanon" : BibleLocation(name: "House of the Forest of Lebanon", lat: 31.777444, long: 35.234935)
+            ,"Hukkok" : BibleLocation(name: "Hukkok", lat: 32.882153, long: 35.496694)
+            ,"Humtah" : BibleLocation(name: "Humtah", lat: 31.535774, long: 35.094100)]
+        ,["Ibleam" : BibleLocation(name: "Ibleam", lat: 32.450000, long: 35.283300)
+            ,"Iconium" : BibleLocation(name: "Iconium", lat: 37.883530, long: 32.494263)
+            ,"Idalah" : BibleLocation(name: "Idalah", lat: 32.733333, long: 35.166667)
+            ,"Idumaea" : BibleLocation(name: "Idumaea", lat: 30.734691, long: 35.606250)
+            ,"Ijon" : BibleLocation(name: "Ijon", lat: 33.328044, long: 35.611875)
+            ,"Illyricum" : BibleLocation(name: "Illyricum", lat: 43.515484, long: 16.071538)
+            ,"Immer" : BibleLocation(name: "Immer", lat: 36.359410, long: 43.152887)
+            ,"India" : BibleLocation(name: "India", lat: 22.000000, long: 77.000000)
+            ,"Iphtah" : BibleLocation(name: "Iphtah", lat: 31.809900, long: 34.936500)
+            ,"Irpeel" : BibleLocation(name: "Irpeel", lat: 31.869343, long: 35.197712)
+            ,"Israel" : BibleLocation(name: "Israel", lat: 31.046051, long: 34.851612)
+            ,"Italy" : BibleLocation(name: "Italy", lat: 41.900000, long: 12.483333)
+            ,"Ithlah" : BibleLocation(name: "Ithlah", lat: 31.823593, long: 35.075769)
+            ,"Ithnan" : BibleLocation(name: "Ithnan", lat: 32.049953, long: 35.733402)
+            ,"Ituraea" : BibleLocation(name: "Ituraea", lat: 33.416160, long: 35.857256)
+            ,"Ivvah" : BibleLocation(name: "Ivvah", lat: 34.467725, long: 41.964955)
+            ,"Ijeabarim" : BibleLocation(name: "Ijeabarim", lat: 30.995122, long: 35.631409)
+            ,"Iim" : BibleLocation(name: "Iim", lat: 31.496845, long: 35.782841)]
+        ,["Jabbok" : BibleLocation(name: "Jabbok", lat: 32.193237, long: 35.676305)
+            ,"Jabeshgilead" : BibleLocation(name: "Jabeshgilead", lat: 32.379822, long: 35.611587)
+            ,"Jabez" : BibleLocation(name: "Jabez", lat: 31.705361, long: 35.210266)
+            ,"Jabneel" : BibleLocation(name: "Jabneel", lat: 31.865518, long: 34.746856)
+            ,"Jabneel 2" : BibleLocation(name: "Jabneel 2", lat: 32.700000, long: 35.500000)
+            ,"Jagur" : BibleLocation(name: "Jagur", lat: 31.185800, long: 34.967450)
+            ,"Jahaz" : BibleLocation(name: "Jahaz", lat: 31.501003, long: 35.920631)
+            ,"Jair" : BibleLocation(name: "Jair", lat: 32.042523, long: 35.724241)
+            ,"Janim" : BibleLocation(name: "Janim", lat: 31.516667, long: 35.166667)
+            ,"Janoah" : BibleLocation(name: "Janoah", lat: 33.260246, long: 35.302915)
+            ,"Janoah 2" : BibleLocation(name: "Janoah 2", lat: 32.155895, long: 35.361606)
+            ,"Japhia" : BibleLocation(name: "Japhia", lat: 32.691633, long: 35.274955)
+            ,"Jarmuth" : BibleLocation(name: "Jarmuth", lat: 31.709269, long: 34.969954)
+            ,"Jarmuth 2" : BibleLocation(name: "Jarmuth 2", lat: 32.555963, long: 35.330789)
+            ,"Jattir" : BibleLocation(name: "Jattir", lat: 31.401439, long: 35.069413)
+            ,"Javan" : BibleLocation(name: "Javan", lat: 37.953314, long: 27.367825)
+            ,"Jazer" : BibleLocation(name: "Jazer", lat: 31.943530, long: 35.727770)
+            ,"Jegarsahadutha" : BibleLocation(name: "Jegarsahadutha (Ramothgilead)", lat: 32.565268, long: 36.005559)
+            ,"Jehud" : BibleLocation(name: "Jehud", lat: 32.033636, long: 34.889599)
+            ,"Jekabzeel" : BibleLocation(name: "Jekabzeel", lat: 31.185800, long: 34.967450)
+            ,"Jericho" : BibleLocation(name: "Jericho", lat: 31.870601, long: 35.443864)
+            ,"Jeruel" : BibleLocation(name: "Jeruel", lat: 31.572903, long: 35.406346)
+            ,"Jerusalem" : BibleLocation(name: "Jerusalem", lat: 31.777444, long: 35.234935)
+            ,"Jeshanah" : BibleLocation(name: "Jeshanah", lat: 31.980029, long: 35.229709)
+            ,"Jeshimon" : BibleLocation(name: "Jeshimon", lat: 31.461525, long: 35.392411)
+            ,"Jeshua" : BibleLocation(name: "Jeshua", lat: 31.162327, long: 35.057114)
+            ,"Jetur" : BibleLocation(name: "Jetur", lat: 33.416160, long: 35.857256)
+            ,"Jezreel" : BibleLocation(name: "Jezreel", lat: 31.535774, long: 35.094100)
+            ,"Jezreel 2" : BibleLocation(name: "Jezreel 2", lat: 32.555963, long: 35.330789)
+            ,"Jezreel 3" : BibleLocation(name: "Jezreel 3", lat: 32.555963, long: 35.330789)
+            ,"Jogbehah" : BibleLocation(name: "Jogbehah", lat: 32.028743, long: 35.862887)
+            ,"Jokdeam" : BibleLocation(name: "Jokdeam", lat: 31.366667, long: 35.000000)
+            ,"Jokneam" : BibleLocation(name: "Jokneam", lat: 32.664546, long: 35.108918)
+            ,"Joktheel" : BibleLocation(name: "Joktheel", lat: 31.564851, long: 34.846726)
+            ,"Joppa" : BibleLocation(name: "Joppa", lat: 32.053520, long: 34.750426)
+            ,"Jordan" : BibleLocation(name: "Jordan", lat: 31.887306, long: 35.537682)
+            ,"Jotbah" : BibleLocation(name: "Jotbah", lat: 29.758043, long: 35.030602)
+            ,"Jotbathah" : BibleLocation(name: "Jotbathah", lat: 29.810710, long: 35.131531)
+            ,"Judaea" : BibleLocation(name: "Judaea", lat: 31.777444, long: 35.234935)
+            ,"Judaean" : BibleLocation(name: "Judaean", lat: 31.777444, long: 35.234935)
+            ,"judgment hall" : BibleLocation(name: "Judgment Hall (The Antonia Fortress)", lat: 31.780381, long: 35.232135)
+            ,"Juttah" : BibleLocation(name: "Juttah", lat: 31.450000, long: 35.083333)]
+        ,["Kabzeel" : BibleLocation(name: "Kabzeel", lat: 31.185800, long: 34.967450)
+            ,"Kadesh" : BibleLocation(name: "Kadesh (Enmishpat)", lat: 30.687713, long: 34.494796)
+            ,"Kadeshbarnea" : BibleLocation(name: "Kadeshbarnea", lat: 30.687713, long: 34.494796)
+            ,"Kadesh 2" : BibleLocation(name: "Kadesh 2", lat: 34.558327, long: 36.522943)
+            ,"Kain" : BibleLocation(name: "Kain", lat: 31.500000, long: 35.166667)
+            ,"Kamon" : BibleLocation(name: "Kamon", lat: 32.042523, long: 35.724241)
+            ,"Kanah" : BibleLocation(name: "Kanah", lat: 32.138219, long: 35.038971)
+            ,"Karka" : BibleLocation(name: "Karka", lat: 30.958506, long: 34.380500)
+            ,"Karkor" : BibleLocation(name: "Karkor", lat: 32.184373, long: 35.702870)
+            ,"Kartan" : BibleLocation(name: "Kartan", lat: 33.125828, long: 35.165000)
+            ,"Kedar" : BibleLocation(name: "Kedar", lat: 27.400000, long: 37.700000)
+            ,"Kedemoth" : BibleLocation(name: "Kedemoth", lat: 31.646073, long: 35.894537)
+            ,"Kedesh" : BibleLocation(name: "Kedesh", lat: 33.112984, long: 35.533613)
+            ,"Kehelathah" : BibleLocation(name: "Kehelathah", lat : 30.13, long : 34.68)
+            ,"Keilah" : BibleLocation(name: "Keilah", lat: 31.614175, long: 35.002752)
+            ,"Kenath" : BibleLocation(name: "Kenath (Nobah)", lat: 32.756919, long: 36.616400)
+            ,"Keriothhezron" : BibleLocation(name: "Keriothhezron", lat: 31.162327, long: 35.057114)
+            ,"Kibrothhattaavah" : BibleLocation(name: "Kibrothhattaavah", lat: 28.916667, long: 34.500000)
+            ,"Kibzaim" : BibleLocation(name: "Kibzaim", lat: 31.833333, long: 35.300000)
+            ,"Kidron" : BibleLocation(name: "Kidron", lat: 31.772134, long: 35.236596)
+            ,"Kinah" : BibleLocation(name: "Kinah", lat: 31.185800, long: 34.967450)
+            ,"king's dale" : BibleLocation(name: "King's Dale", lat: 31.777444, long: 35.234935)
+            ,"Kir" : BibleLocation(name: "Kir", lat: 31.181326, long: 35.702148)
+            ,"Kirjatharba" : BibleLocation(name: "Kirjatharba (Hebron)", lat: 31.535774, long: 35.094100)
+            ,"Kirjathhuzoth" : BibleLocation(name: "Kirjathhuzoth", lat: 31.765031, long: 35.718566)
+            ,"Kiriathjearim" : BibleLocation(name: "Kiriathjearim", lat: 31.771104, long: 34.993812)
+            ,"Kiriathaim" : BibleLocation(name: "Kiriathaim", lat: 31.583333, long: 35.700000)
+            ,"Kiriathaim 2" : BibleLocation(name: "Kiriathaim 2", lat: 33.125828, long: 35.165000)
+            ,"Kishion" : BibleLocation(name: "Kishion", lat: 32.559061, long: 35.246206)
+            ,"Kishon" : BibleLocation(name: "Kishon", lat: 32.761948, long: 35.064096)
+            ,"Kitron" : BibleLocation(name: "Kitron", lat: 32.753141, long: 35.279335)
+            ,"Kittim" : BibleLocation(name: "Kittim (Cyprus)", lat: 35.018306, long: 33.207693)
+            ,"Koa" : BibleLocation(name: "Koa", lat: 34.798311, long: 48.514966)
+            ,"Kue" : BibleLocation(name: "Kue", lat: 36.918027, long: 34.891534)]
+        ,["Laban" : BibleLocation(name: "Laban", lat: 31.809900, long: 34.936500)
+            ,"Lachish" : BibleLocation(name: "Lachish", lat: 31.564851, long: 34.846726)
+            ,"Lahmam" : BibleLocation(name: "Lahmam", lat: 31.566667, long: 34.900000)
+            ,"Laishah" : BibleLocation(name: "Laishah", lat: 31.800000, long: 35.250000)
+            ,"lake of Gennesaret" : BibleLocation(name: "Lake of Gennesaret (Sea of Galilee)", lat: 32.806776, long: 35.589361)
+            ,"Lakkum" : BibleLocation(name: "Lakkum", lat: 32.686956, long: 35.390913)
+            ,"land of the Chaldaeans" : BibleLocation(name: "Land of the Chaldaeans", lat: 32.154687, long: 48.647461)
+            ,"Laodicea" : BibleLocation(name: "Laodicea", lat: 37.769867, long: 29.064501)
+            ,"Lasea" : BibleLocation(name: "Lasea", lat: 34.934917, long: 24.809199)
+            ,"Lasha" : BibleLocation(name: "Lasha", lat: 31.718148, long: 35.584826)
+            ,"LaSaron" : BibleLocation(name: "LaSaron", lat: 32.725440, long: 35.467002)
+            ,"Lebkamai" : BibleLocation(name: "Lebkamai", lat: 30.962052, long: 46.103742)
+            ,"Lebanon" : BibleLocation(name: "Lebanon", lat: 33.752479, long: 35.590804)
+            ,"Lebaoth" : BibleLocation(name: "Lebaoth", lat: 31.391668, long: 34.940502)
+            ,"Lebonah" : BibleLocation(name: "Lebonah", lat: 32.070770, long: 35.239871)
+            ,"Lehi" : BibleLocation(name: "Lehi", lat: 31.752748, long: 34.976609)
+            ,"Libnah 2" : BibleLocation(name: "Libnah 2", lat: 31.564851, long: 34.846726)
+            ,"Libnah" : BibleLocation(name: "Libnah", lat: 29.905990, long: 34.670105)
+            ,"Libya" : BibleLocation(name: "Libya", lat: 32.824979, long: 21.858301)
+            ,"Lodebar" : BibleLocation(name: "Lodebar", lat: 32.662488, long: 35.783568)
+            ,"Lod" : BibleLocation(name: "Lod (Lydda)", lat: 31.951389, long: 34.895278)
+            ,"Lower Bethhoron" : BibleLocation(name: "Lower Bethhoron", lat: 31.878926, long: 35.123567)
+            ,"Luhith" : BibleLocation(name: "Luhith", lat: 31.288056, long: 35.515000)
+            ,"Luz" : BibleLocation(name: "Luz (Bethel)", lat: 31.930539, long: 35.221033)
+            ,"Lycaonia" : BibleLocation(name: "Lycaonia", lat: 37.883530, long: 32.494263)
+            ,"Lycia" : BibleLocation(name: "Lycia", lat: 36.274718, long: 29.318638)
+            ,"Lydda" : BibleLocation(name: "Lydda (Lod)", lat: 31.951389, long: 34.895278)
+            ,"Lystra" : BibleLocation(name: "Lystra", lat: 37.578135, long: 32.453183)]
+        ,["Maacah" : BibleLocation(name: "Maacah", lat: 33.200000, long: 36.500000)
+            ,"Maacath" : BibleLocation(name: "Maacath", lat: 33.200000, long: 36.500000)
+            ,"Maarath" : BibleLocation(name: "Maarath", lat: 31.621003, long: 35.102328)
+            ,"Maarehgeba" : BibleLocation(name: "Maarehgeba", lat: 31.823781, long: 35.231009)
+            ,"Macedonia" : BibleLocation(name: "Macedonia", lat: 40.632156, long: 22.932087)
+            ,"Machpelah" : BibleLocation(name: "Machpelah", lat: 31.524648, long: 35.110735)
+            ,"Madmannah" : BibleLocation(name: "Madmannah", lat: 31.391668, long: 34.940502)
+            ,"Madmenah" : BibleLocation(name: "Madmenah", lat: 31.800000, long: 35.250000)
+            ,"Madon" : BibleLocation(name: "Madon", lat: 32.799879, long: 35.459506)
+            ,"Magdala" : BibleLocation(name: "Magdala (Dalmanutha)", lat: 32.847335, long: 35.522936)
+            ,"Magog" : BibleLocation(name: "Magog", lat: 46.000000, long: 47.000000)
+            ,"Mahanaim" : BibleLocation(name: "Mahanaim", lat: 32.214708, long: 35.632914)
+            ,"Mahanehdan" : BibleLocation(name: "Mahanehdan", lat: 31.758315, long: 34.994252)
+            ,"Makaz" : BibleLocation(name: "Makaz", lat: 31.870364, long: 34.981728)
+            ,"Makheloth" : BibleLocation(name: "Makheloth", lat : 30.31, long : 34.62)
+            ,"Makkedah" : BibleLocation(name: "Makkedah", lat: 31.935117, long: 34.781326)
+            ,"Melita" : BibleLocation(name: "Melita", lat: 35.852827, long: 14.532436)
+            ,"Mamre" : BibleLocation(name: "Mamre", lat: 31.549099, long: 35.093561)
+            ,"Manahath" : BibleLocation(name: "Manahath", lat: 31.752603, long: 35.181972)
+            ,"Maon" : BibleLocation(name: "Maon", lat: 31.416667, long: 35.116667)
+            ,"Marah" : BibleLocation(name: "Marah", lat: 29.350000, long: 32.933333)
+            ,"Mareal" : BibleLocation(name: "Mareal", lat: 32.697409, long: 35.241789)
+            ,"Mareshah" : BibleLocation(name: "Mareshah", lat: 31.603933, long: 34.902378)
+            ,"Maroth" : BibleLocation(name: "Maroth", lat: 31.743719, long: 34.694006)
+            ,"Mashal" : BibleLocation(name: "Mashal", lat: 33.047808, long: 35.146201)
+            ,"Masrekah" : BibleLocation(name: "Masrekah", lat: 30.734691, long: 35.606250)
+            ,"Massah" : BibleLocation(name: "Massah", lat: 28.731061, long: 33.841700)
+            ,"Mattanah" : BibleLocation(name: "Mattanah", lat: 31.718148, long: 35.584826)
+            ,"Mejarkon" : BibleLocation(name: "Mejarkon", lat: 32.132898, long: 34.788144)
+            ,"Mearah" : BibleLocation(name: "Mearah", lat: 33.633333, long: 35.433333)
+            ,"Meconah" : BibleLocation(name: "Meconah", lat: 31.370835, long: 34.860665)
+            ,"Medeba" : BibleLocation(name: "Medeba", lat: 31.720458, long: 35.791972)
+            ,"Media" : BibleLocation(name: "Media", lat: 34.798311, long: 48.514966)
+            ,"Megiddo" : BibleLocation(name: "Megiddo", lat: 32.584183, long: 35.182292)
+            ,"Memphis" : BibleLocation(name: "Memphis", lat: 29.849632, long: 31.253958)
+            ,"Mephaath" : BibleLocation(name: "Mephaath", lat: 31.850000, long: 35.933333)
+            ,"Meribahkadesh" : BibleLocation(name: "Meribahkadesh", lat: 30.687713, long: 34.494796)
+            ,"Meribah" : BibleLocation(name: "Meribah", lat: 30.687713, long: 34.494796)
+            ,"Meribah in Sinai" : BibleLocation(name: "Meribah in Sinai", lat: 28.731061, long: 33.841700)
+            ,"Merom" : BibleLocation(name: "Merom", lat: 33.075269, long: 35.605480)
+            ,"Meroz" : BibleLocation(name: "Meroz", lat: 32.686956, long: 35.390913)
+            ,"Mesha" : BibleLocation(name: "Mesha", lat: 28.857260, long: 34.859127)
+            ,"Meshech" : BibleLocation(name: "Meshech", lat: 46.000000, long: 47.000000)
+            ,"MeshechTubal" : BibleLocation(name: "MeshechTubal", lat: 46.000000, long: 47.000000)
+            ,"Mesopotamia" : BibleLocation(name: "Mesopotamia", lat: 32.536504, long: 44.420883)
+            ,"Michmash" : BibleLocation(name: "Michmash", lat: 31.870184, long: 35.279236)
+            ,"Michmethath" : BibleLocation(name: "Michmethath", lat: 32.183333, long: 35.283333)
+            ,"Middin" : BibleLocation(name: "Middin", lat: 31.743894, long: 35.401591)
+            ,"Midian" : BibleLocation(name: "Midian", lat: 28.932881, long: 34.908320)
+            ,"Migdalel" : BibleLocation(name: "Migdalel", lat: 33.232131, long: 35.362942)
+            ,"Migdalgad" : BibleLocation(name: "Migdalgad", lat: 31.666667, long: 34.583333)
+            ,"Migdol" : BibleLocation(name: "Migdol", lat: 30.020296, long: 32.372233)
+            ,"Migron" : BibleLocation(name: "Migron", lat: 31.823781, long: 35.231009)
+            ,"Miletus" : BibleLocation(name: "Miletus", lat: 37.500000, long: 27.300000)
+            ,"Millo" : BibleLocation(name: "Millo", lat: 31.777444, long: 35.234935)
+            ,"Minni" : BibleLocation(name: "Minni", lat: 40.600000, long: 44.600000)
+            ,"Minnith" : BibleLocation(name: "Minnith", lat: 31.750000, long: 35.850000)
+            ,"Mishal" : BibleLocation(name: "Mishal", lat: 33.047808, long: 35.146201)
+            ,"Misrephothmaim" : BibleLocation(name: "Misrephothmaim", lat: 33.118952, long: 35.139434)
+            ,"Mithcah" : BibleLocation(name: "Mithcah", lat : 30.49, long : 34.56)
+            ,"Mitylene" : BibleLocation(name: "Mitylene", lat: 39.100336, long: 26.551805)
+            ,"Mizpah" : BibleLocation(name: "Mizpah (Ramothgilead)", lat: 32.565268, long: 36.005559)
+            ,"Mizpah 2" : BibleLocation(name: "Mizpah 2", lat: 31.832739, long: 35.180163)
+            ,"Mizpeh" : BibleLocation(name: "Mizpeh", lat: 31.564851, long: 34.846726)
+            ,"Moab" : BibleLocation(name: "Moab", lat: 31.496845, long: 35.782841)
+            ,"Moladah" : BibleLocation(name: "Moladah", lat: 31.162327, long: 35.057114)
+            ,"Moreh" : BibleLocation(name: "Moreh", lat: 32.213691, long: 35.281799)
+            ,"Moreh 2" : BibleLocation(name: "Moreh 2", lat: 32.617731, long: 35.357376)
+            ,"Moresheth" : BibleLocation(name: "Moresheth", lat: 31.603933, long: 34.902378)
+            ,"Moreshethgath" : BibleLocation(name: "Moreshethgath", lat: 31.603933, long: 34.902378)
+            ,"Moriah" : BibleLocation(name: "Moriah", lat: 31.777594, long: 35.235251)
+            ,"Mortar" : BibleLocation(name: "Mortar", lat: 31.777444, long: 35.234935)
+            ,"Moserah" : BibleLocation(name: "Moserah", lat: 30.317396, long: 35.407152)
+            ,"Moseroth" : BibleLocation(name: "Moseroth", lat : 30.61, long : 34.52)
+            ,"Most Holy Place" : BibleLocation(name: "Most Holy Place", lat: 31.777444, long: 35.234935)
+            ,"mount Baalah" : BibleLocation(name: "Mount Baalah", lat: 31.865518, long: 34.746856)
+            ,"mount called Olivet" : BibleLocation(name: "Mount of Olives", lat: 31.778095, long: 35.247198)
+            ,"mount Carmel" : BibleLocation(name: "Mount Carmel", lat: 32.729350, long: 35.049790)
+            ,"mount Ebal" : BibleLocation(name: "Mount Ebal", lat: 32.232938, long: 35.273042)
+            ,"mount Ephron" : BibleLocation(name: "Mount Ephron", lat: 31.675746, long: 35.042407)
+            ,"mount Esau" : BibleLocation(name: "Mount Esau", lat: 30.734691, long: 35.606250)
+            ,"mount Gerizim" : BibleLocation(name: "Mount Gerizim", lat: 32.199562, long: 35.272852)
+            ,"mount Gilboa" : BibleLocation(name: "Mount Gilboa", lat: 32.509841, long: 35.408435)
+            ,"mount Halak" : BibleLocation(name: "Mount Halak", lat: 30.916667, long: 34.833333)
+            ,"mount Hermon" : BibleLocation(name: "Mount Hermon", lat: 33.416160, long: 35.857256)
+            ,"mount Hor" : BibleLocation(name: "Mount Hor", lat: 30.317396, long: 35.407152)
+            ,"mount Hor 2" : BibleLocation(name: "Mount Hor 2", lat: 35.710069, long: 36.188080)
+            ,"mount Horeb" : BibleLocation(name: "Mount Horeb (Mount Sinai)", lat: 35.710069, long: 36.188080)
+            ,"mount Lebanon" : BibleLocation(name: "Mount Lebanon", lat: 33.752479, long: 35.590804)
+            ,"mount Mizar" : BibleLocation(name: "Mount Mizar", lat: 33.416160, long: 35.857256)
+            ,"mount Nebo" : BibleLocation(name: "Mount Nebo", lat: 31.761358, long: 35.746148)
+            ,"mount of Olives" : BibleLocation(name: "Mount of Olives", lat: 31.778095, long: 35.247198)
+            ,"mount Paran" : BibleLocation(name: "Mount Paran", lat: 29.151667, long: 33.541944)
+            ,"mount Perazim" : BibleLocation(name: "Mount Perazim", lat: 31.756332, long: 35.223059)
+            ,"mount Seir" : BibleLocation(name: "Mount Seir", lat: 30.734691, long: 35.606250)
+            ,"mount Seir 2" : BibleLocation(name: "Mount Seir 2", lat: 31.783333, long: 34.994000)
+            ,"mount Shapher" : BibleLocation(name: "Mount Shapher", lat : 30.19, long : 34.66)
+            ,"mount Sinai" : BibleLocation(name: "Mount Sinai (Sinai)", lat: 28.539722, long: 33.973333)
+            ,"mount Tabor" : BibleLocation(name: "Mount Tabor", lat: 32.686956, long: 35.390913)
+            ,"mount Zion" : BibleLocation(name: "Mount Zion", lat: 31.777444, long: 35.234935)
+            ,"Mozah" : BibleLocation(name: "Mozah", lat: 31.802641, long: 35.158376)
+            ,"Muster Gate" : BibleLocation(name: "Muster Gate", lat: 31.777444, long: 35.234935)
+            ,"Myra" : BibleLocation(name: "Myra", lat: 36.230772, long: 30.011459)
+            ,"Mysia" : BibleLocation(name: "Mysia", lat: 39.506643, long: 26.080593)]
+        ,["Naamah" : BibleLocation(name: "Naamah", lat: 31.871782, long: 34.871894)
+            ,"Naaran" : BibleLocation(name: "Naaran", lat: 31.949518, long: 35.458730)
+            ,"Nahalol" : BibleLocation(name: "Nahalol", lat: 32.722209, long: 35.352820)
+            ,"Nahor" : BibleLocation(name: "Nahor (Aramnaharaim)", lat: 35.100000, long: 42.000000)
+            ,"Nain" : BibleLocation(name: "Nain", lat: 32.630833, long: 35.347827)
+            ,"Naioth" : BibleLocation(name: "Naioth", lat: 31.832739, long: 35.180163)
+            ,"Naphath" : BibleLocation(name: "Naphath", lat: 32.584183, long: 35.182292)
+            ,"Naphish" : BibleLocation(name: "Naphish", lat: 32.800076, long: 35.937301)
+            ,"Nazareth" : BibleLocation(name: "Nazareth", lat: 32.706745, long: 35.301528)
+            ,"Neapolis" : BibleLocation(name: "Neapolis", lat: 40.944132, long: 24.417680)
+            ,"Nebaioth" : BibleLocation(name: "Nebaioth", lat: 30.322436, long: 35.456279)
+            ,"Neballat" : BibleLocation(name: "Neballat", lat: 31.992079, long: 34.957563)
+            ,"Nebo" : BibleLocation(name: "Nebo", lat: 31.748024, long: 35.743257)
+            ,"Nebo 2" : BibleLocation(name: "Nebo 2", lat: 31.606256, long: 35.037417)
+            ,"Negeb" : BibleLocation(name: "Negeb", lat: 30.300000, long: 34.200000)
+            ,"Neiel" : BibleLocation(name: "Neiel", lat: 32.894254, long: 35.221877)
+            ,"Nephtoah" : BibleLocation(name: "Nephtoah", lat: 31.683036, long: 35.167987)
+            ,"Netaim" : BibleLocation(name: "Netaim", lat: 31.823337, long: 34.777779)
+            ,"Netophah" : BibleLocation(name: "Netophah", lat: 31.735465, long: 35.220503)
+            ,"New Gate" : BibleLocation(name: "New Gate", lat: 31.777444, long: 35.234935)
+            ,"Nezib" : BibleLocation(name: "Nezib", lat: 31.588050, long: 34.992389)
+            ,"Nibshan" : BibleLocation(name: "Nibshan", lat: 31.461525, long: 35.392411)
+            ,"Nicopolis" : BibleLocation(name: "Nicopolis", lat: 39.024033, long: 20.735730)
+            ,"Nimrah" : BibleLocation(name: "Nimrah (Bethnimrah)", lat: 31.900811, long: 35.625693)
+            ,"Nimrim" : BibleLocation(name: "Nimrim", lat: 31.133191, long: 35.531138)
+            ,"Nimrod" : BibleLocation(name: "Nimrod", lat: 32.536504, long: 44.420883)
+            ,"Nineveh" : BibleLocation(name: "Nineveh", lat: 36.359410, long: 43.152887)
+            ,"Nob" : BibleLocation(name: "Nob", lat: 31.799605, long: 35.232980)
+            ,"Nobah" : BibleLocation(name: "Nobah (Kenath)", lat: 32.756919, long: 36.616400)
+            ,"Nodab" : BibleLocation(name: "Nodab", lat: 32.800076, long: 35.937301)
+            ,"Nophah" : BibleLocation(name: "Nophah (Kenath)", lat: 32.756919, long: 36.616400)]
+        ,["Oboth" : BibleLocation(name: "Oboth", lat: 30.882043, long: 35.620422)
+            ,"On" : BibleLocation(name: "On", lat: 30.108086, long: 31.338220)
+            ,"Ono" : BibleLocation(name: "Ono", lat: 32.022222, long: 34.866667)
+            ,"Ophel" : BibleLocation(name: "Ophel", lat: 31.777444, long: 35.234935)
+            ,"Ophir" : BibleLocation(name: "Ophir", lat: 22.000000, long: 77.000000)
+            ,"Ophni" : BibleLocation(name: "Ophni", lat: 31.961989, long: 35.215483)
+            ,"Ophrah" : BibleLocation(name: "Ophrah (Ephraim)", lat: 31.953790, long: 35.299136)
+            ,"Ophrah 2" : BibleLocation(name: "Ophrah 2", lat: 32.608683, long: 35.288264)
+            ,"over to Pilate" : BibleLocation(name: "Over to Pilate (The Antonia Fortress)", lat: 31.780381, long: 35.232135)]
+        ,["Padan" : BibleLocation(name: "Padan", lat: 36.863864, long: 39.032197)
+            ,"Padanaram" : BibleLocation(name: "Padanaram", lat: 36.863864, long: 39.032197)
+            ,"Pai" : BibleLocation(name: "Pai", lat: 30.734691, long: 35.606250)
+            ,"palace" : BibleLocation(name: "Palace (Caiaphas' Palace)", lat: 31.774416, long: 35.228294)
+            ,"Pamphylia" : BibleLocation(name: "Pamphylia", lat: 37.005208, long: 30.904946)
+            ,"Paphos" : BibleLocation(name: "Paphos", lat: 34.754106, long: 32.400162)
+            ,"Parah" : BibleLocation(name: "Parah", lat: 31.833333, long: 35.300000)
+            ,"Patara" : BibleLocation(name: "Patara", lat: 36.274718, long: 29.318638)
+            ,"Pathros" : BibleLocation(name: "Pathros", lat: 28.322364, long: 30.692312)
+            ,"Patmos" : BibleLocation(name: "Patmos", lat: 37.307520, long: 26.548274)
+            ,"Pau" : BibleLocation(name: "Pau", lat: 30.734691, long: 35.606250)
+            ,"Pelusium" : BibleLocation(name: "Pelusium", lat: 28.838778, long: 33.420573)
+            ,"Peniel" : BibleLocation(name: "Peniel (Penuel)", lat: 32.184373, long: 35.702870)
+            ,"Penuel" : BibleLocation(name: "Penuel (Peniel)", lat: 32.184373, long: 35.702870)
+            ,"People" : BibleLocation(name: "People", lat: 31.777444, long: 35.234935)
+            ,"Peor" : BibleLocation(name: "Peor (Pisgah)", lat: 31.765031, long: 35.718566)
+            ,"Perezuzza" : BibleLocation(name: "Perezuzza", lat: 31.777444, long: 35.234935)
+            ,"Perezuzzah" : BibleLocation(name: "Perezuzzah", lat: 31.777444, long: 35.234935)
+            ,"Perga" : BibleLocation(name: "Perga", lat: 37.005208, long: 30.904946)
+            ,"Pergamum" : BibleLocation(name: "Pergamum", lat: 39.118946, long: 27.165126)
+            ,"Persia" : BibleLocation(name: "Persia", lat: 34.798311, long: 48.514966)
+            ,"Pethor" : BibleLocation(name: "Pethor", lat: 36.654616, long: 38.068879)
+            ,"Pharpar" : BibleLocation(name: "Pharpar", lat: 33.379601, long: 36.306085)
+            ,"Philadelphia" : BibleLocation(name: "Philadelphia", lat: 38.349048, long: 28.519462)
+            ,"Philippi" : BibleLocation(name: "Philippi", lat: 41.011959, long: 24.286191)
+            ,"Palestina" : BibleLocation(name: "Palestina", lat: 31.580217, long: 34.520416)
+            ,"Phenice" : BibleLocation(name: "Phenice", lat: 33.563167, long: 35.366346)
+            ,"Phoenix" : BibleLocation(name: "Phoenix", lat: 35.198886, long: 24.080982)
+            ,"Phrygia" : BibleLocation(name: "Phrygia", lat: 37.769867, long: 29.064501)
+            ,"Pibeseth" : BibleLocation(name: "Pibeseth", lat: 30.583333, long: 31.500000)
+            ,"Pihahiroth" : BibleLocation(name: "Pihahiroth (Hahiroth)", lat: 29.946580, long: 32.425144)
+            ,"Pirathon" : BibleLocation(name: "Pirathon", lat: 32.286022, long: 35.022944)
+            ,"Pisgah" : BibleLocation(name: "Pisgah (Peor)", lat: 31.765031, long: 35.718566)
+            ,"Pison" : BibleLocation(name: "Pison", lat: 29.130571, long: 47.241211)
+            ,"Pisidia" : BibleLocation(name: "Pisidia", lat: 38.316431, long: 31.179487)
+            ,"Pisidian Antioch" : BibleLocation(name: "Pisidian Antioch", lat: 38.316431, long: 31.179487)
+            ,"Pithom" : BibleLocation(name: "Pithom", lat: 30.593851, long: 32.185558)
+            ,"place of a skull" : BibleLocation(name: "The place of a skull", lat: 31.778904, long: 35.228659)
+            ,"Plain" : BibleLocation(name: "Plain", lat: 31.870601, long: 35.443864)
+            ,"plain of Jordan" : BibleLocation(name: "Plain of Jordan (Jordan Valley)", lat: 32.309099, long: 35.559900)
+            ,"Pontus" : BibleLocation(name: "Pontus", lat: 40.905222, long: 37.799969)
+            ,"Pool of Shelah" : BibleLocation(name: "Pool of Shelah", lat: 31.777444, long: 35.234935)
+            ,"Potsherd Gate" : BibleLocation(name: "Potsherd Gate", lat: 31.777444, long: 35.234935)
+            ,"Praetorium" : BibleLocation(name: "Praetorium (The Antonia Fortress)", lat: 31.780381, long: 35.232135)
+            ,"Ptolemais" : BibleLocation(name: "Ptolemais (Acco)", lat: 32.927583, long: 35.081555)
+            ,"Pul" : BibleLocation(name: "Pul", lat: 32.824979, long: 21.858301)
+            ,"Punon" : BibleLocation(name: "Punon", lat: 30.683835, long: 35.422668)
+            ,"Put" : BibleLocation(name: "Put", lat: 32.824979, long: 21.858301)
+            ,"Puteoli" : BibleLocation(name: "Puteoli", lat: 40.835631, long: 14.267744)]
+        ,["Raamah" : BibleLocation(name: "Raamah", lat: 15.680000, long: 42.780000)
+            ,"Raamses" : BibleLocation(name: "Raamses", lat: 30.593851, long: 32.185558)
+            ,"Rabbith" : BibleLocation(name: "Rabbith", lat: 32.391416, long: 35.377302)
+            ,"Rahab" : BibleLocation(name: "Rahab", lat: 30.108086, long: 31.338220)
+            ,"Rakkon" : BibleLocation(name: "Rakkon", lat: 32.132898, long: 34.788144)
+            ,"Rama" : BibleLocation(name: "Rama", lat: 31.896379, long: 35.201731)
+            ,"Rama 2" : BibleLocation(name: "Rama 2", lat: 33.111078, long: 35.310464)
+            ,"Rama 3" : BibleLocation(name: "Rama 3", lat: 32.939010, long: 35.368123)
+            ,"Ramathlehi" : BibleLocation(name: "Ramathlehi", lat: 31.752748, long: 34.976609)
+            ,"Rameses" : BibleLocation(name: "Rameses", lat: 30.799370, long: 31.834217)
+            ,"Ramothgilead" : BibleLocation(name: "Ramothgilead (Galeed)", lat: 32.565268, long: 36.005559)
+            ,"Ramoth" : BibleLocation(name: "Ramoth", lat: 32.555963, long: 35.330789)
+            ,"Recah" : BibleLocation(name: "Recah", lat: 31.705361, long: 35.210266)
+            ,"Red sea" : BibleLocation(name: "Red sea", lat: 29.744631, long: 32.553864)
+            ,"Rehob" : BibleLocation(name: "Rehob (Bethrehob)", lat: 33.219354, long: 35.544122)
+            ,"Rehob 2" : BibleLocation(name: "Rehob 2", lat: 33.125828, long: 35.165000)
+            ,"Rehob 3" : BibleLocation(name: "Rehob 3", lat: 32.955448, long: 35.211971)
+            ,"Rehoboth" : BibleLocation(name: "Rehoboth", lat: 31.066829, long: 34.597830)
+            ,"Rehoboth 2" : BibleLocation(name: "Rehoboth 2", lat: 30.884128, long: 35.897633)
+            ,"Rekem" : BibleLocation(name: "Rekem", lat: 31.869343, long: 35.197712)
+            ,"Remeth" : BibleLocation(name: "Remeth", lat: 32.555963, long: 35.330789)
+            ,"Rephaim" : BibleLocation(name: "Rephaim", lat: 32.800076, long: 35.937301)
+            ,"Rephidim" : BibleLocation(name: "Rephidim", lat: 28.731061, long: 33.841700)
+            ,"Resen" : BibleLocation(name: "Resen", lat: 36.268013, long: 43.222961)
+            ,"Rezeph" : BibleLocation(name: "Rezeph", lat: 35.950000, long: 39.016667)
+            ,"Rhegium" : BibleLocation(name: "Rhegium", lat: 38.111580, long: 15.643279)
+            ,"Rhodes" : BibleLocation(name: "Rhodes", lat: 36.441926, long: 28.226722)
+            ,"Riblah 2" : BibleLocation(name: "Riblah 2", lat: 34.431703, long: 36.545259)
+            ,"Riblah" : BibleLocation(name: "Riblah", lat: 34.353071, long: 36.385705)
+            ,"Rimmonparez" : BibleLocation(name: "Rimmonparez", lat: 29.524326, long: 34.703064)
+            ,"Rimmon" : BibleLocation(name: "Rimmon", lat: 31.934660, long: 35.297063)
+            ,"Rissah" : BibleLocation(name: "Rissah", lat : 30.07, long : 34.7)
+            ,"Rithmah" : BibleLocation(name: "Rithmah", lat: 29.217954, long: 34.538269)
+            ,"Rock of Escape" : BibleLocation(name: "Rock of Escape", lat: 31.416667, long: 35.116667)
+            ,"Rogelim" : BibleLocation(name: "Rogelim", lat: 32.214708, long: 35.632914)
+            ,"Rome" : BibleLocation(name: "Rome", lat: 41.900000, long: 12.483333)]
+        ,["Sahar" : BibleLocation(name: "Sahar", lat: 33.664912, long: 36.248576)
+            ,"Salamis" : BibleLocation(name: "Salamis", lat: 35.177246, long: 33.907552)
+            ,"Salecah" : BibleLocation(name: "Salecah", lat: 32.493941, long: 36.710337)
+            ,"Salem" : BibleLocation(name: "Salem (Jerusalem)", lat: 31.777444, long: 35.234935)
+            ,"Salim" : BibleLocation(name: "Salim", lat: 32.399334, long: 35.526443)
+            ,"Salmone" : BibleLocation(name: "Salmone", lat: 35.212297, long: 26.274492)
+            ,"salt sea" : BibleLocation(name: "Salt Sea", lat: 31.538593, long: 35.482268)
+            ,"Samaria" : BibleLocation(name: "Samaria", lat: 32.280231, long: 35.197929)
+            ,"Samos" : BibleLocation(name: "Samos", lat: 37.715172, long: 26.934167)
+            ,"Samothracia" : BibleLocation(name: "Samothracia", lat: 40.467279, long: 25.486069)
+            ,"Sansannah" : BibleLocation(name: "Sansannah", lat: 31.391668, long: 34.940502)
+            ,"Sardis" : BibleLocation(name: "Sardis", lat: 38.476827, long: 28.114131)
+            ,"Sarid" : BibleLocation(name: "Sarid", lat: 32.689786, long: 35.196669)
+            ,"sea of Chinnereth" : BibleLocation(name: "Sea of Chinnereth (Galilee)", lat: 32.806776, long: 35.589361)
+            ,"sea of Egypt" : BibleLocation(name: "Sea of Egypt", lat: 27.088473, long: 34.771729)
+            ,"sea of Galilee" : BibleLocation(name: "Sea of Galilee", lat: 32.806776, long: 35.589361)
+            ,"sea of Jazer" : BibleLocation(name: "Sea of Jazer", lat: 31.943530, long: 35.727770)
+            ,"sea of the Philistines" : BibleLocation(name: "Sea of the Philistines", lat: 33.240000, long: 33.470000)
+            ,"sea of Tiberias" : BibleLocation(name: "Sea of Tiberias (Galilee)", lat: 32.806776, long: 35.589361)
+            ,"Seba" : BibleLocation(name: "Seba", lat: 09.022736, long: 38.746799)
+            ,"Shebam" : BibleLocation(name: "Shebam", lat: 31.815283, long: 35.766738)
+            ,"Secacah" : BibleLocation(name: "Secacah", lat: 31.766667, long: 35.283333)
+            ,"Second Quarter" : BibleLocation(name: "Second Quarter", lat: 31.777444, long: 35.234935)
+            ,"Secu" : BibleLocation(name: "Secu", lat: 31.883333, long: 35.200000)
+            ,"Seir" : BibleLocation(name: "Seir (Edom)", lat: 30.734691, long: 35.606250)
+            ,"Seirah" : BibleLocation(name: "Seirah", lat: 31.930539, long: 35.221033)
+            ,"Sela" : BibleLocation(name: "Sela", lat: 30.322436, long: 35.456279)
+            ,"Seleucia" : BibleLocation(name: "Seleucia", lat: 36.111018, long: 35.926808)
+            ,"Seneh" : BibleLocation(name: "Seneh", lat: 31.853094, long: 35.286169)
+            ,"Sephar" : BibleLocation(name: "Sephar", lat: 14.550219, long: 44.392642)
+            ,"Sepharvaim" : BibleLocation(name: "Sepharvaim", lat: 33.789693, long: 44.459399)
+            ,"sepulchre" : BibleLocation(name: "Sepulchre (Jesus' Tomb)", lat: 31.778489, long: 35.229592)
+            ,"Shaalbim" : BibleLocation(name: "Shaalbim", lat: 31.870364, long: 34.981728)
+            ,"Shaalim" : BibleLocation(name: "Shaalim", lat: 31.846848, long: 35.184912)
+            ,"Shaaraim" : BibleLocation(name: "Shaaraim", lat: 31.700100, long: 34.895320)
+            ,"Shahazumah" : BibleLocation(name: "Shahazumah", lat: 32.406430, long: 35.504628)
+            ,"Shalishah" : BibleLocation(name: "Shalishah", lat: 31.846848, long: 35.184912)
+            ,"Shallecheth" : BibleLocation(name: "Shallecheth", lat: 31.777444, long: 35.234935)
+            ,"Shamir" : BibleLocation(name: "Shamir", lat: 31.416667, long: 34.933333)
+            ,"Shamir 2" : BibleLocation(name: "Shamir 2", lat: 32.360470, long: 35.250054)
+            ,"Shaphir" : BibleLocation(name: "Shaphir", lat: 31.743719, long: 34.694006)
+            ,"Saron" : BibleLocation(name: "Saron", lat: 32.639068, long: 34.945929)
+            ,"Saron 2" : BibleLocation(name: "Saron 2", lat: 33.416160, long: 35.857256)
+            ,"Sharuhen" : BibleLocation(name: "Sharuhen", lat: 31.282222, long: 34.482500)
+            ,"Shaveh Kiriathaim" : BibleLocation(name: "Shaveh Kiriathaim", lat: 31.583333, long: 35.700000)
+            ,"Sheba" : BibleLocation(name: "Sheba", lat: 09.022736, long: 38.746799)
+            ,"Shebarim" : BibleLocation(name: "Shebarim", lat: 31.916978, long: 35.261226)
+            ,"Shechem" : BibleLocation(name: "Shechem", lat: 32.213691, long: 35.281799)
+            ,"Sheep Gate" : BibleLocation(name: "Sheep Gate", lat: 31.777444, long: 35.234935)
+            ,"Shema" : BibleLocation(name: "Shema", lat: 31.162327, long: 35.057114)
+            ,"Shen" : BibleLocation(name: "Shen", lat: 31.832739, long: 35.180163)
+            ,"Shepham" : BibleLocation(name: "Shepham", lat: 34.353071, long: 36.385705)
+            ,"Shephelah" : BibleLocation(name: "Shephelah", lat: 31.777614, long: 34.852146)
+            ,"Shihorlibnath" : BibleLocation(name: "Shihorlibnath", lat: 32.538496, long: 34.907697)
+            ,"Shikkeron" : BibleLocation(name: "Shikkeron", lat: 31.777614, long: 34.852146)
+            ,"Shiloah" : BibleLocation(name: "Shiloah", lat: 31.777444, long: 35.234935)
+            ,"Shiloh" : BibleLocation(name: "Shiloh", lat: 32.055701, long: 35.289529)
+            ,"Shimron" : BibleLocation(name: "Shimron", lat: 32.705289, long: 35.213333)
+            ,"Shinar" : BibleLocation(name: "Shinar (Babel)", lat: 32.536504, long: 44.420883)
+            ,"Shion" : BibleLocation(name: "Shion", lat: 32.716666, long: 35.333334)
+            ,"Shittim" : BibleLocation(name: "Shittim (Abelshittim)", lat: 31.858262, long: 35.641567)
+            ,"Shoa" : BibleLocation(name: "Shoa", lat: 34.798311, long: 48.514966)
+            ,"Shual" : BibleLocation(name: "Shual", lat: 31.953790, long: 35.299136)
+            ,"Shunem" : BibleLocation(name: "Shunem", lat: 32.605631, long: 35.334306)
+            ,"Shur" : BibleLocation(name: "Shur", lat: 30.235400, long: 33.247000)
+            ,"Shibmah" : BibleLocation(name: "Shibmah", lat: 31.815283, long: 35.766738)
+            ,"Sibraim" : BibleLocation(name: "Sibraim", lat: 35.136204, long: 36.749488)
+            ,"Sidon" : BibleLocation(name: "Sidon", lat: 33.563167, long: 35.366346)
+            ,"Silla" : BibleLocation(name: "Silla", lat: 31.777444, long: 35.234935)
+            ,"Sinai" : BibleLocation(name: "Sinai (Mount Sinai)", lat: 28.539722, long: 33.973333)
+            ,"Siloam" : BibleLocation(name: "Siloam", lat: 31.777444, long: 35.234935)
+            ,"Sion" : BibleLocation(name: "Sion (Jerusalem)", lat: 31.777444, long: 35.234935)
+            ,"Siphmoth" : BibleLocation(name: "Siphmoth", lat: 31.373521, long: 35.074552)
+            ,"Sirah" : BibleLocation(name: "Sirah", lat: 31.550000, long: 35.100000)
+            ,"Sitnah" : BibleLocation(name: "Sitnah", lat: 31.391290, long: 34.560570)
+            ,"Smyrna" : BibleLocation(name: "Smyrna", lat: 38.451960, long: 27.161921)
+            ,"Socoh" : BibleLocation(name: "Socoh", lat: 31.681235, long: 34.976398)
+            ,"Socoh 2" : BibleLocation(name: "Socoh 2", lat: 31.416670, long: 34.966670)
+            ,"Sodom" : BibleLocation(name: "Sodom", lat: 31.275543, long: 35.521545)
+            ,"Solomon" : BibleLocation(name: "Solomon", lat: 31.777444, long: 35.234935)
+            ,"Spain" : BibleLocation(name: "Spain", lat: 40.481391, long: 03.175332)
+            ,"stood before the governor" : BibleLocation(name: "Stood before the governor (The Antonia Fortress)", lat: 31.780381, long: 35.232135)
+            ,"Straight" : BibleLocation(name: "Straight", lat: 33.519299, long: 36.313450)
+            ,"Succoth" : BibleLocation(name: "Succoth", lat: 32.199983, long: 35.633313)
+            ,"Succoth (Egypt)" : BibleLocation(name: "Succoth (Egypt)", lat: 30.620774, long: 32.258693)
+            ,"Suph" : BibleLocation(name: "Suph", lat: 27.088473, long: 34.771729)
+            ,"Suphah" : BibleLocation(name: "Suphah (Red sea)", lat: 27.088473, long: 34.771729)
+            ,"Sur" : BibleLocation(name: "Sur", lat: 31.777444, long: 35.234935)
+            ,"Susa" : BibleLocation(name: "Susa", lat: 32.189191, long: 48.257886)
+            ,"Sychar" : BibleLocation(name: "Sychar", lat: 32.203077, long: 35.311921)
+            ,"Syene" : BibleLocation(name: "Syene", lat: 24.066181, long: 32.895862)
+            ,"Syracuse" : BibleLocation(name: "Syracuse", lat: 37.068232, long: 15.294824)
+            ,"Syria" : BibleLocation(name: "Syria", lat: 33.519299, long: 36.313450)
+            ,"Syrian Antioch" : BibleLocation(name: "Syrian Antioch", lat: 36.202331, long: 36.162388)
+            ,"Syrtis" : BibleLocation(name: "Syrtis", lat: 31.766667, long: 18.505556)]
+        ,["Taanach" : BibleLocation(name: "Taanach", lat: 32.517240, long: 35.216325)
+            ,"Taanathshiloh" : BibleLocation(name: "Taanathshiloh", lat: 32.150000, long: 35.383333)
+            ,"Tabbath" : BibleLocation(name: "Tabbath", lat: 32.356010, long: 35.536929)
+            ,"Taberah" : BibleLocation(name: "Taberah", lat: 28.793838, long: 34.348755)
+            ,"Tabor" : BibleLocation(name: "Tabor", lat: 31.930539, long: 35.221033)
+            ,"Tadmor" : BibleLocation(name: "Tadmor", lat: 34.554049, long: 38.265905)
+            ,"Tahath" : BibleLocation(name: "Tahath", lat : 30.37, long : 34.6)
+            ,"Tahpanhes" : BibleLocation(name: "Tahpanhes", lat: 30.860556, long: 32.171389)
+            ,"Tamar" : BibleLocation(name: "Tamar", lat: 31.024923, long: 35.064154)
+            ,"Tappuah" : BibleLocation(name: "Tappuah", lat: 32.116667, long: 35.233333)
+            ,"Tappuah 2" : BibleLocation(name: "Tappuah 2", lat: 32.150000, long: 35.126000)
+            ,"Taralah" : BibleLocation(name: "Taralah", lat: 31.792733, long: 35.196862)
+            ,"Tarshish" : BibleLocation(name: "Tarshish", lat: 36.952995, long: 06.379340)
+            ,"Tarsus" : BibleLocation(name: "Tarsus", lat: 36.918027, long: 34.891534)
+            ,"Tekoa" : BibleLocation(name: "Tekoa", lat: 31.636221, long: 35.214077)
+            ,"Telabib" : BibleLocation(name: "Telabib", lat: 32.127213, long: 45.229995)
+            ,"Telharsha" : BibleLocation(name: "Telharsha", lat: 32.127213, long: 45.229995)
+            ,"Telmelah" : BibleLocation(name: "Telmelah", lat: 32.127213, long: 45.229995)
+            ,"Telaim" : BibleLocation(name: "Telaim", lat: 32.049953, long: 35.733402)
+            ,"Telassar" : BibleLocation(name: "Telassar", lat: 32.189191, long: 48.257886)
+            ,"Telem" : BibleLocation(name: "Telem", lat: 32.049953, long: 35.733402)
+            ,"Tema" : BibleLocation(name: "Tema", lat: 27.633172, long: 38.554125)
+            ,"Teman" : BibleLocation(name: "Teman", lat: 30.203813, long: 35.732568)
+            ,"temple" : BibleLocation(name: "The Temple", lat: 31.77765, long: 35.23547)
+            ,"Terah" : BibleLocation(name: "Terah", lat : 30.43, long : 34.58)
+            ,"The field of blood" : BibleLocation(name: "Field of Blood", lat: 31.777444, long: 35.234935)
+            ,"the hall" : BibleLocation(name: "The Hall (Caiaphas' Palace)", lat: 31.774416, long: 35.228294)
+            ,"the river" : BibleLocation(name: "The River (Nile)", lat: 30.092632, long: 31.230987)
+            ,"The Skull" : BibleLocation(name: "The Skull", lat: 31.777444, long: 35.234935)
+            ,"the south" : BibleLocation(name: "The South (Sheba)", lat: 09.022736, long: 38.746799)
+            ,"the Pavement" : BibleLocation(name: "The Pavement (Gabbatha)", lat: 31.779907, long: 35.232307)
+            ,"the wilderness" : BibleLocation(name: "The Judaean Wilderness", lat: 31.716157, long: 35.362930)
+            ,"Thebes" : BibleLocation(name: "Thebes", lat: 25.700025, long: 32.639441)
+            ,"Thebez" : BibleLocation(name: "Thebez", lat: 32.324102, long: 35.368253)
+            ,"Thessalonica" : BibleLocation(name: "Thessalonica", lat: 40.632156, long: 22.932087)
+            ,"The fair havens" : BibleLocation(name: "The fair havens", lat: 34.921384, long: 24.731141)
+            ,"The three taverns" : BibleLocation(name: "The three taverns", lat: 41.591320, long: 12.828636)
+            ,"Thyatira" : BibleLocation(name: "Thyatira", lat: 38.925791, long: 27.856556)
+            ,"Tiberias" : BibleLocation(name: "Tiberias", lat: 32.795538, long: 35.529220)
+            ,"Tibhath" : BibleLocation(name: "Tibhath", lat: 33.931480, long: 36.152049)
+            ,"Timnah" : BibleLocation(name: "Timnah", lat: 31.784368, long: 34.909680)
+            ,"Timnah 2" : BibleLocation(name: "Timnah 2", lat: 31.699323, long: 35.040359)
+            ,"Timnathheres" : BibleLocation(name: "Timnathheres", lat: 32.121473, long: 35.150392)
+            ,"Tiphsah" : BibleLocation(name: "Tiphsah", lat: 35.847967, long: 38.732350)
+            ,"Tiphsah 2" : BibleLocation(name: "Tiphsah 2", lat: 32.166667, long: 35.166667)
+            ,"Tirzah" : BibleLocation(name: "Tirzah", lat: 32.271369, long: 35.294304)
+            ,"Tishbe" : BibleLocation(name: "Tishbe", lat: 33.017182, long: 35.568049)
+            ,"Tob" : BibleLocation(name: "Tob", lat: 32.561735, long: 36.240494)
+            ,"Tochen" : BibleLocation(name: "Tochen", lat: 31.809900, long: 34.936500)
+            ,"Tolad" : BibleLocation(name: "Tolad", lat: 32.049953, long: 35.733402)
+            ,"Tophel" : BibleLocation(name: "Tophel", lat: 30.936991, long: 35.616870)
+            ,"Tower of Hananel" : BibleLocation(name: "Tower of Hananel", lat: 31.777444, long: 35.234935)
+            ,"Tower of Shechem" : BibleLocation(name: "Tower of Shechem", lat: 32.213691, long: 35.281799)
+            ,"Tower of the Hundred" : BibleLocation(name: "Tower of the Hundred", lat: 31.777444, long: 35.234935)
+            ,"Tower of the Ovens" : BibleLocation(name: "Tower of the Ovens", lat: 31.777444, long: 35.234935)
+            ,"Trachonitis" : BibleLocation(name: "Trachonitis", lat: 32.833333, long: 36.500000)
+            ,"Troas" : BibleLocation(name: "Troas", lat: 39.506643, long: 26.080593)
+            ,"Tubal" : BibleLocation(name: "Tubal", lat: 40.905222, long: 37.799969)
+            ,"Tyre" : BibleLocation(name: "Tyre", lat: 33.275828, long: 35.192575)]
+        ,["Ulai" : BibleLocation(name: "Ulai", lat: 32.178696, long: 48.224890)
+            ,"Ummah" : BibleLocation(name: "Ummah", lat: 33.104377, long: 35.180623)
+            ,"unto Pilate" : BibleLocation(name: "Unto Pilate (The Antonia Fortress)", lat: 31.780381, long: 35.232135)
+            ,"Uphaz" : BibleLocation(name: "Uphaz", lat: 22.000000, long: 77.000000)
+            ,"Upper Bethhoron" : BibleLocation(name: "Upper Bethhoron", lat: 31.858918, long: 35.128313)
+            ,"upper room" : BibleLocation(name: "Upper Room", lat: 31.771461, long: 35.229324)
+            ,"Ur" : BibleLocation(name: "Ur", lat: 30.962052, long: 46.103742)
+            ,"Ur of the Chaldees" : BibleLocation(name: "Ur of the Chaldees", lat: 30.962052, long: 46.103742)
+            ,"Uz" : BibleLocation(name: "Uz", lat: 30.033400, long: 36.448390)
+            ,"Uzal" : BibleLocation(name: "Uzal", lat: 15.354879, long: 44.215092)
+            ,"Uzza" : BibleLocation(name: "Uzza", lat: 31.777444, long: 35.234935)
+            ,"Uzzensheerah" : BibleLocation(name: "Uzzensheerah", lat: 31.887821, long: 35.045649)]
+        ,["Valley Gate" : BibleLocation(name: "Valley Gate", lat: 31.777444, long: 35.234935)
+            ,"valley of Achor" : BibleLocation(name: "Valley of Achor", lat: 31.836890, long: 35.399737)
+            ,"valley of Aven" : BibleLocation(name: "Valley of Aven", lat: 34.006944, long: 36.203889)
+            ,"valley of Beracah" : BibleLocation(name: "Valley of Beracah", lat: 31.610650, long: 35.165648)
+            ,"valley of Elah" : BibleLocation(name: "Valley of Elah", lat: 31.690629, long: 34.963136)
+            ,"valley of Eshcol" : BibleLocation(name: "Valley of Eshcol", lat: 31.549099, long: 35.093561)
+            ,"valley of Gerar" : BibleLocation(name: "Valley of Gerar", lat: 31.391291, long: 34.560570)
+            ,"valley of Gibeon" : BibleLocation(name: "Valley of Gibeon", lat: 31.846848, long: 35.184912)
+            ,"valley of Hamongog" : BibleLocation(name: "Valley of Hamongog", lat: 31.496845, long: 35.782841)
+            ,"vale of Hebron" : BibleLocation(name: "Vale of Hebron", lat: 31.549099, long: 35.093561)
+            ,"valley of Hinnom" : BibleLocation(name: "Valley of Hinnom", lat: 31.769079, long: 35.227994)
+            ,"valley of Iphtahel" : BibleLocation(name: "Valley of Iphtahel", lat: 32.832774, long: 35.277225)
+            ,"valley of Jericho" : BibleLocation(name: "Valley of Jericho", lat: 31.870601, long: 35.443864)
+            ,"valley of Jezreel" : BibleLocation(name: "Valley of Jezreel", lat: 32.555963, long: 35.330789)
+            ,"valley of Mizpeh" : BibleLocation(name: "Valley of Mizpeh", lat: 33.281770, long: 35.573371)
+            ,"valley of Rephaim" : BibleLocation(name: "Valley of Rephaim", lat: 31.756332, long: 35.223059)
+            ,"valley of Salt" : BibleLocation(name: "Valley of Salt", lat: 31.087328, long: 35.383740)
+            ,"valley of Shaveh" : BibleLocation(name: "Valley of Shaveh", lat: 31.777444, long: 35.234935)
+            ,"valley of Shittim" : BibleLocation(name: "Valley of Shittim", lat: 31.858262, long: 35.641567)
+            ,"vale of Siddim" : BibleLocation(name: "Vale of Siddim", lat: 31.235341, long: 35.517624)
+            ,"valley of Sorek" : BibleLocation(name: "Valley of Sorek", lat: 31.825731, long: 34.989013)
+            ,"valley of the Travelers" : BibleLocation(name: "Valley of the Travelers", lat: 31.496845, long: 35.782841)
+            ,"valley of Zeboim" : BibleLocation(name: "Valley of Zeboim", lat: 31.936283, long: 35.424836)
+            ,"valley of Zephathah" : BibleLocation(name: "Valley of Zephathah", lat: 31.615198, long: 34.910085)
+            ,"valley of Zared" : BibleLocation(name: "Valley of Zared (Zared)", lat: 30.884128, long: 35.897633)]
+        ,["Waheb" : BibleLocation(name: "Waheb", lat: 27.088473, long: 34.771729)
+            ,"Washer" : BibleLocation(name: "Washer", lat: 31.769079, long: 35.227994)
+            ,"Water Gate" : BibleLocation(name: "Water Gate", lat: 31.777444, long: 35.234935)
+            ,"Way of Holiness" : BibleLocation(name: "Way of Holiness", lat: 31.777444, long: 35.234935)
+            ,"wilderness" : BibleLocation(name: "Wilderness of Wandering", lat: 30.687713, long: 34.494796)
+            ,"wilderness of Paran" : BibleLocation(name: "Wilderness of Paran", lat: 30.151955, long: 34.392700)
+            ,"wilderness of Sin" : BibleLocation(name: "Wilderness of Sin", lat: 28.838778, long: 33.420573)
+            ,"wilderness of Sinai" : BibleLocation(name: "Wilderness of Sinai", lat: 29.360334, long: 33.931274)
+            ,"wilderness of Zin" : BibleLocation(name: "Wilderness of Zin", lat: 30.379688, long: 34.920044)
+            ,"Wildgoats" : BibleLocation(name: "Wildgoats", lat: 31.461525, long: 35.392411)]
+        ,["Yiron" : BibleLocation(name: "Yiron", lat: 33.088748, long: 35.414111)]
+        ,["Zaanan" : BibleLocation(name: "Zaanan", lat: 31.743719, long: 34.694006)
+            ,"Zaanannim" : BibleLocation(name: "Zaanannim", lat: 33.112984, long: 35.533613)
+            ,"Zalmonah" : BibleLocation(name: "Zalmonah", lat: 30.749950, long: 35.351257)
+            ,"Zanoah" : BibleLocation(name: "Zanoah", lat: 31.716667, long: 35.000000)
+            ,"Zanoah 2" : BibleLocation(name: "Zanoah 2", lat: 31.366667, long: 35.000000)
+            ,"Zaphon" : BibleLocation(name: "Zaphon", lat: 32.237710, long: 35.585865)
+            ,"Zarephath" : BibleLocation(name: "Zarephath", lat: 33.433300, long: 35.300000)
+            ,"Zarethan" : BibleLocation(name: "Zarethan", lat: 32.267821, long: 35.576613)
+            ,"Zeboiim" : BibleLocation(name: "Zeboiim", lat: 30.934550, long: 35.414429)
+            ,"Zeboim" : BibleLocation(name: "Zeboim", lat: 31.101822, long: 35.476337)
+            ,"Zedad" : BibleLocation(name: "Zedad", lat: 34.312571, long: 36.925484)
+            ,"Zela" : BibleLocation(name: "Zela", lat: 31.792733, long: 35.196862)
+            ,"Zelzah" : BibleLocation(name: "Zelzah", lat: 31.717666, long: 35.187019)
+            ,"Zemaraim" : BibleLocation(name: "Zemaraim", lat: 31.910999, long: 35.457280)
+            ,"Zenan" : BibleLocation(name: "Zenan", lat: 31.743719, long: 34.694006)
+            ,"Zephath" : BibleLocation(name: "Zephath", lat: 30.880918, long: 34.630620)
+            ,"Zer" : BibleLocation(name: "Zer", lat: 33.125828, long: 35.165000)
+            ,"Zared" : BibleLocation(name: "Zared (Valley of Zared)", lat: 30.884128, long: 35.897633)
+            ,"Zeredah" : BibleLocation(name: "Zeredah", lat: 32.232938, long: 35.273042)
+            ,"Zerethshahar" : BibleLocation(name: "Zerethshahar", lat: 31.616962, long: 35.567522)
+            ,"Ziddim" : BibleLocation(name: "Ziddim", lat: 32.814279, long: 35.435872)
+            ,"Ziklag" : BibleLocation(name: "Ziklag", lat: 31.377600, long: 34.873562)
+            ,"Zimri" : BibleLocation(name: "Zimri", lat: 32.189191, long: 48.257886)
+            ,"Zin" : BibleLocation(name: "Zin", lat: 30.687713, long: 34.494796)
+            ,"Zior" : BibleLocation(name: "Zior", lat: 31.589719, long: 35.148296)
+            ,"Ziph" : BibleLocation(name: "Ziph", lat: 31.483300, long: 35.133300)
+            ,"Ziph 2" : BibleLocation(name: "Ziph 2", lat: 32.049953, long: 35.733402)
+            ,"Ziphron" : BibleLocation(name: "Ziphron", lat: 34.229499, long: 37.240077)
+            ,"Ziz" : BibleLocation(name: "Ziz", lat: 31.572903, long: 35.406346)
+            ,"Zoan" : BibleLocation(name: "Zoan", lat: 30.974620, long: 31.884173)
+            ,"Zoar" : BibleLocation(name: "Zoar (Bela)", lat: 30.926523, long: 35.419061)
+            ,"Zobah" : BibleLocation(name: "Zobah", lat: 34.312571, long: 36.925484)
+            ,"ZobahHamath" : BibleLocation(name: "ZobahHamath", lat: 34.312571, long: 36.925484)
+            ,"Zophim" : BibleLocation(name: "Zophim", lat: 31.767811, long: 35.725296)
+            ,"Zorah" : BibleLocation(name: "Zorah", lat: 31.762141, long: 34.969319)
+            ,"Zuph" : BibleLocation(name: "Zuph", lat: 31.846848, long: 35.184912)]] as [[String : BibleLocation]]
     
     static let Letters = [
         "A" : 0
