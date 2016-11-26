@@ -98,7 +98,10 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         self.menuView = createDropdownMenu(title: "\(book!) \(chapterIndex!)", items: chapterTitles as [AnyObject])
         self.navItem.titleView = menuView
 
-        setUpText()
+        myTextView.text = ""
+        DispatchQueue.main.async {
+            self.setUpText()
+        }
         
         self.automaticallyAdjustsScrollViewInsets = false
     

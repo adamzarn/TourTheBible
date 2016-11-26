@@ -23,7 +23,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     var glossary: [[String : BibleLocation]] = []
     var masterGlossary = [BibleLocation]()
     var filteredGlossary = [BibleLocation]()
-    let letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","R","S","T","U","V","W","Y","Z"]
+    let letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","Y","Z"]
     let screenSize: CGRect = UIScreen.main.bounds
     var y: CGFloat?
     var height: CGFloat?

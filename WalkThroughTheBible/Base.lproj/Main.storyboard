@@ -290,7 +290,7 @@
             </objects>
             <point key="canvasLocation" x="2559" y="1075"/>
         </scene>
-        <!--Virtual Tour View Controller-->
+        <!--Virtual Tour-->
         <scene sceneID="gj4-Kc-Sa2">
             <objects>
                 <viewController id="CS3-AV-9gT" customClass="VirtualTourViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
@@ -309,6 +309,9 @@
                                     <segment title="Sites"/>
                                     <segment title="Hotels"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="CS3-AV-9gT" eventType="valueChanged" id="RqX-7N-SnE"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fAt-zP-Hfg">
                                 <rect key="frame" x="0.0" y="368" width="375" height="250"/>
@@ -319,7 +322,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yw0-K7-AN5" id="Waw-UK-8pr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -336,7 +339,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="e5g-cX-Pxv">
+                    <navigationItem key="navigationItem" title="Virtual Tour" id="e5g-cX-Pxv">
+                        <barButtonItem key="leftBarButtonItem" systemItem="play" id="Gfa-sQ-bSH">
+                            <connections>
+                                <action selector="playButtonPressed:" destination="CS3-AV-9gT" id="LXu-Fq-NLs"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="e8P-RH-EEd">
                             <connections>
                                 <action selector="clearMapButtonPressed:" destination="CS3-AV-9gT" id="knc-xB-oDP"/>

@@ -28,11 +28,13 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let tabBar = self.tabBarController?.tabBar
         let bookItem = tabBar?.items?[0]
         let glossaryItem = tabBar?.items?[1]
+        let tourItem = tabBar?.items?[2]
         let biblesItem = tabBar?.items?[3]
         let aboutItem = tabBar?.items?[4]
         
         bookItem?.image = resizeImage(image: UIImage(named:"Book")!)
         glossaryItem?.image = resizeImage(image: UIImage(named:"List")!)
+        tourItem?.image = resizeImage(image: UIImage(named:"Tourist")!)
         biblesItem?.image = resizeImage(image: UIImage(named:"Bibles")!)
         aboutItem?.image = resizeImage(image: UIImage(named:"About")!)
         
