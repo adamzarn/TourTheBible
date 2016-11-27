@@ -69,7 +69,6 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         myMapView.delegate = self
         
         myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!/2)
-        print(myMapView.frame)
         segmentedControl.frame = CGRect(x: 5, y: y! + height!/2 + 5, width: screenSize.width - 10, height: 30)
         myTableView.frame = CGRect(x: 0.0, y: y! + height!/2 + 40, width: screenSize.width, height: height!/2 - 40)
         
@@ -151,12 +150,9 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
             data = hotels
         }
         
-        for i in 0 ..< 9 {
+        for i in 0 ..< data.count {
             let space = (title! as NSString).range(of: " ")
             let index = title!.index(title!.startIndex, offsetBy: space.location + 1)
-            print(data[i])
-            print(title!.substring(from:index))
-            print("")
             if data[i].contains(title!.substring(from:index)) {
                 pinView.pinTintColor = colors[i]
             }
@@ -180,7 +176,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         count += indexPath.row + 1
         plot(section:indexPath.section,row:indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
-        count += 1
+        updateCount()
     }
     
     func setUpMap(name: String, lat: Double, long: Double) {
@@ -240,18 +236,33 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         if segmentedControl.selectedSegmentIndex == 1 {
             data = hotels
         }
+        
         for i in 0 ..< data.count {
             for j in 0 ..< data[i].count {
                 let section = i
                 let row = j
-                print(index)
                 if index == count {
                     plot(section:section,row:row)
-                    count += 1
+                    updateCount()
                     return
                 }
                 index += 1
             }
+        }
+    }
+    
+    func updateCount() {
+        var data = sites
+        if segmentedControl.selectedSegmentIndex == 1 {
+            data = hotels
+        }
+        var totalItems = 0
+        for item in data {
+            totalItems += item.count
+        }
+        count += 1
+        if count - 1 == totalItems {
+            count = 1
         }
     }
     
@@ -274,7 +285,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     }
     
     private func call(phoneNumber:String) {
-        if let phoneCallURL:NSURL = NSURL(string: "tel://\(phoneNumber)") {
+        if let phoneCallURL: NSURL = NSURL(string: "tel://\(phoneNumber)") {
             let application:UIApplication = UIApplication.shared
             if (application.canOpenURL(phoneCallURL as URL)) {
                 application.openURL(phoneCallURL as URL)
@@ -286,7 +297,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         UIApplication.shared.openURL(NSURL(string:website) as! URL)
     }
     
-    let hotelNumbers = ["1-800-223-7773","+972 4-670-0700","+972 8-638-7797","+972 2-533-1234"]
+    let hotelNumbers = ["1-800-223-7773","9724-670-0700","9728-638-7797","9722-533-1234"]
     
     let hotelWebsites = [
     "http://www.danhotels.com/telavivhotels/danpanoramatelavivhotel/"

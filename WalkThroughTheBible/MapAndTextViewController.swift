@@ -19,6 +19,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
     @IBOutlet weak var myMapView: MKMapView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var aiv: UIActivityIndicatorView!
 
 //Controller Variables*********************************************************************
 
@@ -98,9 +99,14 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         self.menuView = createDropdownMenu(title: "\(book!) \(chapterIndex!)", items: chapterTitles as [AnyObject])
         self.navItem.titleView = menuView
 
+        aiv.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
+        aiv.isHidden = false
+        aiv.startAnimating()
         myTextView.text = ""
         DispatchQueue.main.async {
             self.setUpText()
+            self.aiv.stopAnimating()
+            self.aiv.isHidden = true
         }
         
         self.automaticallyAdjustsScrollViewInsets = false
@@ -322,6 +328,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
                 }
             }
         }
+        
         var charactersRemoved = 0
         var replacementString = ""
         for verse in verseNumbers {
@@ -340,8 +347,10 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
                     replacementString = "\n\n"
                     if a == 2 {
                         newRange = NSMakeRange(start + a, len - a)
-                    } else {
+                    } else if a == 3 {
                         newRange = NSMakeRange(start + a - 1, len - a)
+                    } else {
+                        newRange = NSMakeRange(start + a - 2, len - a)
                     }
                 }
                 attributedText.replaceCharacters(in: toDelete, with: replacementString)

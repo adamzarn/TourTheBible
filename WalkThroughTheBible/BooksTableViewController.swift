@@ -9,10 +9,12 @@
 import Foundation
 import UIKit
 import StoreKit
+import BTNavigationDropdownMenu
 
 class BooksTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     let testaments = ["Old Testament", "New Testament"]
     let books = [["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi"],["Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]]
@@ -20,6 +22,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     var hasBeenShown = [[Bool](repeating: false, count: 39), [Bool](repeating: false, count: 27)]
     let defaults = UserDefaults.standard
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var menuView: BTNavigationDropdownMenu? = nil
     
     override func viewDidLoad() {
         
@@ -47,7 +50,26 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(BooksTableViewController.handlePurchaseNotification(_:)),
                                                name: NSNotification.Name(rawValue: IAPHelper.IAPHelperPurchaseNotification),
                                                object: nil)
+        
+        self.menuView = createDropdownMenu(title: "Books", items: ["Old Testament" as AnyObject, "New Testament" as AnyObject])
+        self.navItem.titleView = menuView
 
+    }
+    
+    func createDropdownMenu(title: String, items: [AnyObject]) -> BTNavigationDropdownMenu {
+        let dropdownMenu = BTNavigationDropdownMenu(navigationController: self.navigationController,
+                                                    containerView: self.navigationController!.view,
+                                                    title: title,
+                                                    items: items)
+        
+        dropdownMenu.arrowTintColor = UIColor.black
+        dropdownMenu.shouldChangeTitleText = false
+        dropdownMenu.navigationBarTitleFont = UIFont(name: "Papyrus", size: 23.0)
+        
+        dropdownMenu.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+            self.myTableView.scrollToRow(at: IndexPath(row: 0, section: indexPath), at: UITableViewScrollPosition.top, animated: true)
+        }
+        return dropdownMenu
     }
     
     func reachabilityChanged() {
@@ -113,7 +135,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
             let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10, 0)
             cell.layer.transform = rotationTransform
             
-            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            UIView.animate(withDuration: 0.25, animations: { () -> Void in
                 cell.layer.transform = CATransform3DIdentity
             })
                 

@@ -110,6 +110,7 @@
                     <navigationItem key="navigationItem" title="Books" id="cPM-lt-Me9"/>
                     <connections>
                         <outlet property="myTableView" destination="Gde-yE-D9j" id="fOR-yE-mVX"/>
+                        <outlet property="navItem" destination="cPM-lt-Me9" id="5lR-aF-bKx"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="BooksToRead" id="RJW-u5-C65"/>
                     </connections>
                 </viewController>
@@ -147,6 +148,10 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="T0V-SI-4lN"/>
                                 </connections>
                             </textView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2gS-Ur-rNS">
+                                <rect key="frame" x="177" y="469" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -158,6 +163,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="aiv" destination="2gS-Ur-rNS" id="sta-jB-6bk"/>
                         <outlet property="myMapView" destination="DP6-Hc-kX1" id="asH-gY-KJR"/>
                         <outlet property="myTextView" destination="caZ-pZ-NjX" id="6IB-8L-q8k"/>
                         <outlet property="navItem" destination="JMQ-g1-Xls" id="V1e-p4-xTc"/>
@@ -340,7 +346,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Virtual Tour" id="e5g-cX-Pxv">
-                        <barButtonItem key="leftBarButtonItem" systemItem="play" id="Gfa-sQ-bSH">
+                        <barButtonItem key="leftBarButtonItem" systemItem="fastForward" id="Gfa-sQ-bSH">
                             <connections>
                                 <action selector="playButtonPressed:" destination="CS3-AV-9gT" id="LXu-Fq-NLs"/>
                             </connections>
