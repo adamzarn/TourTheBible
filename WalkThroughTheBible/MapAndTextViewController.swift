@@ -38,6 +38,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
     var pinsForBook = [Pin]()
     var currentBook: Book? = nil
     var rawText = ""
+    let books = ["Leviticus","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
     
 //Life Cycle Functions*********************************************************************
     
@@ -100,6 +101,24 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         self.navItem.titleView = menuView
 
         aiv.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
+        loadText()
+        
+        self.automaticallyAdjustsScrollViewInsets = false
+    
+    }
+    
+    @IBAction func getLists(_ sender: Any) {
+        for book in books {
+            self.book = book
+            numberOfChapters = Books.booksDictionary[book]
+            for i in 1...numberOfChapters! {
+                self.chapterIndex = i
+                setUpText()
+            }
+        }
+    }
+    
+    func loadText() {
         aiv.isHidden = false
         aiv.startAnimating()
         myTextView.text = ""
@@ -108,9 +127,6 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
             self.aiv.stopAnimating()
             self.aiv.isHidden = true
         }
-        
-        self.automaticallyAdjustsScrollViewInsets = false
-    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -264,7 +280,6 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         
         let bible = selectedBible?.stringByRemovingWhitespaces
         let path = Bundle.main.path(forResource: book, ofType: "txt", inDirectory: bible)
-        print(path!)
         
         do {
             rawText = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
@@ -298,17 +313,22 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Light", size:16.0)!, range: allTextRange)
         
         let places = locations[book!]?[String(describing: chapterIndex!)]!
+        //var keys = [] as [String]
+        //for places in glossary {
         
         if (places?.count)! > 0 {
-            
             for place in places! {
-                
+            //for (key, _) in places {
+                //var range = (rawText as NSString).range(of: key as String)
                 var range = (rawText as NSString).range(of: place)
                 var offset = 0
                 let totalCharacters = rawText.characters.count
                 
                 while range.location < totalChars {
-                    
+                    //if !keys.contains(key) {
+                    //    keys.append(key)
+                    //}
+                    //let value = key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                     let value = place.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                     
                     attributedText.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:16.0)!, range: range)
@@ -318,6 +338,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
                     let startIndex = rawText.index(rawText.startIndex, offsetBy: offset)
                     let newText = rawText.substring(from: startIndex)
                     
+                    //range = (newText as NSString).range(of: key)
                     range = (newText as NSString).range(of: place)
                     
                     if range.location < totalChars {
@@ -328,7 +349,8 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
                 }
             }
         }
-        
+        //}
+        //print(",    \"\(chapterIndex!)\":   \(keys.description)")
         var charactersRemoved = 0
         var replacementString = ""
         for verse in verseNumbers {
@@ -377,7 +399,7 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
     func swipeActions() {
         self.menuView = createDropdownMenu(title: "\(book!) \(chapterIndex!)", items: chapterTitles as [AnyObject])
         self.navItem.titleView = menuView
-        setUpText()
+        loadText()
         
         if let lastAnnotation = lastAnnotation {
             myMapView.selectAnnotation(lastAnnotation, animated: false)
@@ -440,7 +462,6 @@ class MapAndTextViewController: UIViewController, MKMapViewDelegate, UITextViewD
         let context = appDelegate.managedObjectContext
         let request: NSFetchRequest<Pin> = Pin.fetchRequest()
         
-        print(currentBook!.name!)
         let p = NSPredicate(format: "pinToBook = %@", currentBook!)
         request.predicate = p
         
