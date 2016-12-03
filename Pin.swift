@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 public class Pin: NSManagedObject {
     
     convenience init(lat: Double, long: Double, title: String, image: NSData, context : NSManagedObjectContext) {

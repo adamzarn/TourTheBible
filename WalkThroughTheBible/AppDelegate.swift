@@ -6,9 +6,11 @@
 //  Copyright © 2016 Adam Zarn. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import CoreData
 import StoreKit
+import MapKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,11 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var reachability: Reachability!
     var products = [SKProduct]()
+    var chapterIndex: Int = 1
 
     //“‘’”
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let cache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
+        URLCache.shared = cache
         
         let defaults = UserDefaults.standard
         if defaults.bool(forKey: "hasBeenLaunched") == true {
@@ -166,7 +172,78 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
     }
-
-
+    
+    func parseCSV(contentsOfURL: NSURL, encoding: String.Encoding, error: NSErrorPointer) -> [(key:String, name:String, lat:Double, long:Double)]? {
+        // Load the CSV file and parse it
+        let delimiter = ","
+        var items:[(key:String, name:String, lat:Double, long:Double)]?
+        
+        if let content = String(contentsOfURL: contentsOfURL, encoding: encoding, error: error) {
+            items = []
+            let lines:[String] = content.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet()) as [String]
+            
+            for line in lines {
+                var values:[String] = []
+                values = line.componentsSeparatedByString(delimiter)
+                // Put the values into the tuple and add it to the items array
+                let item = (key: values[0], name: values[1], lat: values[2], long: values[3])
+                items?.append(item)
+            }
+        }
+        return items
+    }
+    
+    func preloadData () {
+        // Retrieve data from the source file
+        if let contentsOfURL = Bundle.main.URL(forResource:"KJVLocations", withExtension: "csv") {
+            
+            // Remove all the menu items before preloading
+            removeData()
+            
+            var error:NSError?
+            if let items = parseCSV(contentsOfURL, encoding: NSUTF8StringEncoding, error: &error) {
+                // Preload the menu items
+                if let managedObjectContext = self.managedObjectContext {
+                    for item in items {
+                        
+                        let key = NSEntityDescription.insertNewObject(forEntityName: "Key", into: managedObjectContext)
+                        key.text = item.key
+                        
+                        let bibleLocation = NSEntityDescription.insertNewObjectForEntityForName("BibleLocation", inManagedObjectContext: managedObjectContext) as! BibleLocation
+                        bibleLocation.name = item.name
+                        bibleLocation.lat = item.lat
+                        bibleLocation.long = item.long
+                        bibleLocation.bibleLocationToKey = item.key
+                        
+                        if managedObjectContext.save(&error) != true {
+                            println("insert error: \(error!.localizedDescription)")
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func removeData () {
+        // Remove the existing items
+        if let managedObjectContext = self.managedObjectContext {
+            let fetchRequest = NSFetchRequest(entityName: "BibleLocation")
+            var e: NSError?
+            let bibleLocations = managedObjectContext.executeFetchRequest(fetchRequest, error: &e) as! [BibleLocation]
+            
+            if e != nil {
+                println("Failed to retrieve record: \(e!.localizedDescription)")
+                
+            } else {
+                
+                for bibleLocation in bibleLocations {
+                    managedObjectContext.deleteObject(bibleLocation)
+                }
+            }
+        }
+    }
 }
+
+
+
 

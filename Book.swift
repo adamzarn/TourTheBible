@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 public class Book: NSManagedObject {
 
     convenience init(name: String, context : NSManagedObjectContext) {

@@ -74,9 +74,9 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
         
-        if selectedBible == "King James Version" {
-            glossary = BibleLocationsKJV.Glossary
-        }
+//        if selectedBible == "King James Version" {
+//            glossary = BibleLocationsKJV.Glossary
+//        }
 
     }
     
@@ -306,54 +306,54 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     ,"http://www.danhotels.co.il/JerusalemHotels/DanJerusalemHotel/"
     ]
     
-    let tourLocations = ["Caesarea" : BibleLocation(name: "Caesarea", lat: 32.499545, long: 34.892185)
-    ,"Mount Carmel" : BibleLocation(name: "Mount Carmel", lat: 32.729350, long: 35.049790)
-    ,"Megiddo" : BibleLocation(name: "Megiddo", lat: 32.584183, long: 35.182292)
-    ,"Mount Arbel" : BibleLocation(name: "Mount Arbel", lat: 32.823037, long: 35.499315)
-    ,"Sea of Galilee" : BibleLocation(name: "Sea of Galilee", lat: 32.806776, long: 35.589361)
-    ,"Mount of Beatitudes" : BibleLocation(name: "Mount of Beatitudes", lat: 32.881956, long: 35.557337)
-    ,"Capernaum" : BibleLocation(name: "Capernaum", lat: 32.880594, long: 35.575158)
-    ,"Magdala" : BibleLocation(name: "Magdala", lat: 32.847335, long: 35.522936)
-    ,"Ancient Galilee Boat" : BibleLocation(name: "Ancient Galilee Boat", lat: 32.844281, long: 35.525166)
-    ,"Jordan River" : BibleLocation(name: "Jordan River", lat: 32.711111, long: 35.571389)
-    ,"Chorazin" : BibleLocation(name: "Chorazin", lat: 32.909092, long: 35.552923)
-    ,"Dan" : BibleLocation(name: "Dan", lat: 33.248660, long: 35.652483)
-    ,"Caesarea Philippi" : BibleLocation(name: "Caesarea Philippi", lat: 33.248060, long: 35.694637)
-    ,"Golan Heights" : BibleLocation(name: "Golan Heights", lat: 32.800076, long: 35.937301)
-    ,"Kursi" : BibleLocation(name: "Kursi", lat: 32.838888, long: 35.665054)
-    ,"Spring of Harod" : BibleLocation(name: "Spring of Harod", lat: 32.5506, long: 35.3569)
-    ,"Bethshan" : BibleLocation(name: "Bethshan", lat: 32.504238, long: 35.503077)
-    ,"Jericho" : BibleLocation(name: "Jericho", lat: 31.870601, long: 35.443864)
-    ,"Wadi Qilt" : BibleLocation(name: "Wadi Qilt", lat: 31.844316, long: 35.414257)
-    ,"Qumran" : BibleLocation(name: "Qumran", lat: 31.740833, long: 35.458611)
-    ,"Masada" : BibleLocation(name: "Masada", lat: 31.315556, long: 35.353889)
-    ,"Ein Gedi" : BibleLocation(name: "Ein Gedi", lat: 31.461525, long: 35.392411)
-    ,"Dead Sea" : BibleLocation(name: "Dead Sea", lat: 31.538593, long: 35.482268)
-    ,"Jerusalem" : BibleLocation(name: "Jerusalem", lat: 31.777444, long: 35.234935)
-    ,"Mount Scopus" : BibleLocation(name: "Mount Scopus", lat: 31.7925, long: 35.244167)
-    ,"Jaffa Gate" : BibleLocation(name: "Jaffa Gate", lat: 31.776528, long: 35.227694)
-    ,"Southern Temple Steps" : BibleLocation(name: "Southern Temple Steps", lat: 31.775761, long: 35.236106)
-    ,"Wailing Wall" : BibleLocation(name: "Wailing Wall", lat: 31.7767, long: 35.2345)
-    ,"City of David" : BibleLocation(name: "City of David", lat: 31.773611, long: 35.235556)
-    ,"Upper Room" : BibleLocation(name: "Upper Room", lat: 31.771461, long: 35.229324)
-    ,"Bethlehem" : BibleLocation(name: "Bethlehem", lat: 31.705361, long: 35.210266)
-    ,"Shepherds Field" : BibleLocation(name: "Shepherds Field", lat: 31.704323, long: 35.207700)
-    ,"Herodium" : BibleLocation(name: "Herodium", lat: 31.665833, long: 35.241389)
-    ,"Church of All Nations" : BibleLocation(name: "Church of All Nations", lat: 31.779227, long: 35.239628)
-    ,"Garden of Gethsemane" : BibleLocation(name: "Garden of Gethsemane", lat: 31.779660, long: 35.239605)
-    ,"Mount of Olives" : BibleLocation(name: "Mount of Olives", lat: 31.778095, long: 35.247198)
-    ,"Beersheba" : BibleLocation(name: "Beersheba", lat: 31.244952, long: 34.840889)
-    ,"Valley of Elah" : BibleLocation(name: "Valley of Elah", lat: 31.690629, long: 34.963136)
-    ,"Beth Shemesh" : BibleLocation(name: "Beth Shemesh", lat: 31.752748, long: 34.976609)
-    ,"Temple Mount" : BibleLocation(name: "Temple Mount", lat: 31.77765, long: 35.23547)
-    ,"Pool of Bethesda" : BibleLocation(name: "Pool of Bethesda", lat: 31.781248, long: 35.236613)
-    ,"Yad Vashem" : BibleLocation(name: "Yad Vashem", lat: 31.774167, long: 35.175556)
-    ,"Church of the Holy Sepulchre" : BibleLocation(name: "Church of the Holy Sepulchre", lat: 31.778444, long: 35.22975)
-    ,"Garden Tomb" : BibleLocation(name: "Garden Tomb", lat: 31.783853, long: 35.229978)]
+    let tourLocations = ["Caesarea" : BibleLocation(key: "Caesarea", name: "Caesarea", lat: 32.499545, long: 34.892185)
+    ,"Mount Carmel" : BibleLocation(key: "Mount Carmel", name: "Mount Carmel", lat: 32.729350, long: 35.049790)
+    ,"Megiddo" : BibleLocation(key: "Megiddo", name: "Megiddo", lat: 32.584183, long: 35.182292)
+        ,"Mount Arbel" : BibleLocation(key: "Mount Arbel", name: "Mount Arbel", lat: 32.823037, long: 35.499315)
+        ,"Sea of Galilee" : BibleLocation(key: "Sea of Galilee", name: "Sea of Galilee", lat: 32.806776, long: 35.589361)
+        ,"Mount of Beatitudes" : BibleLocation(key: "Mount of Beatitudes", name: "Mount of Beatitudes", lat: 32.881956, long: 35.557337)
+        ,"Capernaum" : BibleLocation(key: "Capernaum", name: "Capernaum", lat: 32.880594, long: 35.575158)
+        ,"Magdala" : BibleLocation(key: "Magdala", name: "Magdala", lat: 32.847335, long: 35.522936)
+        ,"Ancient Galilee Boat" : BibleLocation(key: "Ancient Galilee Boat", name: "Ancient Galilee Boat", lat: 32.844281, long: 35.525166)
+        ,"Jordan River" : BibleLocation(key: "Jordan River", name: "Jordan River", lat: 32.711111, long: 35.571389)
+        ,"Chorazin" : BibleLocation(key: "Chorazin", name: "Chorazin", lat: 32.909092, long: 35.552923)
+        ,"Dan" : BibleLocation(key: "Dan", name: "Dan", lat: 33.248660, long: 35.652483)
+        ,"Caesarea Philippi" : BibleLocation(key: "Caesarea Philippi", name: "Caesarea Philippi", lat: 33.248060, long: 35.694637)
+        ,"Golan Heights" : BibleLocation(key: "Golan Heights", name: "Golan Heights", lat: 32.800076, long: 35.937301)
+        ,"Kursi" : BibleLocation(key: "Kursi", name: "Kursi", lat: 32.838888, long: 35.665054)
+        ,"Spring of Harod" : BibleLocation(key: "Spring of Harod", name: "Spring of Harod", lat: 32.5506, long: 35.3569)
+        ,"Bethshan" : BibleLocation(key: "Bethshan", name: "Bethshan", lat: 32.504238, long: 35.503077)
+        ,"Jericho" : BibleLocation(key: "Jericho", name: "Jericho", lat: 31.870601, long: 35.443864)
+        ,"Wadi Qilt" : BibleLocation(key: "Wadi Qilt", name: "Wadi Qilt", lat: 31.844316, long: 35.414257)
+        ,"Qumran" : BibleLocation(key: "Qumran", name: "Qumran", lat: 31.740833, long: 35.458611)
+        ,"Masada" : BibleLocation(key: "Masada", name: "Masada", lat: 31.315556, long: 35.353889)
+        ,"Ein Gedi" : BibleLocation(key: "Ein Gedi", name: "Ein Gedi", lat: 31.461525, long: 35.392411)
+        ,"Dead Sea" : BibleLocation(key: "Dead Sea", name: "Dead Sea", lat: 31.538593, long: 35.482268)
+        ,"Jerusalem" : BibleLocation(key: "Jerusalem", name: "Jerusalem", lat: 31.777444, long: 35.234935)
+        ,"Mount Scopus" : BibleLocation(key: "Mount Scopus", name: "Mount Scopus", lat: 31.7925, long: 35.244167)
+        ,"Jaffa Gate" : BibleLocation(key: "Jaffa Gate", name: "Jaffa Gate", lat: 31.776528, long: 35.227694)
+        ,"Southern Temple Steps" : BibleLocation(key: "Southern Temple Steps", name: "Southern Temple Steps", lat: 31.775761, long: 35.236106)
+        ,"Wailing Wall" : BibleLocation(key: "Wailing Wall", name: "Wailing Wall", lat: 31.7767, long: 35.2345)
+        ,"City of David" : BibleLocation(key: "City of David", name: "City of David", lat: 31.773611, long: 35.235556)
+        ,"Upper Room" : BibleLocation(key: "Upper Room", name: "Upper Room", lat: 31.771461, long: 35.229324)
+        ,"Bethlehem" : BibleLocation(key: "Bethlehem", name: "Bethlehem", lat: 31.705361, long: 35.210266)
+        ,"Shepherds Field" : BibleLocation(key: "Shepherds Field", name: "Shepherds Field", lat: 31.704323, long: 35.207700)
+        ,"Herodium" : BibleLocation(key: "Herodium", name: "Herodium", lat: 31.665833, long: 35.241389)
+        ,"Church of All Nations" : BibleLocation(key: "Church of All Nations", name: "Church of All Nations", lat: 31.779227, long: 35.239628)
+        ,"Garden of Gethsemane" : BibleLocation(key: "Garden of Gethsemane", name: "Garden of Gethsemane", lat: 31.779660, long: 35.239605)
+        ,"Mount of Olives" : BibleLocation(key: "Mount of Olives", name: "Mount of Olives", lat: 31.778095, long: 35.247198)
+        ,"Beersheba" : BibleLocation(key: "Beersheba", name: "Beersheba", lat: 31.244952, long: 34.840889)
+        ,"Valley of Elah" : BibleLocation(key: "Valley of Elah", name: "Valley of Elah", lat: 31.690629, long: 34.963136)
+        ,"Beth Shemesh" : BibleLocation(key: "Beth Shemesh", name: "Beth Shemesh", lat: 31.752748, long: 34.976609)
+        ,"Temple Mount" : BibleLocation(key: "Temple Mount", name: "Temple Mount", lat: 31.77765, long: 35.23547)
+        ,"Pool of Bethesda" : BibleLocation(key: "Pool of Bethesda", name: "Pool of Bethesda", lat: 31.781248, long: 35.236613)
+        ,"Yad Vashem" : BibleLocation(key: "Yad Vashem", name: "Yad Vashem", lat: 31.774167, long: 35.175556)
+        ,"Church of the Holy Sepulchre" : BibleLocation(key: "Church of the Holy Sepulchre", name: "Church of the Holy Sepulchre", lat: 31.778444, long: 35.22975)
+        ,"Garden Tomb"  : BibleLocation(key: "Garden Tomb", name: "Garden Tomb", lat: 31.783853, long: 35.229978)]
     
-    let hotelLocations = ["Dan Panorama Tel Aviv" : BibleLocation(name: "Dan Panorama Tel Aviv", lat: 32.064581, long: 34.763070)
-    ,"Gai Beach Hotel" : BibleLocation(name: "Gai Beach Hotel", lat: 32.779675, long: 35.544929)
-    ,"Isrotel Dead Sea" : BibleLocation(name: "Isrotel Dead Sea", lat: 31.192871, long: 35.361051)
-    ,"Dan Jerusalem" : BibleLocation(name: "Dan Jerusalem", lat: 31.797884, long: 35.235659)]
+    let hotelLocations = ["Dan Panorama Tel Aviv" : BibleLocation(key: "Dan Panorama Tel Aviv", name: "Dan Panorama Tel Aviv", lat: 32.064581, long: 34.763070)
+        ,"Gai Beach Hotel" : BibleLocation(key: "Gai Beach Hotel", name: "Gai Beach Hotel", lat: 32.779675, long: 35.544929)
+        ,"Isrotel Dead Sea" : BibleLocation(key: "Isrotel Dead Sea", name: "Isrotel Dead Sea", lat: 31.192871, long: 35.361051)
+        ,"Dan Jerusalem" : BibleLocation(key: "Dan Jerusalem", name: "Dan Jerusalem", lat: 31.797884, long: 35.235659)]
     
 }

@@ -111,17 +111,16 @@
                     <connections>
                         <outlet property="myTableView" destination="Gde-yE-D9j" id="fOR-yE-mVX"/>
                         <outlet property="navItem" destination="cPM-lt-Me9" id="5lR-aF-bKx"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="BooksToRead" id="RJW-u5-C65"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvo-f9-r2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2558" y="340"/>
         </scene>
-        <!--Map And Text View Controller-->
+        <!--Map Text View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MapAndTextViewController" id="BYZ-38-t0r" customClass="MapAndTextViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapTextViewController" id="BYZ-38-t0r" customClass="MapTextViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -130,15 +129,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DP6-Hc-kX1">
-                                <rect key="frame" x="0.0" y="67" width="375" height="273"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="G5u-DD-6gy"/>
-                                </connections>
-                            </mapView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-pZ-NjX">
-                                <rect key="frame" x="0.0" y="340" width="375" height="278"/>
+                                <rect key="frame" x="0.0" y="337" width="375" height="330"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -148,35 +140,45 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="T0V-SI-4lN"/>
                                 </connections>
                             </textView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BwI-6I-fSx">
+                                <rect key="frame" x="0.0" y="50" width="375" height="279"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2gS-Ur-rNS">
-                                <rect key="frame" x="177" y="469" width="20" height="20"/>
+                                <rect key="frame" x="177" y="353" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="JMQ-g1-Xls">
-                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="MYf-e7-a6r">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="M7t-7h-Jkm">
                             <connections>
-                                <action selector="clearMapButtonPressed:" destination="BYZ-38-t0r" id="l0S-Ka-30H"/>
+                                <action selector="menuButtonPressed:" destination="BYZ-38-t0r" id="qYB-HA-OAT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Books" id="uCp-se-LMw">
+                            <connections>
+                                <action selector="booksButtonPressed:" destination="BYZ-38-t0r" id="rWJ-Sx-Tza"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="aiv" destination="2gS-Ur-rNS" id="sta-jB-6bk"/>
-                        <outlet property="myMapView" destination="DP6-Hc-kX1" id="asH-gY-KJR"/>
-                        <outlet property="myTextView" destination="caZ-pZ-NjX" id="6IB-8L-q8k"/>
-                        <outlet property="navItem" destination="JMQ-g1-Xls" id="V1e-p4-xTc"/>
+                        <outlet property="aiv" destination="2gS-Ur-rNS" id="dhy-7N-fNu"/>
+                        <outlet property="menuButton" destination="M7t-7h-Jkm" id="DD9-Vl-BjD"/>
+                        <outlet property="myMapView" destination="BwI-6I-fSx" id="wPu-Xq-tGF"/>
+                        <outlet property="myTextView" destination="caZ-pZ-NjX" id="wjC-4c-2vr"/>
+                        <outlet property="navItem" destination="JMQ-g1-Xls" id="eOb-IO-xng"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3511" y="340"/>
+            <point key="canvasLocation" x="5668" y="339.58020989505252"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="LBK-GR-UVs">
             <objects>
-                <tabBarController id="87n-SZ-fKm" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="87n-SZ-fKm" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="mix-sj-RpC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -371,7 +373,7 @@
         <!--Books-->
         <scene sceneID="USM-Yc-Mfq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iEu-8d-efb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BooksNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="iEu-8d-efb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Books" id="Ito-nK-fRx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2fJ-hg-5yl">
@@ -569,5 +571,82 @@
             </objects>
             <point key="canvasLocation" x="1620" y="1801"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rJh-Tl-Kdr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0CX-oK-9Rq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="D3C-ij-Q4U">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="JnO-ov-ITk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CG0-GT-nnk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3385" y="340"/>
+        </scene>
+        <!--Left View Controller-->
+        <scene sceneID="9hq-18-9Cm">
+            <objects>
+                <viewController storyboardIdentifier="LeftViewController" title="Left View Controller" id="JvT-hS-sR9" customClass="SidePanelViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XLj-ZK-1fU"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZKh-Zo-Aqy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tEX-3x-Ca8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dMJ-Py-AUV">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="JvT-hS-sR9" id="tqR-E2-ew9"/>
+                                    <outlet property="delegate" destination="JvT-hS-sR9" id="vr2-ro-HQq"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="leading" secondItem="tEX-3x-Ca8" secondAttribute="leading" id="RUk-1W-alR"/>
+                            <constraint firstAttribute="trailing" secondItem="dMJ-Py-AUV" secondAttribute="trailing" id="aLs-o3-liR"/>
+                            <constraint firstItem="ZKh-Zo-Aqy" firstAttribute="top" secondItem="dMJ-Py-AUV" secondAttribute="bottom" id="hcN-oh-ypk"/>
+                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="top" secondItem="tEX-3x-Ca8" secondAttribute="top" constant="20" id="jIA-qf-lCI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chapters" id="WB4-gG-XNe"/>
+                    <connections>
+                        <outlet property="myTableView" destination="dMJ-Py-AUV" id="giH-SL-u6o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0LT-Y4-Z0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4896.8000000000002" y="-49.025487256371818"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NuP-OG-dgB">
+            <objects>
+                <navigationController storyboardIdentifier="leftNav" automaticallyAdjustsScrollViewInsets="NO" id="8kj-wt-jJu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rOX-wB-mIt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JvT-hS-sR9" kind="relationship" relationship="rootViewController" id="Lbn-Ys-hTk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T7q-rc-DEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4154" y="-49"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Menu" width="50" height="50"/>
+    </resources>
 </document>

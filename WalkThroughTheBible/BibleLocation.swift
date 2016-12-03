@@ -7,19 +7,23 @@
 //
 
 import Foundation
-import MapKit
+import CoreData
 
-class BibleLocation {
+public class BibleLocation: NSManagedObject {
     
-    var name: String?
-    var lat: Double?
-    var long: Double?
-    
-    init(name: String, lat: Double, long: Double) {
-        self.name = name
-        self.lat = lat
-        self.long = long
+    convenience init(name: String, key: String, lat: Double, long: Double, context : NSManagedObjectContext) {
+        
+        if let ent = NSEntityDescription.entity(forEntityName: "BibleLocation", in: context) {
+            self.init(entity: ent, insertInto: context)
+            self.name = name
+            self.key = key
+            self.lat = lat
+            self.long = long
+        } else {
+            fatalError("Unable to find Entity name!")
+        }
         
     }
     
 }
+

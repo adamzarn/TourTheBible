@@ -48,21 +48,20 @@ class AboutViewController: UIViewController, UITextViewDelegate, MFMailComposeVi
             vc.mailComposeDelegate = self
             vc.setToRecipients(["adam.zarn@my.wheaton.edu"])
             vc.setSubject("Walk Through The Bible")
-        
+            
             self.present(vc, animated: false, completion: nil)
-        
+            
             return true
-        
+            
         } else {
             return false
         }
-
+        
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         self.dismiss(animated: false, completion: nil)
     }
-
+    
     
 }
-
