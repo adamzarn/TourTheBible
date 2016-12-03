@@ -156,35 +156,35 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
     
     //Text View********************************************************************************
 
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-
-        let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
-        let letters = BibleLocationsKJV.Letters as NSDictionary
-        let firstLetter = decodedURL[decodedURL.startIndex]
-        let index = letters[String(firstLetter)] as! Int
-
-        if let location = glossary?[index][decodedURL] {
-
-            setUpMap(name: location.name!, lat: location.lat!, long: location.long!)
-
-            let context = appDelegate.managedObjectContext
-
-            let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context) as! Pin
-            newPin.lat = location.lat!
-            newPin.long = location.long!
-            newPin.title = location.name!
-            newPin.pinToBook = currentBook
-            pinsForBook.append(newPin)
-
-            appDelegate.saveContext()
-
-            return true
-
-        } else {
-            return false
-        }
-        
-    }
+//    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+//
+//        let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
+//        let letters = BibleLocationsKJV.Letters as NSDictionary
+//        let firstLetter = decodedURL[decodedURL.startIndex]
+//        let index = letters[String(firstLetter)] as! Int
+//
+//        if let location = glossary?[index][decodedURL] {
+//
+//            setUpMap(name: location.name!, lat: location.lat!, long: location.long!)
+//
+//            let context = appDelegate.managedObjectContext
+//
+//            let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context) as! Pin
+//            newPin.lat = location.lat!
+//            newPin.long = location.long!
+//            newPin.title = location.name!
+//            newPin.pinToBook = currentBook
+//            pinsForBook.append(newPin)
+//
+//            appDelegate.saveContext()
+//
+//            return true
+//
+//        } else {
+//            return false
+//        }
+//        
+//    }
     
     //IBActions********************************************************************************
 

@@ -2,8 +2,9 @@
 //  Pin+CoreDataClass.swift
 //  
 //
-//  Created by Adam Zarn on 9/30/16.
+//  Created by Adam Zarn on 12/3/16.
 //
+//  This file was automatically generated and should not be edited.
 //
 
 import Foundation
@@ -24,6 +25,7 @@ public class Pin: NSManagedObject {
         }
         
     }
-
-
+    
+    
 }
+

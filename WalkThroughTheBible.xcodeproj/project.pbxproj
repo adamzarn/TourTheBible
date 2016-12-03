@@ -21,7 +21,6 @@
 		DB4EE9961D987A6500A3C48B /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EE9951D987A6500A3C48B /* Books.swift */; };
 		DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */; };
 		DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EA31D870F79002A5FAD /* Main.storyboard */; };
-		DB5C2EA81D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EA61D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld */; };
 		DB5C2EAA1D870F79002A5FAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EA91D870F79002A5FAD /* Assets.xcassets */; };
 		DB5C2EAD1D870F79002A5FAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */; };
 		DB5C2EB81D870F79002A5FAD /* WalkThroughTheBibleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EB71D870F79002A5FAD /* WalkThroughTheBibleTests.swift */; };
@@ -29,9 +28,15 @@
 		DB5C2ED11D871109002A5FAD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5C2ED01D871109002A5FAD /* MapKit.framework */; };
 		DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */; };
 		DB6431651DEF97930061D670 /* MapTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6431641DEF97930061D670 /* MapTextViewController.swift */; };
-		DB6F52181D9A14FB00221041 /* BibleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F52171D9A14FB00221041 /* BibleLocation.swift */; };
 		DB6F521A1D9A190600221041 /* BibleLocationsESV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6F52191D9A190600221041 /* BibleLocationsESV.swift */; };
 		DB89240E1DE7C39B00EAC55E /* VirtualTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */; };
+		DB9B7EDB1DF38AEF0099033A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */; };
+		DB9B7EE21DF38C220099033A /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7EDC1DF38C220099033A /* Book+CoreDataClass.swift */; };
+		DB9B7EE31DF38C220099033A /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7EDD1DF38C220099033A /* Book+CoreDataProperties.swift */; };
+		DB9B7EE41DF38C220099033A /* Pin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7EDE1DF38C220099033A /* Pin+CoreDataClass.swift */; };
+		DB9B7EE51DF38C220099033A /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7EDF1DF38C220099033A /* Pin+CoreDataProperties.swift */; };
+		DB9B7EE61DF38C220099033A /* BibleLocation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7EE01DF38C220099033A /* BibleLocation+CoreDataClass.swift */; };
+		DB9B7EE71DF38C220099033A /* BibleLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7EE11DF38C220099033A /* BibleLocation+CoreDataProperties.swift */; };
 		DBA91EFC1DA43FBB00E5E00A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */; };
 		DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFD1DA4468200E5E00A /* ProductCell.swift */; };
 		DBA91F001DA446C400E5E00A /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFF1DA446C400E5E00A /* Products.swift */; };
@@ -39,10 +44,6 @@
 		DBBCC0091DF25EF400F055E4 /* KJVLocations.csv in Resources */ = {isa = PBXBuildFile; fileRef = DBBCC0081DF25EF400F055E4 /* KJVLocations.csv */; };
 		DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */; };
 		DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */; };
-		DBE58B701D9EB358009A7BFA /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6C1D9EB358009A7BFA /* Pin.swift */; };
-		DBE58B711D9EB358009A7BFA /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6D1D9EB358009A7BFA /* Pin+CoreDataProperties.swift */; };
-		DBE58B721D9EB358009A7BFA /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6E1D9EB358009A7BFA /* Book.swift */; };
-		DBE58B731D9EB358009A7BFA /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6F1D9EB358009A7BFA /* Book+CoreDataProperties.swift */; };
 		DCC32D404B4C83870067E20A /* Pods_WalkThroughTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +86,6 @@
 		DB5C2E9C1D870F78002A5FAD /* WalkThroughTheBible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkThroughTheBible.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB5C2EA41D870F79002A5FAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DB5C2EA71D870F79002A5FAD /* WalkThroughTheBible.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WalkThroughTheBible.xcdatamodel; sourceTree = "<group>"; };
 		DB5C2EA91D870F79002A5FAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB5C2EAC1D870F79002A5FAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB5C2EAE1D870F79002A5FAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,9 +98,15 @@
 		DB5C2ED01D871109002A5FAD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTableViewController.swift; sourceTree = "<group>"; };
 		DB6431641DEF97930061D670 /* MapTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTextViewController.swift; sourceTree = "<group>"; };
-		DB6F52171D9A14FB00221041 /* BibleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocation.swift; sourceTree = "<group>"; };
 		DB6F52191D9A190600221041 /* BibleLocationsESV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocationsESV.swift; sourceTree = "<group>"; };
 		DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualTourViewController.swift; sourceTree = "<group>"; };
+		DB9B7EDA1DF38AEF0099033A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DB9B7EDC1DF38C220099033A /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DB9B7EDD1DF38C220099033A /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DB9B7EDE1DF38C220099033A /* Pin+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DB9B7EDF1DF38C220099033A /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DB9B7EE01DF38C220099033A /* BibleLocation+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BibleLocation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DB9B7EE11DF38C220099033A /* BibleLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BibleLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DBA91EFD1DA4468200E5E00A /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		DBA91EFF1DA446C400E5E00A /* Products.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
@@ -108,10 +114,6 @@
 		DBBCC0081DF25EF400F055E4 /* KJVLocations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KJVLocations.csv; sourceTree = "<group>"; };
 		DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryViewController.swift; sourceTree = "<group>"; };
 		DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
-		DBE58B6C1D9EB358009A7BFA /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pin.swift; path = ../Pin.swift; sourceTree = "<group>"; };
-		DBE58B6D1D9EB358009A7BFA /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Pin+CoreDataProperties.swift"; path = "../Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		DBE58B6E1D9EB358009A7BFA /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Book.swift; path = ../Book.swift; sourceTree = "<group>"; };
-		DBE58B6F1D9EB358009A7BFA /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Book+CoreDataProperties.swift"; path = "../Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkThroughTheBibleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -217,16 +219,17 @@
 		DBA91F031DA4480200E5E00A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DB9B7EDC1DF38C220099033A /* Book+CoreDataClass.swift */,
+				DB9B7EDD1DF38C220099033A /* Book+CoreDataProperties.swift */,
+				DB9B7EDE1DF38C220099033A /* Pin+CoreDataClass.swift */,
+				DB9B7EDF1DF38C220099033A /* Pin+CoreDataProperties.swift */,
+				DB9B7EE01DF38C220099033A /* BibleLocation+CoreDataClass.swift */,
+				DB9B7EE11DF38C220099033A /* BibleLocation+CoreDataProperties.swift */,
 				DBA91EFF1DA446C400E5E00A /* Products.swift */,
 				DB4EE9951D987A6500A3C48B /* Books.swift */,
 				DB6F52191D9A190600221041 /* BibleLocationsESV.swift */,
 				DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */,
-				DBE58B6F1D9EB358009A7BFA /* Book+CoreDataProperties.swift */,
-				DBE58B6D1D9EB358009A7BFA /* Pin+CoreDataProperties.swift */,
-				DBE58B6E1D9EB358009A7BFA /* Book.swift */,
-				DBE58B6C1D9EB358009A7BFA /* Pin.swift */,
-				DB6F52171D9A14FB00221041 /* BibleLocation.swift */,
-				DB5C2EA61D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld */,
+				DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -557,29 +560,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB89240E1DE7C39B00EAC55E /* VirtualTourViewController.swift in Sources */,
-				DBE58B701D9EB358009A7BFA /* Pin.swift in Sources */,
-				DB5C2EA81D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld in Sources */,
+				DB9B7EE51DF38C220099033A /* Pin+CoreDataProperties.swift in Sources */,
 				DB27FC931DCE8BAB00C3E207 /* BibleLocationsKJV.swift in Sources */,
-				DBE58B731D9EB358009A7BFA /* Book+CoreDataProperties.swift in Sources */,
-				DB6F52181D9A14FB00221041 /* BibleLocation.swift in Sources */,
 				DB106FCC1DD0D1D30033FFAA /* BiblesViewController.swift in Sources */,
 				DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */,
 				DB47B34D1DF1D42B005EC190 /* SidePanelViewController.swift in Sources */,
+				DB9B7EE31DF38C220099033A /* Book+CoreDataProperties.swift in Sources */,
 				DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */,
-				DBE58B711D9EB358009A7BFA /* Pin+CoreDataProperties.swift in Sources */,
 				DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */,
 				DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */,
 				DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */,
 				DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */,
+				DB9B7EE21DF38C220099033A /* Book+CoreDataClass.swift in Sources */,
+				DB9B7EE61DF38C220099033A /* BibleLocation+CoreDataClass.swift in Sources */,
 				DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */,
-				DBE58B721D9EB358009A7BFA /* Book.swift in Sources */,
+				DB9B7EE41DF38C220099033A /* Pin+CoreDataClass.swift in Sources */,
 				DB6F521A1D9A190600221041 /* BibleLocationsESV.swift in Sources */,
 				DBA91F001DA446C400E5E00A /* Products.swift in Sources */,
 				DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */,
 				DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */,
 				DB47B34B1DF1D03E005EC190 /* ContainerViewController.swift in Sources */,
 				DB4EE9961D987A6500A3C48B /* Books.swift in Sources */,
+				DB9B7EDB1DF38AEF0099033A /* Model.xcdatamodeld in Sources */,
 				DB6431651DEF97930061D670 /* MapTextViewController.swift in Sources */,
+				DB9B7EE71DF38C220099033A /* BibleLocation+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,13 +854,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		DB5C2EA61D870F79002A5FAD /* WalkThroughTheBible.xcdatamodeld */ = {
+		DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				DB5C2EA71D870F79002A5FAD /* WalkThroughTheBible.xcdatamodel */,
+				DB9B7EDA1DF38AEF0099033A /* Model.xcdatamodel */,
 			);
-			currentVersion = DB5C2EA71D870F79002A5FAD /* WalkThroughTheBible.xcdatamodel */;
-			path = WalkThroughTheBible.xcdatamodeld;
+			currentVersion = DB9B7EDA1DF38AEF0099033A /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

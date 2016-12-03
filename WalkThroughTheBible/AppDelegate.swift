@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        let modelURL = Bundle.main.url(forResource: "WalkThroughTheBible", withExtension: "momd")!
+        let modelURL = Bundle.main.url(forResource: "Model", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
@@ -174,20 +174,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func parseCSV(contentsOfURL: NSURL, encoding: String.Encoding, error: NSErrorPointer) -> [(key:String, name:String, lat:Double, long:Double)]? {
-        // Load the CSV file and parse it
         let delimiter = ","
         var items:[(key:String, name:String, lat:Double, long:Double)]?
         
-        if let content = String(contentsOfURL: contentsOfURL, encoding: encoding, error: error) {
-            items = []
-            let lines:[String] = content.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet()) as [String]
+        if let data = NSData(contentsOf: contentsOfURL as URL) {
+            if let content = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue) {
+                items = []
+                let lines:[String] = content.components(separatedBy: NSCharacterSet.newlines) as [String]
             
-            for line in lines {
+                for line in lines {
                 var values:[String] = []
-                values = line.componentsSeparatedByString(delimiter)
-                // Put the values into the tuple and add it to the items array
-                let item = (key: values[0], name: values[1], lat: values[2], long: values[3])
+                values = line.components(separatedBy: delimiter)
+                let item = (key: values[0], name: values[1], lat: Double(values[2])!, long: Double(values[3])!)
                 items?.append(item)
+                }
             }
         }
         return items
@@ -195,53 +195,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func preloadData () {
         // Retrieve data from the source file
-        if let contentsOfURL = Bundle.main.URL(forResource:"KJVLocations", withExtension: "csv") {
+        if let contentsOfURL = Bundle.main.url(forResource:"KJVLocations", withExtension: "csv") {
             
             // Remove all the menu items before preloading
             removeData()
             
             var error:NSError?
-            if let items = parseCSV(contentsOfURL, encoding: NSUTF8StringEncoding, error: &error) {
+            if let items = parseCSV(contentsOfURL: contentsOfURL as NSURL, encoding: String.Encoding.utf8, error: &error) {
                 // Preload the menu items
-                if let managedObjectContext = self.managedObjectContext {
+                let managedObjectContext = self.managedObjectContext
                     for item in items {
                         
-                        let key = NSEntityDescription.insertNewObject(forEntityName: "Key", into: managedObjectContext)
-                        key.text = item.key
-                        
-                        let bibleLocation = NSEntityDescription.insertNewObjectForEntityForName("BibleLocation", inManagedObjectContext: managedObjectContext) as! BibleLocation
+                        let bibleLocation = NSEntityDescription.insertNewObject(forEntityName: "BibleLocation", into: managedObjectContext) as! BibleLocation
                         bibleLocation.name = item.name
                         bibleLocation.lat = item.lat
                         bibleLocation.long = item.long
-                        bibleLocation.bibleLocationToKey = item.key
                         
-                        if managedObjectContext.save(&error) != true {
-                            println("insert error: \(error!.localizedDescription)")
-                        }
+                        saveContext()
                     }
                 }
             }
-        }
+
     }
     
     func removeData () {
-        // Remove the existing items
-        if let managedObjectContext = self.managedObjectContext {
-            let fetchRequest = NSFetchRequest(entityName: "BibleLocation")
-            var e: NSError?
-            let bibleLocations = managedObjectContext.executeFetchRequest(fetchRequest, error: &e) as! [BibleLocation]
-            
-            if e != nil {
-                println("Failed to retrieve record: \(e!.localizedDescription)")
-                
-            } else {
-                
-                for bibleLocation in bibleLocations {
-                    managedObjectContext.deleteObject(bibleLocation)
-                }
-            }
+        //Remove the existing items
+        let managedObjectContext = self.managedObjectContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BibleLocation")
+
+        var bibleLocations: [BibleLocation]?
+        
+        do {
+            bibleLocations = try managedObjectContext.fetch(fetchRequest) as? [BibleLocation]
+        } catch let e as NSError {
+            print("Failed to retrieve record: \(e.localizedDescription)")
+            return
+        }
+        for bibleLocation in bibleLocations! {
+            managedObjectContext.delete(bibleLocation)
         }
     }
+    
 }
 
 

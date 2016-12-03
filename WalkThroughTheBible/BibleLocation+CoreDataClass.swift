@@ -1,9 +1,10 @@
 //
-//  BibleLocation.swift
-//  WalkThroughTheBible
+//  BibleLocation+CoreDataClass.swift
+//  
 //
-//  Created by Adam Zarn on 9/26/16.
-//  Copyright © 2016 Adam Zarn. All rights reserved.
+//  Created by Adam Zarn on 12/3/16.
+//
+//  This file was automatically generated and should not be edited.
 //
 
 import Foundation
@@ -11,19 +12,19 @@ import CoreData
 
 public class BibleLocation: NSManagedObject {
     
-    convenience init(name: String, key: String, lat: Double, long: Double, context : NSManagedObjectContext) {
+    convenience init(lat: Double, long: Double, key: String, name: NSData, context : NSManagedObjectContext) {
         
         if let ent = NSEntityDescription.entity(forEntityName: "BibleLocation", in: context) {
             self.init(entity: ent, insertInto: context)
-            self.name = name
-            self.key = key
             self.lat = lat
             self.long = long
+            self.key = key
+            self.name = name
         } else {
             fatalError("Unable to find Entity name!")
         }
         
     }
     
+    
 }
-

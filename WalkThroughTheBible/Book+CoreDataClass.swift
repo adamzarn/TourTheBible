@@ -2,15 +2,16 @@
 //  Book+CoreDataClass.swift
 //  
 //
-//  Created by Adam Zarn on 9/30/16.
+//  Created by Adam Zarn on 12/3/16.
 //
+//  This file was automatically generated and should not be edited.
 //
 
 import Foundation
 import CoreData
 
 public class Book: NSManagedObject {
-
+    
     convenience init(name: String, context : NSManagedObjectContext) {
         
         if let ent = NSEntityDescription.entity(forEntityName: "Book", in: context) {
@@ -23,3 +24,4 @@ public class Book: NSManagedObject {
     }
     
 }
+
