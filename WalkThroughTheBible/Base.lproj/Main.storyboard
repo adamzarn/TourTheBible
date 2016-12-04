@@ -627,24 +627,6 @@
             </objects>
             <point key="canvasLocation" x="4896.8000000000002" y="-49.025487256371818"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="NuP-OG-dgB">
-            <objects>
-                <navigationController storyboardIdentifier="leftNav" automaticallyAdjustsScrollViewInsets="NO" id="8kj-wt-jJu" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rOX-wB-mIt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="JvT-hS-sR9" kind="relationship" relationship="rootViewController" id="Lbn-Ys-hTk"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T7q-rc-DEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4154" y="-49"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Menu" width="50" height="50"/>

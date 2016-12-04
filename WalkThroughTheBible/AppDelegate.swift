@@ -19,14 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var reachability: Reachability!
     var products = [SKProduct]()
     var chapterIndex: Int = 1
+    var glossary = [BibleLocation]()
 
     //“‘’”
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        let cache = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-        URLCache.shared = cache
         
         let defaults = UserDefaults.standard
         if defaults.bool(forKey: "hasBeenLaunched") == true {
@@ -35,7 +33,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.setValue("King James Version", forKey: "selectedBible")
             defaults.setValue(true, forKey: "hasBeenLaunched")
         }
+
+        let isPreloaded = defaults.bool(forKey: "isPreloaded")
+        if !isPreloaded {
+            preloadData()
+            defaults.set(true, forKey: "isPreloaded")
+        }
         
+        let context = self.managedObjectContext
+        let request: NSFetchRequest<BibleLocation> = BibleLocation.fetchRequest()
+        
+        do {
+            let results = try context.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
+            self.glossary = results as! [BibleLocation]
+        } catch let e as NSError {
+            print("Failed to retrieve record: \(e.localizedDescription)")
+        }
+
         autoSave(delayInSeconds: 5)
         
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Papyrus", size: 21)!]
@@ -43,9 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         do {
             reachability = try Reachability()
-        } catch {
-            print("Unable to create Reachability")
-        }
+        } //catch {
+            //print("Unable to create Reachability")
+        //}
         
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.reachabilityChanged(note:)), name: ReachabilityChangedNotification,object: reachability)
         do {
@@ -197,7 +211,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Retrieve data from the source file
         if let contentsOfURL = Bundle.main.url(forResource:"KJVLocations", withExtension: "csv") {
             
-            // Remove all the menu items before preloading
             removeData()
             
             var error:NSError?
@@ -207,6 +220,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     for item in items {
                         
                         let bibleLocation = NSEntityDescription.insertNewObject(forEntityName: "BibleLocation", into: managedObjectContext) as! BibleLocation
+                        bibleLocation.key = item.key
                         bibleLocation.name = item.name
                         bibleLocation.lat = item.lat
                         bibleLocation.long = item.long

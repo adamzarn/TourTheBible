@@ -25,7 +25,6 @@ class ContainerViewController: UIViewController {
         }
     }
     var leftViewController: SidePanelViewController?
-    var centerPanelExpandedOffset: CGFloat?
     var book: String?
     
     override func viewDidLoad() {
@@ -40,11 +39,6 @@ class ContainerViewController: UIViewController {
         addChildViewController(centerNavigationController)
         
         centerNavigationController.didMove(toParentViewController: self)
-        
-        let screenSize = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        
-        centerPanelExpandedOffset = screenSize.width/2
         
     }
     
@@ -83,7 +77,7 @@ extension ContainerViewController: MapTextViewControllerDelegate {
         if (shouldExpand) {
             currentState = .LeftPanelExpanded
             
-            animateCenterPanelXPosition(targetPosition: centerNavigationController.view.frame.width - centerPanelExpandedOffset!)
+            animateCenterPanelXPosition(targetPosition: centerNavigationController.view.frame.width/2)
         } else {
             animateCenterPanelXPosition(targetPosition: 0) { finished in
                 self.currentState = .Collapsed
