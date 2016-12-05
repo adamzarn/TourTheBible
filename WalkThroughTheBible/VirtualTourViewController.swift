@@ -20,7 +20,6 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     let screenSize: CGRect = UIScreen.main.bounds
     var y: CGFloat?
     var height: CGFloat?
-    //var glossary: [[String : BibleLocation]] = []
     var selectedBible: String? = nil
     var site: String?
     var resume: Bool = true

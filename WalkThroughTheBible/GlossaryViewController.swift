@@ -17,21 +17,22 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     @IBOutlet weak var myMapView: MKMapView!
     @IBOutlet weak var myTableView: UITableView!
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let searchController = UISearchController(searchResultsController: nil)
-    
-    var sortedGlossary = [[BibleLocation]]()
-    var glossary: [[String : BibleLocation]] = []
+    var sortedGlossary = [[BibleLocation]](repeating: [], count: 26)
     var masterGlossary = [BibleLocation]()
     var filteredGlossary = [BibleLocation]()
-    let letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","Y","Z"]
+    let letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     let screenSize: CGRect = UIScreen.main.bounds
     var y: CGFloat?
     var height: CGFloat?
     var keyboardHeight: CGFloat?
-    var locations: [String : [String : [String]]] = [:]
     var selectedBible: String? = nil
     
     override func viewDidLoad() {
+        
+        masterGlossary = appDelegate.glossary
+        
         let coordinate = CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
         myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 3.0, longitudeDelta: 3.0)), animated: true)
         
@@ -52,11 +53,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
         
-//        if selectedBible == "King James Version" {
-//            locations = BibleLocationsKJV.Locations
-//            glossary = BibleLocationsKJV.Glossary
-//        }
-        
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
@@ -70,16 +66,14 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
 
-        selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
-
-        sortedGlossary = []
-        for letter in glossary {
-            let letter = letter as NSDictionary
-            var locations = letter.allValues as! [BibleLocation]
-            locations = locations.sorted { $0.name! < $1.name! }
-            sortedGlossary.append(locations)
-            for location in locations {
-                masterGlossary.append(location)
+        for bibleLocation in masterGlossary {
+            let name = bibleLocation.name!
+            var i = 0
+            for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters {
+                if name[name.startIndex] == char {
+                    sortedGlossary[i].append(bibleLocation)
+                }
+                i += 1
             }
         }
         subscribeToKeyboardNotifications()
@@ -106,14 +100,14 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             return filteredGlossary.count
         }
         
-        return glossary[section].count
+        return sortedGlossary[section].count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
             return 1
         }
-        return glossary.count
+        return sortedGlossary.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -127,7 +121,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! GlossaryCell
-        
         if searchController.isActive && searchController.searchBar.text != "" {
             cell.setUp(location: filteredGlossary[indexPath.row])
         } else {
