@@ -9,13 +9,16 @@
 import Foundation
 import MapKit
 import UIKit
+import CoreData
 
 class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
-    @IBOutlet weak var myMapView: MKMapView!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    var context: NSManagedObjectContext? = nil
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     let screenSize: CGRect = UIScreen.main.bounds
     var y: CGFloat?
@@ -23,7 +26,10 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     var selectedBible: String? = nil
     var site: String?
     var resume: Bool = true
-    var count: Int = 1
+    var siteCount: Int = 1
+    var hotelCount: Int = 1
+    var currentBook: Book? = nil
+    var pinsForBook = [Pin]()
     
     let sites = [
         ["Caesarea","Mount Carmel","Megiddo","Mount Arbel"]
@@ -59,24 +65,34 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     
     override func viewDidLoad() {
         
+        context = appDelegate.managedObjectContext
+        
         let coordinate = CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
-        myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)), animated: true)
+        appDelegate.myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)), animated: true)
         
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
         
-        myMapView.delegate = self
+        appDelegate.myMapView.delegate = self
         
-        myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!/2)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!/2)
+        appDelegate.myMapView.mapType = MKMapType.standard
+        view.addSubview(appDelegate.myMapView)
         segmentedControl.frame = CGRect(x: 5, y: y! + height!/2 + 5, width: screenSize.width - 10, height: 30)
         myTableView.frame = CGRect(x: 0.0, y: y! + height!/2 + 40, width: screenSize.width, height: height!/2 - 40)
         
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
-        
-//        if selectedBible == "King James Version" {
-//            glossary = BibleLocationsKJV.Glossary
-//        }
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if !view.subviews.contains(appDelegate.myMapView) {
+            view.addSubview(appDelegate.myMapView)
+        }
+        self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
+        getCurrentBook()
+        getPinsForVirtualTour()
+        addSavedPinsToMap()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -150,10 +166,10 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         }
         
         for i in 0 ..< data.count {
-            let space = (title! as NSString).range(of: " ")
-            let index = title!.index(title!.startIndex, offsetBy: space.location + 1)
-            if data[i].contains(title!.substring(from:index)) {
-                pinView.pinTintColor = colors[i]
+            for item in data[i] {
+                if title!.contains(item) {
+                    pinView.pinTintColor = colors[i]
+                }
             }
         }
         
@@ -164,26 +180,34 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        count = 0
+        if segmentedControl.selectedSegmentIndex == 0 {
+            siteCount = 0
+        } else {
+            hotelCount = 0
+        }
         for i in 0 ..< indexPath.section {
             if segmentedControl.selectedSegmentIndex == 0 {
-                count += sites[i].count
+                siteCount += sites[i].count
             } else {
-                count += hotels[i].count
+                hotelCount += hotels[i].count
             }
         }
-        count += indexPath.row + 1
+        if segmentedControl.selectedSegmentIndex == 0 {
+            siteCount += indexPath.row + 1
+        } else {
+            hotelCount += indexPath.row + 1
+        }
         plot(section:indexPath.section,row:indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
         updateCount()
     }
-    
+
     func setUpMap(name: String, lat: Double, long: Double) {
         
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        myMapView.setCenter(coordinate, animated: true)
+        appDelegate.myMapView.setCenter(coordinate, animated: true)
         
-        let allAnnotations = myMapView.annotations
+        let allAnnotations = appDelegate.myMapView.annotations
         var shouldAddAnnotation = true
         var alreadyAddedAnnotation: MKAnnotation?
         
@@ -199,14 +223,76 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
             let annotation = MKPointAnnotation()
             
             annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            annotation.title = "\(self.count). " + name
-            myMapView.addAnnotation(annotation)
-            myMapView.selectAnnotation(annotation, animated: false)
+            annotation.title = name
+            appDelegate.myMapView.addAnnotation(annotation)
+            appDelegate.myMapView.selectAnnotation(annotation, animated: false)
             
         } else {
             
-            myMapView.selectAnnotation(alreadyAddedAnnotation!, animated: false)
+            appDelegate.myMapView.selectAnnotation(alreadyAddedAnnotation!, animated: false)
             
+        }
+        
+    }
+    
+    func getCurrentBook() {
+        
+        let request: NSFetchRequest<Book> = Book.fetchRequest()
+        
+        var name: String?
+        if segmentedControl.selectedSegmentIndex == 0 {
+            name = "Sites"
+        } else {
+            name = "Hotels"
+        }
+        
+        do {
+            let results = try context!.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
+            
+            for book in results as! [Book] {
+                if book.name == name {
+                    currentBook = book
+                    return
+                }
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        let newBook = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context!) as! Book
+        newBook.name = name
+        currentBook = newBook
+        return
+        
+    }
+    
+    func getPinsForVirtualTour() {
+        
+        let request: NSFetchRequest<Pin> = Pin.fetchRequest()
+
+        let p = NSPredicate(format: "pinToBook = %@", currentBook!)
+        request.predicate = p
+        
+        pinsForBook = []
+        do {
+            let results = try context!.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
+            pinsForBook = results as! [Pin]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    func addSavedPinsToMap() {
+        
+        self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
+        
+        for pin in pinsForBook {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
+            annotation.title = pin.title
+            appDelegate.myMapView.addAnnotation(annotation)
         }
         
     }
@@ -218,8 +304,15 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
         let removePins = UIAlertAction(title: "Remove Pins from Map", style: .default) { (action) in
-            self.myMapView.removeAnnotations(self.myMapView.annotations)
-            
+            self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
+            for pin in self.pinsForBook {
+                self.context!.delete(pin)
+            }
+            if self.segmentedControl.selectedSegmentIndex == 0 {
+                self.siteCount = 1
+            } else {
+                self.hotelCount = 1
+            }
         }
         
         alertController.addAction(cancelAction)
@@ -231,16 +324,20 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     
     @IBAction func playButtonPressed(_ sender: Any) {
         var index = 1
+        var localCount = 0
+        
         var data = sites
+        localCount = siteCount
         if segmentedControl.selectedSegmentIndex == 1 {
             data = hotels
+            localCount = hotelCount
         }
         
         for i in 0 ..< data.count {
             for j in 0 ..< data[i].count {
                 let section = i
                 let row = j
-                if index == count {
+                if index == localCount {
                     plot(section:section,row:row)
                     updateCount()
                     return
@@ -251,35 +348,77 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     }
     
     func updateCount() {
+        var localCount = 0
+        
         var data = sites
+        localCount = siteCount
         if segmentedControl.selectedSegmentIndex == 1 {
             data = hotels
+            localCount = hotelCount
         }
         var totalItems = 0
         for item in data {
             totalItems += item.count
         }
-        count += 1
-        if count - 1 == totalItems {
-            count = 1
+        
+        localCount += 1
+        if localCount - 1 == totalItems {
+            localCount = 1
         }
+        
+        if segmentedControl.selectedSegmentIndex == 0 {
+            siteCount = localCount
+        } else {
+            hotelCount = localCount
+        }
+        
+        
     }
     
     func plot(section:Int,row:Int) {
         if segmentedControl.selectedSegmentIndex == 0 {
-            //let siteToPlot = sites[section][row]
-            //let location = tourLocations[siteToPlot]
-            //setUpMap(name: (location?.name!)!, lat: (location?.lat!)!, long: (location?.long!)!)
+            let siteToPlot = sites[section][row]
+            for location in tourLocations {
+                if siteToPlot == String(describing: location[0]) {
+                    setUpMap(name: String(describing: location[1]), lat: location[2] as! Double, long: location[3] as! Double)
+                    let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
+                    newPin.setValue(location[2], forKey: "lat")
+                    newPin.setValue(location[3], forKey: "long")
+                    newPin.setValue(location[1], forKey: "title")
+                    newPin.setValue(currentBook, forKey: "pinToBook")
+                    pinsForBook.append(newPin)
+                    
+                    appDelegate.saveContext()
+                }
+            }
         } else {
-            //let siteToPlot = hotels[section][row]
-            //let location = hotelLocations[siteToPlot]
-            //setUpMap(name: (location?.name!)!, lat: (location?.lat!)!, long: (location?.long!)!)
+            let siteToPlot = hotels[section][row]
+            for location in hotelLocations {
+                if siteToPlot == String(describing: location[0]) {
+                    setUpMap(name: String(describing: location[1]), lat: location[2] as! Double, long: location[3] as! Double)
+                    let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
+                    newPin.setValue(location[2], forKey: "lat")
+                    newPin.setValue(location[3], forKey: "long")
+                    newPin.setValue(location[1], forKey: "title")
+                    newPin.setValue(currentBook, forKey: "pinToBook")
+                    pinsForBook.append(newPin)
+                    
+                    appDelegate.saveContext()
+                }
+            }
+
         }
         
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
-        self.myMapView.removeAnnotations(self.myMapView.annotations)
+        
+        self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
+        
+        getCurrentBook()
+        getPinsForVirtualTour()
+        addSavedPinsToMap()
+        
         myTableView.reloadData()
     }
     
@@ -305,54 +444,56 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     ,"http://www.danhotels.co.il/JerusalemHotels/DanJerusalemHotel/"
     ]
     
-//    let tourLocations = ["Caesarea" : BibleLocation(key: "Caesarea", name: "Caesarea", lat: 32.499545, long: 34.892185)
-//    ,"Mount Carmel" : BibleLocation(key: "Mount Carmel", name: "Mount Carmel", lat: 32.729350, long: 35.049790)
-//    ,"Megiddo" : BibleLocation(key: "Megiddo", name: "Megiddo", lat: 32.584183, long: 35.182292)
-//        ,"Mount Arbel" : BibleLocation(key: "Mount Arbel", name: "Mount Arbel", lat: 32.823037, long: 35.499315)
-//        ,"Sea of Galilee" : BibleLocation(key: "Sea of Galilee", name: "Sea of Galilee", lat: 32.806776, long: 35.589361)
-//        ,"Mount of Beatitudes" : BibleLocation(key: "Mount of Beatitudes", name: "Mount of Beatitudes", lat: 32.881956, long: 35.557337)
-//        ,"Capernaum" : BibleLocation(key: "Capernaum", name: "Capernaum", lat: 32.880594, long: 35.575158)
-//        ,"Magdala" : BibleLocation(key: "Magdala", name: "Magdala", lat: 32.847335, long: 35.522936)
-//        ,"Ancient Galilee Boat" : BibleLocation(key: "Ancient Galilee Boat", name: "Ancient Galilee Boat", lat: 32.844281, long: 35.525166)
-//        ,"Jordan River" : BibleLocation(key: "Jordan River", name: "Jordan River", lat: 32.711111, long: 35.571389)
-//        ,"Chorazin" : BibleLocation(key: "Chorazin", name: "Chorazin", lat: 32.909092, long: 35.552923)
-//        ,"Dan" : BibleLocation(key: "Dan", name: "Dan", lat: 33.248660, long: 35.652483)
-//        ,"Caesarea Philippi" : BibleLocation(key: "Caesarea Philippi", name: "Caesarea Philippi", lat: 33.248060, long: 35.694637)
-//        ,"Golan Heights" : BibleLocation(key: "Golan Heights", name: "Golan Heights", lat: 32.800076, long: 35.937301)
-//        ,"Kursi" : BibleLocation(key: "Kursi", name: "Kursi", lat: 32.838888, long: 35.665054)
-//        ,"Spring of Harod" : BibleLocation(key: "Spring of Harod", name: "Spring of Harod", lat: 32.5506, long: 35.3569)
-//        ,"Bethshan" : BibleLocation(key: "Bethshan", name: "Bethshan", lat: 32.504238, long: 35.503077)
-//        ,"Jericho" : BibleLocation(key: "Jericho", name: "Jericho", lat: 31.870601, long: 35.443864)
-//        ,"Wadi Qilt" : BibleLocation(key: "Wadi Qilt", name: "Wadi Qilt", lat: 31.844316, long: 35.414257)
-//        ,"Qumran" : BibleLocation(key: "Qumran", name: "Qumran", lat: 31.740833, long: 35.458611)
-//        ,"Masada" : BibleLocation(key: "Masada", name: "Masada", lat: 31.315556, long: 35.353889)
-//        ,"Ein Gedi" : BibleLocation(key: "Ein Gedi", name: "Ein Gedi", lat: 31.461525, long: 35.392411)
-//        ,"Dead Sea" : BibleLocation(key: "Dead Sea", name: "Dead Sea", lat: 31.538593, long: 35.482268)
-//        ,"Jerusalem" : BibleLocation(key: "Jerusalem", name: "Jerusalem", lat: 31.777444, long: 35.234935)
-//        ,"Mount Scopus" : BibleLocation(key: "Mount Scopus", name: "Mount Scopus", lat: 31.7925, long: 35.244167)
-//        ,"Jaffa Gate" : BibleLocation(key: "Jaffa Gate", name: "Jaffa Gate", lat: 31.776528, long: 35.227694)
-//        ,"Southern Temple Steps" : BibleLocation(key: "Southern Temple Steps", name: "Southern Temple Steps", lat: 31.775761, long: 35.236106)
-//        ,"Wailing Wall" : BibleLocation(key: "Wailing Wall", name: "Wailing Wall", lat: 31.7767, long: 35.2345)
-//        ,"City of David" : BibleLocation(key: "City of David", name: "City of David", lat: 31.773611, long: 35.235556)
-//        ,"Upper Room" : BibleLocation(key: "Upper Room", name: "Upper Room", lat: 31.771461, long: 35.229324)
-//        ,"Bethlehem" : BibleLocation(key: "Bethlehem", name: "Bethlehem", lat: 31.705361, long: 35.210266)
-//        ,"Shepherds Field" : BibleLocation(key: "Shepherds Field", name: "Shepherds Field", lat: 31.704323, long: 35.207700)
-//        ,"Herodium" : BibleLocation(key: "Herodium", name: "Herodium", lat: 31.665833, long: 35.241389)
-//        ,"Church of All Nations" : BibleLocation(key: "Church of All Nations", name: "Church of All Nations", lat: 31.779227, long: 35.239628)
-//        ,"Garden of Gethsemane" : BibleLocation(key: "Garden of Gethsemane", name: "Garden of Gethsemane", lat: 31.779660, long: 35.239605)
-//        ,"Mount of Olives" : BibleLocation(key: "Mount of Olives", name: "Mount of Olives", lat: 31.778095, long: 35.247198)
-//        ,"Beersheba" : BibleLocation(key: "Beersheba", name: "Beersheba", lat: 31.244952, long: 34.840889)
-//        ,"Valley of Elah" : BibleLocation(key: "Valley of Elah", name: "Valley of Elah", lat: 31.690629, long: 34.963136)
-//        ,"Beth Shemesh" : BibleLocation(key: "Beth Shemesh", name: "Beth Shemesh", lat: 31.752748, long: 34.976609)
-//        ,"Temple Mount" : BibleLocation(key: "Temple Mount", name: "Temple Mount", lat: 31.77765, long: 35.23547)
-//        ,"Pool of Bethesda" : BibleLocation(key: "Pool of Bethesda", name: "Pool of Bethesda", lat: 31.781248, long: 35.236613)
-//        ,"Yad Vashem" : BibleLocation(key: "Yad Vashem", name: "Yad Vashem", lat: 31.774167, long: 35.175556)
-//        ,"Church of the Holy Sepulchre" : BibleLocation(key: "Church of the Holy Sepulchre", name: "Church of the Holy Sepulchre", lat: 31.778444, long: 35.22975)
-//    ,"Garden Tomb"  : BibleLocation(key: "Garden Tomb", name: "Garden Tomb", lat: 31.783853, long: 35.229978)] as [String:BibleLocation]
-//    
-//    let hotelLocations = ["Dan Panorama Tel Aviv" : BibleLocation(key: "Dan Panorama Tel Aviv", name: "Dan Panorama Tel Aviv", lat: 32.064581, long: 34.763070)
-//        ,"Gai Beach Hotel" : BibleLocation(key: "Gai Beach Hotel", name: "Gai Beach Hotel", lat: 32.779675, long: 35.544929)
-//        ,"Isrotel Dead Sea" : BibleLocation(key: "Isrotel Dead Sea", name: "Isrotel Dead Sea", lat: 31.192871, long: 35.361051)
-//    ,"Dan Jerusalem" : BibleLocation(key: "Dan Jerusalem", name: "Dan Jerusalem", lat: 31.797884, long: 35.235659)] as [String:BibleLocation]
+    let tourLocations = [
+        ["Caesarea","Caesarea", 32.499545, 34.892185]
+        ,["Mount Carmel","Mount Carmel", 32.729350, 35.049790]
+        ,["Megiddo","Megiddo",32.584183,35.182292]
+        ,["Mount Arbel","Mount Arbel",32.823037,35.499315]
+        ,["Sea of Galilee","Sea of Galilee",32.806776,35.589361]
+        ,["Mount of Beatitudes","Mount of Beatitudes",32.881956,35.557337]
+        ,["Capernaum","Capernaum",32.880594,35.575158]
+        ,["Magdala","Magdala",32.847335,35.522936]
+        ,["Ancient Galilee Boat","Ancient Galilee Boat",32.844281,35.525166]
+        ,["Jordan River","Jordan River",32.711111,35.571389]
+        ,["Chorazin","Chorazin",32.909092,35.552923]
+        ,["Dan","Dan",33.24866,35.652483]
+        ,["Caesarea Philippi","Caesarea Philippi",33.24806,35.694637]
+        ,["Golan Heights","Golan Heights",32.800076,35.937301]
+        ,["Kursi","Kursi",32.838888,35.665054]
+        ,["Spring of Harod","Spring of Harod",32.5506,35.3569]
+        ,["Bethshan","Bethshan",32.504238,35.503077]
+        ,["Jericho","Jericho",31.870601,35.443864]
+        ,["Wadi Qilt","Wadi Qilt",31.844316,35.414257]
+        ,["Qumran","Qumran",31.740833,35.458611]
+        ,["Masada","Masada",31.315556,35.353889]
+        ,["Ein Gedi","Ein Gedi",31.461525,35.392411]
+        ,["Dead Sea","Dead Sea",31.538593,35.482268]
+        ,["Jerusalem","Jerusalem",31.777444,35.234935]
+        ,["Mount Scopus","Mount Scopus",31.7925,35.244167]
+        ,["Jaffa Gate","Jaffa Gate",31.776528,35.227694]
+        ,["Southern Temple Steps","Southern Temple Steps",31.775761,35.236106]
+        ,["Wailing Wall","Wailing Wall",31.7767,35.2345]
+        ,["City of David","City of David",31.773611,35.235556]
+        ,["Upper Room","Upper Room",31.771461,35.229324]
+        ,["Bethlehem","Bethlehem",31.705361,35.210266]
+        ,["Shepherds Field","Shepherds Field",31.704323,35.2077]
+        ,["Herodium","Herodium",31.665833,35.241389]
+        ,["Church of All Nations","Church of All Nations",31.779227,35.239628]
+        ,["Garden of Gethsemane","Garden of Gethsemane",31.77966,35.239605]
+        ,["Mount of Olives","Mount of Olives",31.778095,35.247198]
+        ,["Beersheba","Beersheba",31.244952,34.840889]
+        ,["Valley of Elah","Valley of Elah",31.690629,34.963136]
+        ,["Beth Shemesh","Beth Shemesh",31.752748,34.976609]
+        ,["Temple Mount","Temple Mount",31.77765,35.23547]
+        ,["Pool of Bethesda","Pool of Bethesda",31.781248,35.236613]
+        ,["Yad Vashem","Yad Vashem",31.774167,35.175556]
+        ,["Church of the Holy Sepulchre","Church of the Holy Sepulchre",31.778444,35.22975]
+        ,["Garden Tomb" ,"Garden Tomb",31.783853,35.229978]]
+    
+    
+    let hotelLocations = [["Dan Panorama Tel Aviv","Dan Panorama Tel Aviv",32.064581,34.763070]
+        ,["Gai Beach Hotel","Gai Beach Hotel",32.779675,35.544929]
+        ,["Isrotel Dead Sea","Isrotel Dead Sea",31.192871,35.361051]
+        ,["Dan Jerusalem","Dan Jerusalem",31.797884,35.235659]]
     
 }

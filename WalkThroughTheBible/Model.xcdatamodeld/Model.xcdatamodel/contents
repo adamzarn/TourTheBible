@@ -8,7 +8,7 @@
     </entity>
     <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="bookToPin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pin" inverseName="pinToBook" inverseEntity="Pin" syncable="YES"/>
+        <relationship name="bookToPin" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Pin" inverseName="pinToBook" inverseEntity="Pin" syncable="YES"/>
     </entity>
     <entity name="Pin" representedClassName="Pin" syncable="YES" codeGenerationType="class">
         <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -17,8 +17,8 @@
         <relationship name="pinToBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="bookToPin" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="Pin" positionX="-54" positionY="9" width="128" height="105"/>
-        <element name="BibleLocation" positionX="-45" positionY="54" width="128" height="105"/>
+        <element name="BibleLocation" positionX="70" positionY="279" width="128" height="105"/>
+        <element name="Book" positionX="-20" positionY="87" width="128" height="73"/>
+        <element name="Pin" positionX="160" positionY="57" width="128" height="105"/>
     </elements>
 </model>

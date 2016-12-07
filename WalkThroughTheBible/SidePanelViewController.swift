@@ -11,10 +11,12 @@ import UIKit
 @objc
 protocol SidePanelViewControllerDelegate {
     @objc optional func loadText(chapterIndex: Int, shouldToggle: Bool)
+    @objc optional func booksButtonPressed()
 }
 
 class SidePanelViewController: UIViewController {
     
+    @IBOutlet weak var booksButton: UIButton!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var myTableView: UITableView!
@@ -25,8 +27,14 @@ class SidePanelViewController: UIViewController {
         
         let index = NSIndexPath(row: appDelegate.chapterIndex-1, section: 0) as IndexPath
         myTableView.scrollToRow(at: index, at: UITableViewScrollPosition.middle, animated: false)
+        booksButton.titleLabel?.font = UIFont(name: "Papyrus", size: 24.0)
+        self.automaticallyAdjustsScrollViewInsets = false
+        
     }
     
+    @IBAction func booksButtonPressed(_ sender: Any) {
+        delegate?.booksButtonPressed!()
+    }
 }
 
 // MARK: Table View Data Source
@@ -35,6 +43,10 @@ extension SidePanelViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Chapters"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

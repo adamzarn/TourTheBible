@@ -20,11 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var products = [SKProduct]()
     var chapterIndex: Int = 1
     var glossary = [BibleLocation]()
+    var myMapView: MKMapView!
 
     //“‘’”
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        myMapView = MKMapView()
         
         let defaults = UserDefaults.standard
         if defaults.bool(forKey: "hasBeenLaunched") == true {

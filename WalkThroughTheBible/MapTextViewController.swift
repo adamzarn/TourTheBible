@@ -18,11 +18,10 @@ protocol MapTextViewControllerDelegate {
     @objc optional func collapseSidePanels()
 }
 
-class MapTextViewController: UIViewController, UITextViewDelegate {
+class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate {
     
     //IBOutlets********************************************************************************
-    
-    @IBOutlet weak var myMapView: MKMapView!
+
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var aiv: UIActivityIndicatorView!
@@ -30,6 +29,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
     
     //Controller Variables*********************************************************************
     
+    var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let defaults = UserDefaults.standard
     
@@ -43,21 +43,27 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
     var selectedBible: String?
     var delegate: MapTextViewControllerDelegate?
     var locations: [String : [String : [String]]]?
-    //var glossary: [[String : BibleLocation]]?
     var pinsForBook = [Pin]()
     var currentBook: Book? = nil
     var lastAnnotation: MKAnnotation?
     var shouldToggle = false
+    var currentLocations = [BibleLocation]()
     
     //Life Cycle Functions*********************************************************************
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        context = appDelegate.managedObjectContext
+        
         let screenSize: CGRect = UIScreen.main.bounds
         let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         let height = screenSize.height - y
-        myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height/2)
+        
+        appDelegate.myMapView.delegate = self
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height/2)
+        appDelegate.myMapView.mapType = MKMapType.standard
+        view.addSubview(appDelegate.myMapView)
         myTextView.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
         aiv.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
         
@@ -65,18 +71,17 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
         if selectedBible == "King James Version" {
             locations = BibleLocationsKJV.Locations
-            //glossary = BibleLocationsKJV.Glossary
         }
         
         if let location = defaults.dictionary(forKey: "\(book) location") {
             let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location["lat"] as! Double, location["long"] as! Double)
             let span: MKCoordinateSpan = MKCoordinateSpanMake(location["latDelta"] as! Double, location["longDelta"] as! Double)
             let region: MKCoordinateRegion = MKCoordinateRegionMake(center, span)
-            myMapView?.setRegion(region, animated: true)
-            myMapView?.setCenter(center, animated: false)
+            appDelegate.myMapView?.setRegion(region, animated: true)
+            appDelegate.myMapView?.setCenter(center, animated: false)
         } else {
             let coordinate = CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
-            myMapView?.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 3.0, longitudeDelta: 3.0)), animated: true)
+            appDelegate.myMapView?.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 3.0, longitudeDelta: 3.0)), animated: true)
         }
         
         myTextView.delegate = self
@@ -88,16 +93,11 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
         self.tabBarController?.tabBar.isUserInteractionEnabled = false
         
         //Set starting chapter
-        
         if let chapter = defaults.value(forKey: book!) {
             chapterIndex = chapter as? Int
         } else {
             chapterIndex = 1
         }
-        
-        getCurrentBook()
-        getPinsForBook()
-        addSavedPinsToMap()
         
         loadText(chapterIndex: chapterIndex!, shouldToggle: false)
         
@@ -114,6 +114,10 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
         
         self.navItem.title = "\(book!) \(String(describing: chapterIndex!))"
         
+    }
+    
+    deinit {
+        print("MapTextViewController destroyed.")
     }
     
     func resizeImage(image: UIImage) -> UIImage {
@@ -152,39 +156,37 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         myTextView.isScrollEnabled = false
         myTextView.isEditable = false
+        
+        getCurrentBook()
+        getPinsForBook()
+        addSavedPinsToMap()
+        
     }
     
     //Text View********************************************************************************
 
-//    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-//
-//        let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
-//        let letters = BibleLocationsKJV.Letters as NSDictionary
-//        let firstLetter = decodedURL[decodedURL.startIndex]
-//        let index = letters[String(firstLetter)] as! Int
-//
-//        if let location = glossary?[index][decodedURL] {
-//
-//            setUpMap(name: location.name!, lat: location.lat!, long: location.long!)
-//
-//            let context = appDelegate.managedObjectContext
-//
-//            let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context) as! Pin
-//            newPin.lat = location.lat!
-//            newPin.long = location.long!
-//            newPin.title = location.name!
-//            newPin.pinToBook = currentBook
-//            pinsForBook.append(newPin)
-//
-//            appDelegate.saveContext()
-//
-//            return true
-//
-//        } else {
-//            return false
-//        }
-//        
-//    }
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+
+        let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
+        
+        for location in currentLocations {
+            if decodedURL == location.key {
+                setUpMap(name: location.name!, lat: location.lat, long: location.long)
+                
+                let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
+                newPin.lat = location.lat
+                newPin.long = location.long
+                newPin.title = location.name!
+                newPin.pinToBook = currentBook
+                pinsForBook.append(newPin)
+                
+                appDelegate.saveContext()
+                
+                return true
+            }
+        }
+        return false
+    }
     
     //IBActions********************************************************************************
 
@@ -198,9 +200,9 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
     func setUpMap(name: String, lat: Double, long: Double) {
 
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        myMapView.setCenter(coordinate, animated: true)
+        appDelegate.myMapView.setCenter(coordinate, animated: true)
 
-        let allAnnotations = myMapView.annotations
+        let allAnnotations = appDelegate.myMapView.annotations
         var shouldAddAnnotation = true
         var alreadyAddedAnnotation: MKAnnotation?
 
@@ -212,15 +214,15 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
         }
 
         if !shouldAddAnnotation {
-            myMapView.removeAnnotation(alreadyAddedAnnotation!)
+            appDelegate.myMapView.removeAnnotation(alreadyAddedAnnotation!)
         }
 
         let annotation = MKPointAnnotation()
 
         annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         annotation.title = name
-        myMapView.addAnnotation(annotation)
-        myMapView.selectAnnotation(annotation, animated: false)
+        appDelegate.myMapView.addAnnotation(annotation)
+        appDelegate.myMapView.selectAnnotation(annotation, animated: false)
         lastAnnotation = annotation
         
     }
@@ -246,17 +248,17 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
         return swipe
     }
     
-    @IBAction func booksButtonPressed(_ sender: Any) {
+    func booksButtonPressed() {
+        delegate?.toggleLeftPanel?()
         dismiss(animated: true, completion: nil)
     }
     
     func getCurrentBook() {
 
-        let context =  appDelegate.managedObjectContext
         let request: NSFetchRequest<Book> = Book.fetchRequest()
 
         do {
-            let results = try context.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
+            let results = try context!.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
 
             for book in results as! [Book] {
                 if book.name == self.book! {
@@ -269,7 +271,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
             print("Could not fetch \(error), \(error.userInfo)")
         }
 
-        let newBook = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context) as! Book
+        let newBook = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context!) as! Book
         newBook.name = book
         currentBook = newBook
         return
@@ -278,7 +280,6 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
 
     func getPinsForBook() {
 
-        let context = appDelegate.managedObjectContext
         let request: NSFetchRequest<Pin> = Pin.fetchRequest()
 
         let p = NSPredicate(format: "pinToBook = %@", currentBook!)
@@ -286,7 +287,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
 
         pinsForBook = []
         do {
-            let results = try context.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
+            let results = try context!.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
             pinsForBook = results as! [Pin]
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
@@ -295,15 +296,38 @@ class MapTextViewController: UIViewController, UITextViewDelegate {
     }
 
     func addSavedPinsToMap() {
+    
+        self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
+        
         for pin in pinsForBook {
 
             let annotation = MKPointAnnotation()
 
             annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
             annotation.title = pin.title
-            myMapView.addAnnotation(annotation)
+            appDelegate.myMapView.addAnnotation(annotation)
             
         }
+    }
+    
+    @IBAction func clearMapButtonPressed(_ sender: AnyObject) {
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        }
+        let removePins = UIAlertAction(title: "Remove Pins from Map", style: .default) { (action) in
+            self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
+            for pin in self.pinsForBook {
+                self.context!.delete(pin)
+            }
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(removePins)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
     }
 
 }
@@ -372,12 +396,23 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         attributedText?.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Light", size:16.0)!, range: allTextRange)
 
         let places = locations?[book!]?[String(describing: chapterIndex)]!
+        
+        currentLocations = []
+        
         //var keys = [] as [String]
         //for places in glossary {
 
         if (places?.count)! > 0 {
             for place in places! {
             //for (key, _) in places {
+                
+                for location in appDelegate.glossary {
+                    if place == location.key {
+                        currentLocations.append(location)
+                        continue
+                    }
+                }
+                
                 //var range = (rawText as NSString).range(of: key as String)
                 var range = (rawText! as NSString).range(of: place)
                 var offset = 0
@@ -447,7 +482,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         if shouldToggle {
             delegate?.toggleLeftPanel?()
         }
-        
+
     }
 
 }

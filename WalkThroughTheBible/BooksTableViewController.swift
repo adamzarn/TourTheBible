@@ -52,6 +52,10 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
                                                object: nil)
 
     }
+    
+    deinit {
+        print("BooksTableViewController destroyed.")
+    }
 
     func reachabilityChanged() {
         reload()
@@ -209,9 +213,6 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         let productID = "AJZ.WalkThroughTheBible.\(books[indexPath.section][indexPath.row])"
         
         if !["Exodus","Numbers","Acts"].contains(books[indexPath.section][indexPath.row]) || defaults.bool(forKey: productID) {
-        
-            let vc = storyboard?.instantiateViewController(withIdentifier: "MapTextViewController") as! MapTextViewController
-            vc.book = books[indexPath.section][indexPath.row]
             
             let containerViewController = ContainerViewController()
             containerViewController.book = books[indexPath.section][indexPath.row]
@@ -230,9 +231,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
             let reachability = Reachability()
             let networkStatus: Int = reachability!.currentReachabilityStatus.hashValue
             return (networkStatus != 0)
-        } //catch {
-            //return false
-        //}
+        }
     }
     
     

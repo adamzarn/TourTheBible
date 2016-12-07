@@ -9,14 +9,15 @@
 import Foundation
 import MapKit
 import UIKit
+import CoreData
 
 class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate {
     
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
-    @IBOutlet weak var myMapView: MKMapView!
     @IBOutlet weak var myTableView: UITableView!
     
+    var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let searchController = UISearchController(searchResultsController: nil)
     var sortedGlossary = [[BibleLocation]](repeating: [], count: 26)
@@ -28,18 +29,23 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     var height: CGFloat?
     var keyboardHeight: CGFloat?
     var selectedBible: String? = nil
+    var pinsForBook = [Pin]()
+    var currentBook: Book? = nil
     
     override func viewDidLoad() {
         
+        context = appDelegate.managedObjectContext
         masterGlossary = appDelegate.glossary
         
         let coordinate = CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
-        myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 3.0, longitudeDelta: 3.0)), animated: true)
+        appDelegate.myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 3.0, longitudeDelta: 3.0)), animated: true)
         
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
         
-        myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!/2)
+        appDelegate.myMapView.delegate = self
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!/2)
+        appDelegate.myMapView.mapType = MKMapType.standard
         myTableView.frame = CGRect(x: 0.0, y: y! + height!/2, width: screenSize.width, height: height!/2)
         
         searchController.delegate = self
@@ -50,6 +56,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         searchController.hidesNavigationBarDuringPresentation = false
         
         self.navigationItem.titleView = searchController.searchBar
+        self.automaticallyAdjustsScrollViewInsets = false
         
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
         
@@ -64,8 +71,23 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         myTableView.setContentOffset(CGPoint.zero, animated: false)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if !view.subviews.contains(appDelegate.myMapView) {
+            view.addSubview(appDelegate.myMapView)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-
+        
+        if !view.subviews.contains(appDelegate.myMapView) {
+            view.addSubview(appDelegate.myMapView)
+        }
+        self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
+        
+        getCurrentBook()
+        getPinsForGlossary()
+        addSavedPinsToMap()
+        
         for bibleLocation in masterGlossary {
             let name = bibleLocation.name!
             var i = 0
@@ -79,12 +101,69 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         subscribeToKeyboardNotifications()
     }
     
+    func getCurrentBook() {
+        
+        let request: NSFetchRequest<Book> = Book.fetchRequest()
+        
+        do {
+            let results = try context!.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
+            
+            for book in results as! [Book] {
+                if book.name == "Glossary" {
+                    currentBook = book
+                    return
+                }
+            }
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        let newBook = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context!) as! Book
+        newBook.name = "Glossary"
+        currentBook = newBook
+        return
+        
+    }
+    
+    func getPinsForGlossary() {
+        
+        let request: NSFetchRequest<Pin> = Pin.fetchRequest()
+
+        let p = NSPredicate(format: "pinToBook = %@", currentBook!)
+        request.predicate = p
+        
+        pinsForBook = []
+        do {
+            let results = try context!.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
+            pinsForBook = results as! [Pin]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    func addSavedPinsToMap() {
+        
+        self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
+
+        for pin in pinsForBook {
+            
+            let annotation = MKPointAnnotation()
+            
+            annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
+            annotation.title = pin.title
+            appDelegate.myMapView.addAnnotation(annotation)
+            
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         unsubscribeFromKeyboardNotifications()
     }
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        if searchController.isActive && searchController.searchBar.text != "" {
+        if searchController.isActive {
             return nil
         }
         return letters
@@ -154,6 +233,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         if searchController.isActive && searchController.searchBar.text != "" {
             let location = filteredGlossary[indexPath.row] as BibleLocation
             setUpMap(name: location.name!, lat: location.lat, long: location.long)
+            savePin(location: location)
             searchController.dismiss(animated: true, completion: nil)
             searchController.searchBar.text = ""
             y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
@@ -161,20 +241,35 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             myTableView.frame = CGRect(x: 0.0, y: y! + height!/2, width: screenSize.width, height: height!/2)
             myTableView.reloadData()
         } else {
+            
             let location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
             setUpMap(name: location.name!, lat: location.lat, long: location.long)
+            savePin(location: location)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
+    func savePin(location: BibleLocation) {
+        
+        let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
+        newPin.setValue(location.lat, forKey: "lat")
+        newPin.setValue(location.long, forKey: "long")
+        newPin.setValue(location.name, forKey: "title")
+        newPin.setValue(currentBook, forKey: "pinToBook")
+        pinsForBook.append(newPin)
+
+        appDelegate.saveContext()
+        
+    }
+    
     func setUpMap(name: String, lat: Double, long: Double) {
         
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        myMapView.setCenter(coordinate, animated: true)
+        appDelegate.myMapView.setCenter(coordinate, animated: true)
 
-        let allAnnotations = myMapView.annotations
+        let allAnnotations = appDelegate.myMapView.annotations
         var shouldAddAnnotation = true
         var alreadyAddedAnnotation: MKAnnotation?
         
@@ -191,12 +286,12 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             
             annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
             annotation.title = name
-            myMapView.addAnnotation(annotation)
-            myMapView.selectAnnotation(annotation, animated: false)
+            appDelegate.myMapView.addAnnotation(annotation)
+            appDelegate.myMapView.selectAnnotation(annotation, animated: false)
             
         } else {
             
-            myMapView.selectAnnotation(alreadyAddedAnnotation!, animated: false)
+            appDelegate.myMapView.selectAnnotation(alreadyAddedAnnotation!, animated: false)
             
         }
         
@@ -209,8 +304,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
         let removePins = UIAlertAction(title: "Remove Pins from Map", style: .default) { (action) in
-            self.myMapView.removeAnnotations(self.myMapView.annotations)
-
+            self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
+            for pin in self.pinsForBook {
+                self.context!.delete(pin)
+            }
         }
         
         alertController.addAction(cancelAction)
@@ -246,12 +343,14 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
         
+        appDelegate.myMapView.isHidden = true
         myTableView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!)
         clearMapButton.isEnabled = false
         myTableView.setContentOffset(CGPoint.zero, animated: false)
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        appDelegate.myMapView.isHidden = false
         clearMapButton.isEnabled = true
     }
     

@@ -140,10 +140,6 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="T0V-SI-4lN"/>
                                 </connections>
                             </textView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BwI-6I-fSx">
-                                <rect key="frame" x="0.0" y="50" width="375" height="279"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2gS-Ur-rNS">
                                 <rect key="frame" x="177" y="353" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -157,16 +153,15 @@
                                 <action selector="menuButtonPressed:" destination="BYZ-38-t0r" id="qYB-HA-OAT"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Books" id="uCp-se-LMw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="uCp-se-LMw">
                             <connections>
-                                <action selector="booksButtonPressed:" destination="BYZ-38-t0r" id="rWJ-Sx-Tza"/>
+                                <action selector="clearMapButtonPressed:" destination="BYZ-38-t0r" id="drP-ux-xge"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="aiv" destination="2gS-Ur-rNS" id="dhy-7N-fNu"/>
                         <outlet property="menuButton" destination="M7t-7h-Jkm" id="DD9-Vl-BjD"/>
-                        <outlet property="myMapView" destination="BwI-6I-fSx" id="wPu-Xq-tGF"/>
                         <outlet property="myTextView" destination="caZ-pZ-NjX" id="wjC-4c-2vr"/>
                         <outlet property="navItem" destination="JMQ-g1-Xls" id="eOb-IO-xng"/>
                     </connections>
@@ -208,13 +203,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EvM-yz-hqa">
-                                <rect key="frame" x="0.0" y="142" width="375" height="279"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="kOu-I4-RaN" id="Vqc-3e-EGD"/>
-                                </connections>
-                            </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="58" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6wr-m9-jUe">
                                 <rect key="frame" x="0.0" y="369" width="375" height="298"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -272,7 +260,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="clearMapButton" destination="g4m-dr-bEW" id="ZbY-h9-4CS"/>
-                        <outlet property="myMapView" destination="EvM-yz-hqa" id="0qn-Bs-xxT"/>
                         <outlet property="myTableView" destination="6wr-m9-jUe" id="vAC-Vz-eRp"/>
                         <outlet property="navItem" destination="z5B-XI-Q0t" id="aYh-OR-TSp"/>
                         <outlet property="searchDisplayController" destination="JJT-qV-zxj" id="sKc-3l-WT9"/>
@@ -340,10 +327,6 @@
                                     <outlet property="delegate" destination="CS3-AV-9gT" id="7oR-B5-7p3"/>
                                 </connections>
                             </tableView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qGl-tN-6l0">
-                                <rect key="frame" x="67" y="111" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -361,7 +344,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="clearMapButton" destination="e8P-RH-EEd" id="Xy3-1x-GLM"/>
-                        <outlet property="myMapView" destination="qGl-tN-6l0" id="9xJ-me-UCI"/>
                         <outlet property="myTableView" destination="fAt-zP-Hfg" id="PzI-Hd-Y0k"/>
                         <outlet property="segmentedControl" destination="1Ax-mm-0zn" id="Y6S-OA-ewM"/>
                     </connections>
@@ -602,30 +584,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dMJ-Py-AUV">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="JvT-hS-sR9" id="tqR-E2-ew9"/>
                                     <outlet property="delegate" destination="JvT-hS-sR9" id="vr2-ro-HQq"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSr-8l-40E">
+                                <rect key="frame" x="16" y="28" width="66" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Books"/>
+                                <connections>
+                                    <action selector="booksButtonPressed:" destination="JvT-hS-sR9" eventType="touchUpInside" id="X2u-94-Mrl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="leading" secondItem="tEX-3x-Ca8" secondAttribute="leading" id="RUk-1W-alR"/>
-                            <constraint firstAttribute="trailing" secondItem="dMJ-Py-AUV" secondAttribute="trailing" id="aLs-o3-liR"/>
-                            <constraint firstItem="ZKh-Zo-Aqy" firstAttribute="top" secondItem="dMJ-Py-AUV" secondAttribute="bottom" id="hcN-oh-ypk"/>
-                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="top" secondItem="tEX-3x-Ca8" secondAttribute="top" constant="20" id="jIA-qf-lCI"/>
+                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="leading" secondItem="tEX-3x-Ca8" secondAttribute="leading" id="0hv-cy-8Ql"/>
+                            <constraint firstAttribute="trailing" secondItem="dMJ-Py-AUV" secondAttribute="trailing" id="5Mb-bc-ESe"/>
+                            <constraint firstItem="ZKh-Zo-Aqy" firstAttribute="top" secondItem="dMJ-Py-AUV" secondAttribute="bottom" id="D6I-gV-syF"/>
+                            <constraint firstItem="DSr-8l-40E" firstAttribute="leading" secondItem="tEX-3x-Ca8" secondAttribute="leadingMargin" id="FnD-dI-tTp"/>
+                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="top" secondItem="XLj-ZK-1fU" secondAttribute="bottom" constant="60" id="l87-Ss-CNq"/>
+                            <constraint firstItem="DSr-8l-40E" firstAttribute="top" secondItem="XLj-ZK-1fU" secondAttribute="bottom" constant="8" id="ldf-NE-vWc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chapters" id="WB4-gG-XNe"/>
                     <connections>
+                        <outlet property="booksButton" destination="DSr-8l-40E" id="tWK-7j-9w7"/>
                         <outlet property="myTableView" destination="dMJ-Py-AUV" id="giH-SL-u6o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0LT-Y4-Z0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3992" y="340"/>
+            <point key="canvasLocation" x="3991.1999999999998" y="339.58020989505252"/>
         </scene>
     </scenes>
     <resources>
