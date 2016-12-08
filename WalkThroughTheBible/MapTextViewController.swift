@@ -49,6 +49,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var shouldToggle = false
     var currentLocations = [BibleLocation]()
     
+    let books = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
+    
     //Life Cycle Functions*********************************************************************
     
     override func viewDidLoad() {
@@ -228,12 +230,78 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     func swipeLeft() {
-        if chapterIndex != numberOfChapters { chapterIndex! += 1 } else { return }
+        let prefix = "AJZ.WalkThroughTheBible."
+        let currentIndex = books.index(of: book!)
+        if chapterIndex != numberOfChapters {
+            chapterIndex! += 1
+            swipeActions()
+            return
+        } else if book == "Genesis" {
+            if defaults.bool(forKey:"\(prefix)Exodus") {
+                book = "Exodus"
+            } else {
+                return
+            }
+        } else if book == "Leviticus" {
+            if defaults.bool(forKey:"\(prefix)Numbers") {
+                book = "Numbers"
+            } else {
+                return
+            }
+        } else if book == "John" {
+            if defaults.bool(forKey:"\(prefix)Acts") {
+                book = "Acts"
+            } else {
+                return
+            }
+        } else {
+            if book == "Revelation" {
+                book = "Genesis"
+            } else {
+                book = books[currentIndex!+1]
+            }
+        }
+        completeRawText = nil
+        numberOfChapters = Books.booksDictionary[book!]
+        chapterIndex = 1
         swipeActions()
     }
 
     func swipeRight() {
-        if chapterIndex != 1 { chapterIndex! -= 1 } else { return }
+        let prefix = "AJZ.WalkThroughTheBible."
+        let currentIndex = books.index(of: book!)
+        if chapterIndex != 1 {
+            chapterIndex! -= 1
+            swipeActions()
+            return
+        } else if book == "Leviticus" {
+            if defaults.bool(forKey:"\(prefix)Exodus") {
+                book = "Exodus"
+            } else {
+                return
+            }
+        } else if book == "Deuteronomy" {
+            if defaults.bool(forKey:"\(prefix)Numbers") {
+                book = "Numbers"
+            } else {
+                return
+            }
+        } else if book == "Romans" {
+            if defaults.bool(forKey:"\(prefix)Acts") {
+                book = "Acts"
+            } else {
+                return
+            }
+        } else {
+            if book == "Genesis" {
+                book = "Revelation"
+            } else {
+                book = books[currentIndex!-1]
+            }
+        }
+        completeRawText = nil
+        numberOfChapters = Books.booksDictionary[book!]
+        chapterIndex = Books.booksDictionary[book!]
         swipeActions()
     }
     
@@ -352,7 +420,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         
         var verseNumbers = ["\(chapterIndex):1"]
         if verseNumbers.count == 1 {
-            for i in 2...100 {
+            for i in 2...176 {
                 verseNumbers.append("\(chapterIndex):\(i)")
             }
         }
@@ -398,13 +466,9 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         let places = locations?[book!]?[String(describing: chapterIndex)]!
         
         currentLocations = []
-        
-        //var keys = [] as [String]
-        //for places in glossary {
 
         if (places?.count)! > 0 {
             for place in places! {
-            //for (key, _) in places {
                 
                 for location in appDelegate.glossary {
                     if place == location.key {
@@ -412,17 +476,13 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                         continue
                     }
                 }
-                
-                //var range = (rawText as NSString).range(of: key as String)
+
                 var range = (rawText! as NSString).range(of: place)
                 var offset = 0
                 let totalCharacters = rawText?.characters.count
 
                 while range.location < totalChars! {
-                    //if !keys.contains(key) {
-                    //    keys.append(key)
-                    //}
-                    //let value = key.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+
                     let value = place.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
 
                     attributedText?.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:16.0)!, range: range)
@@ -432,7 +492,6 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                     let startIndex = rawText?.index((rawText?.startIndex)!, offsetBy: offset)
                     let newText = rawText?.substring(from: startIndex!)
 
-                    //range = (newText as NSString).range(of: key)
                     range = (newText! as NSString).range(of: place)
 
                     if range.location < totalChars! {
@@ -443,7 +502,6 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                 }
             }
         }
-        //}
         
         var charactersRemoved = 0
         var replacementString = ""
