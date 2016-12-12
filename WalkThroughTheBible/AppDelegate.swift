@@ -212,7 +212,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func preloadData () {
         // Retrieve data from the source file
-        if let contentsOfURL = Bundle.main.url(forResource:"KJVLocations", withExtension: "csv") {
+        if let contentsOfURL = Bundle.main.url(forResource:"BibleLocations", withExtension: "csv") {
             
             removeData()
             
