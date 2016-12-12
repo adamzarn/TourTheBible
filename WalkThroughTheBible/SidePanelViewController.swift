@@ -25,10 +25,18 @@ class SidePanelViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        let index = NSIndexPath(row: appDelegate.chapterIndex-1, section: 0) as IndexPath
-        myTableView.scrollToRow(at: index, at: UITableViewScrollPosition.middle, animated: false)
-        booksButton.titleLabel?.font = UIFont(name: "Papyrus", size: 24.0)
-        self.automaticallyAdjustsScrollViewInsets = false
+        if appDelegate.expandingPanel == "left" {
+        
+            let index = NSIndexPath(row: appDelegate.chapterIndex-1, section: 0) as IndexPath
+            myTableView.scrollToRow(at: index, at: UITableViewScrollPosition.middle, animated: false)
+            booksButton.titleLabel?.font = UIFont(name: "Papyrus", size: 24.0)
+            self.automaticallyAdjustsScrollViewInsets = false
+            
+        } else {
+            
+            print("right")
+            
+        }
         
     }
     

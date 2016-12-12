@@ -168,7 +168,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4417" y="340"/>
+            <point key="canvasLocation" x="4770" y="340"/>
+        </scene>
+        <!--Side Panel View Controller-->
+        <scene sceneID="enu-sX-NjV">
+            <objects>
+                <viewController storyboardIdentifier="RightViewController" id="yzk-rE-xwG" customClass="SidePanelViewController" customModule="WalkThroughTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cqZ-nk-q52"/>
+                        <viewControllerLayoutGuide type="bottom" id="zSU-6i-s14"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z1y-Wh-9oI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rTl-9n-tfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5401" y="275"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="LBK-GR-UVs">
@@ -618,7 +636,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0LT-Y4-Z0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3991.1999999999998" y="339.58020989505252"/>
+            <point key="canvasLocation" x="4145" y="275"/>
         </scene>
     </scenes>
     <resources>

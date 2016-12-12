@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var chapterIndex: Int = 1
     var glossary = [BibleLocation]()
     var myMapView: MKMapView!
+    var expandingPanel = ""
+    var currentState: SlideOutState = .BothCollapsed
 
     //“‘’”
 

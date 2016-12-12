@@ -10,22 +10,25 @@ import UIKit
 import QuartzCore
 
 enum SlideOutState {
-    case Collapsed
+    case BothCollapsed
     case LeftPanelExpanded
+    case RightPanelExpanded
 }
 
 class ContainerViewController: UIViewController {
     
     var centerNavigationController: UINavigationController!
     var MapTextViewController: MapTextViewController!
-    var currentState: SlideOutState = .Collapsed {
-        didSet {
-            let shouldShowShadow = currentState != .Collapsed
-            showShadowForCenterViewController(shouldShowShadow: shouldShowShadow)
-        }
-    }
+    //var currentState: SlideOutState = .BothCollapsed {
+    //    didSet {
+    //        let shouldShowShadow = currentState != .BothCollapsed
+    //        showShadowForCenterViewController(shouldShowShadow: shouldShowShadow)
+    //    }
+    //}
     var leftViewController: SidePanelViewController?
+    var rightViewController: SidePanelViewController?
     var book: String?
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,13 +50,25 @@ class ContainerViewController: UIViewController {
 extension ContainerViewController: MapTextViewControllerDelegate {
     
     func toggleLeftPanel() {
-        let notAlreadyExpanded = (currentState != .LeftPanelExpanded)
+        appDelegate.expandingPanel = "left"
+        let notAlreadyExpanded = (appDelegate.currentState != .LeftPanelExpanded)
         
         if notAlreadyExpanded {
             addLeftPanelViewController()
         }
         
         animateLeftPanel(shouldExpand: notAlreadyExpanded)
+    }
+    
+    func toggleRightPanel() {
+        appDelegate.expandingPanel = "right"
+        let notAlreadyExpanded = (appDelegate.currentState != .RightPanelExpanded)
+        
+        if notAlreadyExpanded {
+            addRightPanelViewController()
+        }
+        
+        animateRightPanel(shouldExpand: notAlreadyExpanded)
     }
     
     func addLeftPanelViewController() {
@@ -66,6 +81,16 @@ extension ContainerViewController: MapTextViewControllerDelegate {
         }
     }
     
+    func addRightPanelViewController() {
+        if (rightViewController == nil) {
+            rightViewController = UIStoryboard.rightViewController()
+            rightViewController?.chapterTitles = MapTextViewController.chapterTitles
+            rightViewController?.delegate = self.MapTextViewController
+            
+            addChildSidePanelController(sidePanelController: rightViewController!)
+        }
+    }
+    
     func addChildSidePanelController(sidePanelController: SidePanelViewController) {
         view.insertSubview(sidePanelController.view, at: 0)
         
@@ -75,15 +100,26 @@ extension ContainerViewController: MapTextViewControllerDelegate {
     
     func animateLeftPanel(shouldExpand: Bool) {
         if (shouldExpand) {
-            currentState = .LeftPanelExpanded
-            
+            appDelegate.currentState = .LeftPanelExpanded
             animateCenterPanelXPosition(targetPosition: centerNavigationController.view.frame.width/2)
         } else {
             animateCenterPanelXPosition(targetPosition: 0) { finished in
-                self.currentState = .Collapsed
-                
+                self.appDelegate.currentState = .BothCollapsed
                 self.leftViewController!.view.removeFromSuperview()
                 self.leftViewController = nil;
+            }
+        }
+    }
+    
+    func animateRightPanel(shouldExpand: Bool) {
+        if (shouldExpand) {
+            appDelegate.currentState = .RightPanelExpanded
+            animateCenterPanelXPosition(targetPosition: -centerNavigationController.view.frame.width/2)
+        } else {
+            animateCenterPanelXPosition(targetPosition: 0) { finished in
+                self.appDelegate.currentState = .BothCollapsed
+                self.rightViewController!.view.removeFromSuperview()
+                self.rightViewController = nil;
             }
         }
     }
@@ -110,6 +146,10 @@ private extension UIStoryboard {
     
     class func leftViewController() -> SidePanelViewController? {
         return mainStoryboard().instantiateViewController(withIdentifier: "LeftViewController") as? SidePanelViewController
+    }
+    
+    class func rightViewController() -> SidePanelViewController? {
+        return mainStoryboard().instantiateViewController(withIdentifier: "RightViewController") as? SidePanelViewController
     }
     
     class func MapTextViewController() -> MapTextViewController? {

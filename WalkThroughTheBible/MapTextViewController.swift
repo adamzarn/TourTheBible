@@ -69,6 +69,9 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         myTextView.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
         aiv.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
         
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
+        self.view.addGestureRecognizer(gesture)
+        
         //Set Bible Translation
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
         if selectedBible == "King James Version" {
@@ -116,6 +119,16 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
         self.navItem.title = "\(book!) \(String(describing: chapterIndex!))"
         
+    }
+    
+    func viewTapped(_ sender: UITapGestureRecognizer) {
+        if appDelegate.currentState == .LeftPanelExpanded {
+            delegate?.toggleLeftPanel!()
+        } else if appDelegate.currentState == .RightPanelExpanded {
+            delegate?.toggleRightPanel!()
+        } else {
+            return
+        }
     }
     
     deinit {
@@ -198,6 +211,39 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     //Map View*********************************************************************************
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        print("viewForannotation")
+        if annotation is MKUserLocation {
+            //return nil
+            return nil
+        }
+        
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            //println("Pinview was nil")
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+        }
+        
+        var button = UIButton(type: UIButtonType.detailDisclosure) as UIButton // button with info sign in it
+        
+        pinView?.rightCalloutAccessoryView = button
+        
+        return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if appDelegate.currentState == .LeftPanelExpanded {
+            delegate?.toggleLeftPanel!()
+        }
+        delegate?.toggleRightPanel?()
+    }
+
     
     func setUpMap(name: String, lat: Double, long: Double) {
 
@@ -307,6 +353,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     
     func swipeActions() {
         loadText(chapterIndex: chapterIndex!, shouldToggle: false)
+        chapterTitles = getChapterTitlesFor(book: book!)
     }
     
     func addSwipeFunction(direction: UISwipeGestureRecognizerDirection) -> UISwipeGestureRecognizer {
@@ -317,6 +364,9 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     func booksButtonPressed() {
+        if appDelegate.currentState == .RightPanelExpanded {
+            delegate?.toggleRightPanel!()
+        }
         delegate?.toggleLeftPanel?()
         dismiss(animated: true, completion: nil)
     }
