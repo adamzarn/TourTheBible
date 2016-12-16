@@ -13,10 +13,17 @@ class GlossaryCell: UITableViewCell {
     
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myLabel: UILabel!
+    @IBOutlet weak var myDetailLabel: UILabel!
     
     func setUp(location: BibleLocation) {
         self.myImageView.image = UIImage(named: "Pin")
         self.myLabel!.text = location.name
+        if location.key?.caseInsensitiveCompare(location.name!) != ComparisonResult.orderedSame {
+            self.myDetailLabel!.text = location.key
+        } else {
+            self.myDetailLabel!.text = ""
+        }
+        
     }
     
 }

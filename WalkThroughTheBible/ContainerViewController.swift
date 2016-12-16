@@ -13,21 +13,18 @@ enum SlideOutState {
     case BothCollapsed
     case LeftPanelExpanded
     case RightPanelExpanded
+    case LeftPanelWillExpand
+    case RightPanelWillExpand
 }
 
 class ContainerViewController: UIViewController {
     
     var centerNavigationController: UINavigationController!
     var MapTextViewController: MapTextViewController!
-    //var currentState: SlideOutState = .BothCollapsed {
-    //    didSet {
-    //        let shouldShowShadow = currentState != .BothCollapsed
-    //        showShadowForCenterViewController(shouldShowShadow: shouldShowShadow)
-    //    }
-    //}
     var leftViewController: SidePanelViewController?
     var rightViewController: SidePanelViewController?
     var book: String?
+    var addingRightPanel = false
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
@@ -50,7 +47,6 @@ class ContainerViewController: UIViewController {
 extension ContainerViewController: MapTextViewControllerDelegate {
     
     func toggleLeftPanel() {
-        appDelegate.expandingPanel = "left"
         let notAlreadyExpanded = (appDelegate.currentState != .LeftPanelExpanded)
         
         if notAlreadyExpanded {
@@ -61,7 +57,6 @@ extension ContainerViewController: MapTextViewControllerDelegate {
     }
     
     func toggleRightPanel() {
-        appDelegate.expandingPanel = "right"
         let notAlreadyExpanded = (appDelegate.currentState != .RightPanelExpanded)
         
         if notAlreadyExpanded {
@@ -72,9 +67,11 @@ extension ContainerViewController: MapTextViewControllerDelegate {
     }
     
     func addLeftPanelViewController() {
+        appDelegate.currentState = .LeftPanelWillExpand
         if (leftViewController == nil) {
             leftViewController = UIStoryboard.leftViewController()
             leftViewController?.chapterTitles = MapTextViewController.chapterTitles
+            leftViewController?.currentBook = MapTextViewController.book!
             leftViewController?.delegate = self.MapTextViewController
             
             addChildSidePanelController(sidePanelController: leftViewController!)
@@ -82,9 +79,15 @@ extension ContainerViewController: MapTextViewControllerDelegate {
     }
     
     func addRightPanelViewController() {
+        appDelegate.currentState = .RightPanelWillExpand
+        addingRightPanel = true
         if (rightViewController == nil) {
             rightViewController = UIStoryboard.rightViewController()
-            rightViewController?.chapterTitles = MapTextViewController.chapterTitles
+            rightViewController?.chapterAppearances = MapTextViewController.chapterAppearances
+            rightViewController?.bookAppearances = MapTextViewController.bookAppearances
+            rightViewController?.tappedLocation = MapTextViewController.tappedLocation
+            rightViewController?.subtitles = MapTextViewController.subtitles
+            rightViewController?.currentBook = MapTextViewController.book!
             rightViewController?.delegate = self.MapTextViewController
             
             addChildSidePanelController(sidePanelController: rightViewController!)
@@ -94,6 +97,11 @@ extension ContainerViewController: MapTextViewControllerDelegate {
     func addChildSidePanelController(sidePanelController: SidePanelViewController) {
         view.insertSubview(sidePanelController.view, at: 0)
         
+        if addingRightPanel {
+            sidePanelController.view.frame.origin.x = centerNavigationController.view.frame.width/2
+        }
+        addingRightPanel = false
+        
         addChildViewController(sidePanelController)
         sidePanelController.didMove(toParentViewController: self)
     }
@@ -101,6 +109,7 @@ extension ContainerViewController: MapTextViewControllerDelegate {
     func animateLeftPanel(shouldExpand: Bool) {
         if (shouldExpand) {
             appDelegate.currentState = .LeftPanelExpanded
+            showShadowForCenterViewController(shouldShowShadow: true)
             animateCenterPanelXPosition(targetPosition: centerNavigationController.view.frame.width/2)
         } else {
             animateCenterPanelXPosition(targetPosition: 0) { finished in
@@ -114,6 +123,7 @@ extension ContainerViewController: MapTextViewControllerDelegate {
     func animateRightPanel(shouldExpand: Bool) {
         if (shouldExpand) {
             appDelegate.currentState = .RightPanelExpanded
+            showShadowForCenterViewController(shouldShowShadow: true)
             animateCenterPanelXPosition(targetPosition: -centerNavigationController.view.frame.width/2)
         } else {
             animateCenterPanelXPosition(targetPosition: 0) { finished in

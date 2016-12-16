@@ -71,6 +71,7 @@ class ProductCell: UITableViewCell {
         self.book.isHidden = bookHidden
         self.price.isHidden = priceHidden
         self.price.isEnabled = priceEnabled
+        self.book.font = UIFont(name: "Papyrus", size: 24.0)
     }
     
     override func prepareForReuse() {

@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var chapterIndex: Int = 1
     var glossary = [BibleLocation]()
     var myMapView: MKMapView!
-    var expandingPanel = ""
     var currentState: SlideOutState = .BothCollapsed
+    var options: NSDictionary?
 
     //“‘’”
 
@@ -136,7 +136,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.appendingPathComponent("SingleViewCoreData.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()
@@ -202,10 +202,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let lines:[String] = content.components(separatedBy: NSCharacterSet.newlines) as [String]
             
                 for line in lines {
-                var values:[String] = []
-                values = line.components(separatedBy: delimiter)
-                let item = (key: values[0], name: values[1], lat: Double(values[2])!, long: Double(values[3])!)
-                items?.append(item)
+                    var values:[String] = []
+                    values = line.components(separatedBy: delimiter)
+                    print(values)
+                    if values.count == 4 {
+                        let item = (key: values[0], name: values[1], lat: Double(values[2])!, long: Double(values[3])!)
+                        items?.append(item)
+                    }
                 }
             }
         }
@@ -254,9 +257,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             managedObjectContext.delete(bibleLocation)
         }
     }
-    
+
 }
-
-
-
-

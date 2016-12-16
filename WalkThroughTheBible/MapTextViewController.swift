@@ -33,7 +33,13 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let defaults = UserDefaults.standard
     
+    var bibleLocations: [BibleLocation]?
+    var tappedLocation: String = ""
+    var tappedLocationKey: String = ""
     var chapterTitles: [String] = []
+    var chapterAppearances = [[String]](repeating: [], count: 66)
+    var subtitles = [[String]](repeating: [], count: 66)
+    var bookAppearances: [String] = []
     var completeRawText: String?
     var rawText: String?
     var attributedText: NSMutableAttributedString?
@@ -48,6 +54,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var lastAnnotation: MKAnnotation?
     var shouldToggle = false
     var currentLocations = [BibleLocation]()
+    var shouldReloadMap = false
     
     let books = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
     
@@ -104,7 +111,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
             chapterIndex = 1
         }
         
-        loadText(chapterIndex: chapterIndex!, shouldToggle: false)
+        reloadMapTextView(book: book!, chapterIndex: chapterIndex!, shouldToggle: false, shouldReloadMap: shouldReloadMap)
+        shouldReloadMap = false
         
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -126,15 +134,13 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
             delegate?.toggleLeftPanel!()
         } else if appDelegate.currentState == .RightPanelExpanded {
             delegate?.toggleRightPanel!()
+            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long)
+            appDelegate.myMapView?.setCenter(center, animated: false)
         } else {
             return
         }
     }
-    
-    deinit {
-        print("MapTextViewController destroyed.")
-    }
-    
+
     func resizeImage(image: UIImage) -> UIImage {
         let newWidth = image.size.width/1.75
         let newHeight = image.size.height/1.75
@@ -163,8 +169,6 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
 
         let defaults = UserDefaults.standard
         defaults.set(chapterIndex, forKey: book!)
-        
-        URLCache.shared.removeAllCachedResponses()
     
     }
     
@@ -181,7 +185,11 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     //Text View********************************************************************************
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-
+        
+        if appDelegate.currentState == .RightPanelExpanded {
+            return false
+        }
+        
         let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
         
         for location in currentLocations {
@@ -213,10 +221,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     //Map View*********************************************************************************
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        print("viewForannotation")
+
         if annotation is MKUserLocation {
-            //return nil
             return nil
         }
         
@@ -224,13 +230,12 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         
         if pinView == nil {
-            //println("Pinview was nil")
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
             pinView!.animatesDrop = true
         }
         
-        var button = UIButton(type: UIButtonType.detailDisclosure) as UIButton // button with info sign in it
+        let button = UIButton(type: UIButtonType.detailDisclosure) as UIButton // button with info sign in it
         
         pinView?.rightCalloutAccessoryView = button
         
@@ -238,10 +243,67 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        tappedLocation = (view.annotation?.title!)!
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BibleLocation")
+        
+        let p = NSPredicate(format: "name = %@", tappedLocation)
+        fetchRequest.predicate = p
+        
+        do {
+            let results = try context!.fetch(fetchRequest)
+            bibleLocations = results as! [BibleLocation]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        var titles: [String] = []
+        for i in 0...(bibleLocations?.count)! - 1 {
+            titles.append((bibleLocations?[i].key)!)
+        }
+        
+        chapterAppearances = [[String]](repeating: [], count: 66)
+        subtitles = [[String]](repeating: [], count: 66)
+        bookAppearances = []
+        
+        for book in books {
+            for i in 1...Books.booksDictionary[book]! {
+                let bookDict = locations?[book]!
+                let chapterArray = bookDict?[String(i)]!
+                for title in titles as! [String] {
+                    if (chapterArray?.contains(title))! {
+                        if !chapterAppearances[books.index(of: book)!].contains("\(book) \(i)") {
+                            chapterAppearances[books.index(of: book)!].append("\(book) \(i)")
+                            subtitles[books.index(of: book)!].append(title)
+                        }
+                    }
+                }
+            }
+        }
+        
+        var i = 0
+        var j = 0
+        for book in chapterAppearances {
+            if book.count == 0 {
+                chapterAppearances.remove(at: i)
+                subtitles.remove(at: i)
+            } else {
+                i += 1
+                bookAppearances.append(books[j])
+            }
+            j += 1
+        }
+        
         if appDelegate.currentState == .LeftPanelExpanded {
             delegate?.toggleLeftPanel!()
         }
         delegate?.toggleRightPanel?()
+        
+        
+        let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long  - currentLongDelta/4)
+        appDelegate.myMapView?.setCenter(center, animated: false)
+        
     }
 
     
@@ -307,6 +369,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
                 book = books[currentIndex!+1]
             }
         }
+        shouldReloadMap = true
         completeRawText = nil
         numberOfChapters = Books.booksDictionary[book!]
         chapterIndex = 1
@@ -345,6 +408,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
                 book = books[currentIndex!-1]
             }
         }
+        shouldReloadMap = true
         completeRawText = nil
         numberOfChapters = Books.booksDictionary[book!]
         chapterIndex = Books.booksDictionary[book!]
@@ -352,8 +416,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     func swipeActions() {
-        loadText(chapterIndex: chapterIndex!, shouldToggle: false)
-        chapterTitles = getChapterTitlesFor(book: book!)
+        reloadMapTextView(book: book!, chapterIndex: chapterIndex!, shouldToggle: false, shouldReloadMap: shouldReloadMap)
+        shouldReloadMap = false
     }
     
     func addSwipeFunction(direction: UISwipeGestureRecognizerDirection) -> UISwipeGestureRecognizer {
@@ -453,20 +517,27 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
 extension MapTextViewController: SidePanelViewControllerDelegate {
     //Helper Functions*************************************************************************
     
-    func loadText(chapterIndex: Int, shouldToggle: Bool) {
+    func reloadMapTextView(book: String, chapterIndex: Int, shouldToggle: Bool, shouldReloadMap: Bool) {
+        self.book = book
+        chapterTitles = getChapterTitlesFor(book: book)
         self.chapterIndex = chapterIndex
         aiv.isHidden = false
         aiv.startAnimating()
         myTextView.text = ""
         DispatchQueue.main.async {
-            self.setUpText(chapterIndex: chapterIndex, shouldToggle: shouldToggle)
+            self.setUpText(book: book, chapterIndex: chapterIndex, shouldToggle: shouldToggle)
             self.aiv.stopAnimating()
             self.aiv.isHidden = true
         }
-        
+        if shouldReloadMap {
+            appDelegate.myMapView.removeAnnotations(appDelegate.myMapView.annotations)
+            getCurrentBook()
+            getPinsForBook()
+            addSavedPinsToMap()
+        }
     }
 
-    func setUpText(chapterIndex: Int, shouldToggle: Bool) {
+    func setUpText(book: String, chapterIndex: Int, shouldToggle: Bool) {
         
         var verseNumbers = ["\(chapterIndex):1"]
         if verseNumbers.count == 1 {
@@ -475,9 +546,9 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
             }
         }
         
-        let path = Bundle.main.path(forResource: book!, ofType: "txt", inDirectory: "KingJamesVersion")
+        let path = Bundle.main.path(forResource: book, ofType: "txt", inDirectory: "KingJamesVersion")
         
-        if completeRawText != nil {
+        if completeRawText != nil && appDelegate.currentState != .RightPanelExpanded {
             print("Text has already been retrieved")
         } else {
             do {
@@ -513,7 +584,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         
         attributedText?.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Light", size:16.0)!, range: allTextRange)
 
-        let places = locations?[book!]?[String(describing: chapterIndex)]!
+        let places = locations?[book]?[String(describing: chapterIndex)]!
         
         currentLocations = []
 
@@ -585,10 +656,17 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         
         myTextView.attributedText = attributedText
         myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
-        self.navItem.title = "\(book!) \(String(describing: chapterIndex))"
+        self.navItem.title = "\(book) \(String(describing: chapterIndex))"
         
         if shouldToggle {
-            delegate?.toggleLeftPanel?()
+            if appDelegate.currentState == .LeftPanelExpanded {
+                delegate?.toggleLeftPanel?()
+            } else {
+                delegate?.toggleRightPanel?()
+                let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
+                let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long)
+                appDelegate.myMapView?.setCenter(center, animated: false)
+            }
         }
 
     }
