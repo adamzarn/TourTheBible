@@ -1,0 +1,842 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0BADF21E9828338AD23CA09D /* Pods_WalkThroughTheBible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62187FC9CFFEC8F7B54AEDFB /* Pods_WalkThroughTheBible.framework */; };
+		C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */; };
+		DB106FCC1DD0D1D30033FFAA /* BiblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */; };
+		DB106FCF1DD0E9FB0033FFAA /* KingJamesVersion in Resources */ = {isa = PBXBuildFile; fileRef = DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */; };
+		DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB20FBBB1DD2383F0017A8F2 /* About.txt */; };
+		DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */; };
+		DB27FC931DCE8BAB00C3E207 /* BibleLocationsKJV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */; };
+		DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB445EFD1DD4E782002CC686 /* Reachability.swift */; };
+		DB47B34B1DF1D03E005EC190 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB47B34A1DF1D03D005EC190 /* ContainerViewController.swift */; };
+		DB47B34D1DF1D42B005EC190 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB47B34C1DF1D42B005EC190 /* SidePanelViewController.swift */; };
+		DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4A67B41DACA26500D52665 /* GlossaryCell.swift */; };
+		DB4EE9961D987A6500A3C48B /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EE9951D987A6500A3C48B /* Books.swift */; };
+		DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */; };
+		DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EA31D870F79002A5FAD /* Main.storyboard */; };
+		DB5C2EAA1D870F79002A5FAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EA91D870F79002A5FAD /* Assets.xcassets */; };
+		DB5C2EAD1D870F79002A5FAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */; };
+		DB5C2EB81D870F79002A5FAD /* TourTheBibleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EB71D870F79002A5FAD /* TourTheBibleTests.swift */; };
+		DB5C2EC31D870F79002A5FAD /* TourTheBibleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EC21D870F79002A5FAD /* TourTheBibleUITests.swift */; };
+		DB5C2ED11D871109002A5FAD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5C2ED01D871109002A5FAD /* MapKit.framework */; };
+		DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */; };
+		DB6431651DEF97930061D670 /* MapTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6431641DEF97930061D670 /* MapTextViewController.swift */; };
+		DB89240E1DE7C39B00EAC55E /* VirtualTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */; };
+		DB9B7EDB1DF38AEF0099033A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */; };
+		DBA91EFC1DA43FBB00E5E00A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */; };
+		DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFD1DA4468200E5E00A /* ProductCell.swift */; };
+		DBA91F001DA446C400E5E00A /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFF1DA446C400E5E00A /* Products.swift */; };
+		DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91F011DA446F900E5E00A /* IAPHelper.swift */; };
+		DBBCC0091DF25EF400F055E4 /* BibleLocations.csv in Resources */ = {isa = PBXBuildFile; fileRef = DBBCC0081DF25EF400F055E4 /* BibleLocations.csv */; };
+		DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */; };
+		DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */; };
+		DCC32D404B4C83870067E20A /* Pods_WalkThroughTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB5C2EB41D870F79002A5FAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB5C2E941D870F78002A5FAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB5C2E9B1D870F78002A5FAD;
+			remoteInfo = WalkThroughTheBible;
+		};
+		DB5C2EBF1D870F79002A5FAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB5C2E941D870F78002A5FAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB5C2E9B1D870F78002A5FAD;
+			remoteInfo = WalkThroughTheBible;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C4D0E26537D09BA9FA95504 /* Pods-WalkThroughTheBibleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleUITests/Pods-WalkThroughTheBibleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkThroughTheBibleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62187FC9CFFEC8F7B54AEDFB /* Pods_WalkThroughTheBible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkThroughTheBible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F2A1453F04441325CCCDCB1 /* Pods-WalkThroughTheBible.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBible.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible.release.xcconfig"; sourceTree = "<group>"; };
+		8D1895E0C59D92759D2EB96E /* Pods-WalkThroughTheBibleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A5E271FF4C3D411AE81CF0A3 /* Pods-WalkThroughTheBibleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleUITests/Pods-WalkThroughTheBibleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B5F34327920B7F7BF1A95A05 /* Pods-WalkThroughTheBibleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests.release.xcconfig"; sourceTree = "<group>"; };
+		C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible.debug.xcconfig"; sourceTree = "<group>"; };
+		DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiblesViewController.swift; sourceTree = "<group>"; };
+		DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KingJamesVersion; sourceTree = "<group>"; };
+		DB20FBBB1DD2383F0017A8F2 /* About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = About.txt; sourceTree = "<group>"; };
+		DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocationsKJV.swift; sourceTree = "<group>"; };
+		DB445EFD1DD4E782002CC686 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		DB47B34A1DF1D03D005EC190 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		DB47B34C1DF1D42B005EC190 /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
+		DB4A67B41DACA26500D52665 /* GlossaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryCell.swift; sourceTree = "<group>"; };
+		DB4EE9951D987A6500A3C48B /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
+		DB5C2E9C1D870F78002A5FAD /* TourTheBible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourTheBible.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DB5C2EA41D870F79002A5FAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DB5C2EA91D870F79002A5FAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB5C2EAC1D870F79002A5FAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DB5C2EAE1D870F79002A5FAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB5C2EB31D870F79002A5FAD /* TourTheBibleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TourTheBibleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5C2EB71D870F79002A5FAD /* TourTheBibleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourTheBibleTests.swift; sourceTree = "<group>"; };
+		DB5C2EB91D870F79002A5FAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB5C2EBE1D870F79002A5FAD /* TourTheBibleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TourTheBibleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5C2EC21D870F79002A5FAD /* TourTheBibleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourTheBibleUITests.swift; sourceTree = "<group>"; };
+		DB5C2EC41D870F79002A5FAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB5C2ED01D871109002A5FAD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTableViewController.swift; sourceTree = "<group>"; };
+		DB6431641DEF97930061D670 /* MapTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTextViewController.swift; sourceTree = "<group>"; };
+		DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualTourViewController.swift; sourceTree = "<group>"; };
+		DB9B7EDA1DF38AEF0099033A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		DBA91EFD1DA4468200E5E00A /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		DBA91EFF1DA446C400E5E00A /* Products.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
+		DBA91F011DA446F900E5E00A /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		DBBCC0081DF25EF400F055E4 /* BibleLocations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BibleLocations.csv; sourceTree = "<group>"; };
+		DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryViewController.swift; sourceTree = "<group>"; };
+		DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
+		FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkThroughTheBibleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DB5C2E991D870F78002A5FAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBA91EFC1DA43FBB00E5E00A /* StoreKit.framework in Frameworks */,
+				DB5C2ED11D871109002A5FAD /* MapKit.framework in Frameworks */,
+				0BADF21E9828338AD23CA09D /* Pods_WalkThroughTheBible.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5C2EB01D870F79002A5FAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCC32D404B4C83870067E20A /* Pods_WalkThroughTheBibleTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5C2EBB1D870F79002A5FAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18DFE035BEB60144B4124568 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */,
+				62187FC9CFFEC8F7B54AEDFB /* Pods_WalkThroughTheBible.framework */,
+				2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */,
+				FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB5C2E931D870F78002A5FAD = {
+			isa = PBXGroup;
+			children = (
+				DB5C2ED01D871109002A5FAD /* MapKit.framework */,
+				DB5C2E9E1D870F78002A5FAD /* TourTheBible */,
+				DB5C2EB61D870F79002A5FAD /* TourTheBibleTests */,
+				DB5C2EC11D870F79002A5FAD /* TourTheBibleUITests */,
+				DB5C2E9D1D870F78002A5FAD /* Products */,
+				F6A610C5D3371974E835E9C0 /* Pods */,
+				18DFE035BEB60144B4124568 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DB5C2E9D1D870F78002A5FAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB5C2E9C1D870F78002A5FAD /* TourTheBible.app */,
+				DB5C2EB31D870F79002A5FAD /* TourTheBibleTests.xctest */,
+				DB5C2EBE1D870F79002A5FAD /* TourTheBibleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DB5C2E9E1D870F78002A5FAD /* TourTheBible */ = {
+			isa = PBXGroup;
+			children = (
+				DBBAC8571DC7E10E00305451 /* Books */,
+				DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */,
+				DBBCC0081DF25EF400F055E4 /* BibleLocations.csv */,
+				DB20FBBB1DD2383F0017A8F2 /* About.txt */,
+				DB5C2EAE1D870F79002A5FAD /* Info.plist */,
+				DBA91F011DA446F900E5E00A /* IAPHelper.swift */,
+				DB445EFD1DD4E782002CC686 /* Reachability.swift */,
+				DBA91F031DA4480200E5E00A /* Model */,
+				DBA91F051DA4484700E5E00A /* View */,
+				DBA91F041DA4480900E5E00A /* Controller */,
+			);
+			path = TourTheBible;
+			sourceTree = "<group>";
+		};
+		DB5C2EB61D870F79002A5FAD /* TourTheBibleTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB5C2EB71D870F79002A5FAD /* TourTheBibleTests.swift */,
+				DB5C2EB91D870F79002A5FAD /* Info.plist */,
+			);
+			path = TourTheBibleTests;
+			sourceTree = "<group>";
+		};
+		DB5C2EC11D870F79002A5FAD /* TourTheBibleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DB5C2EC21D870F79002A5FAD /* TourTheBibleUITests.swift */,
+				DB5C2EC41D870F79002A5FAD /* Info.plist */,
+			);
+			path = TourTheBibleUITests;
+			sourceTree = "<group>";
+		};
+		DBA91F031DA4480200E5E00A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DBA91EFF1DA446C400E5E00A /* Products.swift */,
+				DB4EE9951D987A6500A3C48B /* Books.swift */,
+				DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */,
+				DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DBA91F041DA4480900E5E00A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DB47B34A1DF1D03D005EC190 /* ContainerViewController.swift */,
+				DB47B34C1DF1D42B005EC190 /* SidePanelViewController.swift */,
+				DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */,
+				DB6431641DEF97930061D670 /* MapTextViewController.swift */,
+				DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */,
+				DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */,
+				DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */,
+				DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		DBA91F051DA4484700E5E00A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */,
+				DBA91EFD1DA4468200E5E00A /* ProductCell.swift */,
+				DB4A67B41DACA26500D52665 /* GlossaryCell.swift */,
+				DB5C2EA91D870F79002A5FAD /* Assets.xcassets */,
+				DB5C2EA31D870F79002A5FAD /* Main.storyboard */,
+				DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		DBBAC8571DC7E10E00305451 /* Books */ = {
+			isa = PBXGroup;
+			children = (
+				DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */,
+			);
+			name = Books;
+			sourceTree = "<group>";
+		};
+		F6A610C5D3371974E835E9C0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */,
+				6F2A1453F04441325CCCDCB1 /* Pods-WalkThroughTheBible.release.xcconfig */,
+				8D1895E0C59D92759D2EB96E /* Pods-WalkThroughTheBibleTests.debug.xcconfig */,
+				B5F34327920B7F7BF1A95A05 /* Pods-WalkThroughTheBibleTests.release.xcconfig */,
+				0C4D0E26537D09BA9FA95504 /* Pods-WalkThroughTheBibleUITests.debug.xcconfig */,
+				A5E271FF4C3D411AE81CF0A3 /* Pods-WalkThroughTheBibleUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DB5C2E9B1D870F78002A5FAD /* TourTheBible */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB5C2EC71D870F79002A5FAD /* Build configuration list for PBXNativeTarget "TourTheBible" */;
+			buildPhases = (
+				DEC3E82B8C8DE23589BD82EC /* [CP] Check Pods Manifest.lock */,
+				DB5C2E981D870F78002A5FAD /* Sources */,
+				DB5C2E991D870F78002A5FAD /* Frameworks */,
+				DB5C2E9A1D870F78002A5FAD /* Resources */,
+				F16C17B1D2E025B2BD53DCAB /* [CP] Embed Pods Frameworks */,
+				BA45091704C4A839BD178911 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TourTheBible;
+			productName = WalkThroughTheBible;
+			productReference = DB5C2E9C1D870F78002A5FAD /* TourTheBible.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DB5C2EB21D870F79002A5FAD /* TourTheBibleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB5C2ECA1D870F79002A5FAD /* Build configuration list for PBXNativeTarget "TourTheBibleTests" */;
+			buildPhases = (
+				8CC0E8F2017E0317457C5F2F /* [CP] Check Pods Manifest.lock */,
+				DB5C2EAF1D870F79002A5FAD /* Sources */,
+				DB5C2EB01D870F79002A5FAD /* Frameworks */,
+				DB5C2EB11D870F79002A5FAD /* Resources */,
+				7028F9F0F3B4EBA47C6B7333 /* [CP] Embed Pods Frameworks */,
+				E4A13C4FFC30255F5BA19F29 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB5C2EB51D870F79002A5FAD /* PBXTargetDependency */,
+			);
+			name = TourTheBibleTests;
+			productName = WalkThroughTheBibleTests;
+			productReference = DB5C2EB31D870F79002A5FAD /* TourTheBibleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DB5C2EBD1D870F79002A5FAD /* TourTheBibleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB5C2ECD1D870F79002A5FAD /* Build configuration list for PBXNativeTarget "TourTheBibleUITests" */;
+			buildPhases = (
+				FFAAD496376DD37F73D81B45 /* [CP] Check Pods Manifest.lock */,
+				DB5C2EBA1D870F79002A5FAD /* Sources */,
+				DB5C2EBB1D870F79002A5FAD /* Frameworks */,
+				DB5C2EBC1D870F79002A5FAD /* Resources */,
+				2B967D5B5D09BDFF977B4D40 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB5C2EC01D870F79002A5FAD /* PBXTargetDependency */,
+			);
+			name = TourTheBibleUITests;
+			productName = WalkThroughTheBibleUITests;
+			productReference = DB5C2EBE1D870F79002A5FAD /* TourTheBibleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DB5C2E941D870F78002A5FAD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Adam Zarn";
+				TargetAttributes = {
+					DB5C2E9B1D870F78002A5FAD = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = QA67695N79;
+						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
+					};
+					DB5C2EB21D870F79002A5FAD = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = QA67695N79;
+						LastSwiftMigration = 0800;
+						TestTargetID = DB5C2E9B1D870F78002A5FAD;
+					};
+					DB5C2EBD1D870F79002A5FAD = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = QA67695N79;
+						LastSwiftMigration = 0800;
+						TestTargetID = DB5C2E9B1D870F78002A5FAD;
+					};
+				};
+			};
+			buildConfigurationList = DB5C2E971D870F78002A5FAD /* Build configuration list for PBXProject "TourTheBible" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DB5C2E931D870F78002A5FAD;
+			productRefGroup = DB5C2E9D1D870F78002A5FAD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DB5C2E9B1D870F78002A5FAD /* TourTheBible */,
+				DB5C2EB21D870F79002A5FAD /* TourTheBibleTests */,
+				DB5C2EBD1D870F79002A5FAD /* TourTheBibleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DB5C2E9A1D870F78002A5FAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB5C2EAD1D870F79002A5FAD /* LaunchScreen.storyboard in Resources */,
+				DB106FCF1DD0E9FB0033FFAA /* KingJamesVersion in Resources */,
+				DB5C2EAA1D870F79002A5FAD /* Assets.xcassets in Resources */,
+				DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */,
+				DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */,
+				DBBCC0091DF25EF400F055E4 /* BibleLocations.csv in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5C2EB11D870F79002A5FAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5C2EBC1D870F79002A5FAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B967D5B5D09BDFF977B4D40 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkThroughTheBibleUITests/Pods-WalkThroughTheBibleUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7028F9F0F3B4EBA47C6B7333 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CC0E8F2017E0317457C5F2F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BA45091704C4A839BD178911 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEC3E82B8C8DE23589BD82EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E4A13C4FFC30255F5BA19F29 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F16C17B1D2E025B2BD53DCAB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFAAD496376DD37F73D81B45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DB5C2E981D870F78002A5FAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB89240E1DE7C39B00EAC55E /* VirtualTourViewController.swift in Sources */,
+				DB27FC931DCE8BAB00C3E207 /* BibleLocationsKJV.swift in Sources */,
+				DB106FCC1DD0D1D30033FFAA /* BiblesViewController.swift in Sources */,
+				DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */,
+				DB47B34D1DF1D42B005EC190 /* SidePanelViewController.swift in Sources */,
+				DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */,
+				DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */,
+				DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */,
+				DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */,
+				DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */,
+				DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */,
+				DBA91F001DA446C400E5E00A /* Products.swift in Sources */,
+				DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */,
+				DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */,
+				DB47B34B1DF1D03E005EC190 /* ContainerViewController.swift in Sources */,
+				DB4EE9961D987A6500A3C48B /* Books.swift in Sources */,
+				DB9B7EDB1DF38AEF0099033A /* Model.xcdatamodeld in Sources */,
+				DB6431651DEF97930061D670 /* MapTextViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5C2EAF1D870F79002A5FAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB5C2EB81D870F79002A5FAD /* TourTheBibleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB5C2EBA1D870F79002A5FAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB5C2EC31D870F79002A5FAD /* TourTheBibleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB5C2EB51D870F79002A5FAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB5C2E9B1D870F78002A5FAD /* TourTheBible */;
+			targetProxy = DB5C2EB41D870F79002A5FAD /* PBXContainerItemProxy */;
+		};
+		DB5C2EC01D870F79002A5FAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB5C2E9B1D870F78002A5FAD /* TourTheBible */;
+			targetProxy = DB5C2EBF1D870F79002A5FAD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DB5C2EA31D870F79002A5FAD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB5C2EA41D870F79002A5FAD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DB5C2EAC1D870F79002A5FAD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DB5C2EC51D870F79002A5FAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = QA67695N79;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		DB5C2EC61D870F79002A5FAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = QA67695N79;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DB5C2EC81D870F79002A5FAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TourTheBible/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBible;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		DB5C2EC91D870F79002A5FAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F2A1453F04441325CCCDCB1 /* Pods-WalkThroughTheBible.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TourTheBible/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBible;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		DB5C2ECB1D870F79002A5FAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D1895E0C59D92759D2EB96E /* Pods-WalkThroughTheBibleTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = WalkThroughTheBibleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBibleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TourTheBible.app/TourTheBible";
+			};
+			name = Debug;
+		};
+		DB5C2ECC1D870F79002A5FAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5F34327920B7F7BF1A95A05 /* Pods-WalkThroughTheBibleTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = WalkThroughTheBibleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBibleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TourTheBible.app/TourTheBible";
+			};
+			name = Release;
+		};
+		DB5C2ECE1D870F79002A5FAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C4D0E26537D09BA9FA95504 /* Pods-WalkThroughTheBibleUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = WalkThroughTheBibleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBibleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = WalkThroughTheBible;
+			};
+			name = Debug;
+		};
+		DB5C2ECF1D870F79002A5FAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5E271FF4C3D411AE81CF0A3 /* Pods-WalkThroughTheBibleUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = WalkThroughTheBibleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = AJZ.WalkThroughTheBibleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = WalkThroughTheBible;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DB5C2E971D870F78002A5FAD /* Build configuration list for PBXProject "TourTheBible" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB5C2EC51D870F79002A5FAD /* Debug */,
+				DB5C2EC61D870F79002A5FAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB5C2EC71D870F79002A5FAD /* Build configuration list for PBXNativeTarget "TourTheBible" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB5C2EC81D870F79002A5FAD /* Debug */,
+				DB5C2EC91D870F79002A5FAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB5C2ECA1D870F79002A5FAD /* Build configuration list for PBXNativeTarget "TourTheBibleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB5C2ECB1D870F79002A5FAD /* Debug */,
+				DB5C2ECC1D870F79002A5FAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB5C2ECD1D870F79002A5FAD /* Build configuration list for PBXNativeTarget "TourTheBibleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB5C2ECE1D870F79002A5FAD /* Debug */,
+				DB5C2ECF1D870F79002A5FAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DB9B7EDA1DF38AEF0099033A /* Model.xcdatamodel */,
+			);
+			currentVersion = DB9B7EDA1DF38AEF0099033A /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DB5C2E941D870F78002A5FAD /* Project object */;
+}
