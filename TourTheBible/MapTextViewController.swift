@@ -18,7 +18,7 @@ protocol MapTextViewControllerDelegate {
     @objc optional func collapseSidePanels()
 }
 
-class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate {
+class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate, UIWebViewDelegate {
     
     //IBOutlets********************************************************************************
 
@@ -42,6 +42,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var bookAppearances: [String] = []
     var completeRawText: String?
     var rawText: String?
+    var totalChars: Int?
     var attributedText: NSMutableAttributedString?
     var chapterIndex: Int?
     var book: String?
@@ -68,6 +69,13 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         let screenSize: CGRect = UIScreen.main.bounds
         let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         let height = screenSize.height - y
+        
+        appDelegate.myYouTubePlayer.delegate = self
+        appDelegate.myYouTubePlayer.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height/2)
+        view.addSubview(appDelegate.myYouTubePlayer)
+        appDelegate.myYouTubePlayer.allowsInlineMediaPlayback = true
+        appDelegate.myYouTubePlayer.scrollView.isScrollEnabled = false
+        appDelegate.myYouTubePlayer.isHidden = true
         
         appDelegate.myMapView.delegate = self
         appDelegate.myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height/2)
@@ -126,6 +134,24 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         chapterTitles = getChapterTitlesFor(book: book!)
         
         self.navItem.title = "\(book!) \(String(describing: chapterIndex!))"
+        
+    }
+    
+    @IBAction func testYoutube(_ sender: Any) {
+        appDelegate.myYouTubePlayer.allowsInlineMediaPlayback = true
+        appDelegate.myYouTubePlayer.scrollView.isScrollEnabled = false
+        let width = appDelegate.myYouTubePlayer.frame.size.width
+        let height = appDelegate.myYouTubePlayer.frame.size.height
+        let youtubeVideoID = "ce8bc3lDzwA"
+        if appDelegate.myYouTubePlayer.isHidden {
+            appDelegate.myYouTubePlayer.isHidden = false
+            view.bringSubview(toFront: appDelegate.myYouTubePlayer)
+            appDelegate.myYouTubePlayer.loadHTMLString("<div style='text-align: center;'><script type='text/javascript' src='http://www.youtube.com/iframe_api'></script><script type='text/javascript'>function onYouTubeIframeAPIReady(){ytplayer=new YT.Player('playerId',{events:{onReady:onPlayerReady}})}function onPlayerReady(a){a.target.playVideo();}</script><iframe id='playerId' type='text/html' width='\(width)' height='\(height)' src='http://www.youtube.com/embed/\(youtubeVideoID)?enablejsapi=1&rel=0&playsinline=1&autoplay=0' frameborder='0'></div>", baseURL: nil)
+            //appDelegate.myYouTubePlayer.loadRequest(request)
+        } else {
+            appDelegate.myYouTubePlayer.isHidden = true
+            view.sendSubview(toBack: appDelegate.myYouTubePlayer)
+        }
         
     }
     
@@ -537,15 +563,17 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         }
     }
 
-    func setUpText(book: String, chapterIndex: Int, shouldToggle: Bool) {
-        
-        var verseNumbers = ["\(chapterIndex):1"]
+    func setUpVerseArray() -> [String] {
+        var verseNumbers = ["\(chapterIndex!):1"]
         if verseNumbers.count == 1 {
             for i in 2...176 {
-                verseNumbers.append("\(chapterIndex):\(i)")
+                verseNumbers.append("\(chapterIndex!):\(i)")
             }
         }
-        
+        return verseNumbers
+    }
+    
+    func getCompleteRawText() {
         let path = Bundle.main.path(forResource: book, ofType: "txt", inDirectory: "KingJamesVersion")
         
         if completeRawText != nil && appDelegate.currentState != .RightPanelExpanded {
@@ -553,22 +581,23 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         } else {
             do {
                 completeRawText = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
+                print("Text Retrieved")
             } catch {
                 print("Contents of File could not be retrieved")
             }
         }
-        
-        let totalChars = completeRawText?.characters.count
-        
+    }
+    
+    func formatCompleteRawText() {
+        self.totalChars = completeRawText?.characters.count
         if let theRange = completeRawText?.range(of: completeRawText!) {
-            
-            let startString = "\(chapterIndex):1"
-            let endString = "\(chapterIndex+1):1"
+            let startString = "\(chapterIndex!):1"
+            let endString = "\(chapterIndex!+1):1"
             let startRange = (completeRawText! as NSString).range(of: startString)
             let endRange = (completeRawText! as NSString).range(of: endString)
             let low = completeRawText?.index(theRange.lowerBound, offsetBy: startRange.location)
             
-            if endRange.location > totalChars! {
+            if endRange.location > self.totalChars! {
                 rawText = completeRawText?.substring(from: low!)
             } else {
                 let high = completeRawText?.index(theRange.lowerBound, offsetBy: endRange.location)
@@ -576,46 +605,87 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                 rawText = completeRawText?[subRange]
             }
         }
-        
         rawText = rawText?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        
         attributedText = NSMutableAttributedString(string: rawText! as String)
         let allTextRange = (rawText! as NSString).range(of: rawText!)
-        
         attributedText?.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Light", size:16.0)!, range: allTextRange)
-
-        let places = locations?[book]?[String(describing: chapterIndex)]!
-        
+    }
+    
+    func addVerseHyperlinks() {
+        let verseHyperlinks = [["3:14","3:15"],["3:18","3:19"]]
         currentLocations = []
-
+        
+        if verseHyperlinks.count > 0 {
+            for verses in verseHyperlinks {
+                let verseComponents = verses[1].characters.split{$0 == ":"}.map(String.init)
+                if verseComponents[0] == String(describing: chapterIndex!) {
+                    if let theRange = rawText?.range(of: rawText!) {
+                        let startString = verses[0]
+                        
+                        let verseString = String(describing:Int(verseComponents[1])! + 1)
+                        let endString = "\(verseComponents[0]):\(verseString)"
+                        
+                        print(startString)
+                        print(endString)
+                        
+                        let startRange = (rawText! as NSString).range(of: startString)
+                        let endRange = (rawText! as NSString).range(of: endString)
+                        
+                        let low = rawText?.index(theRange.lowerBound, offsetBy: startRange.location + startString.characters.count + 1)
+                        let high: String.Index!
+                        
+                        if endRange.location > self.totalChars! {
+                            high = rawText?.index(theRange.lowerBound, offsetBy: self.totalChars! - 1)
+                        } else {
+                            high = rawText?.index(theRange.lowerBound, offsetBy: endRange.location - 1)
+                        }
+                        
+                        let subRange = low! ..< high!
+                        let subRangeString = rawText?[subRange]
+                        let range = (rawText! as NSString).range(of: subRangeString!)
+                        let value = subRangeString?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                        attributedText?.addAttributes([NSFontAttributeName: UIFont(name:"Helvetica-Light", size:16.0)!,
+                                                       NSForegroundColorAttributeName: UIColor.green,
+                                                       NSLinkAttributeName: value!],
+                                                       range: range)
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    func addLocationHyperlinks() {
+        let places = self.locations?[book!]?[String(describing: self.chapterIndex!)]!
+        currentLocations = []
+        
         if (places?.count)! > 0 {
             for place in places! {
-                
                 for location in appDelegate.glossary {
                     if place == location.key {
                         currentLocations.append(location)
                         continue
                     }
                 }
-
+                
                 var range = (rawText! as NSString).range(of: place)
                 var offset = 0
                 let totalCharacters = rawText?.characters.count
-
-                while range.location < totalChars! {
-
+                
+                while range.location < self.totalChars! {
+                    
                     let value = place.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-
+                    
                     attributedText?.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:16.0)!, range: range)
                     attributedText?.addAttribute(NSLinkAttributeName, value: value!, range: range)
-
+                    
                     offset = range.location + 1
                     let startIndex = rawText?.index((rawText?.startIndex)!, offsetBy: offset)
                     let newText = rawText?.substring(from: startIndex!)
-
+                    
                     range = (newText! as NSString).range(of: place)
-
-                    if range.location < totalChars! {
+                    
+                    if range.location < self.totalChars! {
                         if offset + range.location < totalCharacters! {
                             range = NSMakeRange(offset + range.location, range.length)
                         }
@@ -623,15 +693,15 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                 }
             }
         }
-        
+    }
+    
+    func formatVerseNumbers(verseNumbers: [String]) {
         var charactersRemoved = 0
         var replacementString = ""
         for verse in verseNumbers {
             let range = (rawText! as NSString).range(of: verse)
-            
-            let a = String(describing: chapterIndex).characters.count + 1
-            
-            if range.location < totalChars! {
+            let a = String(describing: chapterIndex!).characters.count + 1
+            if range.location < self.totalChars! {
                 let start = range.location - charactersRemoved
                 let len = range.length
                 let toDelete = NSMakeRange(start, a)
@@ -650,9 +720,20 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                 }
                 attributedText?.replaceCharacters(in: toDelete, with: replacementString)
                 attributedText?.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:12.0)!, range: newRange)
+                attributedText?.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: newRange)
             }
             charactersRemoved = charactersRemoved + a - replacementString.characters.count
         }
+    }
+    
+    func setUpText(book: String, chapterIndex: Int, shouldToggle: Bool) {
+        
+        let verseNumbers = self.setUpVerseArray()
+        self.getCompleteRawText()
+        self.formatCompleteRawText()
+        self.addVerseHyperlinks()
+        self.addLocationHyperlinks()
+        self.formatVerseNumbers(verseNumbers: verseNumbers)
         
         myTextView.attributedText = attributedText
         myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
@@ -668,7 +749,6 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                 appDelegate.myMapView?.setCenter(center, animated: false)
             }
         }
-
     }
 
 }
