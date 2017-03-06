@@ -4,53 +4,45 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>BTNavigationDropdownMenu.xcscheme</key>
+		<key>Pods-TourTheBible.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
-		<key>Pods-WalkThroughTheBible.xcscheme</key>
+		<key>Pods-TourTheBibleTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
-		<key>Pods-WalkThroughTheBibleTests.xcscheme</key>
+		<key>Pods-TourTheBibleUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
-		<key>Pods-WalkThroughTheBibleUITests.xcscheme</key>
+		<key>youtube-ios-player-helper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1E81623440E52A54F7D51BC71E4CE333</key>
+		<key>3BB4B48C8AB08C5541EA13FB6CE03583</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>49836B01A0982D806765CFA3DBAE6BCA</key>
+		<key>45E8D343465F916B690CADDD6C4123E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A4C75BBBECC88418F74CE292EF99CED1</key>
+		<key>471EBD11A76E16FF041CC51785406FA5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FD23F1DA220A44C7E84F356B64871271</key>
+		<key>B8A173F584DCF3838CB56E94C1BA6756</key>
 		<dict>
 			<key>primary</key>
 			<true/>

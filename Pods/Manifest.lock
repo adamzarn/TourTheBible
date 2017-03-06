@@ -1,12 +1,12 @@
 PODS:
-  - BTNavigationDropdownMenu (0.4.1)
+  - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
-  - BTNavigationDropdownMenu
+  - youtube-ios-player-helper (~> 0.1.4)
 
 SPEC CHECKSUMS:
-  BTNavigationDropdownMenu: 093f3cbfad1572f2c222bdf8d17584d1e13380d4
+  youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: b947d86fb56bfa1e195003ba28d224a28dec0f0d
+PODFILE CHECKSUM: de8bd7b9285a2c1d8100ccc4b0f131dce17f9c2a
 
 COCOAPODS: 1.0.1

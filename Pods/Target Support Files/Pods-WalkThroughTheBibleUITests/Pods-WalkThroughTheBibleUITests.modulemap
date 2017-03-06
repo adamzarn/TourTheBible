@@ -1,6 +1,0 @@
-framework module Pods_WalkThroughTheBibleUITests {
-  umbrella header "Pods-WalkThroughTheBibleUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
