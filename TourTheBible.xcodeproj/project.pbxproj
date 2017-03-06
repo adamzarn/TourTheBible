@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0BADF21E9828338AD23CA09D /* Pods_WalkThroughTheBible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62187FC9CFFEC8F7B54AEDFB /* Pods_WalkThroughTheBible.framework */; };
 		BD4A85D3391762E11D3F3E62 /* Pods_TourTheBible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E7C3F8AD16C132D4ED8526 /* Pods_TourTheBible.framework */; };
 		C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */; };
 		DB106FCC1DD0D1D30033FFAA /* BiblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */; };
@@ -122,7 +121,6 @@
 			files = (
 				DBA91EFC1DA43FBB00E5E00A /* StoreKit.framework in Frameworks */,
 				DB5C2ED11D871109002A5FAD /* MapKit.framework in Frameworks */,
-				0BADF21E9828338AD23CA09D /* Pods_WalkThroughTheBible.framework in Frameworks */,
 				BD4A85D3391762E11D3F3E62 /* Pods_TourTheBible.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

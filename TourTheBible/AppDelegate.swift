@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 import StoreKit
 import MapKit
+import youtube_ios_player_helper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var chapterIndex: Int = 1
     var glossary = [BibleLocation]()
     var myMapView: MKMapView!
-    var myYouTubePlayer: UIWebView!
+    var myYouTubePlayer: YTPlayerView!
     var currentState: SlideOutState = .BothCollapsed
     var options: NSDictionary?
 
@@ -31,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         myMapView = MKMapView()
-        myYouTubePlayer = UIWebView()
+        myYouTubePlayer = YTPlayerView()
         
         let defaults = UserDefaults.standard
         if defaults.bool(forKey: "hasBeenLaunched") == true {

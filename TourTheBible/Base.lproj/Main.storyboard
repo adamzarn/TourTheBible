@@ -145,6 +145,22 @@
                                 <rect key="frame" x="177" y="353" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bta-IH-DkP">
+                                <rect key="frame" x="86" y="299" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="viewInYouTubeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y6R-rb-l8e"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUy-0f-tL0">
+                                <rect key="frame" x="246" y="299" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="viewYouTubeChannelPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jdu-6a-HfB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -172,6 +188,8 @@
                         <outlet property="menuButton" destination="M7t-7h-Jkm" id="DD9-Vl-BjD"/>
                         <outlet property="myTextView" destination="caZ-pZ-NjX" id="wjC-4c-2vr"/>
                         <outlet property="navItem" destination="JMQ-g1-Xls" id="eOb-IO-xng"/>
+                        <outlet property="viewInYouTubeButton" destination="Bta-IH-DkP" id="gKS-ox-HZc"/>
+                        <outlet property="viewYouTubeChannelButton" destination="sUy-0f-tL0" id="7C4-SX-La5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

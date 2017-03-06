@@ -9,15 +9,11 @@
 /* Begin PBXBuildFile section */
 		0B6558A49259F0852208BF1A250533F1 /* youtube-ios-player-helper-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A26821F8DC21FE3436AFC4BCB09D61 /* youtube-ios-player-helper-dummy.m */; };
 		16B81EAF22CB46CA3122F26CA475C1E7 /* Assets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 79376D247D489773D7E24EAC9B159283 /* Assets.bundle */; };
-		28AFDA94C99571D98229ABEB8AB61B44 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		40D8142F25F78B0DB42AEF2BBA2D333C /* Pods-TourTheBible-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E9623A27C03B4A3C00CDF7223CA1533A /* Pods-TourTheBible-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63321FA645E09279526250E46D14D0FF /* Pods-TourTheBibleTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0F65D81522D8C2AA86905A6631D089 /* Pods-TourTheBibleTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B6959390269E617F672F1CA10B1569A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		71E94BC9D4834110338A5BA123477D77 /* YTPlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A972B15E9D285B9B1A36315DF29B4E77 /* YTPlayerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		869A02718E9C1E622CDB80BCCA67879D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		8D52355A94FAEFA8F3F46E05A1581946 /* youtube-ios-player-helper-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D4799393EAD678EAE1DA6486B3965A0F /* youtube-ios-player-helper-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D963CBFA7FCE9729EB86CA29FFDFD78 /* Pods-TourTheBible-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E304BB4160160A9EF08BD3ADF443A8 /* Pods-TourTheBible-dummy.m */; };
-		BC44DE1B9813A15096AD4DB730E9F3E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		C2E96093FC7AB4F15DCDE07C3BE63769 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DEDEC20D350B168BF7B7FFDF4EB1E3 /* YTPlayerView.m */; };
 		DC52F645EDA8FF37721321D98253F562 /* Pods-TourTheBibleUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E88A351E850474D960F75A42DA73EED7 /* Pods-TourTheBibleUITests-dummy.m */; };
 		DF9A35635FC594B4E9A0DA9F81530E76 /* Pods-TourTheBibleTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F25EE187EC661D004481B875BB1 /* Pods-TourTheBibleTests-dummy.m */; };
@@ -67,7 +63,6 @@
 		C0A26821F8DC21FE3436AFC4BCB09D61 /* youtube-ios-player-helper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "youtube-ios-player-helper-dummy.m"; sourceTree = "<group>"; };
 		C48EE4F8E6E1A2540C9BCB2B7E2EF762 /* Pods-TourTheBibleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TourTheBibleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C536E853588CCDEEFDD15D8D6EC0E9AC /* Pods-TourTheBibleTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TourTheBibleTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D105BDDD0E32063192BC66FBCEEC6B9F /* Pods-TourTheBibleTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TourTheBibleTests-resources.sh"; sourceTree = "<group>"; };
 		D4799393EAD678EAE1DA6486B3965A0F /* youtube-ios-player-helper-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "youtube-ios-player-helper-umbrella.h"; sourceTree = "<group>"; };
 		DE152DD1E404BACA25CA3DEA24A5E6C6 /* Pods-TourTheBible-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TourTheBible-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -87,7 +82,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				869A02718E9C1E622CDB80BCCA67879D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +89,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AFDA94C99571D98229ABEB8AB61B44 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +96,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B6959390269E617F672F1CA10B1569A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC44DE1B9813A15096AD4DB730E9F3E0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +130,6 @@
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";

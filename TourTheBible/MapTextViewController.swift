@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 import CoreData
+import youtube_ios_player_helper
 
 @objc
 protocol MapTextViewControllerDelegate {
@@ -18,7 +19,7 @@ protocol MapTextViewControllerDelegate {
     @objc optional func collapseSidePanels()
 }
 
-class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate, UIWebViewDelegate {
+class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate, YTPlayerViewDelegate {
     
     //IBOutlets********************************************************************************
 
@@ -32,6 +33,9 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let defaults = UserDefaults.standard
+    
+    @IBOutlet weak var viewInYouTubeButton: UIButton!
+    @IBOutlet weak var viewYouTubeChannelButton: UIButton!
     
     var bibleLocations: [BibleLocation]?
     var tappedLocation: String = ""
@@ -70,18 +74,35 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         let height = screenSize.height - y
         
+        let YTPlayerHeight = (screenSize.width/16)*9
+        let YTColor = UIColor(red: 179/255, green: 18/255, blue: 23/255, alpha: 1.0)
+        
         appDelegate.myYouTubePlayer.delegate = self
-        appDelegate.myYouTubePlayer.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height/2)
+        appDelegate.myYouTubePlayer.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: YTPlayerHeight)
         view.addSubview(appDelegate.myYouTubePlayer)
-        appDelegate.myYouTubePlayer.allowsInlineMediaPlayback = true
-        appDelegate.myYouTubePlayer.scrollView.isScrollEnabled = false
         appDelegate.myYouTubePlayer.isHidden = true
         
         appDelegate.myMapView.delegate = self
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height/2)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height * 0.45)
         appDelegate.myMapView.mapType = MKMapType.standard
         view.addSubview(appDelegate.myMapView)
-        myTextView.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
+        
+        myTextView.frame = CGRect(x: 0.0, y: y + (height * 0.45), width: screenSize.width, height: height * 0.55)
+        
+        viewInYouTubeButton.frame = CGRect(x: 5.0, y: y + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height * 0.45) - YTPlayerHeight - 10.0)
+        viewInYouTubeButton.backgroundColor = YTColor
+        viewInYouTubeButton.isHidden = true
+        viewInYouTubeButton.setTitle("View in YouTube", for: .normal)
+        viewInYouTubeButton.setTitleColor(UIColor.white, for: .normal)
+        viewInYouTubeButton.layer.cornerRadius = 5
+        
+        viewYouTubeChannelButton.frame = CGRect(x: (screenSize.width/2) + 2.5, y: y + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height * 0.45) - YTPlayerHeight - 10.0)
+        viewYouTubeChannelButton.backgroundColor = YTColor
+        viewYouTubeChannelButton.isHidden = true
+        viewYouTubeChannelButton.setTitle("YouTube Channel", for: .normal)
+        viewYouTubeChannelButton.setTitleColor(UIColor.white, for: .normal)
+        viewYouTubeChannelButton.layer.cornerRadius = 5
+
         aiv.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
@@ -138,19 +159,20 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     @IBAction func testYoutube(_ sender: Any) {
-        appDelegate.myYouTubePlayer.allowsInlineMediaPlayback = true
-        appDelegate.myYouTubePlayer.scrollView.isScrollEnabled = false
-        let width = appDelegate.myYouTubePlayer.frame.size.width
-        let height = appDelegate.myYouTubePlayer.frame.size.height
         let youtubeVideoID = "ce8bc3lDzwA"
         if appDelegate.myYouTubePlayer.isHidden {
             appDelegate.myYouTubePlayer.isHidden = false
             view.bringSubview(toFront: appDelegate.myYouTubePlayer)
-            appDelegate.myYouTubePlayer.loadHTMLString("<div style='text-align: center;'><script type='text/javascript' src='http://www.youtube.com/iframe_api'></script><script type='text/javascript'>function onYouTubeIframeAPIReady(){ytplayer=new YT.Player('playerId',{events:{onReady:onPlayerReady}})}function onPlayerReady(a){a.target.playVideo();}</script><iframe id='playerId' type='text/html' width='\(width)' height='\(height)' src='http://www.youtube.com/embed/\(youtubeVideoID)?enablejsapi=1&rel=0&playsinline=1&autoplay=0' frameborder='0'></div>", baseURL: nil)
-            //appDelegate.myYouTubePlayer.loadRequest(request)
+            appDelegate.myYouTubePlayer.load(withVideoId: youtubeVideoID, playerVars: ["playsinline": 1, "rel": 0])
+            viewInYouTubeButton.isHidden = false
+            viewYouTubeChannelButton.isHidden = false
+            appDelegate.myMapView.isHidden = true
         } else {
             appDelegate.myYouTubePlayer.isHidden = true
             view.sendSubview(toBack: appDelegate.myYouTubePlayer)
+            viewInYouTubeButton.isHidden = true
+            viewYouTubeChannelButton.isHidden = true
+            appDelegate.myMapView.isHidden = false
         }
         
     }
@@ -537,7 +559,29 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         self.present(alertController, animated: true, completion: nil)
         
     }
-
+    
+    @IBAction func viewInYouTubeButtonPressed(_ sender: Any) {
+        let youtubeId = "ce8bc3lDzwA"
+        var url = URL(string:"youtube://\(youtubeId)")!
+        if UIApplication.shared.canOpenURL(url)  {
+            UIApplication.shared.openURL(url)
+        } else {
+            url = URL(string:"http://www.youtube.com/watch?v=\(youtubeId)")!
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    @IBAction func viewYouTubeChannelPressed(_ sender: Any) {
+        let youtubeId = "UC-tRUM6a6xf5paW6Ns9yd0w"
+        var url = URL(string:"youtube://www.youtube.com/channel/\(youtubeId)")!
+        if UIApplication.shared.canOpenURL(url)  {
+            UIApplication.shared.openURL(url)
+        } else {
+            url = URL(string:"http://www.youtube.com/channel/\(youtubeId)")!
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
 }
 
 extension MapTextViewController: SidePanelViewControllerDelegate {
