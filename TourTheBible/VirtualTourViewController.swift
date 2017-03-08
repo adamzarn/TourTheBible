@@ -16,6 +16,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var aiv: UIActivityIndicatorView!
     
     var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -30,28 +31,15 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     var hotelCount: Int = 1
     var currentBook: Book? = nil
     var pinsForBook = [Pin]()
+    var year: String?
     
-    let sites = [
-        ["Caesarea","Mount Carmel","Megiddo","Mount Arbel"]
-        ,["Sea of Galilee","Mount of Beatitudes","Capernaum","Magdala","Ancient Galilee Boat","Jordan River"]
-        ,["Chorazin","Dan","Caesarea Philippi","Golan Heights","Kursi"]
-        ,["Spring of Harod","Bethshan","Jericho","Wadi Qilt","Qumran"]
-        ,["Masada","Ein Gedi","Dead Sea"]
-        ,["Jerusalem","Mount Scopus","Jaffa Gate","Southern Temple Steps","Wailing Wall","City of David","Upper Room"]
-        ,["Bethlehem","Shepherds Field","Herodium","Church of All Nations","Garden of Gethsemane"]
-        ,["Mount of Olives","Beersheba","Valley of Elah","Beth Shemesh"]
-        ,["Temple Mount","Pool of Bethesda","Yad Vashem","Church of the Holy Sepulchre","Garden Tomb"]
-    ]
-    let days = ["6/5/2016","6/6/2016","6/7/2016","6/8/2016","6/9/2016","6/10/2016","6/11/2016","6/12/2016","6/13/2016"]
-    
-    let hotels = [
-                ["Dan Panorama Tel Aviv"]
-                ,["Gai Beach Hotel"]
-                ,["Isrotel Dead Sea"]
-                ,["Dan Jerusalem"]
-    
-    ]
-    let stays = ["6/4/2016 - 6/5/2016","6/5/2016 - 6/8/2016","6/8/2016 - 6/10/2016","6/10/2016 - 6/14/2016"]
+    var sites: [[String]] = []
+    var days: [String] = []
+    var hotels: [[String]] = []
+    var stays: [String] = []
+    var hotelLocations: [[Any]] = []
+    var hotelNumbers: [String] = []
+    var hotelWebsites: [String] = []
     
     let colors = [UIColor.red
         ,UIColor.orange
@@ -61,7 +49,8 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         ,UIColor.purple
         ,UIColor.brown
         ,UIColor.white
-        ,UIColor.gray]
+        ,UIColor.gray
+    ]
     
     override func viewDidLoad() {
         
@@ -75,13 +64,63 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         appDelegate.myMapView.delegate = self
         
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!/2)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!*0.45)
         appDelegate.myMapView.mapType = MKMapType.standard
         view.addSubview(appDelegate.myMapView)
-        segmentedControl.frame = CGRect(x: 5, y: y! + height!/2 + 5, width: screenSize.width - 10, height: 30)
-        myTableView.frame = CGRect(x: 0.0, y: y! + height!/2 + 40, width: screenSize.width, height: height!/2 - 40)
+        segmentedControl.frame = CGRect(x: 5, y: y! + height!*0.45 + 5, width: screenSize.width - 10, height: 30)
+        aiv.frame = CGRect(x: screenSize.width/2 - 10, y: y! + height!/2 + 45, width: screenSize.width, height: 20)
+        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45 + 40, width: screenSize.width, height: height!*0.55 - 40)
+        myTableView.isHidden = true
         
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
+        
+        aiv.isHidden = false
+        aiv.startAnimating()
+        FirebaseClient.sharedInstance.getTour(year: year!, completion: { (tour, error) -> () in
+            if let tour = tour {
+                let hotelDict = tour["Hotels"] as! NSDictionary
+                let siteDict =  tour["Sites"] as! NSDictionary
+                var dayKeys = siteDict.allKeys as! [String]
+                dayKeys.sort()
+                
+                self.stays = hotelDict.allKeys as! [String]
+                self.stays.sort()
+                self.days = siteDict.allKeys as! [String]
+                self.days.sort()
+                
+                for key in dayKeys {
+                    let day = siteDict[key] as! NSDictionary
+                    var keys = day.allKeys as! [String]
+                    keys.sort()
+                    var places: [String] = []
+                    for key in keys {
+                        let place = day[key] as! String
+                        places.append(place)
+                    }
+                    self.sites.append(places)
+                }
+                
+                for key in self.stays {
+                    let hotelInfo = hotelDict[key] as! NSDictionary
+                    let keys = hotelInfo.allKeys as! [String]
+                    for key in keys {
+                        let hotelName = key
+                        let hotelArray = [hotelName]
+                        self.hotels.append(hotelArray)
+                        let hotelData = hotelInfo[key] as! NSDictionary
+                        let hotelLocationArray = [hotelName,hotelName,hotelData["lat"]!,hotelData["long"]!]
+                        self.hotelLocations.append(hotelLocationArray)
+                        self.hotelNumbers.append(hotelData["phone"]! as! String)
+                        self.hotelWebsites.append(hotelData["website"] as! String)
+                    }
+                }
+                
+                self.myTableView.isHidden = false
+                self.myTableView.reloadData()
+                self.aiv.isHidden = true
+                self.aiv.stopAnimating()
+            }
+        })
 
     }
     
@@ -111,11 +150,39 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         }
     }
     
+    func formatDate(date: String) -> String {
+        var month = date[date.index(date.startIndex, offsetBy: 4) ..< date.index(date.startIndex, offsetBy: 6)]
+        var day = date[date.index(date.startIndex, offsetBy: 6) ..< date.index(date.startIndex, offsetBy: 8)]
+        let year = date[date.index(date.startIndex, offsetBy: 0) ..< date.index(date.startIndex, offsetBy: 4)]
+        var month2 = ""
+        var day2 = ""
+        for c in month.characters {
+            if c == "0" && month2 == "" { continue }
+            month2.append(c)
+        }
+        for d in day.characters {
+            if d == "0" && day2 == "" { continue }
+            day2.append(d)
+        }
+        return "\(month2)/\(day2)/\(year)"
+    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if segmentedControl.selectedSegmentIndex == 0 {
-            return days[section]
+            var formattedDays: [String] = []
+            for date in days {
+                let formattedDate = formatDate(date: date)
+                formattedDays.append(formattedDate)
+            }
+            return formattedDays[section]
         } else {
-            return stays[section]
+            var formattedStays: [String] = []
+            for stay in stays {
+                let stayComponents = stay.characters.split{$0 == "-"}.map(String.init)
+                let formattedStay = "\(formatDate(date: stayComponents[0]))-\(formatDate(date: stayComponents[1]))"
+                formattedStays.append(formattedStay)
+            }
+            return formattedStays[section]
         }
     }
     
@@ -372,25 +439,38 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
             hotelCount = localCount
         }
         
-        
     }
     
     func plot(section:Int,row:Int) {
         if segmentedControl.selectedSegmentIndex == 0 {
             let siteToPlot = sites[section][row]
-            for location in tourLocations {
-                if siteToPlot == String(describing: location[0]) {
-                    setUpMap(name: String(describing: location[1]), lat: location[2] as! Double, long: location[3] as! Double)
-                    let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
-                    newPin.setValue(location[2], forKey: "lat")
-                    newPin.setValue(location[3], forKey: "long")
-                    newPin.setValue(location[1], forKey: "title")
-                    newPin.setValue(currentBook, forKey: "pinToBook")
-                    pinsForBook.append(newPin)
-                    
-                    appDelegate.saveContext()
-                }
+            print(siteToPlot)
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BibleLocation")
+            
+            let p = NSPredicate(format: "name = %@", siteToPlot)
+            fetchRequest.predicate = p
+            
+            var bibleLocations: [BibleLocation]?
+            do {
+                let results = try context!.fetch(fetchRequest)
+                bibleLocations = results as? [BibleLocation]
+            } catch let error as NSError {
+                print("Could not fetch \(error), \(error.userInfo)")
             }
+            
+            let bibleLocation = bibleLocations?[0]
+            
+            setUpMap(name: (bibleLocation?.name!)!, lat: (bibleLocation?.lat)!, long: (bibleLocation?.long)!)
+                    
+            let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
+            newPin.setValue(bibleLocation?.lat, forKey: "lat")
+            newPin.setValue(bibleLocation?.long, forKey: "long")
+            newPin.setValue(bibleLocation?.name, forKey: "title")
+            newPin.setValue(currentBook, forKey: "pinToBook")
+            pinsForBook.append(newPin)
+                    
+            appDelegate.saveContext()
+
         } else {
             let siteToPlot = hotels[section][row]
             for location in hotelLocations {
@@ -434,66 +514,5 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     private func visit(website:String) {
         UIApplication.shared.openURL(NSURL(string:website) as! URL)
     }
-    
-    let hotelNumbers = ["1-800-223-7773","9724-670-0700","9728-638-7797","9722-533-1234"]
-    
-    let hotelWebsites = [
-    "http://www.danhotels.com/telavivhotels/danpanoramatelavivhotel/"
-    ,"http://www.gaibeachhotel.com/"
-    ,"https://www.isrotel.com/isrotel-dead-sea"
-    ,"http://www.danhotels.co.il/JerusalemHotels/DanJerusalemHotel/"
-    ]
-    
-    let tourLocations = [
-        ["Caesarea","Caesarea", 32.499545, 34.892185]
-        ,["Mount Carmel","Mount Carmel", 32.729350, 35.049790]
-        ,["Megiddo","Megiddo",32.584183,35.182292]
-        ,["Mount Arbel","Mount Arbel",32.823037,35.499315]
-        ,["Sea of Galilee","Sea of Galilee",32.806776,35.589361]
-        ,["Mount of Beatitudes","Mount of Beatitudes",32.881956,35.557337]
-        ,["Capernaum","Capernaum",32.880594,35.575158]
-        ,["Magdala","Magdala",32.847335,35.522936]
-        ,["Ancient Galilee Boat","Ancient Galilee Boat",32.844281,35.525166]
-        ,["Jordan River","Jordan River",32.711111,35.571389]
-        ,["Chorazin","Chorazin",32.909092,35.552923]
-        ,["Dan","Dan",33.24866,35.652483]
-        ,["Caesarea Philippi","Caesarea Philippi",33.24806,35.694637]
-        ,["Golan Heights","Golan Heights",32.800076,35.937301]
-        ,["Kursi","Kursi",32.838888,35.665054]
-        ,["Spring of Harod","Spring of Harod",32.5506,35.3569]
-        ,["Bethshan","Bethshan",32.504238,35.503077]
-        ,["Jericho","Jericho",31.870601,35.443864]
-        ,["Wadi Qilt","Wadi Qilt",31.844316,35.414257]
-        ,["Qumran","Qumran",31.740833,35.458611]
-        ,["Masada","Masada",31.315556,35.353889]
-        ,["Ein Gedi","Ein Gedi",31.461525,35.392411]
-        ,["Dead Sea","Dead Sea",31.538593,35.482268]
-        ,["Jerusalem","Jerusalem",31.777444,35.234935]
-        ,["Mount Scopus","Mount Scopus",31.7925,35.244167]
-        ,["Jaffa Gate","Jaffa Gate",31.776528,35.227694]
-        ,["Southern Temple Steps","Southern Temple Steps",31.775761,35.236106]
-        ,["Wailing Wall","Wailing Wall",31.7767,35.2345]
-        ,["City of David","City of David",31.773611,35.235556]
-        ,["Upper Room","Upper Room",31.771461,35.229324]
-        ,["Bethlehem","Bethlehem",31.705361,35.210266]
-        ,["Shepherds Field","Shepherds Field",31.704323,35.2077]
-        ,["Herodium","Herodium",31.665833,35.241389]
-        ,["Church of All Nations","Church of All Nations",31.779227,35.239628]
-        ,["Garden of Gethsemane","Garden of Gethsemane",31.77966,35.239605]
-        ,["Mount of Olives","Mount of Olives",31.778095,35.247198]
-        ,["Beersheba","Beersheba",31.244952,34.840889]
-        ,["Valley of Elah","Valley of Elah",31.690629,34.963136]
-        ,["Beth Shemesh","Beth Shemesh",31.752748,34.976609]
-        ,["Temple Mount","Temple Mount",31.77765,35.23547]
-        ,["Pool of Bethesda","Pool of Bethesda",31.781248,35.236613]
-        ,["Yad Vashem","Yad Vashem",31.774167,35.175556]
-        ,["Church of the Holy Sepulchre","Church of the Holy Sepulchre",31.778444,35.22975]
-        ,["Garden Tomb" ,"Garden Tomb",31.783853,35.229978]]
-    
-    
-    let hotelLocations = [["Dan Panorama Tel Aviv","Dan Panorama Tel Aviv",32.064581,34.763070]
-        ,["Gai Beach Hotel","Gai Beach Hotel",32.779675,35.544929]
-        ,["Isrotel Dead Sea","Isrotel Dead Sea",31.192871,35.361051]
-        ,["Dan Jerusalem","Dan Jerusalem",31.797884,35.235659]]
     
 }

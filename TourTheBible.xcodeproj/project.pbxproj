@@ -11,6 +11,10 @@
 		C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */; };
 		DB106FCC1DD0D1D30033FFAA /* BiblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */; };
 		DB106FCF1DD0E9FB0033FFAA /* KingJamesVersion in Resources */ = {isa = PBXBuildFile; fileRef = DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */; };
+		DB1152B01E6DA331008BA289 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB1152AF1E6DA331008BA289 /* GoogleService-Info.plist */; };
+		DB1152B21E6E0096008BA289 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1152B11E6E0096008BA289 /* FirebaseClient.swift */; };
+		DB1152B41E6E065C008BA289 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1152B31E6E065C008BA289 /* Video.swift */; };
+		DB1152B61E6F3074008BA289 /* VirtualTourTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1152B51E6F3074008BA289 /* VirtualTourTableViewController.swift */; };
 		DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB20FBBB1DD2383F0017A8F2 /* About.txt */; };
 		DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */; };
 		DB27FC931DCE8BAB00C3E207 /* BibleLocationsKJV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */; };
@@ -75,6 +79,10 @@
 		C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible.debug.xcconfig"; sourceTree = "<group>"; };
 		DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiblesViewController.swift; sourceTree = "<group>"; };
 		DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KingJamesVersion; sourceTree = "<group>"; };
+		DB1152AF1E6DA331008BA289 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DB1152B11E6E0096008BA289 /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
+		DB1152B31E6E065C008BA289 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		DB1152B51E6F3074008BA289 /* VirtualTourTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualTourTableViewController.swift; sourceTree = "<group>"; };
 		DB20FBBB1DD2383F0017A8F2 /* About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = About.txt; sourceTree = "<group>"; };
 		DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocationsKJV.swift; sourceTree = "<group>"; };
@@ -188,9 +196,12 @@
 			children = (
 				DBBAC8571DC7E10E00305451 /* Books */,
 				DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */,
+				DB1152B11E6E0096008BA289 /* FirebaseClient.swift */,
+				DB1152B31E6E065C008BA289 /* Video.swift */,
 				DBBCC0081DF25EF400F055E4 /* BibleLocations.csv */,
 				DB20FBBB1DD2383F0017A8F2 /* About.txt */,
 				DB5C2EAE1D870F79002A5FAD /* Info.plist */,
+				DB1152AF1E6DA331008BA289 /* GoogleService-Info.plist */,
 				DBA91F011DA446F900E5E00A /* IAPHelper.swift */,
 				DB445EFD1DD4E782002CC686 /* Reachability.swift */,
 				DBA91F031DA4480200E5E00A /* Model */,
@@ -237,6 +248,7 @@
 				DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */,
 				DB6431641DEF97930061D670 /* MapTextViewController.swift */,
 				DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */,
+				DB1152B51E6F3074008BA289 /* VirtualTourTableViewController.swift */,
 				DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */,
 				DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */,
 				DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */,
@@ -411,6 +423,7 @@
 				DB106FCF1DD0E9FB0033FFAA /* KingJamesVersion in Resources */,
 				DB5C2EAA1D870F79002A5FAD /* Assets.xcassets in Resources */,
 				DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */,
+				DB1152B01E6DA331008BA289 /* GoogleService-Info.plist in Resources */,
 				DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */,
 				DBBCC0091DF25EF400F055E4 /* BibleLocations.csv in Resources */,
 			);
@@ -569,7 +582,9 @@
 				DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */,
 				DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */,
 				DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */,
+				DB1152B41E6E065C008BA289 /* Video.swift in Sources */,
 				DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */,
+				DB1152B21E6E0096008BA289 /* FirebaseClient.swift in Sources */,
 				DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */,
 				DBA91F001DA446C400E5E00A /* Products.swift in Sources */,
 				DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */,
@@ -578,6 +593,7 @@
 				DB4EE9961D987A6500A3C48B /* Books.swift in Sources */,
 				DB9B7EDB1DF38AEF0099033A /* Model.xcdatamodeld in Sources */,
 				DB6431651DEF97930061D670 /* MapTextViewController.swift in Sources */,
+				DB1152B61E6F3074008BA289 /* VirtualTourTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

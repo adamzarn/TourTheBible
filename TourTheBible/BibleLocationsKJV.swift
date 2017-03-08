@@ -25,7 +25,7 @@ struct BibleLocationsKJV {
             ,   "11":   ["Shinar", "Babel", "Ur of the Chaldees", "Haran", "Canaan"]
             ,   "12":   ["Haran", "Canaan", "Shechem", "Moreh", "Bethel", "Hai", "Egypt"]
             ,   "13":   ["Egypt", "Negeb", "Bethel", "Hai", "plain of Jordan", "Zoar", "Sodom", "Gomorrah", "Canaan", "Mamre", "Hebron"]
-            ,   "14":   ["Shinar", "Ellasar", "Elam", "Sodom", "Gomorrah", "Admah", "Zeboiim", "Bela", "Zoar", "vale of Siddim", "salt sea", "Ashteroth Karnaim", "Ham", "Shaveh Kiriathaim", "Seir", "Elparan", "Enmishpat", "Kadesh", "Engedi", "Hazazontamar", "Hazezontamar", "Mamre", "Dan", "Hobah", "Damascus", "valley of Shaveh", "king's dale", "Salem"]
+            ,   "14":   ["Shinar", "Ellasar", "Elam", "Sodom", "Gomorrah", "Admah", "Zeboiim", "Bela", "Zoar", "vale of Siddim", "salt sea", "Ashteroth Karnaim", "Ham", "Shaveh Kiriathaim", "Seir", "Elparan", "Enmishpat", "Kadesh", "Hazezontamar", "Mamre", "Dan", "Hobah", "Damascus", "valley of Shaveh", "king's dale", "Salem"]
             ,   "15":   ["Damascus", "Ur of the Chaldees", "Egypt", "Euphrates"]
             ,   "16":   ["Canaan", "Shur", "Beerlahairoi", "Kadesh", "Bered"]
             ,   "17":   ["Canaan"]
@@ -239,7 +239,7 @@ struct BibleLocationsKJV {
     ,   "12":   ["Aroer", "Ammon", "Arad", "Arnon", "Adullam", "Ar", "Ashtaroth", "Achshaph", "Aphek", "Bashan", "Bethel", "Carmel", "Canaan", "Chinneroth", "Cana", "Debir", "Dor", "Edrei", "Eglon", "Gezer", "Gilead", "Gilgal", "Geshuri", "Hazor", "Hebron", "Heshbon", "Hepher", "Hormah", "Israel", "Jokneam", "Jabbok", "Jerusalem", "Jordan", "Jarmuth", "Jericho", "Kedesh", "Libnah", "Lebanon", "Lachish", "Megiddo", "Makkedah", "mount Halak", "Madon", "mount Hermon", "salt sea", "Seir", "Taanach", "Tirzah", "Tappuah", "wilderness"]
     ,   "13":   ["Aroer", "Ammon", "Arnon", "Ar", "Ashtaroth", "Aphek", "Bamothbaal", "Bethnimrah", "Betonim", "Bamoth", "Bethpeor", "Bashan", "Canaan", "Chinnereth", "Debir", "Dibon", "Egypt", "Edrei", "Ekron", "Gilead", "Gaza", "Geshur", "Hamath", "Heshbon", "Israel", "Jazer", "Jair", "Jordan", "Jahaz", "Jericho", "Kedemoth", "Lebanon", "Mephaath", "Misrephothmaim", "Mahanaim", "Moab", "Midian", "mount Hermon", "Medeba", "Mearah", "Rama", "Ramah", "Rekem", "Sidon", "sea of Chinnereth", "Succoth", "Zaphon"]
     ,   "14":   ["Canaan", "Ephraim", "Gilgal", "Hebron", "Israel", "Jordan", "Kadeshbarnea", "Kirjatharba", "wilderness"]
-    ,   "15":   ["Achzib", "Anab", "Amam", "Ain", "Adithaim", "Adadah", "Arab", "Adullam", "Azmon", "Ashdod", "Ashan", "Adummim", "Ashnah", "Anim", "Aphek", "Azekah", "Beersheba", "Bethdagon", "Bethtappuah", "Beer", "Bozkath", "Betharabah", "river of Egypt", "Bethzur", "Bethanoth", "Baalah", "Bethshemesh", "Carmel", "Chesalon", "Chesil", "Cabbon", "Dannah", "Debir", "Dumah", "Dilean", "Dimonah", "Dan", "Egypt", "Ether", "Eltolad", "Ephron", "Enshemesh", "Engannim", "Eshtaol", "Eltekon", "Enrogel", "Ekron", "Engedi", "Hazazontamar", "Hazezontamar", "Edom", "Enam", "Eglon", "Gederoth", "Gilgal", "great sea", "Gedor", "Gaza", "Goshen", "Giloh", "Gibeah", "Gederothaim", "Gederah", "Hazor", "Hazargaddah", "Hebron", "Humtah", "Hadashah", "Holon", "Halhul", "Hazarshual", "Hormah", "Heshmon", "Ithnan", "Iim", "Jerusalem", "Joktheel", "Jabneel", "Jokdeam", "Juttah", "Jattir", "Jezreel", "Jagur", "Jordan", "Jarmuth", "Kinah", "Kadesh", "Kabzeel", "Kedesh", "Kadeshbarnea", "Karkaa", "Keilah", "Kirjatharba", "Kirjathjearim", "Libnah", "Lebaoth", "Lachish", "Lahmam", "Mareshah", "Madmannah", "Makkedah", "Migdalgad", "mount Seir", "Maon", "Mizpeh", "Moladah", "mount Ephron", "Maarath", "mount Baalah", "Middin", "Nezib", "Naamah", "Nibshan", "Nephtoah", "Rimmon", "salt sea", "Secacah", "Sansannah", "Shema", "Shamir", "Socoh", "Seir", "Telem", "Timnah", "Tappuah", "valley of Hinnom", "valley of Achor", "wilderness of Zin", "Zior", "Zanoah", "Zin", "Ziph", "Zenan", "Ziklag"]
+    ,   "15":   ["Achzib", "Anab", "Amam", "Ain", "Adithaim", "Adadah", "Arab", "Adullam", "Azmon", "Ashdod", "Ashan", "Adummim", "Ashnah", "Anim", "Aphek", "Azekah", "Beersheba", "Bethdagon", "Bethtappuah", "Beer", "Bozkath", "Betharabah", "river of Egypt", "Bethzur", "Bethanoth", "Baalah", "Bethshemesh", "Carmel", "Chesalon", "Chesil", "Cabbon", "Dannah", "Debir", "Dumah", "Dilean", "Dimonah", "Dan", "Egypt", "Ether", "Eltolad", "Ephron", "Enshemesh", "Engannim", "Eshtaol", "Eltekon", "Enrogel", "Ekron", "Engedi", "Edom", "Enam", "Eglon", "Gederoth", "Gilgal", "great sea", "Gedor", "Gaza", "Goshen", "Giloh", "Gibeah", "Gederothaim", "Gederah", "Hazor", "Hazargaddah", "Hebron", "Humtah", "Hadashah", "Holon", "Halhul", "Hazarshual", "Hormah", "Heshmon", "Ithnan", "Iim", "Jerusalem", "Joktheel", "Jabneel", "Jokdeam", "Juttah", "Jattir", "Jezreel", "Jagur", "Jordan", "Jarmuth", "Kinah", "Kadesh", "Kabzeel", "Kedesh", "Kadeshbarnea", "Karkaa", "Keilah", "Kirjatharba", "Kirjathjearim", "Libnah", "Lebaoth", "Lachish", "Lahmam", "Mareshah", "Madmannah", "Makkedah", "Migdalgad", "mount Seir", "Maon", "Mizpeh", "Moladah", "mount Ephron", "Maarath", "mount Baalah", "Middin", "Nezib", "Naamah", "Nibshan", "Nephtoah", "Rimmon", "salt sea", "Secacah", "Sansannah", "Shema", "Shamir", "Socoh", "Seir", "Telem", "Timnah", "Tappuah", "valley of Hinnom", "valley of Achor", "wilderness of Zin", "Zior", "Zanoah", "Zin", "Ziph", "Zenan", "Ziklag"]
     ,   "16":   ["Atarothaddar", "Ataroth", "Bethel", "Bethhoron", "Canaan", "Ephraim", "Gezer", "Jordan", "Jericho", "Kanah", "Luz", "Tappuah", "Taanathshiloh", "wilderness"]
     ,   "17":   ["Bashan", "Canaan", "Dor", "Ephraim", "Endor", "Gilead", "Hepher", "Israel", "Ibleam", "Jezreel", "Jordan", "Kanah", "Megiddo", "Shechem", "Taanach", "Tirzah", "Tappuah", "valley of Jezreel"]
     ,   "18":   ["Arabah", "Ataroth", "Atarothadar", "Arab", "Ar", "Adummim", "Beer", "Beeroth", "Bethhoglah", "Betharabah", "Bethel", "Bethaven", "Chephirah", "Enshemesh", "Enrogel", "Gibeon", "Israel", "Irpeel", "Jerusalem", "Jordan", "Jericho", "Kirjathjearim", "Luz", "Mizpeh", "Mozah", "Nephtoah", "Ophni", "Ophrah", "Rama", "Ramah", "Rekem", "salt sea", "Shiloh", "Taralah", "valley of Hinnom", "Zemaraim"]
@@ -314,8 +314,8 @@ struct BibleLocationsKJV {
     ,    "20":   ["Bethlehem", "Israel", "Naioth", "Rama", "Ramah"]
     ,    "21":   ["Edom", "Gath", "Nob", "valley of Elah"]
     ,    "22":   ["Adullam", "Edom", "Gibeah", "Moab", "Mizpeh", "Nob", "Rama", "Ramah"]
-    ,    "23":   ["Engedi", "Hazazontamar", "Hazezontamar", "Gibeah", "Hachilah", "Israel", "Jeshimon", "Keilah", "Maon", "the wilderness", "Ziph"]
-    ,    "24":   ["Engedi", "Hazazontamar", "Hazezontamar", "Israel"]
+    ,    "23":   ["Engedi", "Gibeah", "Hachilah", "Israel", "Jeshimon", "Keilah", "Maon", "the wilderness", "Ziph"]
+    ,    "24":   ["Engedi", "Israel"]
     ,    "25":   ["Carmel", "Gallim", "Israel", "Jezreel", "Maon", "Rama", "Ramah", "wilderness of Paran"]
     ,    "26":   ["Gibeah", "Hachilah", "Israel", "Jeshimon", "Ziph"]
     ,    "27":   ["Amalek", "Carmel", "Egypt", "Geshur", "Gath", "Israel", "Jezreel", "Shur", "Ziklag"]
@@ -472,7 +472,7 @@ struct BibleLocationsKJV {
     ,    "17":   ["Arabia", "Ephraim", "Israel", "Jerusalem"]
     ,    "18":   ["Israel", "Ramothgilead", "Syria", "Samaria"]
     ,    "19":   ["Beersheba", "Ephraim", "Israel", "Jerusalem"]
-    ,    "20":   ["Ammon", "Egypt", "Eziongaber", "Engedi", "Hazazontamar", "Hazezontamar", "Israel", "Jerusalem", "Jeruel", "Mareshah", "mount Seir", "Moab", "Syria", "Seir", "Tekoa", "Tarshish", "Ziz"]
+    ,    "20":   ["Ammon", "Egypt", "Eziongaber", "Engedi", "Hazazontamar", "Israel", "Jerusalem", "Jeruel", "Mareshah", "mount Seir", "Moab", "Syria", "Seir", "Tekoa", "Tarshish", "Ziz"]
     ,    "21":   ["Arabia", "Ethiopia", "Edom", "Israel", "Jerusalem", "Libnah"]
     ,    "22":   ["Arabia", "Israel", "Jerusalem", "Jezreel", "Rama", "Ramah", "Ramothgilead", "Syria", "Samaria"]
     ,    "23":   ["Israel", "Jerusalem", "temple"]
@@ -805,7 +805,7 @@ struct BibleLocationsKJV {
     ,
     
     "Song of Solomon" : [
-    "1":   ["Engedi", "Hazazontamar", "Hazezontamar", "Jerusalem", "Kedar"]
+    "1":   ["Engedi", "Jerusalem", "Kedar"]
     ,    "2":   ["Jerusalem"]
     ,    "3":   ["Israel", "Jerusalem", "Lebanon"]
     ,    "4":   ["Amana", "Gilead", "Lebanon"]
@@ -1006,7 +1006,7 @@ struct BibleLocationsKJV {
     ,    "44":   ["Israel"]
     ,    "45":   ["Israel"]
     ,    "46":   []
-    ,    "47":   ["Berothah", "Damascus", "Engedi", "Hazazontamar", "Hazezontamar", "Eneglaim", "Gilead", "great sea", "Hazarenan", "Hethlon", "Hamath", "Hauran", "Israel", "Jordan", "Kadesh", "Sibraim", "Tamar", "Zedad"]
+    ,    "47":   ["Berothah", "Damascus", "Engedi", "Eneglaim", "Gilead", "great sea", "Hazarenan", "Hethlon", "Hamath", "Hauran", "Israel", "Jordan", "Kadesh", "Sibraim", "Tamar", "Zedad"]
     ,    "48":   ["Damascus", "Dan", "Ephraim", "great sea", "Hazarenan", "Hethlon", "Hamath", "Israel", "Kadesh", "Tamar"]
     
     ]
@@ -1410,7 +1410,7 @@ struct BibleLocationsKJV {
     ,
     
     "Colossians" : [
-    "1":   []
+    "1":   ["Colosse"]
     ,    "2":   ["Laodicea"]
     ,    "3":   []
     ,    "4":   ["Hierapolis", "Laodicea"]

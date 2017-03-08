@@ -27,6 +27,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var aiv: UIActivityIndicatorView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var mapButton: UIBarButtonItem!
+    @IBOutlet weak var clearMapButton: UIBarButtonItem!
     
     //Controller Variables*********************************************************************
     
@@ -36,8 +38,10 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     
     @IBOutlet weak var viewInYouTubeButton: UIButton!
     @IBOutlet weak var viewYouTubeChannelButton: UIButton!
+    @IBOutlet weak var loadingLabel: UILabel!
     
     var bibleLocations: [BibleLocation]?
+    var videosForBook: [Video]?
     var tappedLocation: String = ""
     var tappedLocationKey: String = ""
     var chapterTitles: [String] = []
@@ -60,6 +64,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var shouldToggle = false
     var currentLocations = [BibleLocation]()
     var shouldReloadMap = false
+    var currentVideoID: String?
     
     let books = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
     
@@ -102,6 +107,11 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         viewYouTubeChannelButton.setTitle("YouTube Channel", for: .normal)
         viewYouTubeChannelButton.setTitleColor(UIColor.white, for: .normal)
         viewYouTubeChannelButton.layer.cornerRadius = 5
+        
+        loadingLabel.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: YTPlayerHeight)
+        loadingLabel.text = "Loading..."
+        loadingLabel.textAlignment = .center
+        loadingLabel.isHidden = true
 
         aiv.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
         
@@ -128,6 +138,9 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         myTextView.delegate = self
         
         menuButton.image = resizeImage(image: UIImage(named:"Menu")!)
+        mapButton.image = resizeImage(image: UIImage(named:"Map")!)
+        mapButton.isEnabled = false
+        mapButton.tintColor = UIColor.clear
         
         //Set look of screen
         self.tabBarController?.tabBar.isHidden = true
@@ -158,23 +171,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
     }
     
-    @IBAction func testYoutube(_ sender: Any) {
-        let youtubeVideoID = "ce8bc3lDzwA"
-        if appDelegate.myYouTubePlayer.isHidden {
-            appDelegate.myYouTubePlayer.isHidden = false
-            view.bringSubview(toFront: appDelegate.myYouTubePlayer)
-            appDelegate.myYouTubePlayer.load(withVideoId: youtubeVideoID, playerVars: ["playsinline": 1, "rel": 0])
-            viewInYouTubeButton.isHidden = false
-            viewYouTubeChannelButton.isHidden = false
-            appDelegate.myMapView.isHidden = true
-        } else {
-            appDelegate.myYouTubePlayer.isHidden = true
-            view.sendSubview(toBack: appDelegate.myYouTubePlayer)
-            viewInYouTubeButton.isHidden = true
-            viewYouTubeChannelButton.isHidden = true
-            appDelegate.myMapView.isHidden = false
-        }
-        
+    @IBAction func dismissYouTube(_ sender: Any) {
+        showMap()
     }
     
     func viewTapped(_ sender: UITapGestureRecognizer) {
@@ -233,30 +231,101 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     //Text View********************************************************************************
 
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        var prefix = ""
+        var videoID = ""
         
         if appDelegate.currentState == .RightPanelExpanded {
             return false
         }
+        let URLstring = URL.absoluteString
+        if URLstring.characters.count > 7 {
+            let substring = URLstring.startIndex..<URLstring.index(URLstring.startIndex,offsetBy:7)
+            prefix = URLstring[substring]
+        }
         
-        let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
+        if prefix == "videoID" {
+            let videoIDRange = URLstring.index(URLstring.startIndex,offsetBy:7)..<URLstring.endIndex
+            videoID = URLstring[videoIDRange]
+        }
         
-        for location in currentLocations {
-            if decodedURL == location.key {
-                setUpMap(name: location.name!, lat: location.lat, long: location.long)
-                
-                let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
-                newPin.lat = location.lat
-                newPin.long = location.long
-                newPin.title = location.name!
-                newPin.pinToBook = currentBook
-                pinsForBook.append(newPin)
-                
-                appDelegate.saveContext()
-                
-                return true
+        if appDelegate.myYouTubePlayer.playerState() == YTPlayerState.playing && prefix == "videoID" && currentVideoID == videoID {
+            return false
+        }
+        
+        if prefix != "videoID" {
+            showMap()
+            let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
+            
+            for location in currentLocations {
+                if decodedURL == location.key {
+                    setUpMap(name: location.name!, lat: location.lat, long: location.long)
+                    
+                    let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
+                    newPin.lat = location.lat
+                    newPin.long = location.long
+                    newPin.title = location.name!
+                    newPin.pinToBook = currentBook
+                    pinsForBook.append(newPin)
+                    
+                    appDelegate.saveContext()
+                    
+                    return true
+                }
             }
+        } else {
+            showYouTube(URLstring: URLstring, videoID: videoID)
+            return true
         }
         return false
+    }
+    
+    func showMap() {
+        clearMapButton.isEnabled = true
+        mapButton.isEnabled = false
+        mapButton.tintColor = UIColor.clear
+        loadingLabel.isHidden = true
+        appDelegate.myYouTubePlayer.isHidden = true
+        appDelegate.myYouTubePlayer.stopVideo()
+        view.sendSubview(toBack: appDelegate.myYouTubePlayer)
+        viewInYouTubeButton.isHidden = true
+        viewYouTubeChannelButton.isHidden = true
+        appDelegate.myMapView.isHidden = false
+    }
+    
+    func showYouTube(URLstring: String, videoID: String) {
+        clearMapButton.isEnabled = false
+        mapButton.isEnabled = true
+        mapButton.tintColor = nil
+        appDelegate.myMapView.isHidden = true
+        loadingLabel.isHidden = false
+        loadingLabel.bringSubview(toFront: loadingLabel)
+        currentVideoID = videoID
+        appDelegate.myYouTubePlayer.isHidden = false
+        appDelegate.myYouTubePlayer.load(withVideoId: videoID, playerVars: ["playsinline": 1, "rel": 0])
+        viewInYouTubeButton.isHidden = false
+        viewYouTubeChannelButton.isHidden = false
+    }
+    
+    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
+        switch (state) {
+        case YTPlayerState.queued:
+            print("queued")
+            loadingLabel.isHidden = true
+        case YTPlayerState.unstarted:
+            print("unstarted")
+            loadingLabel.isHidden = true
+        case YTPlayerState.buffering:
+            print("buffering")
+            loadingLabel.isHidden = true
+        case YTPlayerState.unknown:
+            print("unknown")
+        default:
+            print("hello")
+        }
+    }
+    
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+        loadingLabel.isHidden = true
     }
     
     //IBActions********************************************************************************
@@ -363,7 +432,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         let allAnnotations = appDelegate.myMapView.annotations
         var shouldAddAnnotation = true
         var alreadyAddedAnnotation: MKAnnotation?
-
+        
+        print(allAnnotations.count)
         for annotation in allAnnotations {
             if annotation.coordinate.latitude == lat && annotation.coordinate.longitude == long {
                 shouldAddAnnotation = false
@@ -561,17 +631,18 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     @IBAction func viewInYouTubeButtonPressed(_ sender: Any) {
-        let youtubeId = "ce8bc3lDzwA"
-        var url = URL(string:"youtube://\(youtubeId)")!
+        appDelegate.myYouTubePlayer.stopVideo()
+        var url = URL(string:"youtube://\(currentVideoID!)")!
         if UIApplication.shared.canOpenURL(url)  {
             UIApplication.shared.openURL(url)
         } else {
-            url = URL(string:"http://www.youtube.com/watch?v=\(youtubeId)")!
+            url = URL(string:"http://www.youtube.com/watch?v=\(currentVideoID!)")!
             UIApplication.shared.openURL(url)
         }
     }
     
     @IBAction func viewYouTubeChannelPressed(_ sender: Any) {
+        appDelegate.myYouTubePlayer.stopVideo()
         let youtubeId = "UC-tRUM6a6xf5paW6Ns9yd0w"
         var url = URL(string:"youtube://www.youtube.com/channel/\(youtubeId)")!
         if UIApplication.shared.canOpenURL(url)  {
@@ -588,6 +659,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
     //Helper Functions*************************************************************************
     
     func reloadMapTextView(book: String, chapterIndex: Int, shouldToggle: Bool, shouldReloadMap: Bool) {
+        self.showMap()
         self.book = book
         chapterTitles = getChapterTitlesFor(book: book)
         self.chapterIndex = chapterIndex
@@ -596,8 +668,6 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         myTextView.text = ""
         DispatchQueue.main.async {
             self.setUpText(book: book, chapterIndex: chapterIndex, shouldToggle: shouldToggle)
-            self.aiv.stopAnimating()
-            self.aiv.isHidden = true
         }
         if shouldReloadMap {
             appDelegate.myMapView.removeAnnotations(appDelegate.myMapView.annotations)
@@ -656,41 +726,41 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
     }
     
     func addVerseHyperlinks() {
-        let verseHyperlinks = [["3:14","3:15"],["3:18","3:19"]]
-        currentLocations = []
         
-        if verseHyperlinks.count > 0 {
-            for verses in verseHyperlinks {
-                let verseComponents = verses[1].characters.split{$0 == ":"}.map(String.init)
+        for video in videosForBook! {
+            print("\(video.verses) \(video.videoID)")
+        }
+        
+        if videosForBook!.count > 0 {
+            for video in videosForBook! {
+                let value = video.videoID
+                let verseComponents = video.verses.characters.split{$0 == ":"}.map(String.init)
                 if verseComponents[0] == String(describing: chapterIndex!) {
                     if let theRange = rawText?.range(of: rawText!) {
-                        let startString = verses[0]
+                        let startString = "\(chapterIndex!):\(verseComponents[1])"
                         
-                        let verseString = String(describing:Int(verseComponents[1])! + 1)
-                        let endString = "\(verseComponents[0]):\(verseString)"
-                        
-                        print(startString)
-                        print(endString)
-                        
+                        let verseString = String(describing:Int(verseComponents[2])! + 1)
+                        let endString = "\(chapterIndex!):\(verseString)"
+
                         let startRange = (rawText! as NSString).range(of: startString)
                         let endRange = (rawText! as NSString).range(of: endString)
                         
-                        let low = rawText?.index(theRange.lowerBound, offsetBy: startRange.location + startString.characters.count + 1)
+                        let low = rawText?.index(theRange.lowerBound, offsetBy: startRange.location + verseComponents[0].characters.count + 1)
                         let high: String.Index!
+                        var subRangeString: String!
                         
                         if endRange.location > self.totalChars! {
-                            high = rawText?.index(theRange.lowerBound, offsetBy: self.totalChars! - 1)
+                            subRangeString = rawText?.substring(from: low!)
                         } else {
                             high = rawText?.index(theRange.lowerBound, offsetBy: endRange.location - 1)
+                            let subRange = low! ..< high!
+                            subRangeString = rawText?[subRange]
                         }
                         
-                        let subRange = low! ..< high!
-                        let subRangeString = rawText?[subRange]
                         let range = (rawText! as NSString).range(of: subRangeString!)
-                        let value = subRangeString?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                         attributedText?.addAttributes([NSFontAttributeName: UIFont(name:"Helvetica-Light", size:16.0)!,
                                                        NSForegroundColorAttributeName: UIColor.green,
-                                                       NSLinkAttributeName: value!],
+                                                       NSLinkAttributeName: "videoID\(value)"],
                                                        range: range)
                         
                     }
@@ -772,28 +842,37 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
     
     func setUpText(book: String, chapterIndex: Int, shouldToggle: Bool) {
         
+        if shouldToggle {
+            if self.appDelegate.currentState == .LeftPanelExpanded {
+                self.delegate?.toggleLeftPanel?()
+            } else {
+                self.delegate?.toggleRightPanel?()
+                let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(self.bibleLocations![0].lat,self.bibleLocations![0].long)
+                self.appDelegate.myMapView?.setCenter(center, animated: false)
+            }
+        }
+        
         let verseNumbers = self.setUpVerseArray()
         self.getCompleteRawText()
         self.formatCompleteRawText()
-        self.addVerseHyperlinks()
-        self.addLocationHyperlinks()
-        self.formatVerseNumbers(verseNumbers: verseNumbers)
-        
-        myTextView.attributedText = attributedText
-        myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
-        self.navItem.title = "\(book) \(String(describing: chapterIndex))"
-        
-        if shouldToggle {
-            if appDelegate.currentState == .LeftPanelExpanded {
-                delegate?.toggleLeftPanel?()
+        FirebaseClient.sharedInstance.getVideoIDs(book: book, completion: { (videos, error) -> () in
+            if let videos = videos {
+                self.videosForBook = videos
             } else {
-                delegate?.toggleRightPanel?()
-                let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
-                let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long)
-                appDelegate.myMapView?.setCenter(center, animated: false)
+                self.videosForBook = []
             }
-        }
-    }
+            self.addVerseHyperlinks()
+            self.addLocationHyperlinks()
+            self.formatVerseNumbers(verseNumbers: verseNumbers)
+            
+            self.myTextView.attributedText = self.attributedText
+            self.myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
+            self.navItem.title = "\(book) \(String(describing: chapterIndex))"
+                
 
+            self.aiv.isHidden = true
+            self.aiv.stopAnimating()
+        })
+    }
 }
 

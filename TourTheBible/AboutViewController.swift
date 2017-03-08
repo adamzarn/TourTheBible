@@ -47,7 +47,7 @@ class AboutViewController: UIViewController, UITextViewDelegate, MFMailComposeVi
             let vc = MFMailComposeViewController()
             vc.mailComposeDelegate = self
             vc.setToRecipients(["adam.zarn@my.wheaton.edu"])
-            vc.setSubject("Walk Through The Bible")
+            vc.setSubject("Tour The Bible")
             
             self.present(vc, animated: false, completion: nil)
             

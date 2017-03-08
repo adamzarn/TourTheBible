@@ -8,6 +8,9 @@ target ‘TourTheBible' do
   # Pods for TourTheBible
 
     pod "youtube-ios-player-helper", "~> 0.1.4"
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
+    pod 'Firebase/Auth'
 
   target ‘TourTheBibleTests' do
     inherit! :search_paths
