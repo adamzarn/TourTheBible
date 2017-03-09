@@ -16,6 +16,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
     @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var mapTypeButton: UIButton!
     
     var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -44,9 +45,9 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
         
         appDelegate.myMapView.delegate = self
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!/2)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!*0.45)
         appDelegate.myMapView.mapType = MKMapType.standard
-        myTableView.frame = CGRect(x: 0.0, y: y! + height!/2, width: screenSize.width, height: height!/2)
+        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45, width: screenSize.width, height: height!*0.55)
         
         searchController.delegate = self
         searchController.searchBar.delegate = self
@@ -60,6 +61,46 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
         
+        mapTypeButton.setTitle(" Satellite ", for: .normal)
+        mapTypeButton.layer.borderWidth = 1
+        mapTypeButton.layer.cornerRadius = 5
+        mapTypeButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+        self.view.bringSubview(toFront: mapTypeButton)
+        
+        adjustSubviews()
+    }
+    
+    
+    @IBAction func mapTypeButtonPressed(_ sender: Any) {
+        if appDelegate.myMapView.mapType == MKMapType.standard {
+            appDelegate.myMapView.mapType = MKMapType.satellite
+            mapTypeButton.setTitle(" Standard ", for: .normal)
+        } else {
+            appDelegate.myMapView.mapType = MKMapType.standard
+            mapTypeButton.setTitle(" Satellite ", for: .normal)
+        }
+    }
+
+    func adjustSubviews() {
+        let y: CGFloat!
+        if self.view.bounds.height < UIScreen.main.bounds.height {
+            print("Stupid Banner is showing")
+            y = UIApplication.shared.statusBarFrame.size.height
+        } else {
+            y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+        }
+
+        height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
+
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!*0.45)
+        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45, width: screenSize.width, height: height!*0.55)
+        self.view.bringSubview(toFront: mapTypeButton)
+
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        adjustSubviews()
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
@@ -74,6 +115,11 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     override func viewDidAppear(_ animated: Bool) {
         if !view.subviews.contains(appDelegate.myMapView) {
             view.addSubview(appDelegate.myMapView)
+        }
+        if appDelegate.myMapView.mapType == MKMapType.standard {
+            mapTypeButton.setTitle(" Satellite ", for: .normal)
+        } else {
+            mapTypeButton.setTitle(" Standard ", for: .normal)
         }
     }
     
@@ -230,18 +276,26 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if searchController.isActive && searchController.searchBar.text != "" {
-            let location = filteredGlossary[indexPath.row] as BibleLocation
+        if searchController.isActive {
+            var location: BibleLocation!
+            if searchController.searchBar.text != "" {
+                location = filteredGlossary[indexPath.row] as BibleLocation
+            } else {
+                location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
+            }
+            appDelegate.myMapView.isHidden = false
             setUpMap(name: location.name!, lat: location.lat, long: location.long)
-            savePin(location: location)
+            savePin(location: location!)
             searchController.dismiss(animated: true, completion: nil)
             searchController.searchBar.text = ""
             y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
             height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
-            myTableView.frame = CGRect(x: 0.0, y: y! + height!/2, width: screenSize.width, height: height!/2)
+            myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45, width: screenSize.width, height: height!*0.55)
+            mapTypeButton.isHidden = false
+            mapTypeButton.isEnabled = true
+            self.view.bringSubview(toFront: mapTypeButton)
             myTableView.reloadData()
         } else {
-            
             let location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
             setUpMap(name: location.name!, lat: location.lat, long: location.long)
             savePin(location: location)
@@ -325,8 +379,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
         
-        myTableView.frame = CGRect(x: 0.0, y: y! + height!/2, width: screenSize.width, height: height!/2)
+        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45, width: screenSize.width, height: height!*0.55)
         searchController.searchBar.text = ""
+        mapTypeButton.isEnabled = true
+        mapTypeButton.isHidden = false
         
     }
     
@@ -341,11 +397,13 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     
     func keyboardWillShow(notification: NSNotification) {
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-        height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
+        height = screenSize.height - y! - getKeyboardHeight(notification: notification)
         
         appDelegate.myMapView.isHidden = true
         myTableView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!)
         clearMapButton.isEnabled = false
+        mapTypeButton.isEnabled = false
+        mapTypeButton.isHidden = true
         myTableView.setContentOffset(CGPoint.zero, animated: false)
     }
     

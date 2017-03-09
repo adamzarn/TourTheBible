@@ -29,6 +29,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var mapButton: UIBarButtonItem!
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
+    @IBOutlet weak var mapTypeButton: UIButton!
     
     //Controller Variables*********************************************************************
     
@@ -65,6 +66,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var currentLocations = [BibleLocation]()
     var shouldReloadMap = false
     var currentVideoID: String?
+    var screenSize: CGRect!
     
     let books = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
     
@@ -72,10 +74,10 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenSize = self.view.bounds
         
         context = appDelegate.managedObjectContext
         
-        let screenSize: CGRect = UIScreen.main.bounds
         let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         let height = screenSize.height - y
         
@@ -169,15 +171,63 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
         self.navItem.title = "\(book!) \(String(describing: chapterIndex!))"
         
+        mapTypeButton.setTitle(" Satellite ", for: .normal)
+        mapTypeButton.layer.borderWidth = 1
+        mapTypeButton.layer.cornerRadius = 5
+        mapTypeButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+        self.view.bringSubview(toFront: mapTypeButton)
+        
+        adjustSubviews()
+        
+    }
+    
+    @IBAction func mapTypeButtonPressed(_ sender: Any) {
+        if appDelegate.myMapView.mapType == MKMapType.standard {
+            appDelegate.myMapView.mapType = MKMapType.satellite
+            mapTypeButton.setTitle(" Standard ", for: .normal)
+        } else {
+            appDelegate.myMapView.mapType = MKMapType.standard
+            mapTypeButton.setTitle(" Satellite ", for: .normal)
+        }
+    }
+    
+    func adjustSubviews() {
+        let y: CGFloat!
+        if self.view.bounds.height < UIScreen.main.bounds.height {
+            print("Stupid Banner is showing")
+            y = UIApplication.shared.statusBarFrame.size.height
+        } else {
+            y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+        }
+        let height = screenSize.height - y
+        let YTPlayerHeight = (screenSize.width/16)*9
+        appDelegate.myYouTubePlayer.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: YTPlayerHeight)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height * 0.45)
+        myTextView.frame = CGRect(x: 0.0, y: y + (height * 0.45), width: screenSize.width, height: height * 0.55)
+        viewInYouTubeButton.frame = CGRect(x: 5.0, y: y + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height * 0.45) - YTPlayerHeight - 10.0)
+        viewYouTubeChannelButton.frame = CGRect(x: (screenSize.width/2) + 2.5, y: y + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height * 0.45) - YTPlayerHeight - 10.0)
+        loadingLabel.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: YTPlayerHeight)
+        aiv.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
+        self.view.bringSubview(toFront: mapTypeButton)
     }
     
     @IBAction func dismissYouTube(_ sender: Any) {
         showMap()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        adjustSubviews()
+    }
+    
     func viewTapped(_ sender: UITapGestureRecognizer) {
         if appDelegate.currentState == .LeftPanelExpanded {
             delegate?.toggleLeftPanel!()
+            let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
+            let lat = appDelegate.myMapView.centerCoordinate.latitude
+            let long = appDelegate.myMapView.centerCoordinate.longitude
+            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long - currentLongDelta/4)
+            appDelegate.myMapView?.setCenter(center, animated: false)
         } else if appDelegate.currentState == .RightPanelExpanded {
             delegate?.toggleRightPanel!()
             let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long)
@@ -209,6 +259,11 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     override func viewDidAppear(_ animated: Bool) {
         myTextView.isScrollEnabled = true
         myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
+        if appDelegate.myMapView.mapType == MKMapType.standard {
+            mapTypeButton.setTitle(" Satellite ", for: .normal)
+        } else {
+            mapTypeButton.setTitle(" Standard ", for: .normal)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -219,6 +274,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.screenSize = self.view.bounds
+        
         myTextView.isScrollEnabled = false
         myTextView.isEditable = false
         
@@ -280,6 +337,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     func showMap() {
+        mapTypeButton.isEnabled = true
+        mapTypeButton.isHidden = false
         clearMapButton.isEnabled = true
         mapButton.isEnabled = false
         mapButton.tintColor = UIColor.clear
@@ -293,12 +352,14 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     func showYouTube(URLstring: String, videoID: String) {
+        mapTypeButton.isEnabled = false
+        mapTypeButton.isHidden = true
         clearMapButton.isEnabled = false
         mapButton.isEnabled = true
         mapButton.tintColor = nil
         appDelegate.myMapView.isHidden = true
         loadingLabel.isHidden = false
-        loadingLabel.bringSubview(toFront: loadingLabel)
+        view.bringSubview(toFront: loadingLabel)
         currentVideoID = videoID
         appDelegate.myYouTubePlayer.isHidden = false
         appDelegate.myYouTubePlayer.load(withVideoId: videoID, playerVars: ["playsinline": 1, "rel": 0])
@@ -333,6 +394,11 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     @IBAction func menuButtonPressed(_ sender: Any) {
         appDelegate.chapterIndex = chapterIndex!
         delegate?.toggleLeftPanel?()
+        let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
+        let lat = appDelegate.myMapView.centerCoordinate.latitude
+        let long = appDelegate.myMapView.centerCoordinate.longitude
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long + currentLongDelta/4)
+        appDelegate.myMapView?.setCenter(center, animated: false)
     }
     
     //Map View*********************************************************************************
@@ -415,7 +481,6 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
             delegate?.toggleLeftPanel!()
         }
         delegate?.toggleRightPanel?()
-        
         
         let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
         let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long  - currentLongDelta/4)

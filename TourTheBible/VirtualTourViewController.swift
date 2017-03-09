@@ -20,6 +20,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     
     var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    @IBOutlet weak var mapTypeButton: UIButton!
     
     let screenSize: CGRect = UIScreen.main.bounds
     var y: CGFloat?
@@ -121,7 +122,56 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
                 self.aiv.stopAnimating()
             }
         })
+        
+        mapTypeButton.setTitle(" Satellite ", for: .normal)
+        mapTypeButton.layer.borderWidth = 1
+        mapTypeButton.layer.cornerRadius = 5
+        mapTypeButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+        self.view.bringSubview(toFront: mapTypeButton)
+        
+        adjustSubviews()
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if appDelegate.myMapView.mapType == MKMapType.standard {
+            mapTypeButton.setTitle(" Satellite ", for: .normal)
+        } else {
+            mapTypeButton.setTitle(" Standard ", for: .normal)
+        }
+    }
+
+    @IBAction func mapTypeButtonPressed(_ sender: Any) {
+        if appDelegate.myMapView.mapType == MKMapType.standard {
+            appDelegate.myMapView.mapType = MKMapType.satellite
+            mapTypeButton.setTitle(" Standard ", for: .normal)
+        } else {
+            appDelegate.myMapView.mapType = MKMapType.standard
+            mapTypeButton.setTitle(" Satellite ", for: .normal)
+        }        
+    }
+    
+    func adjustSubviews() {
+        let y: CGFloat!
+        if self.view.bounds.height < UIScreen.main.bounds.height {
+            print("Stupid Banner is showing")
+            y = UIApplication.shared.statusBarFrame.size.height
+        } else {
+            y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+        }
+        
+        height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
+        
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!*0.45)
+        segmentedControl.frame = CGRect(x: 5, y: y! + height!*0.45 + 5, width: screenSize.width - 10, height: 30)
+        aiv.frame = CGRect(x: screenSize.width/2 - 10, y: y! + height!/2 + 45, width: screenSize.width, height: 20)
+        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45 + 40, width: screenSize.width, height: height!*0.55 - 40)
+        self.view.bringSubview(toFront: mapTypeButton)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        adjustSubviews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -444,7 +494,6 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     func plot(section:Int,row:Int) {
         if segmentedControl.selectedSegmentIndex == 0 {
             let siteToPlot = sites[section][row]
-            print(siteToPlot)
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BibleLocation")
             
             let p = NSPredicate(format: "name = %@", siteToPlot)
@@ -458,32 +507,40 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
                 print("Could not fetch \(error), \(error.userInfo)")
             }
             
-            let bibleLocation = bibleLocations?[0]
+            if bibleLocations?.count != 0 {
             
-            setUpMap(name: (bibleLocation?.name!)!, lat: (bibleLocation?.lat)!, long: (bibleLocation?.long)!)
-                    
-            let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
-            newPin.setValue(bibleLocation?.lat, forKey: "lat")
-            newPin.setValue(bibleLocation?.long, forKey: "long")
-            newPin.setValue(bibleLocation?.name, forKey: "title")
-            newPin.setValue(currentBook, forKey: "pinToBook")
-            pinsForBook.append(newPin)
-                    
-            appDelegate.saveContext()
+                let bibleLocation = bibleLocations?[0]
+                
+                setUpMap(name: (bibleLocation?.name!)!, lat: (bibleLocation?.lat)!, long: (bibleLocation?.long)!)
+                        
+                let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
+                newPin.setValue(bibleLocation?.lat, forKey: "lat")
+                newPin.setValue(bibleLocation?.long, forKey: "long")
+                newPin.setValue(bibleLocation?.name, forKey: "title")
+                newPin.setValue(currentBook, forKey: "pinToBook")
+                pinsForBook.append(newPin)
+                        
+                appDelegate.saveContext()
+                
+            } else {
+                print(siteToPlot)
+            }
 
         } else {
             let siteToPlot = hotels[section][row]
             for location in hotelLocations {
                 if siteToPlot == String(describing: location[0]) {
-                    setUpMap(name: String(describing: location[1]), lat: location[2] as! Double, long: location[3] as! Double)
-                    let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
-                    newPin.setValue(location[2], forKey: "lat")
-                    newPin.setValue(location[3], forKey: "long")
-                    newPin.setValue(location[1], forKey: "title")
-                    newPin.setValue(currentBook, forKey: "pinToBook")
-                    pinsForBook.append(newPin)
-                    
-                    appDelegate.saveContext()
+                    if String(describing: location[2]) != "" {
+                        setUpMap(name: String(describing: location[1]), lat: location[2] as! Double, long: location[3] as! Double)
+                        let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
+                        newPin.setValue(location[2], forKey: "lat")
+                        newPin.setValue(location[3], forKey: "long")
+                        newPin.setValue(location[1], forKey: "title")
+                        newPin.setValue(currentBook, forKey: "pinToBook")
+                        pinsForBook.append(newPin)
+                        
+                        appDelegate.saveContext()
+                    }
                 }
             }
 

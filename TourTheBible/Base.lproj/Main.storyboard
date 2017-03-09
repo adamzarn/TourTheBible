@@ -168,8 +168,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXE-is-twS">
+                                <rect key="frame" x="323" y="72" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="mapTypeButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ONB-Zw-uOB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BXE-is-twS" secondAttribute="trailing" constant="6" id="BPx-kj-jOl"/>
+                            <constraint firstItem="BXE-is-twS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="skB-1O-Hhs"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JMQ-g1-Xls">
                         <barButtonItem key="leftBarButtonItem" image="Menu" id="M7t-7h-Jkm">
@@ -195,6 +206,7 @@
                         <outlet property="clearMapButton" destination="uCp-se-LMw" id="z2V-nC-Hp5"/>
                         <outlet property="loadingLabel" destination="FhB-2T-uTQ" id="5PO-h7-AS2"/>
                         <outlet property="mapButton" destination="eZM-ME-DPz" id="cRO-dL-nOk"/>
+                        <outlet property="mapTypeButton" destination="BXE-is-twS" id="Ets-6s-BP8"/>
                         <outlet property="menuButton" destination="M7t-7h-Jkm" id="DD9-Vl-BjD"/>
                         <outlet property="myTextView" destination="caZ-pZ-NjX" id="wjC-4c-2vr"/>
                         <outlet property="navItem" destination="JMQ-g1-Xls" id="eOb-IO-xng"/>
@@ -334,8 +346,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3O-Ri-vhL">
-                                                    <rect key="frame" x="82" y="14" width="285" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3O-Ri-vhL">
+                                                    <rect key="frame" x="82" y="11" width="285" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -364,8 +376,19 @@
                                     <outlet property="delegate" destination="kOu-I4-RaN" id="LM0-g3-zvA"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfl-Cp-v6r">
+                                <rect key="frame" x="323" y="72" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="mapTypeButtonPressed:" destination="kOu-I4-RaN" eventType="touchUpInside" id="95q-e5-9OO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Jfl-Cp-v6r" secondAttribute="trailing" constant="6" id="6mA-YI-8Zi"/>
+                            <constraint firstItem="Jfl-Cp-v6r" firstAttribute="top" secondItem="QPK-fw-RdF" secondAttribute="bottom" constant="8" symbolic="YES" id="CVf-yg-dTR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Glossary" id="z5B-XI-Q0t">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="g4m-dr-bEW">
@@ -376,6 +399,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="clearMapButton" destination="g4m-dr-bEW" id="ZbY-h9-4CS"/>
+                        <outlet property="mapTypeButton" destination="Jfl-Cp-v6r" id="aT7-lB-zvy"/>
                         <outlet property="myTableView" destination="6wr-m9-jUe" id="vAC-Vz-eRp"/>
                         <outlet property="navItem" destination="z5B-XI-Q0t" id="aYh-OR-TSp"/>
                         <outlet property="searchDisplayController" destination="JJT-qV-zxj" id="sKc-3l-WT9"/>
@@ -498,15 +522,15 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fAt-zP-Hfg">
-                                <rect key="frame" x="0.0" y="415" width="375" height="203"/>
+                                <rect key="frame" x="0.0" y="415" width="369" height="203"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Yw0-K7-AN5">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="369" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yw0-K7-AN5" id="Waw-UK-8pr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="369" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -517,11 +541,22 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WxF-Uc-R93">
-                                <rect key="frame" x="177" y="387" width="20" height="20"/>
+                                <rect key="frame" x="175" y="387" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTl-h9-GzW">
+                                <rect key="frame" x="323" y="72" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="mapTypeButtonPressed:" destination="CS3-AV-9gT" eventType="touchUpInside" id="2nc-Gh-ecI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BTl-h9-GzW" firstAttribute="top" secondItem="QTu-RY-yfe" secondAttribute="bottom" constant="8" symbolic="YES" id="UXo-PO-66J"/>
+                            <constraint firstAttribute="trailing" secondItem="BTl-h9-GzW" secondAttribute="trailing" constant="6" id="sev-mr-JED"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Virtual Tour" id="e5g-cX-Pxv">
                         <rightBarButtonItems>
@@ -540,6 +575,7 @@
                     <connections>
                         <outlet property="aiv" destination="WxF-Uc-R93" id="qxU-hW-x5f"/>
                         <outlet property="clearMapButton" destination="e8P-RH-EEd" id="Xy3-1x-GLM"/>
+                        <outlet property="mapTypeButton" destination="BTl-h9-GzW" id="58I-Sd-bAh"/>
                         <outlet property="myTableView" destination="fAt-zP-Hfg" id="PzI-Hd-Y0k"/>
                         <outlet property="segmentedControl" destination="1Ax-mm-0zn" id="Y6S-OA-ewM"/>
                     </connections>
