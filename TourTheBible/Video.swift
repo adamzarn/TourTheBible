@@ -11,9 +11,11 @@ import Foundation
 struct Video {
     let verses: String
     let videoID: String
+    var sequence: Int
     
-    init(verses: String, videoID: String) {
+    init(verses: String, videoID: String, sequence: Int) {
         self.verses = verses
         self.videoID = videoID
+        self.sequence = sequence
     }
 }

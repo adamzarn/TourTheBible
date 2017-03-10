@@ -24,12 +24,34 @@ class FirebaseClient: NSObject {
                     for (key,value) in songs as! NSDictionary {
                         let verses = key as! String
                         let videoID = value as! String
-                        let video = Video(verses: verses, videoID: videoID)
+                        let video = Video(verses: verses, videoID: videoID, sequence: 0)
                         videos.append(video)
                     }
                     completion(videos, nil)
                 }
                 
+            } else {
+                completion(nil, "Could not retrieve Data")
+            }
+        })
+    }
+    
+    func getVideoLibrary(completion: @escaping (_ videoLibrary: [String: [Video]]?, _ error: NSString?) -> ()) {
+        self.ref.child("Songs").observeSingleEvent(of: .value, with: { snapshot in
+            if let songs = snapshot.value {
+                var videoLibrary: [String: [Video]] = [:]
+                for (key,value) in songs as! NSDictionary {
+                    let bookName = key as! String
+                    let videos = value as! NSDictionary
+                    var tempVideos: [Video] = []
+                    for (key, value) in videos {
+                        let verses = key as! String
+                        let videoID = value as! String
+                        tempVideos.append(Video(verses: verses, videoID: videoID, sequence: 0))
+                    }
+                    videoLibrary[bookName] = tempVideos
+                }
+                completion(videoLibrary, nil)
             } else {
                 completion(nil, "Could not retrieve Data")
             }

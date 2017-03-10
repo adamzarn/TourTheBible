@@ -15,7 +15,7 @@ class CustomBookCell: UITableViewCell {
     
     func setUp() {
         self.backgroundColor = UIColor.clear
-        self.book.font = UIFont(name: "Papyrus", size: 24.0)
+        self.book.font = UIFont(name: "Papyrus", size: 20.0)
         self.book.textColor = UIColor.black
         self.book.font = self.book.font.removeItalics()
     }

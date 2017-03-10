@@ -92,6 +92,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         appDelegate.myMapView.delegate = self
         appDelegate.myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height * 0.45)
         appDelegate.myMapView.mapType = MKMapType.standard
+        appDelegate.myMapView.isHidden = false
         view.addSubview(appDelegate.myMapView)
         
         myTextView.frame = CGRect(x: 0.0, y: y + (height * 0.45), width: screenSize.width, height: height * 0.55)
@@ -330,7 +331,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
                 }
             }
         } else {
-            showYouTube(URLstring: URLstring, videoID: videoID)
+            showYouTube(videoID: videoID)
             return true
         }
         return false
@@ -351,7 +352,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         appDelegate.myMapView.isHidden = false
     }
     
-    func showYouTube(URLstring: String, videoID: String) {
+    func showYouTube(videoID: String) {
         mapTypeButton.isEnabled = false
         mapTypeButton.isHidden = true
         clearMapButton.isEnabled = false
@@ -611,6 +612,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     func booksButtonPressed() {
+        appDelegate.myYouTubePlayer.stopVideo()
         if appDelegate.currentState == .RightPanelExpanded {
             delegate?.toggleRightPanel!()
         }

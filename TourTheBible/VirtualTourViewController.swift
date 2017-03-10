@@ -67,6 +67,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!*0.45)
         appDelegate.myMapView.mapType = MKMapType.standard
+        appDelegate.myMapView.isHidden = false
         view.addSubview(appDelegate.myMapView)
         segmentedControl.frame = CGRect(x: 5, y: y! + height!*0.45 + 5, width: screenSize.width - 10, height: 30)
         aiv.frame = CGRect(x: screenSize.width/2 - 10, y: y! + height!/2 + 45, width: screenSize.width, height: 20)
@@ -178,6 +179,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         if !view.subviews.contains(appDelegate.myMapView) {
             view.addSubview(appDelegate.myMapView)
         }
+        appDelegate.myMapView.isHidden = false
         self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
         getCurrentBook()
         getPinsForVirtualTour()

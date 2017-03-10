@@ -10,13 +10,20 @@ import Foundation
 import MapKit
 import UIKit
 import CoreData
+import youtube_ios_player_helper
 
-class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate {
+class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate, YTPlayerViewDelegate {
     
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var mapTypeButton: UIButton!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var aiv: UIActivityIndicatorView!
+
+    @IBOutlet weak var viewInYouTubeButton: UIButton!
+    @IBOutlet weak var viewYouTubeChannelButton: UIButton!
+    @IBOutlet weak var loadingLabel: UILabel!
     
     var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -25,15 +32,22 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     var masterGlossary = [BibleLocation]()
     var filteredGlossary = [BibleLocation]()
     let letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-    let screenSize: CGRect = UIScreen.main.bounds
+    let books = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
+    
+    var screenSize: CGRect!
     var y: CGFloat?
     var height: CGFloat?
     var keyboardHeight: CGFloat?
     var selectedBible: String? = nil
     var pinsForBook = [Pin]()
     var currentBook: Book? = nil
+    var currentVideoID: String?
+    var YTPlayerHeight: CGFloat?
+    var songBooks: [String] = []
     
     override func viewDidLoad() {
+        
+        screenSize = self.view.bounds
         
         context = appDelegate.managedObjectContext
         masterGlossary = appDelegate.glossary
@@ -42,12 +56,44 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         appDelegate.myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 3.0, longitudeDelta: 3.0)), animated: true)
         
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-        height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
+        let tabBarHeight = (tabBarController?.tabBar.frame.size.height)!
+        height = screenSize.height - y! - tabBarHeight
+        
+        YTPlayerHeight = (screenSize.width/16)*9
+        let YTColor = UIColor(red: 179/255, green: 18/255, blue: 23/255, alpha: 1.0)
+        
+        appDelegate.myYouTubePlayer.delegate = self
+        appDelegate.myYouTubePlayer.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: YTPlayerHeight!)
+        view.addSubview(appDelegate.myYouTubePlayer)
+        appDelegate.myYouTubePlayer.isHidden = true
         
         appDelegate.myMapView.delegate = self
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!*0.45)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: (height! + tabBarHeight)*0.45)
         appDelegate.myMapView.mapType = MKMapType.standard
-        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45, width: screenSize.width, height: height!*0.55)
+        appDelegate.myMapView.isHidden = false
+        segmentedControl.frame = CGRect(x: 5, y: y! + (height!+tabBarHeight)*0.45 + 5, width: screenSize.width - 10, height: 30)
+        myTableView.frame = CGRect(x: 0.0, y: y! + (height!+tabBarHeight)*0.45 + 40, width: screenSize.width, height: (height!+tabBarHeight)*0.55 - 40 - tabBarHeight)
+        
+        viewInYouTubeButton.frame = CGRect(x: 5.0, y: y! + YTPlayerHeight! + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + tabBarHeight)*0.45 - YTPlayerHeight! - 10.0)
+        viewInYouTubeButton.backgroundColor = YTColor
+        viewInYouTubeButton.isHidden = true
+        viewInYouTubeButton.isEnabled = false
+        viewInYouTubeButton.setTitle("View in YouTube", for: .normal)
+        viewInYouTubeButton.setTitleColor(UIColor.white, for: .normal)
+        viewInYouTubeButton.layer.cornerRadius = 5
+        
+        viewYouTubeChannelButton.frame = CGRect(x: (screenSize.width/2) + 2.5, y: y! + YTPlayerHeight! + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + tabBarHeight)*0.45 - YTPlayerHeight! - 10.0)
+        viewYouTubeChannelButton.backgroundColor = YTColor
+        viewYouTubeChannelButton.isHidden = true
+        viewYouTubeChannelButton.isEnabled = false
+        viewYouTubeChannelButton.setTitle("YouTube Channel", for: .normal)
+        viewYouTubeChannelButton.setTitleColor(UIColor.white, for: .normal)
+        viewYouTubeChannelButton.layer.cornerRadius = 5
+        
+        loadingLabel.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: YTPlayerHeight!)
+        loadingLabel.text = "Loading..."
+        loadingLabel.textAlignment = .center
+        loadingLabel.isHidden = true
         
         searchController.delegate = self
         searchController.searchBar.delegate = self
@@ -66,6 +112,9 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         mapTypeButton.layer.cornerRadius = 5
         mapTypeButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         self.view.bringSubview(toFront: mapTypeButton)
+        
+        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: y! + (height!+tabBarHeight)*0.45 + 55, width: 20, height: 20)
+        aiv.isHidden = true
         
         adjustSubviews()
     }
@@ -89,13 +138,14 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         } else {
             y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         }
+        let tabBarHeight = (tabBarController?.tabBar.frame.size.height)!
+        height = screenSize.height - y! - tabBarHeight
 
-        height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
-
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!*0.45)
-        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45, width: screenSize.width, height: height!*0.55)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: (height!+tabBarHeight)*0.45)
+        segmentedControl.frame = CGRect(x: 5, y: y! + (height!+tabBarHeight)*0.45 + 5, width: screenSize.width - 10, height: 30)
+        myTableView.frame = CGRect(x: 0.0, y: y! + (height!+tabBarHeight)*0.45 + 40, width: screenSize.width, height: (height!+tabBarHeight)*0.55 - 40 - tabBarHeight)
+        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: y! + (height!+tabBarHeight)*0.45 + 55, width: 20, height: 20)
         self.view.bringSubview(toFront: mapTypeButton)
-
     }
     
     override func viewWillLayoutSubviews() {
@@ -129,6 +179,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             view.addSubview(appDelegate.myMapView)
         }
         self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
+        appDelegate.myMapView.isHidden = false
         
         getCurrentBook()
         getPinsForGlossary()
@@ -212,47 +263,71 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         if searchController.isActive {
             return nil
         }
-        return letters
+        if segmentedControl.selectedSegmentIndex == 0 {
+            return letters
+        }
+        return songBooks
     }
     
     func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        return letters.index(of: title)!
+        if segmentedControl.selectedSegmentIndex == 0 {
+            return letters.index(of: title)!
+        }
+        return songBooks.index(of: title)!
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if searchController.isActive && searchController.searchBar.text != "" {
-            return filteredGlossary.count
+        if segmentedControl.selectedSegmentIndex == 0 {
+            if searchController.isActive && searchController.searchBar.text != "" {
+                return filteredGlossary.count
+            }
+            return sortedGlossary[section].count
+        } else {
+            return appDelegate.videoLibrary[songBooks[section]]!.count
         }
         
-        return sortedGlossary[section].count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if searchController.isActive && searchController.searchBar.text != "" {
-            return 1
+        if segmentedControl.selectedSegmentIndex == 0 {
+            if searchController.isActive && searchController.searchBar.text != "" {
+                return 1
+            }
+            return sortedGlossary.count
+        } else {
+            return songBooks.count
         }
-        return sortedGlossary.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if searchController.isActive && searchController.searchBar.text != "" {
-            return nil
+        if segmentedControl.selectedSegmentIndex == 0 {
+            if searchController.isActive && searchController.searchBar.text != "" {
+                return nil
+            } else {
+                return letters[section]
+            }
         } else {
-            return letters[section]
+            return songBooks[section]
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! GlossaryCell
-        if searchController.isActive && searchController.searchBar.text != "" {
-            cell.setUp(location: filteredGlossary[indexPath.row])
+        if segmentedControl.selectedSegmentIndex == 0 {
+            if searchController.isActive && searchController.searchBar.text != "" {
+                cell.setUp(location: filteredGlossary[indexPath.row])
+            } else {
+                cell.setUp(location: sortedGlossary[indexPath.section][indexPath.row])
+            }
+            return cell
         } else {
-            cell.setUp(location: sortedGlossary[indexPath.section][indexPath.row])
+            let book = songBooks[indexPath.section]
+            let videos = appDelegate.videoLibrary[book]
+            cell.setUp(video: (videos?[indexPath.row])!)
+            return cell
         }
-        
-        return cell
         
     }
     
@@ -276,29 +351,35 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if searchController.isActive {
-            var location: BibleLocation!
-            if searchController.searchBar.text != "" {
-                location = filteredGlossary[indexPath.row] as BibleLocation
+        segmentedControl.isHidden = false
+        segmentedControl.isEnabled = true
+        
+        if segmentedControl.selectedSegmentIndex == 0 {
+            if searchController.isActive {
+                var location: BibleLocation!
+                if searchController.searchBar.text != "" {
+                    location = filteredGlossary[indexPath.row] as BibleLocation
+                } else {
+                    location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
+                }
+                setUpMap(name: location.name!, lat: location.lat, long: location.long)
+                savePin(location: location!)
+                searchController.dismiss(animated: true, completion: nil)
+                searchController.searchBar.text = ""
+                y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+                height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
+                myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45 + 40, width: screenSize.width, height: height!*0.55 - 40)
+                self.view.bringSubview(toFront: mapTypeButton)
+                myTableView.reloadData()
             } else {
-                location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
+                let location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
+                setUpMap(name: location.name!, lat: location.lat, long: location.long)
+                savePin(location: location)
             }
-            appDelegate.myMapView.isHidden = false
-            setUpMap(name: location.name!, lat: location.lat, long: location.long)
-            savePin(location: location!)
-            searchController.dismiss(animated: true, completion: nil)
-            searchController.searchBar.text = ""
-            y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-            height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
-            myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45, width: screenSize.width, height: height!*0.55)
-            mapTypeButton.isHidden = false
-            mapTypeButton.isEnabled = true
-            self.view.bringSubview(toFront: mapTypeButton)
-            myTableView.reloadData()
         } else {
-            let location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
-            setUpMap(name: location.name!, lat: location.lat, long: location.long)
-            savePin(location: location)
+            let videoID = appDelegate.videoLibrary[songBooks[indexPath.section]]?[indexPath.row].videoID
+            loadingLabel.isHidden = false
+            appDelegate.myYouTubePlayer.load(withVideoId: videoID!, playerVars: ["playsinline": 1, "rel": 0])
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -376,14 +457,15 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        segmentedControl.isHidden = false
+        segmentedControl.isEnabled = true
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-        height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
+        let tabBarHeight = (tabBarController?.tabBar.frame.size.height)!
+        height = screenSize.height - y! - tabBarHeight
         
-        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45, width: screenSize.width, height: height!*0.55)
+        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45 + 40, width: screenSize.width, height: height!*0.55 - 40)
         searchController.searchBar.text = ""
-        mapTypeButton.isEnabled = true
-        mapTypeButton.isHidden = false
-        
+        adjustSubviews()
     }
     
     func subscribeToKeyboardNotifications() {
@@ -398,9 +480,15 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     func keyboardWillShow(notification: NSNotification) {
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         height = screenSize.height - y! - getKeyboardHeight(notification: notification)
-        
+        viewInYouTubeButton.isHidden = true
+        viewInYouTubeButton.isEnabled = false
+        viewYouTubeChannelButton.isHidden = true
+        viewYouTubeChannelButton.isEnabled = false
         appDelegate.myMapView.isHidden = true
+        appDelegate.myYouTubePlayer.isHidden = true
         myTableView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!)
+        segmentedControl.isHidden = true
+        segmentedControl.isEnabled = false
         clearMapButton.isEnabled = false
         mapTypeButton.isEnabled = false
         mapTypeButton.isHidden = true
@@ -408,14 +496,127 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        appDelegate.myMapView.isHidden = false
-        clearMapButton.isEnabled = true
+        if segmentedControl.selectedSegmentIndex == 0 {
+            mapTypeButton.isEnabled = true
+            mapTypeButton.isHidden = false
+            appDelegate.myMapView.isHidden = false
+            clearMapButton.isEnabled = true
+        } else {
+            appDelegate.myYouTubePlayer.isHidden = false
+            viewInYouTubeButton.isHidden = false
+            viewInYouTubeButton.isEnabled = true
+            viewYouTubeChannelButton.isHidden = false
+            viewYouTubeChannelButton.isEnabled = true
+        }
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo!
         let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.height
+    }
+    
+    
+    @IBAction func segmentedControlValueChanged(_ sender: Any) {
+
+        if segmentedControl.selectedSegmentIndex == 0 {
+            myTableView.reloadData()
+            showMap()
+        } else {
+            if self.appDelegate.videoLibrary.count == 0 {
+                myTableView.isHidden = true
+                aiv.isHidden = false
+                aiv.startAnimating()
+                FirebaseClient.sharedInstance.getVideoLibrary(completion: { (videoLibrary, error) -> () in
+                    if let videoLibrary = videoLibrary {
+                        var songBooksUnsorted: [String] = []
+                        for (key, _) in videoLibrary {
+                            songBooksUnsorted.append(key)
+                        }
+                        for book in self.books {
+                            if songBooksUnsorted.contains(book) {
+                                self.songBooks.append(book)
+                                let unsortedVideos = videoLibrary[book]
+                                var tempVideos: [Video] = []
+                                for video in unsortedVideos! {
+                                    let vc = video.verses.characters.split{$0 == ":"}.map(String.init)
+                                    let sequence = Int(vc[0])!*1000 + Int(vc[1])!
+                                    let newVideo = Video(verses: video.verses, videoID: video.videoID, sequence: sequence)
+                                    print(newVideo.verses)
+                                    print(newVideo.sequence)
+                                    print("")
+                                    tempVideos.append(newVideo)
+                                }
+                                let sortedVideos = tempVideos.sorted { $0.sequence < $1.sequence }
+                                self.appDelegate.videoLibrary[book] = sortedVideos
+                            }
+                        }
+                        self.myTableView.reloadData()
+                        self.myTableView.isHidden = false
+                        self.aiv.isHidden = true
+                        self.aiv.stopAnimating()
+                    }
+                })
+            } else {
+                myTableView.reloadData()
+            }
+            showYouTube(videoID: "HLE8Xjuqn2M")
+        }
+    }
+    
+
+    @IBAction func viewInYouTubeButtonPressed(_ sender: Any) {
+        appDelegate.myYouTubePlayer.stopVideo()
+        var url = URL(string:"youtube://\(currentVideoID!)")!
+        if UIApplication.shared.canOpenURL(url)  {
+            UIApplication.shared.openURL(url)
+        } else {
+            url = URL(string:"http://www.youtube.com/watch?v=\(currentVideoID!)")!
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    @IBAction func viewYouTubeChannelButtonPressed(_ sender: Any) {
+        appDelegate.myYouTubePlayer.stopVideo()
+        let youtubeId = "UC-tRUM6a6xf5paW6Ns9yd0w"
+        var url = URL(string:"youtube://www.youtube.com/channel/\(youtubeId)")!
+        if UIApplication.shared.canOpenURL(url)  {
+            UIApplication.shared.openURL(url)
+        } else {
+            url = URL(string:"http://www.youtube.com/channel/\(youtubeId)")!
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    func showMap() {
+        mapTypeButton.isEnabled = true
+        mapTypeButton.isHidden = false
+        clearMapButton.isEnabled = true
+        loadingLabel.isHidden = true
+        appDelegate.myYouTubePlayer.isHidden = true
+        appDelegate.myYouTubePlayer.stopVideo()
+        view.sendSubview(toBack: appDelegate.myYouTubePlayer)
+        viewInYouTubeButton.isHidden = true
+        viewYouTubeChannelButton.isHidden = true
+        appDelegate.myMapView.isHidden = false
+    }
+    
+    func showYouTube(videoID: String) {
+        mapTypeButton.isEnabled = false
+        mapTypeButton.isHidden = true
+        clearMapButton.isEnabled = false
+        appDelegate.myMapView.isHidden = true
+        loadingLabel.isHidden = false
+        view.bringSubview(toFront: loadingLabel)
+        currentVideoID = videoID
+        appDelegate.myYouTubePlayer.isHidden = false
+        appDelegate.myYouTubePlayer.load(withVideoId: videoID, playerVars: ["playsinline": 1, "rel": 0])
+        viewInYouTubeButton.isHidden = false
+        viewYouTubeChannelButton.isHidden = false
+    }
+    
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+        loadingLabel.isHidden = true
     }
 
 }

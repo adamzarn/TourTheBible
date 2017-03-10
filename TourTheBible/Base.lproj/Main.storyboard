@@ -23,20 +23,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="197" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gde-yE-D9j">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="197" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gde-yE-D9j">
+                                <rect key="frame" x="0.0" y="64" width="190" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BookCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookCell" rowHeight="60" id="ktt-2e-Z75" customClass="CustomBookCell" customModule="TourTheBible" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OTBookCell" rowHeight="60" id="ktt-2e-Z75" customClass="CustomBookCell" customModule="TourTheBible" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="190" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ktt-2e-Z75" id="Llw-Le-Sob">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="190" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-2q-Nbq">
-                                                    <rect key="frame" x="20" y="9" width="335" height="42"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-2q-Nbq">
+                                                    <rect key="frame" x="20" y="9" width="150" height="42"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -52,26 +53,26 @@
                                             <outlet property="book" destination="Unb-2q-Nbq" id="2iw-7d-Hx8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProductCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProductCell" rowHeight="60" id="YhY-HT-rLW" customClass="ProductCell" customModule="TourTheBible">
-                                        <rect key="frame" x="0.0" y="88" width="375" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OTProductCell" rowHeight="60" id="YhY-HT-rLW" customClass="ProductCell" customModule="TourTheBible">
+                                        <rect key="frame" x="0.0" y="88" width="190" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YhY-HT-rLW" id="aNC-Uw-1lf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="190" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="TPz-VC-RCf">
-                                                    <rect key="frame" x="178" y="20" width="20" height="20"/>
+                                                    <rect key="frame" x="69.5" y="20" width="20" height="20"/>
                                                 </activityIndicatorView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAQ-2w-MgQ">
-                                                    <rect key="frame" x="286" y="15" width="66" height="30"/>
+                                                    <rect key="frame" x="70" y="15" width="66" height="30"/>
                                                     <state key="normal" title="The Price"/>
                                                     <connections>
                                                         <action selector="buyButtonTapped:" destination="YhY-HT-rLW" eventType="touchUpInside" id="5yL-25-Vgg"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-DP-XT7">
-                                                    <rect key="frame" x="20" y="9" width="335" height="42"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-DP-XT7">
+                                                    <rect key="frame" x="20" y="9" width="119" height="42"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -99,24 +100,96 @@
                                     <outlet property="delegate" destination="9yy-wX-d3J" id="nfs-ap-XCf"/>
                                 </connections>
                             </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="197" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UBh-h7-nS4">
+                                <rect key="frame" x="187" y="0.0" width="188" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NTBookCell" rowHeight="60" id="DGy-fd-bGw" customClass="CustomBookCell" customModule="TourTheBible" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="188" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DGy-fd-bGw" id="55g-h0-TV0">
+                                            <rect key="frame" x="0.0" y="0.0" width="188" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1Et-rA-ZJG">
+                                                    <rect key="frame" x="20" y="9" width="148" height="42"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1Et-rA-ZJG" firstAttribute="leading" secondItem="55g-h0-TV0" secondAttribute="leadingMargin" constant="12" id="2Ag-zv-6e6"/>
+                                                <constraint firstItem="1Et-rA-ZJG" firstAttribute="bottom" secondItem="55g-h0-TV0" secondAttribute="bottomMargin" id="S5R-WI-2iZ"/>
+                                                <constraint firstItem="1Et-rA-ZJG" firstAttribute="centerY" secondItem="55g-h0-TV0" secondAttribute="centerY" id="cTw-8u-ld0"/>
+                                                <constraint firstItem="1Et-rA-ZJG" firstAttribute="centerX" secondItem="55g-h0-TV0" secondAttribute="centerX" id="qvE-n9-yyQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="book" destination="1Et-rA-ZJG" id="ndR-nR-W3s"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NTProductCell" rowHeight="60" id="7mO-Ua-4Fa" customClass="ProductCell" customModule="TourTheBible">
+                                        <rect key="frame" x="0.0" y="88" width="188" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7mO-Ua-4Fa" id="mCz-JC-c1X">
+                                            <rect key="frame" x="0.0" y="0.0" width="188" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uBO-3i-T2X">
+                                                    <rect key="frame" x="84" y="20" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ay-BL-Hrh">
+                                                    <rect key="frame" x="99" y="15" width="66" height="30"/>
+                                                    <state key="normal" title="The Price"/>
+                                                    <connections>
+                                                        <action selector="buyButtonTapped:" destination="7mO-Ua-4Fa" eventType="touchUpInside" id="Ec6-D0-O3A"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OKr-tJ-DIX">
+                                                    <rect key="frame" x="20" y="9" width="148" height="42"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5Ay-BL-Hrh" secondAttribute="trailing" constant="15" id="2Rh-Ai-UZh"/>
+                                                <constraint firstItem="uBO-3i-T2X" firstAttribute="centerY" secondItem="mCz-JC-c1X" secondAttribute="centerY" id="Jhj-UN-Zlp"/>
+                                                <constraint firstItem="OKr-tJ-DIX" firstAttribute="centerY" secondItem="uBO-3i-T2X" secondAttribute="centerY" id="OyQ-SV-j68"/>
+                                                <constraint firstItem="uBO-3i-T2X" firstAttribute="centerX" secondItem="mCz-JC-c1X" secondAttribute="centerX" id="T5K-tt-jt2"/>
+                                                <constraint firstItem="5Ay-BL-Hrh" firstAttribute="centerY" secondItem="mCz-JC-c1X" secondAttribute="centerY" id="UVA-vB-RoO"/>
+                                                <constraint firstItem="OKr-tJ-DIX" firstAttribute="leading" secondItem="mCz-JC-c1X" secondAttribute="leadingMargin" constant="12" id="eFl-TS-dLJ"/>
+                                                <constraint firstItem="OKr-tJ-DIX" firstAttribute="centerX" secondItem="mCz-JC-c1X" secondAttribute="centerX" id="kEl-3Y-nN7"/>
+                                                <constraint firstItem="OKr-tJ-DIX" firstAttribute="bottom" secondItem="mCz-JC-c1X" secondAttribute="bottomMargin" id="r58-ML-tfG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="aiv" destination="uBO-3i-T2X" id="6a4-VT-SBY"/>
+                                            <outlet property="book" destination="OKr-tJ-DIX" id="61R-2g-CaL"/>
+                                            <outlet property="price" destination="5Ay-BL-Hrh" id="PoS-NY-7dr"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9yy-wX-d3J" id="Srd-wJ-OQ9"/>
+                                    <outlet property="delegate" destination="9yy-wX-d3J" id="J5o-4z-sK7"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Gde-yE-D9j" secondAttribute="bottom" id="4ZQ-17-JEQ"/>
-                            <constraint firstAttribute="trailing" secondItem="Gde-yE-D9j" secondAttribute="trailing" id="6xx-ZV-BQP"/>
-                            <constraint firstItem="Gde-yE-D9j" firstAttribute="leading" secondItem="l06-4h-FKN" secondAttribute="leading" id="JK5-U2-MuJ"/>
-                            <constraint firstItem="Gde-yE-D9j" firstAttribute="top" secondItem="l06-4h-FKN" secondAttribute="top" id="Wn9-jZ-oub"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Books" id="cPM-lt-Me9"/>
                     <connections>
-                        <outlet property="myTableView" destination="Gde-yE-D9j" id="fOR-yE-mVX"/>
+                        <outlet property="myNTTableView" destination="UBh-h7-nS4" id="p72-mb-zQf"/>
+                        <outlet property="myOTTableView" destination="Gde-yE-D9j" id="m9T-Od-c6L"/>
                         <outlet property="navItem" destination="cPM-lt-Me9" id="5lR-aF-bKx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvo-f9-r2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2558" y="340"/>
+            <point key="canvasLocation" x="2557.5999999999999" y="339.58020989505252"/>
         </scene>
         <!--Map Text View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -383,6 +456,44 @@
                                     <action selector="mapTypeButtonPressed:" destination="kOu-I4-RaN" eventType="touchUpInside" id="95q-e5-9OO"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gC7-Kc-gIN">
+                                <rect key="frame" x="16" y="369" width="343" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Locations"/>
+                                    <segment title="Songs"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="kOu-I4-RaN" eventType="valueChanged" id="cR0-g5-Jbq"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1e-C0-bxG">
+                                <rect key="frame" x="69" y="308" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="viewInYouTubeButtonPressed:" destination="kOu-I4-RaN" eventType="touchUpInside" id="qV6-Hi-m3P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tiz-WF-f7w">
+                                <rect key="frame" x="258" y="308" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="viewYouTubeChannelButtonPressed:" destination="kOu-I4-RaN" eventType="touchUpInside" id="BwJ-IH-0Wx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4IW-4p-ohf">
+                                <rect key="frame" x="166" y="172" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uJC-Xc-Iw8">
+                                <rect key="frame" x="177" y="405" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -398,11 +509,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="aiv" destination="uJC-Xc-Iw8" id="s62-ST-pvn"/>
                         <outlet property="clearMapButton" destination="g4m-dr-bEW" id="ZbY-h9-4CS"/>
+                        <outlet property="loadingLabel" destination="4IW-4p-ohf" id="RR7-QN-GJi"/>
                         <outlet property="mapTypeButton" destination="Jfl-Cp-v6r" id="aT7-lB-zvy"/>
                         <outlet property="myTableView" destination="6wr-m9-jUe" id="vAC-Vz-eRp"/>
                         <outlet property="navItem" destination="z5B-XI-Q0t" id="aYh-OR-TSp"/>
                         <outlet property="searchDisplayController" destination="JJT-qV-zxj" id="sKc-3l-WT9"/>
+                        <outlet property="segmentedControl" destination="gC7-Kc-gIN" id="1ig-We-Cl1"/>
+                        <outlet property="viewInYouTubeButton" destination="z1e-C0-bxG" id="GWW-b5-MAj"/>
+                        <outlet property="viewYouTubeChannelButton" destination="Tiz-WF-f7w" id="pob-BA-sZM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVz-h3-Vvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -423,7 +539,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2559" y="1075"/>
+            <point key="canvasLocation" x="2557.5999999999999" y="1074.5127436281859"/>
         </scene>
         <!--Virtual Tours-->
         <scene sceneID="SxA-ww-z9i">

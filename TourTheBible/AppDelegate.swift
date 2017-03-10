@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var products = [SKProduct]()
     var chapterIndex: Int = 1
     var glossary = [BibleLocation]()
+    var videoLibrary: [String: [Video]] = [:]
     var myMapView: MKMapView!
     var myYouTubePlayer: YTPlayerView!
     var currentState: SlideOutState = .BothCollapsed
@@ -81,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("Unable to start notifier")
         }
+        
         return true
     }
     
