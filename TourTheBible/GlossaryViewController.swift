@@ -412,14 +412,14 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                 let row = sortedGlossary[letterIndex!].index(of: location)
                 let ip = IndexPath(row: row!, section: letterIndex!)
                 
-                tableView.scrollToRow(at: ip as IndexPath, at: .middle, animated: false)
+                tableView.scrollToRow(at: ip as IndexPath, at: .top, animated: false)
                 
             } else {
                 let location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
                 setUpMap(name: location.name!, lat: location.lat, long: location.long)
                 savePin(location: location)
                 tableView.deselectRow(at: indexPath, animated: true)
-                tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+                tableView.scrollToRow(at: indexPath, at: .top, animated: false)
             }
         } else {
             searchController.searchBar.placeholder = "Please wait..."
@@ -467,7 +467,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                 view.bringSubview(toFront: loadingLabel)
                 showYouTube(videoID: videoID)
                 tableView.deselectRow(at: indexPath, animated: true)
-                tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
 
             }
 
@@ -720,7 +720,9 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         appDelegate.myYouTubePlayer.stopVideo()
         view.sendSubview(toBack: appDelegate.myYouTubePlayer)
         viewInYouTubeButton.isHidden = true
+        viewInYouTubeButton.isEnabled = false
         viewYouTubeChannelButton.isHidden = true
+        viewYouTubeChannelButton.isEnabled = false
         appDelegate.myMapView.isHidden = false
     }
     
@@ -736,7 +738,9 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         appDelegate.myYouTubePlayer.isHidden = false
         appDelegate.myYouTubePlayer.load(withVideoId: videoID, playerVars: ["playsinline": 1, "rel": 0])
         viewInYouTubeButton.isHidden = false
+        viewInYouTubeButton.isEnabled = true
         viewYouTubeChannelButton.isHidden = false
+        viewYouTubeChannelButton.isEnabled = true
     }
     
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {

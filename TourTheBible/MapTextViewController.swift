@@ -144,7 +144,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         //Set starting chapter
         let bookmark = defaults.value(forKey: book!)
         if bookmark != nil {
-            chapterIndex = bookmark as! Int
+            chapterIndex = bookmark as? Int
         } else {
             chapterIndex = 1
         }
@@ -308,6 +308,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
                     newPin.lat = location.lat
                     newPin.long = location.long
                     newPin.title = location.name!
+                    newPin.subtitle = location.key!
                     newPin.pinToBook = currentBook
                     pinsForBook.append(newPin)
                     
@@ -334,7 +335,9 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         appDelegate.myYouTubePlayer.stopVideo()
         view.sendSubview(toBack: appDelegate.myYouTubePlayer)
         viewInYouTubeButton.isHidden = true
+        viewInYouTubeButton.isEnabled = false
         viewYouTubeChannelButton.isHidden = true
+        viewYouTubeChannelButton.isEnabled = false
         appDelegate.myMapView.isHidden = false
     }
     
@@ -351,7 +354,9 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         appDelegate.myYouTubePlayer.isHidden = false
         appDelegate.myYouTubePlayer.load(withVideoId: videoID, playerVars: ["playsinline": 1, "rel": 0])
         viewInYouTubeButton.isHidden = false
+        viewInYouTubeButton.isEnabled = true
         viewYouTubeChannelButton.isHidden = false
+        viewYouTubeChannelButton.isEnabled = true
     }
     
     func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
@@ -440,7 +445,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
             for i in 1...Books.booksDictionary[book]! {
                 let bookDict = locations?[book]!
                 let chapterArray = bookDict?[String(i)]!
-                for title in titles as! [String] {
+                for title in titles {
                     if (chapterArray?.contains(title))! {
                         if !chapterAppearances[books.index(of: book)!].contains("\(book) \(i)") {
                             chapterAppearances[books.index(of: book)!].append("\(book) \(i)")
@@ -661,6 +666,11 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
 
             annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
             annotation.title = pin.title
+            if let pinSubtitle = pin.subtitle {
+                if pin.title?.lowercased() != pinSubtitle.lowercased() {
+                    annotation.subtitle = pin.subtitle
+                }
+            }
             appDelegate.myMapView.addAnnotation(annotation)
             
         }

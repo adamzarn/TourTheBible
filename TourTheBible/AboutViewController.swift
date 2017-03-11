@@ -10,15 +10,14 @@ import Foundation
 import UIKit
 import MessageUI
 
-class AboutViewController: UIViewController, UITextViewDelegate, MFMailComposeViewControllerDelegate {
+class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     var rawText: String = ""
     var aboutText: NSString = ""
-    @IBOutlet weak var myTextView: UITextView!
+    @IBOutlet weak var myLabel: UILabel!
+    @IBOutlet weak var emailButton: UIButton!
     
     override func viewDidLoad() {
-        
-        myTextView.delegate = self
         
         let path = Bundle.main.path(forResource: "About", ofType: "txt")
         
@@ -27,22 +26,12 @@ class AboutViewController: UIViewController, UITextViewDelegate, MFMailComposeVi
         } catch {
         }
         
-        aboutText = rawText as NSString
-        
-        let attributedText = NSMutableAttributedString(string: rawText)
-        let allRange = (aboutText as NSString).range(of: rawText)
-        let range = (aboutText as NSString).range(of: "email")
-        attributedText.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize:16.0), range: allRange)
-        attributedText.addAttribute(NSLinkAttributeName, value: "email", range: range)
-        
-        myTextView.attributedText = attributedText
-        myTextView.isScrollEnabled = false
-        myTextView.isEditable = false
+        myLabel.text = rawText
         
     }
     
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        
+    
+    @IBAction func emailButtonPressed(_ sender: Any) {
         if MFMailComposeViewController.canSendMail() {
             let vc = MFMailComposeViewController()
             vc.mailComposeDelegate = self
@@ -50,17 +39,22 @@ class AboutViewController: UIViewController, UITextViewDelegate, MFMailComposeVi
             vc.setSubject("Tour The Bible")
             
             self.present(vc, animated: false, completion: nil)
-            
-            return true
-            
-        } else {
-            return false
         }
-        
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         self.dismiss(animated: false, completion: nil)
+    }
+
+    @IBAction func patreonButtonPressed(_ sender: Any) {
+        let url = URL(string: "https://www.patreon.com/adamzarn")!
+        if UIApplication.shared.canOpenURL(url) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
     }
     
     
