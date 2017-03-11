@@ -99,7 +99,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func reload() {
         
-        if hasConnectivity() {
+        if FirebaseClient.sharedInstance.hasConnectivity() {
             if appDelegate.products.count == 0 {
                 Products.store.requestProducts{success, products in
                     if success {
@@ -222,7 +222,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                 } else {
                     
-                    if hasConnectivity() {
+                    if FirebaseClient.sharedInstance.hasConnectivity() {
                         cell.setUp(aivHidden: false, bookHidden: true, priceHidden: true, priceEnabled: false)
                         cell.aiv.startAnimating()
                     } else {

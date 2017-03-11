@@ -36,23 +36,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         
+        let defaults = UserDefaults.standard
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            let currentVersion = defaults.value(forKey: "currentVersion") as? String
+            if version != currentVersion {
+                preloadData()
+                defaults.set(version, forKey: "currentVersion")
+            }
+        }
+        
         FIRApp.configure()
         
         myMapView = MKMapView()
         myYouTubePlayer = YTPlayerView()
-        
-        let defaults = UserDefaults.standard
+
         if defaults.bool(forKey: "hasBeenLaunched") == true {
             print("has already been launched")
         } else {
             defaults.setValue("King James Version", forKey: "selectedBible")
             defaults.setValue(true, forKey: "hasBeenLaunched")
-        }
-
-        let isPreloaded = defaults.bool(forKey: "isPreloaded")
-        if !isPreloaded {
-            preloadData()
-            defaults.set(true, forKey: "isPreloaded")
         }
         
         let context = self.managedObjectContext
@@ -233,7 +235,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             var error:NSError?
             if let items = parseCSV(contentsOfURL: contentsOfURL as NSURL, encoding: String.Encoding.utf8, error: &error) {
-                // Preload the menu items
                 let managedObjectContext = self.managedObjectContext
                     for item in items {
                         
@@ -264,6 +265,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         for bibleLocation in bibleLocations! {
+            print("\(bibleLocation.name) deleted")
             managedObjectContext.delete(bibleLocation)
         }
     }

@@ -29,9 +29,9 @@ class GlossaryCell: UITableViewCell {
         self.myImageView.image = UIImage(named: "Notes")
         let vc = video.verses.characters.split{$0 == ":"}.map(String.init)
         if vc[1] == vc[2] {
-            self.myLabel!.text = "\(vc[0]):\(vc[1])"
+            self.myLabel!.text = "\(video.book) \(vc[0]):\(vc[1])"
         } else {
-            self.myLabel!.text = "\(vc[0]):\(vc[1])-\(vc[2])"
+            self.myLabel!.text = "\(video.book) \(vc[0]):\(vc[1])-\(vc[2])"
         }
         self.myDetailLabel!.text = ""
     }

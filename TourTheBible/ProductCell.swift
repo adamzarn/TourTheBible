@@ -83,7 +83,7 @@ class ProductCell: UITableViewCell {
     }
     
     @IBAction func buyButtonTapped(_ sender: AnyObject) {
-        if hasConnectivity() {
+        if FirebaseClient.sharedInstance.hasConnectivity() {
             buyButtonHandler?(product!)
         } else {
             let alert = UIAlertController(title: "No Internet Connection", message: "You must connect to the internet to buy this book.", preferredStyle: UIAlertControllerStyle.alert)

@@ -53,7 +53,12 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var rawText: String?
     var totalChars: Int?
     var attributedText: NSMutableAttributedString?
-    var chapterIndex: Int?
+    var chapterIndex: Int? {
+        didSet {
+            let defaults = UserDefaults.standard
+            defaults.set(chapterIndex, forKey: book!)
+        }
+    }
     var book: String?
     var numberOfChapters: Int?
     var selectedBible: String?
@@ -77,52 +82,39 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         screenSize = self.view.bounds
         
         context = appDelegate.managedObjectContext
-        
-        let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-        let height = screenSize.height - y
-        
-        let YTPlayerHeight = (screenSize.width/16)*9
+
         let YTColor = UIColor(red: 179/255, green: 18/255, blue: 23/255, alpha: 1.0)
         
         appDelegate.myYouTubePlayer.delegate = self
-        appDelegate.myYouTubePlayer.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: YTPlayerHeight)
         view.addSubview(appDelegate.myYouTubePlayer)
         appDelegate.myYouTubePlayer.isHidden = true
         
         appDelegate.myMapView.delegate = self
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: height * 0.45)
         appDelegate.myMapView.mapType = MKMapType.standard
         appDelegate.myMapView.isHidden = false
         view.addSubview(appDelegate.myMapView)
         
-        myTextView.frame = CGRect(x: 0.0, y: y + (height * 0.45), width: screenSize.width, height: height * 0.55)
-        
-        viewInYouTubeButton.frame = CGRect(x: 5.0, y: y + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height * 0.45) - YTPlayerHeight - 10.0)
         viewInYouTubeButton.backgroundColor = YTColor
         viewInYouTubeButton.isHidden = true
         viewInYouTubeButton.setTitle("View in YouTube", for: .normal)
         viewInYouTubeButton.setTitleColor(UIColor.white, for: .normal)
         viewInYouTubeButton.layer.cornerRadius = 5
         
-        viewYouTubeChannelButton.frame = CGRect(x: (screenSize.width/2) + 2.5, y: y + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height * 0.45) - YTPlayerHeight - 10.0)
         viewYouTubeChannelButton.backgroundColor = YTColor
         viewYouTubeChannelButton.isHidden = true
         viewYouTubeChannelButton.setTitle("YouTube Channel", for: .normal)
         viewYouTubeChannelButton.setTitleColor(UIColor.white, for: .normal)
         viewYouTubeChannelButton.layer.cornerRadius = 5
         
-        loadingLabel.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: YTPlayerHeight)
         loadingLabel.text = "Loading..."
         loadingLabel.textAlignment = .center
         loadingLabel.isHidden = true
-
-        aiv.frame = CGRect(x: 0.0, y: y + height/2, width: screenSize.width, height: height/2)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
         self.view.addGestureRecognizer(gesture)
         
         //Set Bible Translation
-        selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
+        selectedBible = defaults.value(forKey: "selectedBible") as? String
         if selectedBible == "King James Version" {
             locations = BibleLocationsKJV.Locations
         }
@@ -150,8 +142,9 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         self.tabBarController?.tabBar.isUserInteractionEnabled = false
         
         //Set starting chapter
-        if let chapter = defaults.value(forKey: book!) {
-            chapterIndex = chapter as? Int
+        let bookmark = defaults.value(forKey: book!)
+        if bookmark != nil {
+            chapterIndex = bookmark as! Int
         } else {
             chapterIndex = 1
         }
@@ -267,15 +260,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-
-        let defaults = UserDefaults.standard
-        defaults.set(chapterIndex, forKey: book!)
-    
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
-        self.screenSize = self.view.bounds
+        loadingLabel.isHidden = true
         
         myTextView.isScrollEnabled = false
         myTextView.isEditable = false
@@ -316,7 +302,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
             
             for location in currentLocations {
                 if decodedURL == location.key {
-                    setUpMap(name: location.name!, lat: location.lat, long: location.long)
+                    setUpMap(key: location.key!, name: location.name!, lat: location.lat, long: location.long)
                     
                     let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
                     newPin.lat = location.lat
@@ -490,7 +476,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
 
     
-    func setUpMap(name: String, lat: Double, long: Double) {
+    func setUpMap(key: String, name: String, lat: Double, long: Double) {
 
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         appDelegate.myMapView.setCenter(coordinate, animated: true)
@@ -515,6 +501,9 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
 
         annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
         annotation.title = name
+        if name.lowercased() != key.lowercased() {
+            annotation.subtitle = key
+        }
         appDelegate.myMapView.addAnnotation(annotation)
         appDelegate.myMapView.selectAnnotation(annotation, animated: false)
         lastAnnotation = annotation
@@ -793,10 +782,6 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
     }
     
     func addVerseHyperlinks() {
-        
-        for video in videosForBook! {
-            print("\(video.verses) \(video.videoID)")
-        }
         
         if videosForBook!.count > 0 {
             for video in videosForBook! {

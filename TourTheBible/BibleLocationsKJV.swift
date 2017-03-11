@@ -186,7 +186,7 @@ struct BibleLocationsKJV {
         
         "Deuteronomy" : [
             "1":   ["Bashan", "Canaan", "Dizahab", "Egypt", "Edrei", "Horeb", "Heshbon", "Hazeroth", "Hormah", "Israel", "Jordan", "Kadeshbarnea", "Lebanon", "Laban", "mount Seir", "Moab", "Paran", "Red sea", "Tophel", "the river Euphrates", "valley of Eshcol", "wilderness"]
-            ,    "2":   ["Aroer", "Ammon", "Arnon", "Ar", "Azzah", "brook Zered", "Esau", "Eziongaber", "Elath", "Gilead", "Heshbon", "Israel", "Jabbok", "Jordan", "Jahaz", "Kedemoth", "Kadeshbarnea", "mount Seir", "Moab", "Red sea", "Seir"]
+            ,    "2":   ["Aroer", "Ammon", "Arnon", "Ar", "Azzah", "brook Zered", "Eziongaber", "Elath", "Gilead", "Heshbon", "Israel", "Jabbok", "Jordan", "Jahaz", "Kedemoth", "Kadeshbarnea", "mount Seir", "Moab", "Red sea", "Seir"]
             ,    "3":   ["Aroer", "Ammon", "Arnon", "Argob", "Ar", "Bethpeor", "Bashan", "Chinnereth", "Edrei", "Gilead", "Geshuri", "Heshbon", "Israel", "Jabbok", "Jair", "Jordan", "Lebanon", "mount Hermon", "Pisgah", "salt sea", "Sidon"]
             ,    "4":   ["Aroer", "Arnon", "Ar", "Baalpeor", "Bethpeor", "Bashan", "Bezer", "Egypt", "Golan", "Gilead", "Horeb", "Heshbon", "Israel", "Jordan", "Pisgah", "Ramoth", "Sion", "wilderness"]
             ,    "5":   ["Egypt", "Horeb", "Israel"]

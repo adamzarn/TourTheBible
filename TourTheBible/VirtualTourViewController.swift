@@ -21,6 +21,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     @IBOutlet weak var mapTypeButton: UIButton!
+    @IBOutlet weak var noConnectionLabel: UILabel!
     
     let screenSize: CGRect = UIScreen.main.bounds
     var y: CGFloat?
@@ -33,6 +34,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     var currentBook: Book? = nil
     var pinsForBook = [Pin]()
     var year: String?
+    var tour: String?
     
     var sites: [[String]] = []
     var days: [String] = []
@@ -65,16 +67,70 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         appDelegate.myMapView.delegate = self
         
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!*0.45)
         appDelegate.myMapView.mapType = MKMapType.standard
         appDelegate.myMapView.isHidden = false
         view.addSubview(appDelegate.myMapView)
-        segmentedControl.frame = CGRect(x: 5, y: y! + height!*0.45 + 5, width: screenSize.width - 10, height: 30)
-        aiv.frame = CGRect(x: screenSize.width/2 - 10, y: y! + height!/2 + 45, width: screenSize.width, height: 20)
-        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45 + 40, width: screenSize.width, height: height!*0.55 - 40)
         myTableView.isHidden = true
         
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
+        
+        mapTypeButton.setTitle(" Satellite ", for: .normal)
+        mapTypeButton.layer.borderWidth = 1
+        mapTypeButton.layer.cornerRadius = 5
+        mapTypeButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+        self.view.bringSubview(toFront: mapTypeButton)
+        
+        noConnectionLabel.text = "No Internet Connection"
+        noConnectionLabel.textAlignment = .center
+        noConnectionLabel.isHidden = true
+        
+        adjustSubviews()
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if appDelegate.myMapView.mapType == MKMapType.standard {
+            mapTypeButton.setTitle(" Satellite ", for: .normal)
+        } else {
+            mapTypeButton.setTitle(" Standard ", for: .normal)
+        }
+    }
+
+    @IBAction func mapTypeButtonPressed(_ sender: Any) {
+        if appDelegate.myMapView.mapType == MKMapType.standard {
+            appDelegate.myMapView.mapType = MKMapType.satellite
+            mapTypeButton.setTitle(" Standard ", for: .normal)
+        } else {
+            appDelegate.myMapView.mapType = MKMapType.standard
+            mapTypeButton.setTitle(" Satellite ", for: .normal)
+        }        
+    }
+    
+    func adjustSubviews() {
+        let y: CGFloat!
+        if self.view.bounds.height < UIScreen.main.bounds.height {
+            print("Stupid Banner is showing")
+            y = UIApplication.shared.statusBarFrame.size.height
+        } else {
+            y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+        }
+        let tabBarHeight = (tabBarController?.tabBar.frame.size.height)!
+        height = screenSize.height - y! - tabBarHeight
+        
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: (height!+tabBarHeight)*0.45)
+        segmentedControl.frame = CGRect(x: 5, y: y! + (height!+tabBarHeight)*0.45 + 5, width: screenSize.width - 10, height: 30)
+        myTableView.frame = CGRect(x: 0.0, y: y! + (height!+tabBarHeight)*0.45 + 40, width: screenSize.width, height: (height!+tabBarHeight)*0.55 - 40 - tabBarHeight)
+        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: y! + (height!+tabBarHeight)*0.45 + 55, width: 20, height: 20)
+        noConnectionLabel.frame = CGRect(x: 0.0 , y: y! + (height!+tabBarHeight)*0.45 + 55, width: screenSize.width, height: 100)
+        self.view.bringSubview(toFront: mapTypeButton)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        adjustSubviews()
+    }
+    
+    func getData() {
         
         aiv.isHidden = false
         aiv.startAnimating()
@@ -123,59 +179,19 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
                 self.aiv.stopAnimating()
             }
         })
-        
-        mapTypeButton.setTitle(" Satellite ", for: .normal)
-        mapTypeButton.layer.borderWidth = 1
-        mapTypeButton.layer.cornerRadius = 5
-        mapTypeButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
-        self.view.bringSubview(toFront: mapTypeButton)
-        
-        adjustSubviews()
 
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if appDelegate.myMapView.mapType == MKMapType.standard {
-            mapTypeButton.setTitle(" Satellite ", for: .normal)
-        } else {
-            mapTypeButton.setTitle(" Standard ", for: .normal)
-        }
-    }
-
-    @IBAction func mapTypeButtonPressed(_ sender: Any) {
-        if appDelegate.myMapView.mapType == MKMapType.standard {
-            appDelegate.myMapView.mapType = MKMapType.satellite
-            mapTypeButton.setTitle(" Standard ", for: .normal)
-        } else {
-            appDelegate.myMapView.mapType = MKMapType.standard
-            mapTypeButton.setTitle(" Satellite ", for: .normal)
-        }        
-    }
-    
-    func adjustSubviews() {
-        let y: CGFloat!
-        if self.view.bounds.height < UIScreen.main.bounds.height {
-            print("Stupid Banner is showing")
-            y = UIApplication.shared.statusBarFrame.size.height
-        } else {
-            y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-        }
-        
-        height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
-        
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!*0.45)
-        segmentedControl.frame = CGRect(x: 5, y: y! + height!*0.45 + 5, width: screenSize.width - 10, height: 30)
-        aiv.frame = CGRect(x: screenSize.width/2 - 10, y: y! + height!/2 + 45, width: screenSize.width, height: 20)
-        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45 + 40, width: screenSize.width, height: height!*0.55 - 40)
-        self.view.bringSubview(toFront: mapTypeButton)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        adjustSubviews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        if FirebaseClient.sharedInstance.hasConnectivity() {
+            noConnectionLabel.isHidden = true
+            getData()
+        } else {
+            noConnectionLabel.isHidden = false
+            myTableView.isHidden = true
+        }
+        
         if !view.subviews.contains(appDelegate.myMapView) {
             view.addSubview(appDelegate.myMapView)
         }

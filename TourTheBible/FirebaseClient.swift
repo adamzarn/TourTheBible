@@ -24,7 +24,7 @@ class FirebaseClient: NSObject {
                     for (key,value) in songs as! NSDictionary {
                         let verses = key as! String
                         let videoID = value as! String
-                        let video = Video(verses: verses, videoID: videoID, sequence: 0)
+                        let video = Video(verses: verses, videoID: videoID, sequence: 0, bookSequence: 0, book: "")
                         videos.append(video)
                     }
                     completion(videos, nil)
@@ -47,7 +47,7 @@ class FirebaseClient: NSObject {
                     for (key, value) in videos {
                         let verses = key as! String
                         let videoID = value as! String
-                        tempVideos.append(Video(verses: verses, videoID: videoID, sequence: 0))
+                        tempVideos.append(Video(verses: verses, videoID: videoID, sequence: 0, bookSequence: 0, book: bookName))
                     }
                     videoLibrary[bookName] = tempVideos
                 }
@@ -78,6 +78,14 @@ class FirebaseClient: NSObject {
                 completion(nil, "Could not retrieve Data")
             }
         })
+    }
+    
+    func hasConnectivity() -> Bool {
+        do {
+            let reachability = Reachability()
+            let networkStatus: Int = reachability!.currentReachabilityStatus.hashValue
+            return (networkStatus != 0)
+        }
     }
     
     static let sharedInstance = FirebaseClient()
