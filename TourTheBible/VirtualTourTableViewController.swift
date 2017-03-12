@@ -12,7 +12,7 @@ import UIKit
 class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tourNames: [String] = []
-    var keys: [String] = []
+    var passwords: [String] = []
     @IBOutlet var myTableView: UITableView!
     @IBOutlet weak var aiv: UIActivityIndicatorView!
     
@@ -24,11 +24,10 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
             tourNames = []
             FirebaseClient.sharedInstance.getTourNames(completion: { (tourNames, error) -> () in
                 if let tourNames = tourNames {
-                    var keys = tourNames.allKeys as! [String]
-                    keys.sort()
-                    self.keys = keys
-                    for key in keys {
-                        self.tourNames.append(tourNames[key] as! String)
+                    self.tourNames = tourNames.allKeys as! [String]
+                    self.tourNames.sort()
+                    for tourName in self.tourNames {
+                        self.passwords.append(tourNames[tourName] as! String)
                     }
                     self.myTableView.reloadData()
                     self.myTableView.isHidden = false
@@ -38,7 +37,7 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
             })
         } else {
             tourNames = ["No Internet Connection"]
-            keys = [""]
+            passwords = [""]
             myTableView.reloadData()
             myTableView.isHidden = false
             aiv.isHidden = true
@@ -49,22 +48,71 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         cell.textLabel?.text = tourNames[indexPath.row]
-        cell.detailTextLabel?.text = keys[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tourNames.count
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tourNames[0] != "No Internet Connection" {
-            let vc = storyboard?.instantiateViewController(withIdentifier: "VirtualTourViewController") as! VirtualTourViewController
-            vc.year = keys[indexPath.row]
-            vc.tour = tourNames[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
+            
+            let alertController = UIAlertController(title: tourNames[indexPath.row], message: "Please enter this tour's password:", preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+            alertController.addAction(cancelAction)
+            
+            alertController.addTextField { (textField) in
+                textField.placeholder = "Password"
+                textField.isSecureTextEntry = true
+            }
+            
+            let submitAction = UIAlertAction(title: "Submit", style: .default) { (_) in
+                if let submission = alertController.textFields![0] as? UITextField {
+                    if submission.text == self.passwords[indexPath.row] {
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: "VirtualTourViewController") as! VirtualTourViewController
+                        vc.tour = self.tourNames[indexPath.row]
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        self.presentTryAgain(correctPassword: self.passwords[indexPath.row], tour: self.tourNames[indexPath.row])
+                    }
+                }
+            }
+            alertController.addAction(submitAction)
+        
+            self.present(alertController, animated: true, completion: nil)
+    
         }
+        
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func presentTryAgain(correctPassword: String, tour: String) {
+        let alertController = UIAlertController(title: tour, message: "Incorrect Password. Please try again:", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        alertController.addAction(cancelAction)
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Password"
+            textField.isSecureTextEntry = true
+        }
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { (_) in
+            if let submission = alertController.textFields![0] as? UITextField {
+                if submission.text == correctPassword {
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "VirtualTourViewController") as! VirtualTourViewController
+                    vc.tour = tour
+                    self.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    self.presentTryAgain(correctPassword: correctPassword, tour: tour)
+                }
+            }
+        }
+        alertController.addAction(submitAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func hasConnectivity() -> Bool {

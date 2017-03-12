@@ -33,7 +33,6 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     var hotelCount: Int = 1
     var currentBook: Book? = nil
     var pinsForBook = [Pin]()
-    var year: String?
     var tour: String?
     
     var sites: [[String]] = []
@@ -134,7 +133,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         aiv.isHidden = false
         aiv.startAnimating()
-        FirebaseClient.sharedInstance.getTour(year: year!, completion: { (tour, error) -> () in
+        FirebaseClient.sharedInstance.getTour(name: tour!, completion: { (tour, error) -> () in
             if let tour = tour {
                 let hotelDict = tour["Hotels"] as! NSDictionary
                 let siteDict =  tour["Sites"] as! NSDictionary

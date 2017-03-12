@@ -69,8 +69,8 @@ class FirebaseClient: NSObject {
         })
     }
     
-    func getTour(year: String, completion: @escaping (_ tour: NSDictionary?, _ error: NSString?) -> ()) {
-        self.ref.child("Tours").child(year).observeSingleEvent(of: .value, with: { snapshot in
+    func getTour(name: String, completion: @escaping (_ tour: NSDictionary?, _ error: NSString?) -> ()) {
+        self.ref.child("Tours").child(name).observeSingleEvent(of: .value, with: { snapshot in
             if let tourSnapshot = snapshot.value {
                 let tour = tourSnapshot as! NSDictionary
                 completion(tour, nil)
