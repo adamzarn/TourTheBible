@@ -22,6 +22,7 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
         myTableView.isHidden = true
         if FirebaseClient.sharedInstance.hasConnectivity() {
             tourNames = []
+            passwords = []
             FirebaseClient.sharedInstance.getTourNames(completion: { (tourNames, error) -> () in
                 if let tourNames = tourNames {
                     self.tourNames = tourNames.allKeys as! [String]

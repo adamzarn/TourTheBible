@@ -173,6 +173,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
                 }
                 
                 self.myTableView.isHidden = false
+                self.segmentedControl.isUserInteractionEnabled = true
                 self.myTableView.reloadData()
                 self.aiv.isHidden = true
                 self.aiv.stopAnimating()
@@ -183,12 +184,15 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.segmentedControl.isUserInteractionEnabled = false
+        
         if FirebaseClient.sharedInstance.hasConnectivity() {
             noConnectionLabel.isHidden = true
             getData()
         } else {
             noConnectionLabel.isHidden = false
             myTableView.isHidden = true
+            aiv.isHidden = true
         }
         
         if !view.subviews.contains(appDelegate.myMapView) {
@@ -574,6 +578,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         addSavedPinsToMap()
         
         myTableView.reloadData()
+        myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
     
     private func call(phoneNumber:String) {

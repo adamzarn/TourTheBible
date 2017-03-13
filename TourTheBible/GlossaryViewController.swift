@@ -175,6 +175,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         
+        if segmentedControl.selectedSegmentIndex == 1 {
+            segmentedControl.isUserInteractionEnabled = false
+        }
+        
         loadingLabel.isHidden = true
         if !view.subviews.contains(appDelegate.myMapView) {
             view.addSubview(appDelegate.myMapView)
@@ -355,6 +359,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             if searchController.isActive && searchController.searchBar.text != "" {
                 cell.setUp(video: filteredSongList[indexPath.row])
             } else {
+                print("")
+                print("songBooks: \(songBooks)")
+                print("section: \(indexPath.section)")
+                print("")
                 let book = songBooks[indexPath.section]
                 let videos = appDelegate.videoLibrary[book]
                 cell.setUp(video: (videos?[indexPath.row])!)
@@ -378,6 +386,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         else {
             pinView!.annotation = annotation
         }
+        pinView?.rightCalloutAccessoryView = nil
         
         return pinView
     }
@@ -385,7 +394,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         segmentedControl.isHidden = false
-        segmentedControl.isEnabled = true
+        segmentedControl.isUserInteractionEnabled = true
         
         if segmentedControl.selectedSegmentIndex == 0 {
             if searchController.isActive {
@@ -424,6 +433,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         } else {
             searchController.searchBar.placeholder = "Please wait..."
             searchController.searchBar.isUserInteractionEnabled = false
+            segmentedControl.isUserInteractionEnabled = false
             var video: Video!
             if searchController.isActive {
                 if searchController.searchBar.text != "" {
@@ -550,7 +560,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         segmentedControl.isHidden = false
-        segmentedControl.isEnabled = true
+        segmentedControl.isUserInteractionEnabled = true
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         let tabBarHeight = (tabBarController?.tabBar.frame.size.height)!
         height = screenSize.height - y! - tabBarHeight
@@ -581,7 +591,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         appDelegate.myYouTubePlayer.isHidden = true
         myTableView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!)
         segmentedControl.isHidden = true
-        segmentedControl.isEnabled = false
+        segmentedControl.isUserInteractionEnabled = false
         clearMapButton.isEnabled = false
         mapTypeButton.isEnabled = false
         mapTypeButton.isHidden = true
@@ -612,7 +622,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
         
-        myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         nothingToDisplayLabel.isHidden = true
         myTableView.isHidden = true
         aiv.isHidden = false
@@ -629,6 +638,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             if FirebaseClient.sharedInstance.hasConnectivity() {
                 searchController.searchBar.placeholder = "Please wait..."
                 searchController.searchBar.isUserInteractionEnabled = false
+                segmentedControl.isUserInteractionEnabled = false
                 if self.appDelegate.videoLibrary.count == 0 {
                     FirebaseClient.sharedInstance.getVideoLibrary(completion: { (videoLibrary, error) -> () in
                         if let videoLibrary = videoLibrary {
@@ -656,17 +666,20 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                             }
                             self.myTableView.reloadData()
                             self.myTableView.isHidden = false
+                            self.myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
                             self.aiv.isHidden = true
                             self.aiv.stopAnimating()
                             if self.appDelegate.myYouTubePlayer.playerState() == YTPlayerState.queued {
                                 self.searchController.searchBar.placeholder = "Search"
                                 self.searchController.searchBar.isUserInteractionEnabled = true
+                                self.segmentedControl.isUserInteractionEnabled = true
                             }
                         }
                     })
                 } else {
                     myTableView.reloadData()
                     myTableView.isHidden = false
+                    myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
                     aiv.isHidden = true
                     aiv.stopAnimating()
                 }
@@ -747,6 +760,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         if appDelegate.videoLibrary.count > 0 {
             searchController.searchBar.placeholder = "Search"
             searchController.searchBar.isUserInteractionEnabled = true
+            segmentedControl.isUserInteractionEnabled = true
         }
         appDelegate.myYouTubePlayer.isHidden = false
         view.bringSubview(toFront: appDelegate.myYouTubePlayer)
