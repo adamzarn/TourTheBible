@@ -479,7 +479,6 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         appDelegate.myMapView?.setCenter(center, animated: false)
         
     }
-
     
     func setUpMap(key: String, name: String, lat: Double, long: Double) {
 
@@ -612,6 +611,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         }
         delegate?.toggleLeftPanel?()
         dismiss(animated: true, completion: nil)
+        appDelegate.tbc?.selectedIndex = 0
     }
     
     func getCurrentBook() {
@@ -917,24 +917,35 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         let verseNumbers = self.setUpVerseArray()
         self.getCompleteRawText()
         self.formatCompleteRawText()
-        FirebaseClient.sharedInstance.getVideoIDs(book: book, completion: { (videos, error) -> () in
-            if let videos = videos {
-                self.videosForBook = videos
-            } else {
-                self.videosForBook = []
-            }
-            self.addVerseHyperlinks()
+        if FirebaseClient.sharedInstance.hasConnectivity() {
+            FirebaseClient.sharedInstance.getVideoIDs(book: book, completion: { (videos, error) -> () in
+                if let videos = videos {
+                    self.videosForBook = videos
+                } else {
+                    self.videosForBook = []
+                }
+                self.addVerseHyperlinks()
+                self.addLocationHyperlinks()
+                self.formatVerseNumbers(verseNumbers: verseNumbers)
+                
+                self.myTextView.attributedText = self.attributedText
+                self.myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
+                self.navItem.title = "\(book) \(String(describing: chapterIndex))"
+
+                self.aiv.isHidden = true
+                self.aiv.stopAnimating()
+            })
+        } else {
             self.addLocationHyperlinks()
             self.formatVerseNumbers(verseNumbers: verseNumbers)
             
             self.myTextView.attributedText = self.attributedText
             self.myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
             self.navItem.title = "\(book) \(String(describing: chapterIndex))"
-                
-
+            
             self.aiv.isHidden = true
             self.aiv.stopAnimating()
-        })
+        }
     }
 }
 

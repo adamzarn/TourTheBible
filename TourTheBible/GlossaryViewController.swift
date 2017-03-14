@@ -12,7 +12,12 @@ import UIKit
 import CoreData
 import youtube_ios_player_helper
 
-class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate, YTPlayerViewDelegate {
+@objc
+protocol GlossaryViewControllerDelegate {
+    @objc optional func toggleRightPanel()
+}
+
+class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate, YTPlayerViewDelegate, RightPanelViewControllerDelegate {
     
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
@@ -28,6 +33,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     
     var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let defaults = UserDefaults.standard
     let searchController = UISearchController(searchResultsController: nil)
     var sortedGlossary = [[BibleLocation]](repeating: [], count: 26)
     var masterGlossary = [BibleLocation]()
@@ -47,7 +53,19 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     var currentVideoID: String?
     var YTPlayerHeight: CGFloat?
     var songBooks: [String] = []
+    var delegate: GlossaryViewControllerDelegate?
     
+    var locations: [String : [String : [String]]]?
+    var bibleLocations: [BibleLocation]?
+    var tappedLocation: String = ""
+    var tappedLocationKey: String = ""
+    var chapterAppearances = [[String]](repeating: [], count: 66)
+    var subtitles = [[String]](repeating: [], count: 66)
+    var bookAppearances: [String] = []
+    var gesture: UITapGestureRecognizer?
+    var whiteBackground: UIView?
+    var chapSel = false
+
     override func viewDidLoad() {
         
         screenSize = self.view.bounds
@@ -67,6 +85,8 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         appDelegate.myMapView.delegate = self
         appDelegate.myMapView.mapType = MKMapType.standard
         appDelegate.myMapView.isHidden = false
+        
+        myTableView.delegate = self
         
         viewInYouTubeButton.backgroundColor = YTColor
         viewInYouTubeButton.isHidden = true
@@ -90,6 +110,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         nothingToDisplayLabel.textAlignment = .center
         nothingToDisplayLabel.isHidden = true
         
+        gesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
+        gesture?.isEnabled = false
+        self.view.addGestureRecognizer(gesture!)
+        
         searchController.delegate = self
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
@@ -100,7 +124,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         self.navigationItem.titleView = searchController.searchBar
         self.automaticallyAdjustsScrollViewInsets = false
         
-        selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
+        selectedBible = defaults.value(forKey: "selectedBible") as? String
+        if selectedBible == "King James Version" {
+            locations = BibleLocationsKJV.Locations
+        }
         
         mapTypeButton.setTitle(" Satellite ", for: .normal)
         mapTypeButton.layer.borderWidth = 1
@@ -125,24 +152,23 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
 
     func adjustSubviews() {
         let y: CGFloat!
-        if self.view.bounds.height < UIScreen.main.bounds.height {
-            print("Stupid Banner is showing")
-            y = UIApplication.shared.statusBarFrame.size.height
-        } else {
-            y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-        }
-        let tabBarHeight = (tabBarController?.tabBar.frame.size.height)!
-        height = screenSize.height - y! - tabBarHeight
+        y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+        let h = appDelegate.tabBarHeight!
+        height = screenSize.height - y! - h
         let YTPlayerHeight = (screenSize.width/16)*9
         appDelegate.myYouTubePlayer.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: YTPlayerHeight)
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: (height!+tabBarHeight)*0.45)
-        segmentedControl.frame = CGRect(x: 5, y: y! + (height!+tabBarHeight)*0.45 + 5, width: screenSize.width - 10, height: 30)
-        myTableView.frame = CGRect(x: 0.0, y: y! + (height!+tabBarHeight)*0.45 + 40, width: screenSize.width, height: (height!+tabBarHeight)*0.55 - 40 - tabBarHeight)
-        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: y! + (height!+tabBarHeight)*0.45 + 55, width: 20, height: 20)
-        viewInYouTubeButton.frame = CGRect(x: 5.0, y: y! + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + tabBarHeight)*0.45 - YTPlayerHeight - 10.0)
-        viewYouTubeChannelButton.frame = CGRect(x: (screenSize.width/2) + 2.5, y: y! + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + tabBarHeight)*0.45 - YTPlayerHeight - 10.0)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: (height!+h)*0.45)
+        segmentedControl.frame = CGRect(x: 5, y: y! + (height!+h)*0.45 + 5, width: screenSize.width - 10, height: 30)
+        myTableView.frame = CGRect(x: 0.0, y: y! + (height!+h)*0.45 + 40, width: screenSize.width, height: (height!+h)*0.55 - 40 - h)
+        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: y! + (height!+h)*0.45 + 55, width: 20, height: 20)
+        viewInYouTubeButton.frame = CGRect(x: 5.0, y: y! + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + h)*0.45 - YTPlayerHeight - 10.0)
+        viewYouTubeChannelButton.frame = CGRect(x: (screenSize.width/2) + 2.5, y: y! + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + h)*0.45 - YTPlayerHeight - 10.0)
         loadingLabel.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: YTPlayerHeight)
-        nothingToDisplayLabel.frame = CGRect(x: 0.0 , y: y! + (height!+tabBarHeight)*0.45 + 55, width: screenSize.width, height: 100)
+        nothingToDisplayLabel.frame = CGRect(x: 0.0 , y: y! + (height!+h)*0.45 + 55, width: screenSize.width, height: 100)
+        whiteBackground = UIView(frame: CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height))
+        whiteBackground?.backgroundColor = .white
+        view.addSubview(whiteBackground!)
+        view.sendSubview(toBack: whiteBackground!)
     }
     
     override func viewWillLayoutSubviews() {
@@ -165,15 +191,18 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                 }
             }
             filteredSongList.sort { ($0.bookSequence == $1.bookSequence) ? ($0.sequence < $1.sequence) : ($0.bookSequence < $1.bookSequence) }
-            for song in filteredSongList {
-                print("\(song.book) \(song.verses) \(song.bookSequence) \(song.sequence)")
-            }
         }
         myTableView.reloadData()
         myTableView.setContentOffset(CGPoint.zero, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        let coordinate = CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
+        appDelegate.myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)), animated: true)
+        appDelegate.myMapView.mapType = .standard
+        
+        gesture?.isEnabled = false
         
         if segmentedControl.selectedSegmentIndex == 1 {
             segmentedControl.isUserInteractionEnabled = false
@@ -190,7 +219,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         appDelegate.myYouTubePlayer.isHidden = true
         
         if segmentedControl.selectedSegmentIndex == 0 {
-            
+
             self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
             
             getCurrentBook()
@@ -219,8 +248,12 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         if segmentedControl.selectedSegmentIndex == 0 {
+            myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             showMap()
         } else {
+            if songBooks.count > 0 {
+                myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+            }
             showYouTube(videoID: "HLE8Xjuqn2M")
         }
     }
@@ -285,6 +318,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     override func viewWillDisappear(_ animated: Bool) {
         unsubscribeFromKeyboardNotifications()
         appDelegate.myYouTubePlayer.stopVideo()
+        if appDelegate.glossaryState == .RightPanelExpanded && !chapSel {
+            delegate?.toggleRightPanel!()
+        }
+        chapSel = false
     }
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -359,10 +396,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             if searchController.isActive && searchController.searchBar.text != "" {
                 cell.setUp(video: filteredSongList[indexPath.row])
             } else {
-                print("")
-                print("songBooks: \(songBooks)")
-                print("section: \(indexPath.section)")
-                print("")
                 let book = songBooks[indexPath.section]
                 let videos = appDelegate.videoLibrary[book]
                 cell.setUp(video: (videos?[indexPath.row])!)
@@ -370,6 +403,44 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             return cell
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        
+        var video: Video!
+        var book: String!
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            video = filteredSongList[indexPath.row]
+            book = video.book
+        } else {
+            book = songBooks[indexPath.section]
+            let videos = appDelegate.videoLibrary[book]
+            video = videos?[indexPath.row]
+        }
+
+        let vc = video?.verses.characters.split{$0 == ":"}.map(String.init)
+        let chapterIndexString = vc?[0]
+        let chapterIndex = Int(chapterIndexString!)
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let goToScripture = UIAlertAction(title: "Go to \(book!) \(chapterIndex!)", style: .default) { (action) in
+            let containerViewController = ContainerViewController()
+            containerViewController.book = book
+            containerViewController.chapterIndex = chapterIndex!
+            self.present(containerViewController, animated: false, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    
+        alertController.addAction(cancelAction)
+        alertController.addAction(goToScripture)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+        if searchController.isActive {
+            searchBarCancelActions()
+        }
+    
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -386,7 +457,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         else {
             pinView!.annotation = annotation
         }
-        pinView?.rightCalloutAccessoryView = nil
+        
+        let button = UIButton(type: UIButtonType.detailDisclosure) as UIButton // button with info sign in it
+        
+        pinView?.rightCalloutAccessoryView = button
         
         return pinView
     }
@@ -559,12 +633,15 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBarCancelActions()
+    }
+    
+    func searchBarCancelActions() {
         segmentedControl.isHidden = false
         segmentedControl.isUserInteractionEnabled = true
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         let tabBarHeight = (tabBarController?.tabBar.frame.size.height)!
         height = screenSize.height - y! - tabBarHeight
-        
         myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45 + 40, width: screenSize.width, height: height!*0.55 - 40)
         searchController.searchBar.text = ""
         adjustSubviews()
@@ -719,6 +796,9 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     }
     
     func showMap() {
+        getCurrentBook()
+        getPinsForGlossary()
+        addSavedPinsToMap()
         mapTypeButton.isEnabled = true
         mapTypeButton.isHidden = false
         if appDelegate.myMapView.mapType == MKMapType.standard {
@@ -774,6 +854,81 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             return (networkStatus != 0)
         }
     }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        tappedLocation = (view.annotation?.title!)!
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BibleLocation")
+        
+        let p = NSPredicate(format: "name = %@", tappedLocation)
+        fetchRequest.predicate = p
+        
+        do {
+            let results = try context!.fetch(fetchRequest)
+            bibleLocations = results as! [BibleLocation]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        var titles: [String] = []
+        for i in 0...(bibleLocations?.count)! - 1 {
+            titles.append((bibleLocations?[i].key)!)
+        }
+        
+        chapterAppearances = [[String]](repeating: [], count: 66)
+        subtitles = [[String]](repeating: [], count: 66)
+        bookAppearances = []
+        
+        for book in books {
+            for i in 1...Books.booksDictionary[book]! {
+                let bookDict = locations?[book]!
+                let chapterArray = bookDict?[String(i)]!
+                for title in titles {
+                    if (chapterArray?.contains(title))! {
+                        if !chapterAppearances[books.index(of: book)!].contains("\(book) \(i)") {
+                            chapterAppearances[books.index(of: book)!].append("\(book) \(i)")
+                            subtitles[books.index(of: book)!].append(title)
+                        }
+                    }
+                }
+            }
+        }
+        
+        var i = 0
+        var j = 0
+        for book in chapterAppearances {
+            if book.count == 0 {
+                chapterAppearances.remove(at: i)
+                subtitles.remove(at: i)
+            } else {
+                i += 1
+                bookAppearances.append(books[j])
+            }
+            j += 1
+        }
+        
+        delegate?.toggleRightPanel?()
+        
+        let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long  - currentLongDelta/4)
+        appDelegate.myMapView?.setCenter(center, animated: false)
+        
+        gesture?.isEnabled = true
+        
+    }
+    
+    func viewTapped(_ sender: UITapGestureRecognizer) {
+        delegate?.toggleRightPanel!()
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long)
+        appDelegate.myMapView?.setCenter(center, animated: false)
+        gesture?.isEnabled = false
+    }
+    
+    func chapterSelected() {
+        chapSel = true
+        delegate?.toggleRightPanel!()
+    }
+    
 
 }
 

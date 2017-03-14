@@ -16,6 +16,7 @@ class GlossaryCell: UITableViewCell {
     @IBOutlet weak var myDetailLabel: UILabel!
     
     func setUp(location: BibleLocation) {
+        self.accessoryType = .none
         self.myImageView.image = UIImage(named: "Pin")
         self.myLabel!.text = location.name
         if location.key?.caseInsensitiveCompare(location.name!) != ComparisonResult.orderedSame {
@@ -26,6 +27,7 @@ class GlossaryCell: UITableViewCell {
     }
     
     func setUp(video: Video) {
+        self.accessoryType = .detailButton
         self.myImageView.image = UIImage(named: "Notes")
         let vc = video.verses.characters.split{$0 == ":"}.map(String.init)
         if vc[1] == vc[2] {

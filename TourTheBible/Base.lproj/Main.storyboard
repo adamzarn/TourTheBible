@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="87n-SZ-fKm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6rZ-sC-5rG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -366,33 +366,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rTl-9n-tfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5400.8000000000002" y="274.81259370314842"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="LBK-GR-UVs">
-            <objects>
-                <tabBarController storyboardIdentifier="TabBarController" id="87n-SZ-fKm" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="mix-sj-RpC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="iEu-8d-efb" kind="relationship" relationship="viewControllers" id="b4U-b8-J5q"/>
-                        <segue destination="yTr-ZA-Wuu" kind="relationship" relationship="viewControllers" id="XnP-fw-dfS"/>
-                        <segue destination="fi0-Kd-mBq" kind="relationship" relationship="viewControllers" id="IDt-PF-YN5"/>
-                        <segue destination="cGx-wW-KlA" kind="relationship" relationship="viewControllers" id="Jv3-hR-qSZ"/>
-                        <segue destination="IC9-DA-XWY" kind="relationship" relationship="viewControllers" id="9Ze-kA-ug0"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fhb-ub-zhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="591" y="657"/>
+            <point key="canvasLocation" x="5330" y="244"/>
         </scene>
         <!--Glossary-->
         <scene sceneID="6ss-li-deO">
             <objects>
-                <viewController id="kOu-I4-RaN" customClass="GlossaryViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GlossaryViewController" id="kOu-I4-RaN" customClass="GlossaryViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QPK-fw-RdF"/>
                         <viewControllerLayoutGuide type="bottom" id="UWy-yh-TYh"/>
@@ -410,7 +389,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kLe-z5-Aja" id="IXJ-i0-HZM">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-ro-Pp6">
@@ -558,7 +537,7 @@
         <!--Virtual Tours-->
         <scene sceneID="SxA-ww-z9i">
             <objects>
-                <viewController id="P9V-F6-vxe" customClass="VirtualTourTableViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VirtualTourTableViewController" id="P9V-F6-vxe" customClass="VirtualTourTableViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Joz-v4-JaA"/>
                         <viewControllerLayoutGuide type="bottom" id="e2H-N9-4vk"/>
@@ -568,18 +547,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rzw-b5-xm5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="3Z1-vO-Lzh" style="IBUITableViewCellStyleDefault" id="2P8-Za-Zie">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2P8-Za-Zie" id="4Hw-T4-ZUH">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Z1-vO-Lzh">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -653,7 +632,7 @@
                                         <rect key="frame" x="0.0" y="28" width="369" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yw0-K7-AN5" id="Waw-UK-8pr">
-                                            <rect key="frame" x="0.0" y="0.0" width="369" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="369" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -737,7 +716,7 @@
         <!--Glossary-->
         <scene sceneID="d1y-F5-ipI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yTr-ZA-Wuu" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="GlossaryNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="yTr-ZA-Wuu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Glossary" id="Xzd-vL-tb7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z0z-Ud-Q6m">
@@ -756,7 +735,7 @@
         <!--Bibles-->
         <scene sceneID="OHV-WV-fU7">
             <objects>
-                <viewController id="VlG-Zn-faT" customClass="BiblesViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BiblesViewController" id="VlG-Zn-faT" customClass="BiblesViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vQd-iC-Kxe"/>
                         <viewControllerLayoutGuide type="bottom" id="V2T-IS-31y"/>
@@ -804,7 +783,7 @@
         <!--About-->
         <scene sceneID="6iB-he-EDp">
             <objects>
-                <viewController id="jTS-WN-mB5" customClass="AboutViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutViewController" id="jTS-WN-mB5" customClass="AboutViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N67-U7-BF6"/>
                         <viewControllerLayoutGuide type="bottom" id="tkn-lB-t4t"/>
@@ -823,7 +802,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App Icons by icons8.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeW-cU-NiF">
-                                <rect key="frame" x="0.0" y="582" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="631" width="375" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="2C3-3U-gX3"/>
                                 </constraints>
@@ -884,10 +863,24 @@
             </objects>
             <point key="canvasLocation" x="2557.5999999999999" y="3189.3553223388308"/>
         </scene>
+        <!--Main Tab Bar Controller-->
+        <scene sceneID="DIg-2S-eQ6">
+            <objects>
+                <tabBarController useStoryboardIdentifierAsRestorationIdentifier="YES" id="6rZ-sC-5rG" customClass="MainTabBarController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="KRR-ff-bQD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MYw-D2-xpZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="410" y="1800"/>
+        </scene>
         <!--Bibles-->
         <scene sceneID="WCI-OK-lNp">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cGx-wW-KlA" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BiblesNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="cGx-wW-KlA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Bibles" id="Pk7-L6-1o7"/>
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -908,7 +901,7 @@
         <!--About-->
         <scene sceneID="Q1A-RO-jbJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IC9-DA-XWY" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AboutNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="IC9-DA-XWY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="About" id="HHd-U9-v59"/>
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -929,7 +922,7 @@
         <!--Virtual Tour-->
         <scene sceneID="mVL-lf-t69">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fi0-Kd-mBq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="VirtualTourNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="fi0-Kd-mBq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Virtual Tour" id="8Qn-k1-Bbt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RXx-Mg-ifZ">
@@ -1020,7 +1013,73 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0LT-Y4-Z0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4071" y="275"/>
+            <point key="canvasLocation" x="4116" y="243"/>
+        </scene>
+        <!--Right View Controller-->
+        <scene sceneID="Laa-fR-acC">
+            <objects>
+                <viewController storyboardIdentifier="RightPanelViewController" title="Right View Controller" id="s1X-1L-X9a" customClass="RightPanelViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y8q-at-ldC"/>
+                        <viewControllerLayoutGuide type="bottom" id="J0y-Bl-HcL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kdw-dX-09l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uYd-F3-Nfo">
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="glossaryAppearancesCell" textLabel="hjf-YG-kRZ" detailTextLabel="4AO-a5-FNJ" style="IBUITableViewCellStyleSubtitle" id="pL3-Hc-q6E">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pL3-Hc-q6E" id="LpQ-wg-NcL">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hjf-YG-kRZ">
+                                                    <rect key="frame" x="15" y="4" width="34" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4AO-a5-FNJ">
+                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="s1X-1L-X9a" id="3UT-Te-6AS"/>
+                                    <outlet property="delegate" destination="s1X-1L-X9a" id="DG2-st-R4J"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOD-BE-NvK">
+                                <rect key="frame" x="16" y="28" width="92" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Location"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="appearanceTableView" destination="uYd-F3-Nfo" id="Ype-aj-i7E"/>
+                        <outlet property="locationButton" destination="fOD-BE-NvK" id="duP-Zu-SBx"/>
+                        <outlet property="rightView" destination="Kdw-dX-09l" id="Tn6-er-NEf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BkC-H9-XN8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3164" y="1000"/>
         </scene>
     </scenes>
     <resources>

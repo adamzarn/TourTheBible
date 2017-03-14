@@ -41,19 +41,6 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
         NotificationCenter.default.addObserver(self, selector: #selector(BooksTableViewController.reachabilityChanged), name: NSNotification.Name(rawValue: "ReachabilityChangedNotification"), object: nil)
         
-        let tabBar = self.tabBarController?.tabBar
-        let bookItem = tabBar?.items?[0]
-        let glossaryItem = tabBar?.items?[1]
-        let tourItem = tabBar?.items?[2]
-        let biblesItem = tabBar?.items?[3]
-        let aboutItem = tabBar?.items?[4]
-        
-        bookItem?.image = resizeImage(image: UIImage(named:"Book")!)
-        glossaryItem?.image = resizeImage(image: UIImage(named:"List")!)
-        tourItem?.image = resizeImage(image: UIImage(named:"Tourist")!)
-        biblesItem?.image = resizeImage(image: UIImage(named:"Bibles")!)
-        aboutItem?.image = resizeImage(image: UIImage(named:"About")!)
-        
         let restoreButton = UIBarButtonItem(title: "Restore",
                                             style: .plain,
                                             target: self,
@@ -72,16 +59,6 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
 
     func reachabilityChanged() {
         reload()
-    }
-    
-    func resizeImage(image: UIImage) -> UIImage {
-        let newWidth = image.size.width/1.75
-        let newHeight = image.size.height/1.75
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -279,12 +256,22 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
             productID = "AJZ.WalkThroughTheBible.\(OTbooks[indexPath.row])"
             if !["Exodus","Numbers"].contains(OTbooks[indexPath.row]) || defaults.bool(forKey: productID) {
                 containerViewController.book = OTbooks[indexPath.row]
+                if let chapterIndex = defaults.value(forKey: OTbooks[indexPath.row]) {
+                    containerViewController.chapterIndex = chapterIndex as! Int
+                } else {
+                    containerViewController.chapterIndex = 1
+                }
                 self.present(containerViewController, animated: false, completion: nil)
             }
         } else {
             productID = "AJZ.WalkThroughTheBible.\(NTbooks[indexPath.row])"
             if !["Acts"].contains(OTbooks[indexPath.row]) || defaults.bool(forKey: productID) {
                 containerViewController.book = NTbooks[indexPath.row]
+                if let chapterIndex = defaults.value(forKey: NTbooks[indexPath.row]) {
+                    containerViewController.chapterIndex = chapterIndex as! Int
+                } else {
+                    containerViewController.chapterIndex = 1
+                }
                 self.present(containerViewController, animated: false, completion: nil)
             }
         }

@@ -18,6 +18,8 @@
 		DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB20FBBB1DD2383F0017A8F2 /* About.txt */; };
 		DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */; };
 		DB27FC931DCE8BAB00C3E207 /* BibleLocationsKJV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */; };
+		DB38D82C1E77705900B1D78B /* SlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38D82B1E77705900B1D78B /* SlidingViewController.swift */; };
+		DB38D82E1E7770BF00B1D78B /* RightPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38D82D1E7770BF00B1D78B /* RightPanelViewController.swift */; };
 		DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB445EFD1DD4E782002CC686 /* Reachability.swift */; };
 		DB47B34B1DF1D03E005EC190 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB47B34A1DF1D03D005EC190 /* ContainerViewController.swift */; };
 		DB47B34D1DF1D42B005EC190 /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB47B34C1DF1D42B005EC190 /* SidePanelViewController.swift */; };
@@ -32,6 +34,7 @@
 		DB5C2ED11D871109002A5FAD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5C2ED01D871109002A5FAD /* MapKit.framework */; };
 		DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */; };
 		DB6431651DEF97930061D670 /* MapTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6431641DEF97930061D670 /* MapTextViewController.swift */; };
+		DB878C331E77630400A3B876 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB878C321E77630400A3B876 /* MainTabBarController.swift */; };
 		DB89240E1DE7C39B00EAC55E /* VirtualTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */; };
 		DB9B7EDB1DF38AEF0099033A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */; };
 		DBA91EFC1DA43FBB00E5E00A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */; };
@@ -86,6 +89,8 @@
 		DB20FBBB1DD2383F0017A8F2 /* About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = About.txt; sourceTree = "<group>"; };
 		DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocationsKJV.swift; sourceTree = "<group>"; };
+		DB38D82B1E77705900B1D78B /* SlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingViewController.swift; sourceTree = "<group>"; };
+		DB38D82D1E7770BF00B1D78B /* RightPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightPanelViewController.swift; sourceTree = "<group>"; };
 		DB445EFD1DD4E782002CC686 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		DB47B34A1DF1D03D005EC190 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		DB47B34C1DF1D42B005EC190 /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +111,7 @@
 		DB5C2ED01D871109002A5FAD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksTableViewController.swift; sourceTree = "<group>"; };
 		DB6431641DEF97930061D670 /* MapTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTextViewController.swift; sourceTree = "<group>"; };
+		DB878C321E77630400A3B876 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualTourViewController.swift; sourceTree = "<group>"; };
 		DB9B7EDA1DF38AEF0099033A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -243,15 +249,18 @@
 		DBA91F041DA4480900E5E00A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DB878C321E77630400A3B876 /* MainTabBarController.swift */,
 				DB47B34A1DF1D03D005EC190 /* ContainerViewController.swift */,
 				DB47B34C1DF1D42B005EC190 /* SidePanelViewController.swift */,
 				DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */,
 				DB6431641DEF97930061D670 /* MapTextViewController.swift */,
-				DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */,
 				DB1152B51E6F3074008BA289 /* VirtualTourTableViewController.swift */,
 				DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */,
 				DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */,
 				DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */,
+				DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */,
+				DB38D82B1E77705900B1D78B /* SlidingViewController.swift */,
+				DB38D82D1E7770BF00B1D78B /* RightPanelViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -573,10 +582,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB38D82C1E77705900B1D78B /* SlidingViewController.swift in Sources */,
 				DB89240E1DE7C39B00EAC55E /* VirtualTourViewController.swift in Sources */,
 				DB27FC931DCE8BAB00C3E207 /* BibleLocationsKJV.swift in Sources */,
+				DB878C331E77630400A3B876 /* MainTabBarController.swift in Sources */,
 				DB106FCC1DD0D1D30033FFAA /* BiblesViewController.swift in Sources */,
 				DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */,
+				DB38D82E1E7770BF00B1D78B /* RightPanelViewController.swift in Sources */,
 				DB47B34D1DF1D42B005EC190 /* SidePanelViewController.swift in Sources */,
 				DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */,
 				DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */,

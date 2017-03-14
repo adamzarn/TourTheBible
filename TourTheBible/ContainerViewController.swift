@@ -24,6 +24,7 @@ class ContainerViewController: UIViewController {
     var leftViewController: SidePanelViewController?
     var rightViewController: SidePanelViewController?
     var book: String?
+    var chapterIndex: Int = 1
     var addingRightPanel = false
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -33,6 +34,7 @@ class ContainerViewController: UIViewController {
         MapTextViewController = UIStoryboard.MapTextViewController()
         MapTextViewController.delegate = self
         MapTextViewController.book = book!
+        MapTextViewController.chapterIndex = chapterIndex
         
         centerNavigationController = UINavigationController(rootViewController: MapTextViewController)
         view.addSubview(centerNavigationController.view)

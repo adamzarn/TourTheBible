@@ -27,12 +27,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var myMapView: MKMapView!
     var myYouTubePlayer: YTPlayerView!
     var currentState: SlideOutState = .BothCollapsed
+    var glossaryState: SlideState = .Collapsed
     var options: NSDictionary?
+    var tabBarHeight: CGFloat?
+    var tbc: MainTabBarController?
 
     //“‘’”
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let tabBarController = MainTabBarController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let booksVC = storyboard.instantiateViewController(withIdentifier: "BooksNavigationController") as! UINavigationController
+        let glossaryVC = SlidingViewController()
+        let virtualTourVC = storyboard.instantiateViewController(withIdentifier: "VirtualTourNavigationController") as! UINavigationController
+        let biblesVC = storyboard.instantiateViewController(withIdentifier: "BiblesNavigationController") as! UINavigationController
+        let aboutVC = storyboard.instantiateViewController(withIdentifier: "AboutNavigationController") as! UINavigationController
+        
+        tabBarController.viewControllers = [booksVC, glossaryVC, virtualTourVC, biblesVC, aboutVC]
+        window?.rootViewController = tabBarController
+        
+        self.tbc = tabBarController
         
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         
