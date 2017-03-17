@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var myYouTubePlayer: YTPlayerView!
     var currentState: SlideOutState = .BothCollapsed
     var glossaryState: SlideState = .Collapsed
+    var tourState: TourState = .Collapsed
     var options: NSDictionary?
     var tabBarHeight: CGFloat?
     var tbc: MainTabBarController?
@@ -41,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let booksVC = storyboard.instantiateViewController(withIdentifier: "BooksNavigationController") as! UINavigationController
-        let glossaryVC = SlidingViewController()
+        let glossaryVC = GlossaryContainerViewController()
         let virtualTourVC = storyboard.instantiateViewController(withIdentifier: "VirtualTourNavigationController") as! UINavigationController
         let biblesVC = storyboard.instantiateViewController(withIdentifier: "BiblesNavigationController") as! UINavigationController
         let aboutVC = storyboard.instantiateViewController(withIdentifier: "AboutNavigationController") as! UINavigationController

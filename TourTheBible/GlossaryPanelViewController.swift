@@ -1,5 +1,5 @@
 //
-//  RightPanelViewController.swift
+//  GlossaryPanelViewController.swift
 //  TourTheBible
 //
 //  Created by Adam Zarn on 3/13/17.
@@ -9,11 +9,11 @@
 import UIKit
 
 @objc
-protocol RightPanelViewControllerDelegate {
+protocol GlossaryPanelViewControllerDelegate {
     @objc optional func chapterSelected()
 }
 
-class RightPanelViewController: UIViewController {
+class GlossaryPanelViewController: UIViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let defaults = UserDefaults.standard
@@ -29,7 +29,7 @@ class RightPanelViewController: UIViewController {
     var tappedLocationKey: String = ""
     var subtitles: [[String]] = [[]]
     var currentBook: String = ""
-    var delegate: RightPanelViewControllerDelegate?
+    var delegate: GlossaryPanelViewControllerDelegate?
     
     override func viewDidLoad() {
         
@@ -49,7 +49,7 @@ class RightPanelViewController: UIViewController {
 
 // MARK: Table View Data Source
 
-extension RightPanelViewController: UITableViewDataSource {
+extension GlossaryPanelViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if appDelegate.glossaryState == .RightPanelExpanded {
@@ -94,7 +94,7 @@ extension RightPanelViewController: UITableViewDataSource {
 
 // Mark: Table View Delegate
 
-extension RightPanelViewController: UITableViewDelegate {
+extension GlossaryPanelViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

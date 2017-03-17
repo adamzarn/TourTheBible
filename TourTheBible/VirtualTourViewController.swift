@@ -11,8 +11,14 @@ import MapKit
 import UIKit
 import CoreData
 
-class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate {
+@objc
+protocol VirtualTourViewControllerDelegate {
+    @objc optional func toggleRightPanel()
+}
 
+class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, VirtualTourPanelViewControllerDelegate {
+
+    @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -20,6 +26,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     
     var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let defaults = UserDefaults.standard
     @IBOutlet weak var mapTypeButton: UIButton!
     @IBOutlet weak var noConnectionLabel: UILabel!
     
@@ -42,6 +49,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     var hotelLocations: [[Any]] = []
     var hotelNumbers: [String] = []
     var hotelWebsites: [String] = []
+    var delegate: VirtualTourViewControllerDelegate?
     
     let colors = [UIColor.red
         ,UIColor.orange
@@ -54,15 +62,30 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         ,UIColor.gray
     ]
     
+    var locations: [String : [String : [String]]]?
+    var bibleLocations: [BibleLocation]?
+    var tappedLocation: String = ""
+    var tappedLocationKey: String = ""
+    var chapterAppearances = [[String]](repeating: [], count: 66)
+    var subtitles = [[String]](repeating: [], count: 66)
+    var bookAppearances: [String] = []
+    var gesture: UITapGestureRecognizer?
+    var whiteBackground: UIView?
+    var chapSel = false
+    
+    let books = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
+    
     override func viewDidLoad() {
         
         context = appDelegate.managedObjectContext
+        
+        self.navItem.title = "Virtual Tour"
         
         let coordinate = CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
         appDelegate.myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)), animated: true)
         
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-        height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
+        height = screenSize.height - y! - (appDelegate.tbc?.tabBar.frame.size.height)!
         
         appDelegate.myMapView.delegate = self
         
@@ -82,6 +105,15 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         noConnectionLabel.text = "No Internet Connection"
         noConnectionLabel.textAlignment = .center
         noConnectionLabel.isHidden = true
+        
+        gesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
+        gesture?.isEnabled = false
+        self.view.addGestureRecognizer(gesture!)
+        
+        selectedBible = defaults.value(forKey: "selectedBible") as? String
+        if selectedBible == "King James Version" {
+            locations = BibleLocationsKJV.Locations
+        }
         
         adjustSubviews()
 
@@ -113,12 +145,12 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         } else {
             y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         }
-        let tabBarHeight = (tabBarController?.tabBar.frame.size.height)!
+        let tabBarHeight = (appDelegate.tbc?.tabBar.frame.size.height)!
         height = screenSize.height - y! - tabBarHeight
         
         appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: (height!+tabBarHeight)*0.45)
         segmentedControl.frame = CGRect(x: 5, y: y! + (height!+tabBarHeight)*0.45 + 5, width: screenSize.width - 10, height: 30)
-        myTableView.frame = CGRect(x: 0.0, y: y! + (height!+tabBarHeight)*0.45 + 40, width: screenSize.width, height: (height!+tabBarHeight)*0.55 - 40 - tabBarHeight)
+        myTableView.frame = CGRect(x: 0.0, y: y! + (height!+tabBarHeight)*0.45 + 40, width: screenSize.width, height: (height!+tabBarHeight)*0.55 - 40)
         aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: y! + (height!+tabBarHeight)*0.45 + 55, width: 20, height: 20)
         noConnectionLabel.frame = CGRect(x: 0.0 , y: y! + (height!+tabBarHeight)*0.45 + 55, width: screenSize.width, height: 100)
         self.view.bringSubview(toFront: mapTypeButton)
@@ -126,7 +158,25 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        gesture?.isEnabled = false
         adjustSubviews()
+    }
+    
+    
+    @IBAction func toursButtonPressed(_ sender: Any) {
+        if appDelegate.currentState == .RightPanelExpanded {
+            delegate?.toggleRightPanel!()
+        }
+        dismiss(animated: true, completion: nil)
+        appDelegate.tbc?.selectedIndex = 2
+    }
+    
+    func chapterSelected(vc: ContainerViewController) {
+        chapSel = true
+        delegate?.toggleRightPanel!()
+        self.dismiss(animated: false, completion: {
+            UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: false, completion: nil)
+        })
     }
     
     func getData() {
@@ -311,10 +361,82 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
             }
         }
         
+        let button = UIButton(type: UIButtonType.detailDisclosure) as UIButton
+        pinView.rightCalloutAccessoryView = button
+        
         pinView.canShowCallout = true
         pinView.annotation = annotation
 
         return pinView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        tappedLocation = (view.annotation?.title!)!
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BibleLocation")
+        
+        let p = NSPredicate(format: "name = %@", tappedLocation)
+        fetchRequest.predicate = p
+        
+        do {
+            let results = try context!.fetch(fetchRequest)
+            bibleLocations = results as? [BibleLocation]
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        var titles: [String] = []
+        for i in 0...(bibleLocations?.count)! - 1 {
+            titles.append((bibleLocations?[i].key)!)
+        }
+        
+        chapterAppearances = [[String]](repeating: [], count: 66)
+        subtitles = [[String]](repeating: [], count: 66)
+        bookAppearances = []
+        
+        for book in books {
+            for i in 1...Books.booksDictionary[book]! {
+                let bookDict = locations?[book]!
+                let chapterArray = bookDict?[String(i)]!
+                for title in titles {
+                    if (chapterArray?.contains(title))! {
+                        if !chapterAppearances[books.index(of: book)!].contains("\(book) \(i)") {
+                            chapterAppearances[books.index(of: book)!].append("\(book) \(i)")
+                            subtitles[books.index(of: book)!].append(title)
+                        }
+                    }
+                }
+            }
+        }
+        
+        var i = 0
+        var j = 0
+        for book in chapterAppearances {
+            if book.count == 0 {
+                chapterAppearances.remove(at: i)
+                subtitles.remove(at: i)
+            } else {
+                i += 1
+                bookAppearances.append(books[j])
+            }
+            j += 1
+        }
+        
+        delegate?.toggleRightPanel?()
+        
+        let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long  - currentLongDelta/4)
+        appDelegate.myMapView?.setCenter(center, animated: false)
+        
+        gesture?.isEnabled = true
+        
+    }
+    
+    func viewTapped(_ sender: UITapGestureRecognizer) {
+        delegate?.toggleRightPanel!()
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long)
+        appDelegate.myMapView?.setCenter(center, animated: false)
+        gesture?.isEnabled = false
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

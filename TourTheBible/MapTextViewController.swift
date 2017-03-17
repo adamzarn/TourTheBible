@@ -251,6 +251,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         myTextView.isScrollEnabled = true
         myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
         if appDelegate.myMapView.mapType == MKMapType.standard {
@@ -261,6 +262,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         loadingLabel.isHidden = true
         
         myTextView.isScrollEnabled = false
@@ -359,24 +361,6 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         viewYouTubeChannelButton.isEnabled = true
     }
     
-    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
-        switch (state) {
-        case YTPlayerState.queued:
-            print("queued")
-            loadingLabel.isHidden = true
-        case YTPlayerState.unstarted:
-            print("unstarted")
-            loadingLabel.isHidden = true
-        case YTPlayerState.buffering:
-            print("buffering")
-            loadingLabel.isHidden = true
-        case YTPlayerState.unknown:
-            print("unknown")
-        default:
-            print("hello")
-        }
-    }
-    
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         loadingLabel.isHidden = true
     }
@@ -427,7 +411,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
         do {
             let results = try context!.fetch(fetchRequest)
-            bibleLocations = results as! [BibleLocation]
+            bibleLocations = results as? [BibleLocation]
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }

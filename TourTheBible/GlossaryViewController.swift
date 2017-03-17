@@ -17,7 +17,7 @@ protocol GlossaryViewControllerDelegate {
     @objc optional func toggleRightPanel()
 }
 
-class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate, YTPlayerViewDelegate, RightPanelViewControllerDelegate {
+class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchControllerDelegate, YTPlayerViewDelegate, GlossaryPanelViewControllerDelegate {
     
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
@@ -63,7 +63,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     var subtitles = [[String]](repeating: [], count: 66)
     var bookAppearances: [String] = []
     var gesture: UITapGestureRecognizer?
-    var whiteBackground: UIView?
     var chapSel = false
 
     override func viewDidLoad() {
@@ -165,10 +164,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         viewYouTubeChannelButton.frame = CGRect(x: (screenSize.width/2) + 2.5, y: y! + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + h)*0.45 - YTPlayerHeight - 10.0)
         loadingLabel.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: YTPlayerHeight)
         nothingToDisplayLabel.frame = CGRect(x: 0.0 , y: y! + (height!+h)*0.45 + 55, width: screenSize.width, height: 100)
-        whiteBackground = UIView(frame: CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: screenSize.height))
-        whiteBackground?.backgroundColor = .white
-        view.addSubview(whiteBackground!)
-        view.sendSubview(toBack: whiteBackground!)
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -865,7 +861,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         
         do {
             let results = try context!.fetch(fetchRequest)
-            bibleLocations = results as! [BibleLocation]
+            bibleLocations = results as? [BibleLocation]
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
         }

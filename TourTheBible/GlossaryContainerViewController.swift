@@ -1,5 +1,5 @@
 //
-//  SlidingViewController.swift
+//  GlossaryContainerViewController.swift
 //  TourTheBible
 //
 //  Created by Adam Zarn on 3/13/17.
@@ -15,11 +15,11 @@ enum SlideState {
     case RightPanelWillExpand
 }
 
-class SlidingViewController: UIViewController {
+class GlossaryContainerViewController: UIViewController {
     
     var centerNavigationController: UINavigationController!
     var GlossaryViewController: GlossaryViewController!
-    var rightPanelViewController: RightPanelViewController?
+    var rightPanelViewController: GlossaryPanelViewController?
     var addingRightPanel = false
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -30,6 +30,7 @@ class SlidingViewController: UIViewController {
         GlossaryViewController.delegate = self
         
         centerNavigationController = UINavigationController(rootViewController: GlossaryViewController)
+        centerNavigationController.view.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height + appDelegate.tabBarHeight!)
         view.addSubview(centerNavigationController.view)
         addChildViewController(centerNavigationController)
         
@@ -39,7 +40,7 @@ class SlidingViewController: UIViewController {
     
 }
 
-extension SlidingViewController: GlossaryViewControllerDelegate {
+extension GlossaryContainerViewController: GlossaryViewControllerDelegate {
     
     func toggleRightPanel() {
         let notAlreadyExpanded = (appDelegate.glossaryState != .RightPanelExpanded)
@@ -66,7 +67,7 @@ extension SlidingViewController: GlossaryViewControllerDelegate {
         }
     }
     
-    func addChildSidePanelController(sidePanelController: RightPanelViewController) {
+    func addChildSidePanelController(sidePanelController: GlossaryPanelViewController) {
         view.insertSubview(sidePanelController.view, at: 0)
         
         if addingRightPanel {
@@ -112,8 +113,8 @@ extension SlidingViewController: GlossaryViewControllerDelegate {
 private extension UIStoryboard {
     class func mainStoryboard() -> UIStoryboard { return UIStoryboard(name: "Main", bundle: Bundle.main) }
     
-    class func rightPanelViewController() -> RightPanelViewController? {
-        return mainStoryboard().instantiateViewController(withIdentifier: "RightPanelViewController") as? RightPanelViewController
+    class func rightPanelViewController() -> GlossaryPanelViewController? {
+        return mainStoryboard().instantiateViewController(withIdentifier: "GlossaryPanelViewController") as? GlossaryPanelViewController
     }
     
     class func GlossaryViewController() -> GlossaryViewController? {

@@ -892,7 +892,7 @@ struct BibleLocationsKJV {
     
     "Jeremiah" : [
     "1":   ["Anathoth", "Jerusalem"]
-    ,    "2":   ["Assyria", "Egypt", "Israel", "Jerusalem", "Kedar"]
+    ,    "2":   ["Assyria", "Egypt", "Israel", "Jerusalem", "Chittim", "Kedar"]
     ,    "3":   ["Arabia", "Israel", "Jerusalem"]
     ,    "4":   ["Dan", "Ephraim", "Israel", "Jerusalem"]
     ,    "5":   ["Israel", "Jerusalem"]

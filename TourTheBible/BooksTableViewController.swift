@@ -50,11 +50,9 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(BooksTableViewController.handlePurchaseNotification(_:)),
                                                name: NSNotification.Name(rawValue: IAPHelper.IAPHelperPurchaseNotification),
                                                object: nil)
+        
+        reload()
 
-    }
-    
-    deinit {
-        print("BooksTableViewController destroyed.")
     }
 
     func reachabilityChanged() {
@@ -62,6 +60,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
  
     override func viewWillAppear(_ animated: Bool) {
+        print("view will appear")
         appDelegate.myMapView.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.isUserInteractionEnabled = true
@@ -261,7 +260,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
                 } else {
                     containerViewController.chapterIndex = 1
                 }
-                self.present(containerViewController, animated: false, completion: nil)
+                self.present(containerViewController, animated: false)
             }
         } else {
             productID = "AJZ.WalkThroughTheBible.\(NTbooks[indexPath.row])"
@@ -272,7 +271,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
                 } else {
                     containerViewController.chapterIndex = 1
                 }
-                self.present(containerViewController, animated: false, completion: nil)
+                self.present(containerViewController, animated: false)
             }
         }
         
