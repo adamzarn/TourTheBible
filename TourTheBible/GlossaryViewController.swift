@@ -41,7 +41,8 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     var masterSongList = [Video]()
     var filteredSongList = [Video]()
     let letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-    let books = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
+    let books = Books.books
+    let booksAbbreviated = Books.booksAbbreviated
     
     var screenSize: CGRect!
     var y: CGFloat?
@@ -53,6 +54,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     var currentVideoID: String?
     var YTPlayerHeight: CGFloat?
     var songBooks: [String] = []
+    var songBooksAbbreviated: [String] = []
     var delegate: GlossaryViewControllerDelegate?
     
     var locations: [String : [String : [String]]]?
@@ -327,14 +329,14 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         if segmentedControl.selectedSegmentIndex == 0 {
             return letters
         }
-        return songBooks
+        return songBooksAbbreviated
     }
     
     func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         if segmentedControl.selectedSegmentIndex == 0 {
             return letters.index(of: title)!
         }
-        return songBooks.index(of: title)!
+        return songBooksAbbreviated.index(of: title)!
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -421,11 +423,20 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let goToScripture = UIAlertAction(title: "Go to \(book!) \(chapterIndex!)", style: .default) { (action) in
-            let containerViewController = ContainerViewController()
-            containerViewController.book = book
-            containerViewController.chapterIndex = chapterIndex!
-            self.present(containerViewController, animated: false, completion: nil)
+            let prefix = "AJZ.WalkThroughTheBible."
+            if !self.defaults.bool(forKey:"\(prefix)\(book!)") && ["Exodus","Numbers","Acts"].contains(book!) {
+                let alert = UIAlertController(title: "Book not Purchased", message: "In order to view this content, you must first purchase the book of \(book!).", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                tableView.deselectRow(at: indexPath, animated: true)
+            } else {
+                let containerViewController = ContainerViewController()
+                containerViewController.book = book
+                containerViewController.chapterIndex = chapterIndex!
+                self.present(containerViewController, animated: false, completion: nil)
+            }
         }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     
         alertController.addAction(cancelAction)
@@ -622,7 +633,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        if segmentedControl.selectedSegmentIndex == 1 && !hasConnectivity() {
+        if segmentedControl.selectedSegmentIndex == 1 && !FirebaseClient.sharedInstance.hasConnectivity() {
             return false
         }
         return true
@@ -723,6 +734,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                             for book in self.books {
                                 if songBooksUnsorted.contains(book) {
                                     self.songBooks.append(book)
+                                    self.songBooksAbbreviated.append(self.booksAbbreviated[bookSequence])
                                     let unsortedVideos = videoLibrary[book]
                                     var tempVideos: [Video] = []
                                     for video in unsortedVideos! {
@@ -841,14 +853,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         appDelegate.myYouTubePlayer.isHidden = false
         view.bringSubview(toFront: appDelegate.myYouTubePlayer)
         loadingLabel.isHidden = true
-    }
-    
-    func hasConnectivity() -> Bool {
-        do {
-            let reachability = Reachability()
-            let networkStatus: Int = reachability!.currentReachabilityStatus.hashValue
-            return (networkStatus != 0)
-        }
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {

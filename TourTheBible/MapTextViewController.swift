@@ -73,7 +73,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var currentVideoID: String?
     var screenSize: CGRect!
     
-    let books = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
+    let books = Books.books
     
     //Life Cycle Functions*********************************************************************
     
@@ -135,7 +135,6 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         menuButton.image = resizeImage(image: UIImage(named:"Menu")!)
         mapButton.image = resizeImage(image: UIImage(named:"Map")!)
         mapButton.isEnabled = false
-        mapButton.tintColor = UIColor.clear
         
         //Set look of screen
         self.tabBarController?.tabBar.isHidden = true
@@ -163,7 +162,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
         chapterTitles = getChapterTitlesFor(book: book!)
         
-        self.navItem.title = "\(book!) \(String(describing: chapterIndex!))"
+        setUpTitleView(book: book!, chapterIndex: chapterIndex!)
         
         mapTypeButton.setTitle(" Satellite ", for: .normal)
         mapTypeButton.layer.borderWidth = 1
@@ -173,6 +172,32 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
         adjustSubviews()
         
+    }
+    
+    func setUpTitleView(book: String, chapterIndex: Int) {
+        let titleView = UILabel()
+        
+        let width = self.navigationController?.navigationBar.frame.width
+        let height = self.navigationController?.navigationBar.frame.height
+        let middle = width!/2
+        let mapButtonFrame = frame(buttonItem: mapButton)
+        let rightBound = mapButtonFrame.origin.x - 5
+        let titleViewWidth = (rightBound - middle) * 2
+        let titleViewX = middle - titleViewWidth/2
+        
+        titleView.frame = CGRect(x: titleViewX, y: 0.0, width: titleViewWidth, height: height!)
+        titleView.adjustsFontSizeToFitWidth = true
+        titleView.text = "\(book) \(String(describing: chapterIndex))"
+        titleView.font = UIFont(name: "Papyrus", size: 20.0)
+        titleView.minimumScaleFactor = 0.5
+        titleView.textAlignment = .center
+        
+        self.navItem.titleView = titleView
+    }
+    
+    func frame(buttonItem: UIBarButtonItem) -> CGRect {
+        let view: UIView? = (buttonItem.value(forKey: "view") as? UIView)
+        return view!.frame
     }
     
     @IBAction func mapTypeButtonPressed(_ sender: Any) {
@@ -331,7 +356,6 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         mapTypeButton.isHidden = false
         clearMapButton.isEnabled = true
         mapButton.isEnabled = false
-        mapButton.tintColor = UIColor.clear
         loadingLabel.isHidden = true
         appDelegate.myYouTubePlayer.isHidden = true
         appDelegate.myYouTubePlayer.stopVideo()
@@ -348,7 +372,6 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         mapTypeButton.isHidden = true
         clearMapButton.isEnabled = false
         mapButton.isEnabled = true
-        mapButton.tintColor = nil
         appDelegate.myMapView.isHidden = true
         loadingLabel.isHidden = false
         view.bringSubview(toFront: loadingLabel)
@@ -914,7 +937,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                 
                 self.myTextView.attributedText = self.attributedText
                 self.myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
-                self.navItem.title = "\(book) \(String(describing: chapterIndex))"
+                self.setUpTitleView(book: book, chapterIndex: chapterIndex)
 
                 self.aiv.isHidden = true
                 self.aiv.stopAnimating()
@@ -925,7 +948,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
             
             self.myTextView.attributedText = self.attributedText
             self.myTextView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
-            self.navItem.title = "\(book) \(String(describing: chapterIndex))"
+            self.setUpTitleView(book: book, chapterIndex: chapterIndex)
             
             self.aiv.isHidden = true
             self.aiv.stopAnimating()

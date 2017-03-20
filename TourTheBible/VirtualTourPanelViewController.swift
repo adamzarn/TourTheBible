@@ -76,9 +76,9 @@ extension VirtualTourPanelViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
+        var cell = CustomTableViewCell()
         if appDelegate.tourState == .RightPanelExpanded {
-            cell = tableView.dequeueReusableCell(withIdentifier: "glossaryAppearancesCell")!
+            cell = tableView.dequeueReusableCell(withIdentifier: "glossaryAppearancesCell") as! CustomTableViewCell
             cell.textLabel?.text = chapterAppearances[indexPath.section][indexPath.row]
             if subtitles[indexPath.section][indexPath.row].caseInsensitiveCompare(tappedLocation) != ComparisonResult.orderedSame {
                 cell.detailTextLabel?.text = subtitles[indexPath.section][indexPath.row]
@@ -115,6 +115,7 @@ extension VirtualTourPanelViewController: UITableViewDelegate {
             let alert = UIAlertController(title: "Book not Purchased", message: "In order to view this content, you must first purchase the book of \(book).", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
         } else {
             let containerViewController = ContainerViewController()
             containerViewController.book = book

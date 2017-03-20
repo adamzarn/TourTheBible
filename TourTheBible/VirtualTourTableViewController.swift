@@ -128,12 +128,4 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func hasConnectivity() -> Bool {
-        do {
-            let reachability = Reachability()
-            let networkStatus: Int = reachability!.currentReachabilityStatus.hashValue
-            return (networkStatus != 0)
-        }
-    }
-    
 }

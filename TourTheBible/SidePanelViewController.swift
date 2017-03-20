@@ -16,7 +16,7 @@ protocol SidePanelViewControllerDelegate {
 
 class SidePanelViewController: UIViewController {
     
-    let books = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians","Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter","1 John","2 John","3 John","Jude","Revelation"]
+    let books = Books.books
     
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var booksButton: UIButton!
@@ -100,13 +100,18 @@ extension SidePanelViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
+
+        var cell = CustomTableViewCell()
+        
         if appDelegate.currentState == .LeftPanelExpanded {
-            cell = tableView.dequeueReusableCell(withIdentifier: "chaptersCell")!
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: "chaptersCell") as! CustomTableViewCell
             cell.textLabel?.text = chapterTitles[indexPath.row]
             cell.textLabel?.font = UIFont(name: "Papyrus", size: 18.0)
+            
         } else if appDelegate.currentState == .RightPanelExpanded {
-            cell = tableView.dequeueReusableCell(withIdentifier: "appearancesCell")!
+            
+            cell = tableView.dequeueReusableCell(withIdentifier: "appearancesCell") as! CustomTableViewCell
             cell.textLabel?.text = chapterAppearances[indexPath.section][indexPath.row]
             if subtitles[indexPath.section][indexPath.row].caseInsensitiveCompare(tappedLocation) != ComparisonResult.orderedSame {
                 cell.detailTextLabel?.text = subtitles[indexPath.section][indexPath.row]
@@ -147,6 +152,7 @@ extension SidePanelViewController: UITableViewDelegate {
             let alert = UIAlertController(title: "Book not Purchased", message: "In order to view this content, you must first purchase the book of \(book).", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
         } else {
             var shouldReloadMap = false
             if book != currentBook {
@@ -158,6 +164,19 @@ extension SidePanelViewController: UITableViewDelegate {
             appearanceTableView.deselectRow(at: indexPath, animated: false)
         }
        
+    }
+    
+}
+
+class CustomTableViewCell: UITableViewCell {
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let width = self.frame.size.width
+        let height = self.frame.size.height
+        self.textLabel?.frame = CGRect(x: 15.0, y: height/8, width: width/2 - 30.0, height: height/2)
+        self.textLabel?.adjustsFontSizeToFitWidth = true
+        self.textLabel?.minimumScaleFactor = 0.5
     }
     
 }

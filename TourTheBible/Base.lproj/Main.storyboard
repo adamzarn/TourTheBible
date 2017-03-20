@@ -313,7 +313,7 @@
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="appearancesCell" textLabel="r43-c8-cJt" detailTextLabel="nNF-76-1jA" style="IBUITableViewCellStyleSubtitle" id="EKP-ff-KFc">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="appearancesCell" textLabel="r43-c8-cJt" detailTextLabel="nNF-76-1jA" style="IBUITableViewCellStyleSubtitle" id="EKP-ff-KFc" customClass="CustomTableViewCell" customModule="TourTheBible" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EKP-ff-KFc" id="lDc-0g-yWI">
@@ -404,7 +404,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3O-Ri-vhL">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i3O-Ri-vhL">
                                                     <rect key="frame" x="82" y="11" width="285" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -435,7 +435,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfl-Cp-v6r">
-                                <rect key="frame" x="323" y="72" width="46" height="30"/>
+                                <rect key="frame" x="323" y="92" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="mapTypeButtonPressed:" destination="kOu-I4-RaN" eventType="touchUpInside" id="95q-e5-9OO"/>
@@ -490,7 +490,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Jfl-Cp-v6r" secondAttribute="trailing" constant="6" id="6mA-YI-8Zi"/>
-                            <constraint firstItem="Jfl-Cp-v6r" firstAttribute="top" secondItem="QPK-fw-RdF" secondAttribute="bottom" constant="8" symbolic="YES" id="CVf-yg-dTR"/>
+                            <constraint firstItem="Jfl-Cp-v6r" firstAttribute="top" secondItem="QPK-fw-RdF" secondAttribute="bottom" constant="28" id="CVf-yg-dTR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Glossary" id="z5B-XI-Q0t">
@@ -978,7 +978,7 @@
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chaptersCell" id="KwE-Ew-MvV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chaptersCell" id="KwE-Ew-MvV" customClass="CustomTableViewCell" customModule="TourTheBible" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KwE-Ew-MvV" id="rml-nO-lgj">
@@ -1038,7 +1038,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="glossaryAppearancesCell" textLabel="hjf-YG-kRZ" detailTextLabel="4AO-a5-FNJ" style="IBUITableViewCellStyleSubtitle" id="pL3-Hc-q6E">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="glossaryAppearancesCell" textLabel="hjf-YG-kRZ" detailTextLabel="4AO-a5-FNJ" style="IBUITableViewCellStyleSubtitle" id="pL3-Hc-q6E" customClass="CustomTableViewCell" customModule="TourTheBible" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pL3-Hc-q6E" id="LpQ-wg-NcL">
@@ -1104,7 +1104,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="glossaryAppearancesCell" textLabel="leF-IK-IL9" detailTextLabel="CYv-xe-sH4" style="IBUITableViewCellStyleSubtitle" id="Isl-jt-hjh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="glossaryAppearancesCell" textLabel="leF-IK-IL9" detailTextLabel="CYv-xe-sH4" style="IBUITableViewCellStyleSubtitle" id="Isl-jt-hjh" customClass="CustomTableViewCell" customModule="TourTheBible" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Isl-jt-hjh" id="HED-hV-TPJ">

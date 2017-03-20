@@ -93,15 +93,5 @@ class ProductCell: UITableViewCell {
         }
     }
     
-    func hasConnectivity() -> Bool {
-        do {
-            let reachability = Reachability()
-            let networkStatus: Int = reachability!.currentReachabilityStatus.hashValue
-            return (networkStatus != 0)
-        } //catch {
-            //return false
-        //}
-    }
-    
 }
 
