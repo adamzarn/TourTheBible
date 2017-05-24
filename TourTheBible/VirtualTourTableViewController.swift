@@ -50,13 +50,14 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as UITableViewCell
         cell.textLabel?.text = tourNames[indexPath.row]
+        cell.textLabel?.font = UIFont(name: "Papyrus", size: 18.0)
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tourNames.count
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tourNames[0] != "No Internet Connection" {
             
@@ -67,7 +68,7 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
                 self.present(vc, animated: true, completion: nil)
                 
             } else {
-            
+                
                 let alertController = UIAlertController(title: tourNames[indexPath.row], message: "Please enter this tour's password:", preferredStyle: .alert)
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
@@ -91,11 +92,11 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
                     }
                 }
                 alertController.addAction(submitAction)
-            
+                
                 self.present(alertController, animated: true, completion: nil)
-            
+                
             }
-    
+            
         }
         
         tableView.deselectRow(at: indexPath, animated: false)

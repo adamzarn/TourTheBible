@@ -974,15 +974,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dMJ-Py-AUV">
-                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dMJ-Py-AUV">
+                                <rect key="frame" x="0.0" y="306" width="375" height="361"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chaptersCell" id="KwE-Ew-MvV" customClass="CustomTableViewCell" customModule="TourTheBible" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KwE-Ew-MvV" id="rml-nO-lgj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1000,26 +1001,42 @@
                                     <action selector="booksButtonPressed:" destination="JvT-hS-sR9" eventType="touchUpInside" id="X2u-94-Mrl"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R7g-6m-gPg">
+                                <rect key="frame" x="0.0" y="96" width="375" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chaptersCell" id="tZW-8i-dsd" customClass="CustomTableViewCell" customModule="TourTheBible" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tZW-8i-dsd" id="t2v-Kh-oeG">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="JvT-hS-sR9" id="Zc1-Ha-dte"/>
+                                    <outlet property="delegate" destination="JvT-hS-sR9" id="jsn-8j-rlW"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="leading" secondItem="tEX-3x-Ca8" secondAttribute="leading" id="0hv-cy-8Ql"/>
                             <constraint firstItem="DSr-8l-40E" firstAttribute="top" secondItem="XLj-ZK-1fU" secondAttribute="bottom" constant="8" id="5LJ-UK-dyJ"/>
-                            <constraint firstAttribute="trailing" secondItem="dMJ-Py-AUV" secondAttribute="trailing" id="5Mb-bc-ESe"/>
-                            <constraint firstItem="ZKh-Zo-Aqy" firstAttribute="top" secondItem="dMJ-Py-AUV" secondAttribute="bottom" id="D6I-gV-syF"/>
                             <constraint firstItem="DSr-8l-40E" firstAttribute="leading" secondItem="tEX-3x-Ca8" secondAttribute="leadingMargin" id="FnD-dI-tTp"/>
-                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="top" secondItem="XLj-ZK-1fU" secondAttribute="bottom" constant="60" id="l87-Ss-CNq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chapters" id="WB4-gG-XNe"/>
                     <connections>
                         <outlet property="booksButton" destination="DSr-8l-40E" id="tWK-7j-9w7"/>
                         <outlet property="myTableView" destination="dMJ-Py-AUV" id="giH-SL-u6o"/>
+                        <outlet property="translationTableView" destination="R7g-6m-gPg" id="ZoT-6g-yDg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0LT-Y4-Z0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4116" y="243"/>
+            <point key="canvasLocation" x="4116" y="242.42878560719643"/>
         </scene>
         <!--Glossary Panel View Controller-->
         <scene sceneID="Laa-fR-acC">

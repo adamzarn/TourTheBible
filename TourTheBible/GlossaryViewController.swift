@@ -128,6 +128,8 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         selectedBible = defaults.value(forKey: "selectedBible") as? String
         if selectedBible == "King James Version" {
             locations = BibleLocationsKJV.Locations
+        } else {
+            locations = BibleLocationsKJV.Locations
         }
         
         mapTypeButton.setTitle(" Satellite ", for: .normal)

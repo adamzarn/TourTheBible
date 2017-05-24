@@ -19,6 +19,7 @@ class GlossaryCell: UITableViewCell {
         self.accessoryType = .none
         self.myImageView.image = UIImage(named: "Pin")
         self.myLabel!.text = location.name
+        self.myLabel!.font = UIFont(name: "Papyrus", size: 18.0)
         if location.key?.caseInsensitiveCompare(location.name!) != ComparisonResult.orderedSame {
             self.myDetailLabel!.text = location.key
         } else {
@@ -35,6 +36,7 @@ class GlossaryCell: UITableViewCell {
         } else {
             self.myLabel!.text = "\(video.book) \(vc[0]):\(vc[1])-\(vc[2])"
         }
+        self.myLabel!.font = UIFont(name: "Papyrus", size: 18.0)
         self.myDetailLabel!.text = ""
     }
     

@@ -46,6 +46,7 @@
 		DBBCC0091DF25EF400F055E4 /* BibleLocations.csv in Resources */ = {isa = PBXBuildFile; fileRef = DBBCC0081DF25EF400F055E4 /* BibleLocations.csv */; };
 		DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */; };
 		DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */; };
+		DBEBF3271ED5B7D9008665BA /* WorldEnglishBible in Resources */ = {isa = PBXBuildFile; fileRef = DBEBF3261ED5B7D9008665BA /* WorldEnglishBible */; };
 		DCC32D404B4C83870067E20A /* Pods_WalkThroughTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */; };
 		E1C3FDD47B8DBACCEDA9F63B /* Pods_TourTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B47567C0FC9382E64CD378 /* Pods_TourTheBibleUITests.framework */; };
 		EBDF0F408DD704358E28F520 /* Pods_TourTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F194AF171B28CFE645DBD045 /* Pods_TourTheBibleTests.framework */; };
@@ -125,6 +126,7 @@
 		DBBCC0081DF25EF400F055E4 /* BibleLocations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BibleLocations.csv; sourceTree = "<group>"; };
 		DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryViewController.swift; sourceTree = "<group>"; };
 		DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
+		DBEBF3261ED5B7D9008665BA /* WorldEnglishBible */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WorldEnglishBible; sourceTree = "<group>"; };
 		E3A981FF38F354846A24BE79 /* Pods-TourTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TourTheBible/Pods-TourTheBible.debug.xcconfig"; sourceTree = "<group>"; };
 		F194AF171B28CFE645DBD045 /* Pods_TourTheBibleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TourTheBibleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F87880F422AB05441B0B1F50 /* Pods-TourTheBibleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourTheBibleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TourTheBibleUITests/Pods-TourTheBibleUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 		DBBAC8571DC7E10E00305451 /* Books */ = {
 			isa = PBXGroup;
 			children = (
+				DBEBF3261ED5B7D9008665BA /* WorldEnglishBible */,
 				DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */,
 			);
 			name = Books;
@@ -459,6 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB5C2EAD1D870F79002A5FAD /* LaunchScreen.storyboard in Resources */,
+				DBEBF3271ED5B7D9008665BA /* WorldEnglishBible in Resources */,
 				DB106FCF1DD0E9FB0033FFAA /* KingJamesVersion in Resources */,
 				DB5C2EAA1D870F79002A5FAD /* Assets.xcassets in Resources */,
 				DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */,

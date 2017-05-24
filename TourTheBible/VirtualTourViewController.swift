@@ -17,7 +17,7 @@ protocol VirtualTourViewControllerDelegate {
 }
 
 class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, VirtualTourPanelViewControllerDelegate {
-
+    
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
     @IBOutlet weak var myTableView: UITableView!
@@ -116,7 +116,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         }
         
         adjustSubviews()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -126,7 +126,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
             mapTypeButton.setTitle(" Standard ", for: .normal)
         }
     }
-
+    
     @IBAction func mapTypeButtonPressed(_ sender: Any) {
         if appDelegate.myMapView.mapType == MKMapType.standard {
             appDelegate.myMapView.mapType = MKMapType.satellite
@@ -134,7 +134,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         } else {
             appDelegate.myMapView.mapType = MKMapType.standard
             mapTypeButton.setTitle(" Satellite ", for: .normal)
-        }        
+        }
     }
     
     func adjustSubviews() {
@@ -229,7 +229,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
                 self.aiv.stopAnimating()
             }
         })
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -313,9 +313,11 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         if segmentedControl.selectedSegmentIndex == 0 {
             cell.textLabel!.text = sites[indexPath.section][indexPath.row]
+            cell.textLabel!.font = UIFont(name: "Papyrus", size: 18.0)
             cell.accessoryType = UITableViewCellAccessoryType.none
         } else {
             cell.textLabel!.text = hotels[indexPath.section][indexPath.row]
+            cell.textLabel!.font = UIFont(name: "Papyrus", size: 18.0)
             cell.accessoryType = UITableViewCellAccessoryType.detailDisclosureButton
         }
         
@@ -340,7 +342,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         alertController.addAction(visitWebsite)
         
         self.present(alertController, animated: true, completion: nil)
-
+        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -366,7 +368,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         pinView.canShowCallout = true
         pinView.annotation = annotation
-
+        
         return pinView
     }
     
@@ -461,7 +463,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
         updateCount()
     }
-
+    
     func setUpMap(name: String, lat: Double, long: Double) {
         
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
@@ -530,7 +532,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     func getPinsForVirtualTour() {
         
         let request: NSFetchRequest<Pin> = Pin.fetchRequest()
-
+        
         let p = NSPredicate(format: "pinToBook = %@", currentBook!)
         request.predicate = p
         
@@ -651,24 +653,24 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
             }
             
             if bibleLocations?.count != 0 {
-            
+                
                 let bibleLocation = bibleLocations?[0]
                 
                 setUpMap(name: (bibleLocation?.name!)!, lat: (bibleLocation?.lat)!, long: (bibleLocation?.long)!)
-                        
+                
                 let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
                 newPin.setValue(bibleLocation?.lat, forKey: "lat")
                 newPin.setValue(bibleLocation?.long, forKey: "long")
                 newPin.setValue(bibleLocation?.name, forKey: "title")
                 newPin.setValue(currentBook, forKey: "pinToBook")
                 pinsForBook.append(newPin)
-                        
+                
                 appDelegate.saveContext()
                 
             } else {
                 print(siteToPlot)
             }
-
+            
         } else {
             let siteToPlot = hotels[section][row]
             for location in hotelLocations {
@@ -686,7 +688,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
                     }
                 }
             }
-
+            
         }
         
     }
