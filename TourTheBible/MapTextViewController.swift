@@ -113,12 +113,6 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
         self.view.addGestureRecognizer(gesture)
         
-        //Set Bible Translation
-        selectedBible = defaults.value(forKey: "selectedBible") as? String
-        if selectedBible == "King James Version" {
-            locations = BibleLocationsKJV.Locations
-        }
-        
         if let location = defaults.dictionary(forKey: "\(book) location") {
             let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(location["lat"] as! Double, location["long"] as! Double)
             let span: MKCoordinateSpan = MKCoordinateSpanMake(location["latDelta"] as! Double, location["longDelta"] as! Double)

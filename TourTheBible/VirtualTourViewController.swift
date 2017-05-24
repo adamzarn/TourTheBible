@@ -113,6 +113,8 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         selectedBible = defaults.value(forKey: "selectedBible") as? String
         if selectedBible == "King James Version" {
             locations = BibleLocationsKJV.Locations
+        } else {
+            locations = BibleLocationsKJV.Locations
         }
         
         adjustSubviews()
