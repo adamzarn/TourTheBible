@@ -19,6 +19,7 @@ class BiblesViewController: UIViewController, UITableViewDataSource, UITableView
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isTranslucent = false
         selectedBible = UserDefaults.standard.value(forKey: "selectedBible") as? String
     }
     

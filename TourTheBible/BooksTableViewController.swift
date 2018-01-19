@@ -14,9 +14,6 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var myOTTableView: UITableView!
     @IBOutlet weak var myNTTableView: UITableView!
-    @IBOutlet weak var navItem: UINavigationItem!
-    
-    var window: UIWindow?
     
     let testaments = ["Old Testament", "New Testament"]
     let OTbooks = ["Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth","1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra","Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon","Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos","Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi"]
@@ -35,9 +32,9 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.automaticallyAdjustsScrollViewInsets = false
         
-        myOTTableView.frame = CGRect(x: 0.0, y: y, width: width/2, height: height)
+        myOTTableView.frame = CGRect(x: 0.0, y: 0, width: width/2, height: height)
         
-        myNTTableView.frame = CGRect(x: width/2, y: y, width: width/2, height: height)
+        myNTTableView.frame = CGRect(x: width/2, y: 0, width: width/2, height: height)
         
         NotificationCenter.default.addObserver(self, selector: #selector(BooksTableViewController.reachabilityChanged), name: NSNotification.Name(rawValue: "ReachabilityChangedNotification"), object: nil)
         
@@ -45,13 +42,15 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
                                             style: .plain,
                                             target: self,
                                             action: #selector(BooksTableViewController.restoreTapped(_:)))
+        restoreButton.tintColor = .white
         navigationItem.rightBarButtonItem = restoreButton
         
         NotificationCenter.default.addObserver(self, selector: #selector(BooksTableViewController.handlePurchaseNotification(_:)),
                                                name: NSNotification.Name(rawValue: IAPHelper.IAPHelperPurchaseNotification),
                                                object: nil)
         
-        reload()
+        self.navigationController?.navigationBar.barTintColor = GlobalFunctions.shared.themeColor()
+        self.navigationController?.navigationBar.isTranslucent = false
 
     }
 
@@ -60,7 +59,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
  
     override func viewWillAppear(_ animated: Bool) {
-        print("view will appear")
+        print("aaa")
         appDelegate.myMapView.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.isUserInteractionEnabled = true

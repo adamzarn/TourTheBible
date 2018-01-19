@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,16 +21,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Papyrus" translatesAutoresizingMaskIntoConstraints="NO" id="iNA-2S-HCo">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0l-17-X1F">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
+                                <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5W-8u-n0B">
+                                        <rect key="frame" x="0.0" y="320" width="375" height="27"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="27" id="CLd-Su-mYd"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.10988617688417435" green="0.24165236949920654" blue="0.45755875110626221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="B5W-8u-n0B" secondAttribute="trailing" id="Lsj-ax-a65"/>
+                                    <constraint firstItem="B5W-8u-n0B" firstAttribute="centerY" secondItem="o0l-17-X1F" secondAttribute="centerY" id="SLh-jr-xud"/>
+                                    <constraint firstItem="B5W-8u-n0B" firstAttribute="leading" secondItem="o0l-17-X1F" secondAttribute="leading" id="WeI-VN-rpx"/>
+                                    <constraint firstItem="B5W-8u-n0B" firstAttribute="centerY" secondItem="o0l-17-X1F" secondAttribute="centerY" id="z3g-nX-Edp"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="iNA-2S-HCo" secondAttribute="bottom" id="34b-RI-4HE"/>
-                            <constraint firstItem="iNA-2S-HCo" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="Rr9-f4-wJ5"/>
-                            <constraint firstAttribute="trailing" secondItem="iNA-2S-HCo" secondAttribute="trailing" id="hiK-vO-l3a"/>
-                            <constraint firstItem="iNA-2S-HCo" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="zD3-wq-kHZ"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="o0l-17-X1F" secondAttribute="bottom" id="M1f-kw-HHs"/>
+                            <constraint firstItem="o0l-17-X1F" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="RKm-rV-GfM"/>
+                            <constraint firstAttribute="trailing" secondItem="o0l-17-X1F" secondAttribute="trailing" id="lm9-36-yoH"/>
+                            <constraint firstItem="o0l-17-X1F" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="rjK-v8-vDE"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,7 +55,4 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Papyrus" width="237" height="434"/>
-    </resources>
 </document>

@@ -78,5 +78,7 @@ static let booksDictionary = ["Genesis":50
     ,"3 John":1
     ,"Jude":1
     ,"Revelation":22] as [String : Int]
+    
+    static let letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 }
 

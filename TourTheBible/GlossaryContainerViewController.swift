@@ -58,9 +58,7 @@ extension GlossaryContainerViewController: GlossaryViewControllerDelegate {
         if (rightPanelViewController == nil) {
             rightPanelViewController = UIStoryboard.rightPanelViewController()
             rightPanelViewController?.chapterAppearances = GlossaryViewController.chapterAppearances
-            rightPanelViewController?.bookAppearances = GlossaryViewController.bookAppearances
             rightPanelViewController?.tappedLocation = GlossaryViewController.tappedLocation
-            rightPanelViewController?.subtitles = GlossaryViewController.subtitles
             rightPanelViewController?.delegate = self.GlossaryViewController
             
             addChildSidePanelController(sidePanelController: rightPanelViewController!)

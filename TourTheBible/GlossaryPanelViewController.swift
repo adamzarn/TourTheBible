@@ -22,12 +22,8 @@ class GlossaryPanelViewController: UIViewController {
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var appearanceTableView: UITableView!
     
-    var chapterTitles: [String] = []
-    var chapterAppearances: [[String]] = [[]]
-    var bookAppearances: [String] = []
+    var chapterAppearances: [[Chapter]] = []
     var tappedLocation: String = ""
-    var tappedLocationKey: String = ""
-    var subtitles: [[String]] = [[]]
     var currentBook: String = ""
     var delegate: GlossaryPanelViewControllerDelegate?
     
@@ -53,7 +49,7 @@ extension GlossaryPanelViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if appDelegate.glossaryState == .RightPanelExpanded {
-            return bookAppearances.count
+            return chapterAppearances.count
         } else {
             return 0
         }
@@ -61,7 +57,7 @@ extension GlossaryPanelViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if appDelegate.glossaryState == .RightPanelExpanded {
-            return bookAppearances[section]
+            return (chapterAppearances[section][0]).book
         } else {
             return nil
         }
@@ -79,12 +75,8 @@ extension GlossaryPanelViewController: UITableViewDataSource {
         var cell = CustomTableViewCell()
         if appDelegate.glossaryState == .RightPanelExpanded {
             cell = tableView.dequeueReusableCell(withIdentifier: "glossaryAppearancesCell") as! CustomTableViewCell
-            cell.textLabel?.text = chapterAppearances[indexPath.section][indexPath.row]
-            if subtitles[indexPath.section][indexPath.row].caseInsensitiveCompare(tappedLocation) != ComparisonResult.orderedSame {
-                cell.detailTextLabel?.text = subtitles[indexPath.section][indexPath.row]
-            } else {
-                cell.detailTextLabel?.text = ""
-            }
+            let currentChapter = chapterAppearances[indexPath.section][indexPath.row]
+            cell.textLabel?.text = currentChapter.book + " " + String(currentChapter.chapterNumber)
             cell.textLabel?.font = UIFont(name: "Papyrus", size: 18.0)
         }
         return cell
@@ -98,17 +90,10 @@ extension GlossaryPanelViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        var chapterString = ""
+        let currentChapter = chapterAppearances[indexPath.section][indexPath.row]
         
-        chapterString = chapterAppearances[indexPath.section][indexPath.row]
-        
-        let splitArray = chapterString.components(separatedBy: " ")
-        var book = ""
-        for i in 0...splitArray.count - 2 {
-            book = "\(book) \(splitArray[i])"
-        }
-        book = book.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        let chapterIndex = Int(splitArray[splitArray.count-1])
+        let book = currentChapter.book
+        let chapterIndex = currentChapter.chapterNumber - 1
         
         let prefix = "AJZ.WalkThroughTheBible."
         if !defaults.bool(forKey:"\(prefix)\(book)") && ["Exodus","Numbers","Acts"].contains(book) {
@@ -119,7 +104,7 @@ extension GlossaryPanelViewController: UITableViewDelegate {
         } else {
             let containerViewController = ContainerViewController()
             containerViewController.book = book
-            containerViewController.chapterIndex = chapterIndex!
+            containerViewController.chapterIndex = chapterIndex
             self.present(containerViewController, animated: false, completion: nil)
             delegate?.chapterSelected!()
         }

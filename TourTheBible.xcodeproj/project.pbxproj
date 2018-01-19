@@ -17,7 +17,6 @@
 		DB1152B61E6F3074008BA289 /* VirtualTourTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1152B51E6F3074008BA289 /* VirtualTourTableViewController.swift */; };
 		DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB20FBBB1DD2383F0017A8F2 /* About.txt */; };
 		DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */; };
-		DB27FC931DCE8BAB00C3E207 /* BibleLocationsKJV.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */; };
 		DB38D82C1E77705900B1D78B /* GlossaryContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38D82B1E77705900B1D78B /* GlossaryContainerViewController.swift */; };
 		DB38D82E1E7770BF00B1D78B /* GlossaryPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38D82D1E7770BF00B1D78B /* GlossaryPanelViewController.swift */; };
 		DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB445EFD1DD4E782002CC686 /* Reachability.swift */; };
@@ -43,10 +42,16 @@
 		DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFD1DA4468200E5E00A /* ProductCell.swift */; };
 		DBA91F001DA446C400E5E00A /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFF1DA446C400E5E00A /* Products.swift */; };
 		DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91F011DA446F900E5E00A /* IAPHelper.swift */; };
-		DBBCC0091DF25EF400F055E4 /* BibleLocations.csv in Resources */ = {isa = PBXBuildFile; fileRef = DBBCC0081DF25EF400F055E4 /* BibleLocations.csv */; };
+		DBC54556200FE3BA009D7629 /* AWSItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC54555200FE3BA009D7629 /* AWSItems.swift */; };
+		DBC54559200FF0B8009D7629 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC5455A200FF0B8009D7629 /* AWSCore.framework */; };
+		DBC5455B200FF0C0009D7629 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC5455C200FF0C0009D7629 /* AWSDynamoDB.framework */; };
+		DBC5456020101014009D7629 /* BibleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC5455F20101014009D7629 /* BibleLocation.swift */; };
 		DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */; };
 		DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */; };
 		DBEBF3271ED5B7D9008665BA /* WorldEnglishBible in Resources */ = {isa = PBXBuildFile; fileRef = DBEBF3261ED5B7D9008665BA /* WorldEnglishBible */; };
+		DBEF4EA7201051890029E235 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEF4EA6201051890029E235 /* Chapter.swift */; };
+		DBEF4EA9201106450029E235 /* AWSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEF4EA8201106450029E235 /* AWSClient.swift */; };
+		DBEF4EAB20114A0E0029E235 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEF4EAA20114A0E0029E235 /* GlobalFunctions.swift */; };
 		DCC32D404B4C83870067E20A /* Pods_WalkThroughTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */; };
 		E1C3FDD47B8DBACCEDA9F63B /* Pods_TourTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B47567C0FC9382E64CD378 /* Pods_TourTheBibleUITests.framework */; };
 		EBDF0F408DD704358E28F520 /* Pods_TourTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F194AF171B28CFE645DBD045 /* Pods_TourTheBibleTests.framework */; };
@@ -91,7 +96,6 @@
 		DB1152B51E6F3074008BA289 /* VirtualTourTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualTourTableViewController.swift; sourceTree = "<group>"; };
 		DB20FBBB1DD2383F0017A8F2 /* About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = About.txt; sourceTree = "<group>"; };
 		DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BibleLocationsKJV.swift; sourceTree = "<group>"; };
 		DB38D82B1E77705900B1D78B /* GlossaryContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryContainerViewController.swift; sourceTree = "<group>"; };
 		DB38D82D1E7770BF00B1D78B /* GlossaryPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryPanelViewController.swift; sourceTree = "<group>"; };
 		DB445EFD1DD4E782002CC686 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -123,10 +127,16 @@
 		DBA91EFD1DA4468200E5E00A /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		DBA91EFF1DA446C400E5E00A /* Products.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		DBA91F011DA446F900E5E00A /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
-		DBBCC0081DF25EF400F055E4 /* BibleLocations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BibleLocations.csv; sourceTree = "<group>"; };
+		DBC54555200FE3BA009D7629 /* AWSItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSItems.swift; sourceTree = "<group>"; };
+		DBC5455A200FF0B8009D7629 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBC5455C200FF0C0009D7629 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSDynamoDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBC5455F20101014009D7629 /* BibleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleLocation.swift; sourceTree = "<group>"; };
 		DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryViewController.swift; sourceTree = "<group>"; };
 		DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
 		DBEBF3261ED5B7D9008665BA /* WorldEnglishBible */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WorldEnglishBible; sourceTree = "<group>"; };
+		DBEF4EA6201051890029E235 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
+		DBEF4EA8201106450029E235 /* AWSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSClient.swift; sourceTree = "<group>"; };
+		DBEF4EAA20114A0E0029E235 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		E3A981FF38F354846A24BE79 /* Pods-TourTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TourTheBible/Pods-TourTheBible.debug.xcconfig"; sourceTree = "<group>"; };
 		F194AF171B28CFE645DBD045 /* Pods_TourTheBibleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TourTheBibleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F87880F422AB05441B0B1F50 /* Pods-TourTheBibleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourTheBibleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TourTheBibleUITests/Pods-TourTheBibleUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +149,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBC5455B200FF0C0009D7629 /* AWSDynamoDB.framework in Frameworks */,
+				DBC54559200FF0B8009D7629 /* AWSCore.framework in Frameworks */,
 				DBA91EFC1DA43FBB00E5E00A /* StoreKit.framework in Frameworks */,
 				DB5C2ED11D871109002A5FAD /* MapKit.framework in Frameworks */,
 				BD4A85D3391762E11D3F3E62 /* Pods_TourTheBible.framework in Frameworks */,
@@ -169,6 +181,8 @@
 		18DFE035BEB60144B4124568 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBC5455C200FF0C0009D7629 /* AWSDynamoDB.framework */,
+				DBC5455A200FF0B8009D7629 /* AWSCore.framework */,
 				DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */,
 				62187FC9CFFEC8F7B54AEDFB /* Pods_WalkThroughTheBible.framework */,
 				2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */,
@@ -209,8 +223,9 @@
 				DBBAC8571DC7E10E00305451 /* Books */,
 				DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */,
 				DB1152B11E6E0096008BA289 /* FirebaseClient.swift */,
+				DBEF4EA8201106450029E235 /* AWSClient.swift */,
+				DBC54555200FE3BA009D7629 /* AWSItems.swift */,
 				DB1152B31E6E065C008BA289 /* Video.swift */,
-				DBBCC0081DF25EF400F055E4 /* BibleLocations.csv */,
 				DB20FBBB1DD2383F0017A8F2 /* About.txt */,
 				DB5C2EAE1D870F79002A5FAD /* Info.plist */,
 				DB1152AF1E6DA331008BA289 /* GoogleService-Info.plist */,
@@ -219,6 +234,7 @@
 				DBA91F031DA4480200E5E00A /* Model */,
 				DBA91F051DA4484700E5E00A /* View */,
 				DBA91F041DA4480900E5E00A /* Controller */,
+				DBEF4EAA20114A0E0029E235 /* GlobalFunctions.swift */,
 			);
 			path = TourTheBible;
 			sourceTree = "<group>";
@@ -276,8 +292,9 @@
 			children = (
 				DBA91EFF1DA446C400E5E00A /* Products.swift */,
 				DB4EE9951D987A6500A3C48B /* Books.swift */,
-				DB27FC921DCE8BAB00C3E207 /* BibleLocationsKJV.swift */,
 				DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */,
+				DBC5455F20101014009D7629 /* BibleLocation.swift */,
+				DBEF4EA6201051890029E235 /* Chapter.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -391,6 +408,7 @@
 				DB5C2EBB1D870F79002A5FAD /* Frameworks */,
 				DB5C2EBC1D870F79002A5FAD /* Resources */,
 				2B967D5B5D09BDFF977B4D40 /* [CP] Copy Pods Resources */,
+				376EFE75F48447CCE8FD9CFF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -468,7 +486,6 @@
 				DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */,
 				DB1152B01E6DA331008BA289 /* GoogleService-Info.plist in Resources */,
 				DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */,
-				DBBCC0091DF25EF400F055E4 /* BibleLocations.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +521,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TourTheBibleUITests/Pods-TourTheBibleUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		376EFE75F48447CCE8FD9CFF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TourTheBibleUITests/Pods-TourTheBibleUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7028F9F0F3B4EBA47C6B7333 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -531,7 +563,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BA45091704C4A839BD178911 /* [CP] Copy Pods Resources */ = {
@@ -561,7 +593,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E4A13C4FFC30255F5BA19F29 /* [CP] Copy Pods Resources */ = {
@@ -606,7 +638,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -618,21 +650,25 @@
 			files = (
 				DB38D82C1E77705900B1D78B /* GlossaryContainerViewController.swift in Sources */,
 				DB89240E1DE7C39B00EAC55E /* VirtualTourViewController.swift in Sources */,
-				DB27FC931DCE8BAB00C3E207 /* BibleLocationsKJV.swift in Sources */,
 				DB878C331E77630400A3B876 /* MainTabBarController.swift in Sources */,
 				DB106FCC1DD0D1D30033FFAA /* BiblesViewController.swift in Sources */,
+				DBC5456020101014009D7629 /* BibleLocation.swift in Sources */,
 				DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */,
 				DB38D82E1E7770BF00B1D78B /* GlossaryPanelViewController.swift in Sources */,
 				DB866A891E789DFC0000A6E5 /* VirtualTourContainerViewController.swift in Sources */,
+				DBC54556200FE3BA009D7629 /* AWSItems.swift in Sources */,
 				DB47B34D1DF1D42B005EC190 /* SidePanelViewController.swift in Sources */,
 				DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */,
 				DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */,
 				DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */,
+				DBEF4EA7201051890029E235 /* Chapter.swift in Sources */,
 				DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */,
+				DBEF4EAB20114A0E0029E235 /* GlobalFunctions.swift in Sources */,
 				DB1152B41E6E065C008BA289 /* Video.swift in Sources */,
 				DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */,
 				DB866A8B1E789E1A0000A6E5 /* VirtualTourPanelViewController.swift in Sources */,
 				DB1152B21E6E0096008BA289 /* FirebaseClient.swift in Sources */,
+				DBEF4EA9201106450029E235 /* AWSClient.swift in Sources */,
 				DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */,
 				DBA91F001DA446C400E5E00A /* Products.swift in Sources */,
 				DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */,

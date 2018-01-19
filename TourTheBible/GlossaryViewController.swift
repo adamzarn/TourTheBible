@@ -11,6 +11,8 @@ import MapKit
 import UIKit
 import CoreData
 import youtube_ios_player_helper
+import AWSCore
+import AWSDynamoDB
 
 @objc
 protocol GlossaryViewControllerDelegate {
@@ -31,6 +33,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     @IBOutlet weak var loadingLabel: UILabel!
     @IBOutlet weak var nothingToDisplayLabel: UILabel!
     
+    @IBOutlet weak var fetchingAppearancesView: UIView!
+    @IBOutlet weak var fetchingAppearancesLabel: UILabel!
+    @IBOutlet weak var fetchingAppearancesAiv: UIActivityIndicatorView!
+    
     var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let defaults = UserDefaults.standard
@@ -40,7 +46,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     var filteredGlossary = [BibleLocation]()
     var masterSongList = [Video]()
     var filteredSongList = [Video]()
-    let letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+    let letters = Books.letters
     let books = Books.books
     let booksAbbreviated = Books.booksAbbreviated
     
@@ -57,22 +63,22 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     var songBooksAbbreviated: [String] = []
     var delegate: GlossaryViewControllerDelegate?
     
-    var locations: [String : [String : [String]]]?
-    var bibleLocations: [BibleLocation]?
+    var selectedLocations: [BibleLocation] = []
     var tappedLocation: String = ""
-    var tappedLocationKey: String = ""
-    var chapterAppearances = [[String]](repeating: [], count: 66)
-    var subtitles = [[String]](repeating: [], count: 66)
+    var chapterAppearances: [[Chapter]] = []
     var bookAppearances: [String] = []
     var gesture: UITapGestureRecognizer?
     var chapSel = false
+    var dimView: UIView!
 
     override func viewDidLoad() {
-        
+        self.navigationController?.navigationBar.isTranslucent = false
         screenSize = self.view.bounds
         
+        dimView = UIView(frame: self.view.bounds)
+        dimView.backgroundColor = UIColor(white: 0.4, alpha: 0.5)
+        
         context = appDelegate.managedObjectContext
-        masterGlossary = appDelegate.glossary
         
         let coordinate = CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
         appDelegate.myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 3.0, longitudeDelta: 3.0)), animated: true)
@@ -126,11 +132,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         self.automaticallyAdjustsScrollViewInsets = false
         
         selectedBible = defaults.value(forKey: "selectedBible") as? String
-        if selectedBible == "King James Version" {
-            locations = BibleLocationsKJV.Locations
-        } else {
-            locations = BibleLocationsKJV.Locations
-        }
         
         mapTypeButton.setTitle(" Satellite ", for: .normal)
         mapTypeButton.layer.borderWidth = 1
@@ -138,9 +139,55 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         mapTypeButton.backgroundColor = UIColor.white.withAlphaComponent(0.7)
         self.view.bringSubview(toFront: mapTypeButton)
         
-        aiv.isHidden = true
+        fetchingAppearancesView.isHidden = true
+        fetchingAppearancesView.layer.cornerRadius = 10;
+        fetchingAppearancesView.isUserInteractionEnabled = false
         
         adjustSubviews()
+        
+        populateGlossary()
+        
+    }
+    
+    func loadingTableView() {
+        myTableView.isHidden = true
+        aiv.isHidden = false
+        aiv.startAnimating()
+    }
+    
+    func doneLoadingTableView() {
+        self.myTableView.isHidden = false
+        self.aiv.isHidden = true
+        self.aiv.stopAnimating()
+    }
+    
+    func populateGlossary() {
+        loadingTableView()
+        AWSClient.sharedInstance.getBibleLocations(completion: { (bibleLocations, error) -> () in
+            if let bibleLocations = bibleLocations {
+                self.masterGlossary = bibleLocations
+                self.sortGlossary()
+                self.myTableView.reloadData()
+                self.doneLoadingTableView()
+            } else {
+                self.doneLoadingTableView()
+                print(error?.localizedLowercase as! NSString)
+            }
+        })
+    }
+    
+    func sortGlossary() {
+        masterGlossary.sort { $0.name < $1.name }
+        for bibleLocation in masterGlossary {
+            let name = bibleLocation.name
+            var i = 0
+            for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters {
+                if name[name.startIndex] == char {
+                    sortedGlossary[i].append(bibleLocation)
+                }
+                i += 1
+            }
+        }
     }
     
     @IBAction func mapTypeButtonPressed(_ sender: Any) {
@@ -154,20 +201,23 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     }
 
     func adjustSubviews() {
-        let y: CGFloat!
-        y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         let h = appDelegate.tabBarHeight!
-        height = screenSize.height - y! - h
+        height = screenSize.height - (navigationController?.navigationBar.frame.size.height)! - UIApplication.shared.statusBarFrame.size.height - h
         let YTPlayerHeight = (screenSize.width/16)*9
-        appDelegate.myYouTubePlayer.frame = CGRect(x: 0.0, y: y, width: screenSize.width, height: YTPlayerHeight)
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: (height!+h)*0.45)
-        segmentedControl.frame = CGRect(x: 5, y: y! + (height!+h)*0.45 + 5, width: screenSize.width - 10, height: 30)
-        myTableView.frame = CGRect(x: 0.0, y: y! + (height!+h)*0.45 + 40, width: screenSize.width, height: (height!+h)*0.55 - 40 - h)
-        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: y! + (height!+h)*0.45 + 55, width: 20, height: 20)
-        viewInYouTubeButton.frame = CGRect(x: 5.0, y: y! + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + h)*0.45 - YTPlayerHeight - 10.0)
-        viewYouTubeChannelButton.frame = CGRect(x: (screenSize.width/2) + 2.5, y: y! + YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + h)*0.45 - YTPlayerHeight - 10.0)
-        loadingLabel.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: YTPlayerHeight)
-        nothingToDisplayLabel.frame = CGRect(x: 0.0 , y: y! + (height!+h)*0.45 + 55, width: screenSize.width, height: 100)
+        appDelegate.myYouTubePlayer.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: YTPlayerHeight)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: (height!+h)*0.45)
+        segmentedControl.frame = CGRect(x: 5, y: (height!+h)*0.45 + 5, width: screenSize.width - 10, height: 30)
+        myTableView.frame = CGRect(x: 0.0, y: (height!+h)*0.45 + 40, width: screenSize.width, height: (height!+h)*0.55 - 40 - h)
+        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: (height!+h)*0.45 + (myTableView.frame.size.height/2) + 40, width: 20, height: 20)
+        viewInYouTubeButton.frame = CGRect(x: 5.0, y: YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + h)*0.45 - YTPlayerHeight - 10.0)
+        viewYouTubeChannelButton.frame = CGRect(x: (screenSize.width/2) + 2.5, y: YTPlayerHeight + 5.0, width: (screenSize.width/2) - 7.5, height: (height! + h)*0.45 - YTPlayerHeight - 10.0)
+        loadingLabel.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: YTPlayerHeight)
+        nothingToDisplayLabel.frame = CGRect(x: 0.0 , y: (height!+h)*0.45 + 55, width: screenSize.width, height: 100)
+        
+        let w = screenSize.width - 80.0
+        fetchingAppearancesView.frame = CGRect(x: 40.0, y: (height!/2) - 40.0, width: w, height: 80.0)
+        fetchingAppearancesAiv.frame = CGRect(x:0.0, y: 10.0, width: w, height: 30.0)
+        fetchingAppearancesLabel.frame = CGRect(x: 10.0, y: 40.0, width: w - 20.0, height: 30.0)
         
     }
     
@@ -179,7 +229,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         if segmentedControl.selectedSegmentIndex == 0 {
             filteredGlossary = masterGlossary.filter { location in
-                return (location.name?.lowercased().contains(searchText.lowercased()))!
+                return (location.name.lowercased().contains(searchText.lowercased()))
             }
         } else {
             filteredSongList = masterSongList.filter { video in
@@ -226,16 +276,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             getPinsForGlossary()
             addSavedPinsToMap()
             
-            for bibleLocation in masterGlossary {
-                let name = bibleLocation.name!
-                var i = 0
-                for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters {
-                    if name[name.startIndex] == char {
-                        sortedGlossary[i].append(bibleLocation)
-                    }
-                    i += 1
-                }
-            }
         } else {
             appDelegate.myYouTubePlayer.delegate = self
         }
@@ -248,15 +288,17 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         if segmentedControl.selectedSegmentIndex == 0 {
-            myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+            //myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             showMap()
         } else {
             if songBooks.count > 0 {
-                myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                //myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             }
             showYouTube(videoID: "HLE8Xjuqn2M")
         }
     }
+    
+    
     
     func getCurrentBook() {
         
@@ -311,6 +353,8 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
             annotation.title = pin.title
             appDelegate.myMapView.addAnnotation(annotation)
+            let newLoc = BibleLocation(name: pin.title!, displayName: "", lat: pin.lat, long: pin.long)
+            selectedLocations.append(newLoc)
             
         }
     }
@@ -342,7 +386,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if segmentedControl.selectedSegmentIndex == 0 {
             if searchController.isActive && searchController.searchBar.text != "" {
                 return filteredGlossary.count
@@ -354,10 +397,10 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             }
             return appDelegate.videoLibrary[songBooks[section]]!.count
         }
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+
         if segmentedControl.selectedSegmentIndex == 0 {
             if searchController.isActive && searchController.searchBar.text != "" {
                 return 1
@@ -487,7 +530,8 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                 } else {
                     location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
                 }
-                setUpMap(name: location.name!, lat: location.lat, long: location.long)
+                selectedLocations.append(location)
+                setUpMap(name: location.name, lat: location.lat, long: location.long)
                 savePin(location: location!)
                 y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
                 height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
@@ -499,16 +543,17 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                 tableView.deselectRow(at: indexPath, animated: true)
                 tableView.reloadData()
                 
-                let startingLetter = String(describing: location.name!.characters.first!).uppercased()
-                let letterIndex = letters.index(of: startingLetter)
-                let row = sortedGlossary[letterIndex!].index(of: location)
-                let ip = IndexPath(row: row!, section: letterIndex!)
-                
-                tableView.scrollToRow(at: ip as IndexPath, at: .top, animated: false)
+//                let startingLetter = String(describing: location.name.characters.first!).uppercased()
+//                let letterIndex = letters.index(of: startingLetter)
+//                let row = sortedGlossary[letterIndex!].index(of: location)
+//                let ip = IndexPath(row: row!, section: letterIndex!)
+//
+//                tableView.scrollToRow(at: ip as IndexPath, at: .top, animated: false)
                 
             } else {
                 let location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
-                setUpMap(name: location.name!, lat: location.lat, long: location.long)
+                selectedLocations.append(location)
+                setUpMap(name: location.name, lat: location.lat, long: location.long)
                 savePin(location: location)
                 tableView.deselectRow(at: indexPath, animated: true)
                 tableView.scrollToRow(at: indexPath, at: .top, animated: false)
@@ -621,6 +666,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
         }
         let removePins = UIAlertAction(title: "Remove Pins from Map", style: .default) { (action) in
+            self.selectedLocations = []
             self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
             for pin in self.pinsForBook {
                 self.context!.delete(pin)
@@ -709,15 +755,11 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
         
         nothingToDisplayLabel.isHidden = true
-        myTableView.isHidden = true
-        aiv.isHidden = false
-        aiv.startAnimating()
+        loadingTableView()
         
         if segmentedControl.selectedSegmentIndex == 0 {
             myTableView.reloadData()
-            myTableView.isHidden = false
-            aiv.isHidden = true
-            aiv.stopAnimating()
+            doneLoadingTableView()
             showMap()
             searchController.searchBar.isUserInteractionEnabled = true
         } else {
@@ -752,10 +794,8 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                                 bookSequence += 1
                             }
                             self.myTableView.reloadData()
-                            self.myTableView.isHidden = false
                             self.myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-                            self.aiv.isHidden = true
-                            self.aiv.stopAnimating()
+                            self.doneLoadingTableView()
                             if self.appDelegate.myYouTubePlayer.playerState() == YTPlayerState.queued {
                                 self.searchController.searchBar.placeholder = "Search"
                                 self.searchController.searchBar.isUserInteractionEnabled = true
@@ -765,10 +805,9 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                     })
                 } else {
                     myTableView.reloadData()
-                    myTableView.isHidden = false
+
                     myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-                    aiv.isHidden = true
-                    aiv.stopAnimating()
+                    self.doneLoadingTableView()
                 }
                 showYouTube(videoID: "HLE8Xjuqn2M")
             } else {
@@ -776,8 +815,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                 appDelegate.myYouTubePlayer.isHidden = true
                 loadingLabel.text = "No Internet Connection"
                 nothingToDisplayLabel.isHidden = false
-                aiv.isHidden = true
-                aiv.stopAnimating()
+                doneLoadingTableView()
             }
         }
     }
@@ -806,9 +844,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     }
     
     func showMap() {
-        getCurrentBook()
-        getPinsForGlossary()
-        addSavedPinsToMap()
         mapTypeButton.isEnabled = true
         mapTypeButton.isHidden = false
         if appDelegate.myMapView.mapType == MKMapType.standard {
@@ -859,70 +894,61 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
+        showFetchingAppearancesView()
         tappedLocation = (view.annotation?.title!)!
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BibleLocation")
         
-        let p = NSPredicate(format: "name = %@", tappedLocation)
-        fetchRequest.predicate = p
-        
-        do {
-            let results = try context!.fetch(fetchRequest)
-            bibleLocations = results as? [BibleLocation]
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-        
-        var titles: [String] = []
-        for i in 0...(bibleLocations?.count)! - 1 {
-            titles.append((bibleLocations?[i].key)!)
-        }
-        
-        chapterAppearances = [[String]](repeating: [], count: 66)
-        subtitles = [[String]](repeating: [], count: 66)
-        bookAppearances = []
-        
-        for book in books {
-            for i in 1...Books.booksDictionary[book]! {
-                let bookDict = locations?[book]!
-                let chapterArray = bookDict?[String(i)]!
-                for title in titles {
-                    if (chapterArray?.contains(title))! {
-                        if !chapterAppearances[books.index(of: book)!].contains("\(book) \(i)") {
-                            chapterAppearances[books.index(of: book)!].append("\(book) \(i)")
-                            subtitles[books.index(of: book)!].append(title)
-                        }
-                    }
-                }
-            }
-        }
-        
-        var i = 0
-        var j = 0
-        for book in chapterAppearances {
-            if book.count == 0 {
-                chapterAppearances.remove(at: i)
-                subtitles.remove(at: i)
+        AWSClient.sharedInstance.getChapterAppearances(location: tappedLocation, completion: { (chapterAppearances, error) -> () in
+            self.dismissFetchingAppearancesView()
+            if let chapterAppearances = chapterAppearances {
+                self.chapterAppearances = chapterAppearances
+                self.delegate?.toggleRightPanel?()
+                let currentLongDelta = self.appDelegate.myMapView.region.span.longitudeDelta
+                let tappedBibleLocation = self.getTappedBibleLocation(locationName: self.tappedLocation)
+                let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(tappedBibleLocation.lat,tappedBibleLocation.long  - currentLongDelta/4)
+                self.appDelegate.myMapView?.setCenter(center, animated: true)
+                self.gesture?.isEnabled = true
             } else {
-                i += 1
-                bookAppearances.append(books[j])
+                print("error")
             }
-            j += 1
+        })
+    }
+    
+    func showFetchingAppearancesView() {
+        self.view.addSubview(dimView)
+        self.view.bringSubview(toFront: dimView)
+        fetchingAppearancesView.isHidden = false
+        fetchingAppearancesView.isUserInteractionEnabled = true
+        self.view.bringSubview(toFront: fetchingAppearancesView)
+        fetchingAppearancesAiv.startAnimating()
+    }
+    
+    func dismissFetchingAppearancesView() {
+        self.dimView.removeFromSuperview()
+        fetchingAppearancesView.isHidden = true
+        fetchingAppearancesView.isUserInteractionEnabled = false
+        fetchingAppearancesAiv.stopAnimating()
+    }
+    
+    func getTappedBibleLocation(locationName: String) -> BibleLocation {
+        var tappedBibleLocation: BibleLocation!
+        for loc in selectedLocations {
+            if loc.name == locationName {
+                tappedBibleLocation = loc
+            }
         }
-        
-        delegate?.toggleRightPanel?()
-        
-        let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
-        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long  - currentLongDelta/4)
-        appDelegate.myMapView?.setCenter(center, animated: false)
-        
-        gesture?.isEnabled = true
-        
+        if let location = tappedBibleLocation {
+            return location
+        } else {
+            return BibleLocation(name: "Jerusalem", displayName: "Jerusalem", lat: 31.7683, long: 35.2137)
+        }
     }
     
     func viewTapped(_ sender: UITapGestureRecognizer) {
+        print("abc")
         delegate?.toggleRightPanel!()
-        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long)
-        appDelegate.myMapView?.setCenter(center, animated: false)
+        let tappedBibleLocation = self.getTappedBibleLocation(locationName: self.tappedLocation)
+        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(tappedBibleLocation.lat,tappedBibleLocation.long)
+        appDelegate.myMapView?.setCenter(center, animated: true)
         gesture?.isEnabled = false
     }
     

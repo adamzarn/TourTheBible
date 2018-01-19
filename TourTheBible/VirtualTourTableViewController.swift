@@ -18,6 +18,7 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var aiv: UIActivityIndicatorView!
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isTranslucent = false
         aiv.startAnimating()
         aiv.isHidden = false
         myTableView.isHidden = true

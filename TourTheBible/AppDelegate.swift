@@ -14,6 +14,8 @@ import MapKit
 import youtube_ios_player_helper
 import Firebase
 import AVFoundation
+import AWSCore
+import AWSCognito
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var reachability: Reachability!
     var products = [SKProduct]()
     var chapterIndex: Int = 1
-    var glossary = [BibleLocation]()
     var videoLibrary: [String: [Video]] = [:]
     var myMapView: MKMapView!
     var myYouTubePlayer: YTPlayerView!
@@ -40,19 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let tabBarController = MainTabBarController()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:.USEast2,
+                                                                identityPoolId:"us-east-2:099dfb03-247e-42e3-b08f-c703485c702c")
         
-        let booksVC = storyboard.instantiateViewController(withIdentifier: "BooksNavigationController") as! UINavigationController
-        let glossaryVC = GlossaryContainerViewController()
-        let virtualTourVC = storyboard.instantiateViewController(withIdentifier: "VirtualTourNavigationController") as! UINavigationController
-        let biblesVC = storyboard.instantiateViewController(withIdentifier: "BiblesNavigationController") as! UINavigationController
-        let aboutVC = storyboard.instantiateViewController(withIdentifier: "AboutNavigationController") as! UINavigationController
+        let configuration = AWSServiceConfiguration(region:.USEast2, credentialsProvider:credentialsProvider)
         
-        tabBarController.viewControllers = [booksVC, glossaryVC, virtualTourVC, biblesVC, aboutVC]
-        window?.rootViewController = tabBarController
-        
-        self.tbc = tabBarController
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
         
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         
@@ -60,15 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             let currentVersion = defaults.value(forKey: "currentVersion") as? String
             if version != currentVersion {
-                preloadData()
                 defaults.set(version, forKey: "currentVersion")
             }
         }
-        
-        FIRApp.configure()
-        
-        myMapView = MKMapView()
-        myYouTubePlayer = YTPlayerView()
         
         if defaults.bool(forKey: "hasBeenLaunched") == true {
             print("has already been launched")
@@ -77,20 +65,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.setValue(true, forKey: "hasBeenLaunched")
         }
         
-        let context = self.managedObjectContext
-        let request: NSFetchRequest<BibleLocation> = BibleLocation.fetchRequest()
+        FIRApp.configure()
         
-        do {
-            let results = try context.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
-            self.glossary = results as! [BibleLocation]
-        } catch let e as NSError {
-            print("Failed to retrieve record: \(e.localizedDescription)")
-        }
+        myMapView = MKMapView()
+        myYouTubePlayer = YTPlayerView()
         
         autoSave(delayInSeconds: 5)
         
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "Papyrus", size: 21)!]
         UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Papyrus", size: 9)!], for: .normal)
+        
+        let textTitleOptions: [String : Any] = [
+            NSFontAttributeName: UIFont(name: "Papyrus", size: 21)!,
+            NSForegroundColorAttributeName : UIColor.white,
+        ]
+        UINavigationBar.appearance().titleTextAttributes = textTitleOptions
+        UINavigationBar.appearance().barTintColor = UIColor(red: 28.0/255.0, green: 62.0/255.0, blue: 117.0/255.0, alpha: 1.0)
+        UIApplication.shared.statusBarStyle = .default
         
         do {
             reachability = try Reachability()
@@ -221,72 +211,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DispatchQueue.main.asyncAfter(deadline: time) {
             }
             
-        }
-    }
-    
-    func parseCSV(contentsOfURL: NSURL, encoding: String.Encoding, error: NSErrorPointer) -> [(key:String, name:String, lat:Double, long:Double)]? {
-        let delimiter = ","
-        var items:[(key:String, name:String, lat:Double, long:Double)]?
-        
-        if let data = NSData(contentsOf: contentsOfURL as URL) {
-            if let content = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue) {
-                items = []
-                let lines:[String] = content.components(separatedBy: NSCharacterSet.newlines) as [String]
-                
-                for line in lines {
-                    var values:[String] = []
-                    values = line.components(separatedBy: delimiter)
-                    print(values)
-                    if values.count == 4 {
-                        let item = (key: values[0], name: values[1], lat: Double(values[2])!, long: Double(values[3])!)
-                        items?.append(item)
-                    }
-                }
-            }
-        }
-        return items
-    }
-    
-    func preloadData () {
-        // Retrieve data from the source file
-        if let contentsOfURL = Bundle.main.url(forResource:"BibleLocations", withExtension: "csv") {
-            
-            removeData()
-            
-            var error:NSError?
-            if let items = parseCSV(contentsOfURL: contentsOfURL as NSURL, encoding: String.Encoding.utf8, error: &error) {
-                let managedObjectContext = self.managedObjectContext
-                for item in items {
-                    
-                    let bibleLocation = NSEntityDescription.insertNewObject(forEntityName: "BibleLocation", into: managedObjectContext) as! BibleLocation
-                    bibleLocation.key = item.key
-                    bibleLocation.name = item.name
-                    bibleLocation.lat = item.lat
-                    bibleLocation.long = item.long
-                    
-                    saveContext()
-                }
-            }
-        }
-        
-    }
-    
-    func removeData () {
-        //Remove the existing items
-        let managedObjectContext = self.managedObjectContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BibleLocation")
-        
-        var bibleLocations: [BibleLocation]?
-        
-        do {
-            bibleLocations = try managedObjectContext.fetch(fetchRequest) as? [BibleLocation]
-        } catch let e as NSError {
-            print("Failed to retrieve record: \(e.localizedDescription)")
-            return
-        }
-        for bibleLocation in bibleLocations! {
-            print("\(bibleLocation.name) deleted")
-            managedObjectContext.delete(bibleLocation)
         }
     }
     

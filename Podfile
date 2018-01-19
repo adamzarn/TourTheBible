@@ -12,6 +12,9 @@ target ‘TourTheBible' do
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
 
+    pod 'AWSCognito'
+    pod 'AWSDynamoDB'
+
   target ‘TourTheBibleTests' do
     inherit! :search_paths
     # Pods for testing

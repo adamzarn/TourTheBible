@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class Chapter {
+    
+    var book: String
+    var chapterNumber: Int
+    
+    init(book: String, chapterNumber: Int) {
+        self.book = book
+        self.chapterNumber = chapterNumber
+    }
+    
+}

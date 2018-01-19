@@ -86,9 +86,7 @@ extension ContainerViewController: MapTextViewControllerDelegate {
         if (rightViewController == nil) {
             rightViewController = UIStoryboard.rightViewController()
             rightViewController?.chapterAppearances = MapTextViewController.chapterAppearances
-            rightViewController?.bookAppearances = MapTextViewController.bookAppearances
             rightViewController?.tappedLocation = MapTextViewController.tappedLocation
-            rightViewController?.subtitles = MapTextViewController.subtitles
             rightViewController?.currentBook = MapTextViewController.book!
             rightViewController?.delegate = self.MapTextViewController
             

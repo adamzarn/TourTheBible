@@ -28,6 +28,7 @@ class MainTabBarController: UITabBarController {
         let biblesItem = tabBar.items?[3]
         let aboutItem = tabBar.items?[4]
         
+        bookItem?.title = "Read"
         glossaryItem?.title = "Glossary"
         
         bookItem?.image = resizeImage(image: UIImage(named:"Book")!)

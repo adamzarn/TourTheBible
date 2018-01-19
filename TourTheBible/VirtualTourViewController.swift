@@ -111,11 +111,6 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         self.view.addGestureRecognizer(gesture!)
         
         selectedBible = defaults.value(forKey: "selectedBible") as? String
-        if selectedBible == "King James Version" {
-            locations = BibleLocationsKJV.Locations
-        } else {
-            locations = BibleLocationsKJV.Locations
-        }
         
         adjustSubviews()
         
@@ -391,7 +386,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         var titles: [String] = []
         for i in 0...(bibleLocations?.count)! - 1 {
-            titles.append((bibleLocations?[i].key)!)
+            titles.append((bibleLocations?[i].name)!)
         }
         
         chapterAppearances = [[String]](repeating: [], count: 66)
@@ -658,7 +653,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
                 
                 let bibleLocation = bibleLocations?[0]
                 
-                setUpMap(name: (bibleLocation?.name!)!, lat: (bibleLocation?.lat)!, long: (bibleLocation?.long)!)
+                setUpMap(name: (bibleLocation?.name)!, lat: (bibleLocation?.lat)!, long: (bibleLocation?.long)!)
                 
                 let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
                 newPin.setValue(bibleLocation?.lat, forKey: "lat")

@@ -1,4 +1,9 @@
 PODS:
+  - AWSCognito (2.6.5):
+    - AWSCore (= 2.6.5)
+  - AWSCore (2.6.5)
+  - AWSDynamoDB (2.6.5):
+    - AWSCore (= 2.6.5)
   - Firebase/Analytics (3.5.2):
     - FirebaseAnalytics (~> 3.3)
   - Firebase/Auth (3.5.2):
@@ -35,12 +40,17 @@ PODS:
   - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
+  - AWSCognito
+  - AWSDynamoDB
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - youtube-ios-player-helper (~> 0.1.4)
 
 SPEC CHECKSUMS:
+  AWSCognito: 763ef7a193e6eaeddff382db4daa7608ec61be69
+  AWSCore: b4895b4a5256d0040f8825ad31f3477d081f508f
+  AWSDynamoDB: 8723495e4f010b65e7012fdc59f813c3a0a30006
   Firebase: 94e63112efcad75226c0356a8f3032397b8547c9
   FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseAuth: 26fd291c3b552fc9658420b867520d5ae080421c
@@ -53,6 +63,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 0427ad22286ebde664ceddb0ac64b5454fa00304
+PODFILE CHECKSUM: 45c57c46f33b3eaf6cd8820286368ddc2b1232e0
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.1

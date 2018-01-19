@@ -18,7 +18,7 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
     @IBOutlet weak var emailButton: UIButton!
     
     override func viewDidLoad() {
-        
+        self.navigationController?.navigationBar.isTranslucent = false
         let path = Bundle.main.path(forResource: "About", ofType: "txt")
         
         do {

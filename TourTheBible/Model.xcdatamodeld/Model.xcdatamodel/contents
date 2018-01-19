@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="15G1217" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="BibleLocation" representedClassName="BibleLocation" syncable="YES" codeGenerationType="class">
-        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="long" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1036" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="bookToPin" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Pin" inverseName="pinToBook" inverseEntity="Pin" syncable="YES"/>
@@ -18,7 +12,6 @@
         <relationship name="pinToBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="bookToPin" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BibleLocation" positionX="70" positionY="279" width="128" height="105"/>
         <element name="Book" positionX="-20" positionY="87" width="128" height="73"/>
         <element name="Pin" positionX="160" positionY="57" width="128" height="120"/>
     </elements>

@@ -20,8 +20,8 @@ class GlossaryCell: UITableViewCell {
         self.myImageView.image = UIImage(named: "Pin")
         self.myLabel!.text = location.name
         self.myLabel!.font = UIFont(name: "Papyrus", size: 18.0)
-        if location.key?.caseInsensitiveCompare(location.name!) != ComparisonResult.orderedSame {
-            self.myDetailLabel!.text = location.key
+        if location.name.caseInsensitiveCompare(location.displayName) != ComparisonResult.orderedSame {
+            self.myDetailLabel!.text = location.name
         } else {
             self.myDetailLabel!.text = ""
         }

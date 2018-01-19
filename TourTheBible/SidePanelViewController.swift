@@ -35,11 +35,8 @@ class SidePanelViewController: UIViewController {
     
     @IBOutlet weak var myTableView: UITableView!
     var chapterTitles: [String] = []
-    var chapterAppearances: [[String]] = [[]]
-    var bookAppearances: [String] = []
+    var chapterAppearances: [[Chapter]] = []
     var tappedLocation: String = ""
-    var tappedLocationKey: String = ""
-    var subtitles: [[String]] = [[]]
     var currentBook: String = ""
     var delegate: SidePanelViewControllerDelegate?
     
@@ -92,7 +89,7 @@ extension SidePanelViewController: UITableViewDataSource {
         if appDelegate.currentState == .LeftPanelExpanded {
             return 1
         } else if appDelegate.currentState == .RightPanelExpanded {
-            return bookAppearances.count
+            return chapterAppearances.count
         } else {
             return 0
         }
@@ -106,7 +103,7 @@ extension SidePanelViewController: UITableViewDataSource {
                 return "Translations"
             }
         } else if appDelegate.currentState == .RightPanelExpanded {
-            return bookAppearances[section]
+             return (chapterAppearances[section][0]).book
         } else {
             return nil
         }
@@ -147,12 +144,8 @@ extension SidePanelViewController: UITableViewDataSource {
         } else if appDelegate.currentState == .RightPanelExpanded {
             
             cell = tableView.dequeueReusableCell(withIdentifier: "appearancesCell") as! CustomTableViewCell
-            cell.textLabel?.text = chapterAppearances[indexPath.section][indexPath.row]
-            if subtitles[indexPath.section][indexPath.row].caseInsensitiveCompare(tappedLocation) != ComparisonResult.orderedSame {
-                cell.detailTextLabel?.text = subtitles[indexPath.section][indexPath.row]
-            } else {
-                cell.detailTextLabel?.text = ""
-            }
+            let currentChapter = chapterAppearances[indexPath.section][indexPath.row]
+            cell.textLabel?.text = currentChapter.book + " " + String(currentChapter.chapterNumber)
             cell.textLabel?.font = UIFont(name: "Papyrus", size: 18.0)
         }
         return cell
@@ -173,7 +166,8 @@ extension SidePanelViewController: UITableViewDelegate {
             if myTableView != nil {
                 chapterString = chapterTitles[indexPath.row]
             } else {
-                chapterString = chapterAppearances[indexPath.section][indexPath.row]
+                let currentChapter = chapterAppearances[indexPath.section][indexPath.row]
+                chapterString = currentChapter.book + " " + String(currentChapter.chapterNumber)
             }
             
             let splitArray = chapterString.components(separatedBy: " ")

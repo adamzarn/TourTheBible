@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AWSCognito.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AWSCore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AWSDynamoDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TourTheBible.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -26,27 +41,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>3BB4B48C8AB08C5541EA13FB6CE03583</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>45E8D343465F916B690CADDD6C4123E5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>471EBD11A76E16FF041CC51785406FA5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B8A173F584DCF3838CB56E94C1BA6756</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>
