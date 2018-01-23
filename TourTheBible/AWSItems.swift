@@ -43,3 +43,47 @@ class AWSChapterLocations: AWSDynamoDBObjectModel, AWSDynamoDBModeling  {
     }
     
 }
+
+class AWSTour: AWSDynamoDBObjectModel, AWSDynamoDBModeling  {
+    
+    var uid: String!
+    var createdBy: String!
+    var createdByEmail: String!
+    var dateCreated: String!
+    var endDate: String!
+    var lowercasedOrganization: String!
+    var name: String!
+    var notes: String!
+    var organization: String!
+    var password: String!
+    var sites: [AnyObject]!
+    var startDate: String!
+    var startYear: String!
+    
+    class func dynamoDBTableName() -> String {
+        return "TourTheBibleTours"
+    }
+    
+    class func hashKeyAttribute() -> String {
+        return "uid"
+    }
+    
+}
+
+class AWSUser: AWSDynamoDBObjectModel, AWSDynamoDBModeling  {
+    
+    var email: String!
+    var corrections: Int!
+    var name: String!
+    var tours: [String]!
+    var mySites: [AnyObject]!
+    
+    class func dynamoDBTableName() -> String {
+        return "TourTheBibleUsers"
+    }
+    
+    class func hashKeyAttribute() -> String {
+        return "email"
+    }
+    
+}

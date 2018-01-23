@@ -12,9 +12,10 @@ import AWSDynamoDB
 
 class AWSClient: NSObject {
     
-    func getChapterAppearances(location: String, completion: @escaping (_ chapterAppearances: [[Chapter]]?, _ error: NSString?) -> ()) {
+    let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
     
-        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+    func getChapterAppearances(location: String, completion: @escaping (_ chapterAppearances: [[Chapter]]?, _ error: NSString?) -> ()) {
+
         let queryExpression = AWSDynamoDBScanExpression()
         dynamoDBObjectMapper.scan(AWSChapterLocations.self, expression: queryExpression).continueWith(executor: AWSExecutor.mainThread(), block: { (task: AWSTask!) -> AnyObject! in
             var chapterAppearances: [[Chapter]] = []
@@ -62,7 +63,6 @@ class AWSClient: NSObject {
     
     func getBibleLocations(completion: @escaping (_ bibleLocations: [BibleLocation]?, _ error: NSString?) -> ()) {
     
-        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         let queryExpression = AWSDynamoDBScanExpression()
         dynamoDBObjectMapper.scan(AWSBibleLocation.self, expression: queryExpression).continueWith(executor: AWSExecutor.mainThread(), block: { (task: AWSTask!) -> AnyObject! in
             if let results = task.result {
@@ -81,7 +81,7 @@ class AWSClient: NSObject {
     }
     
     func getBibleLocation(name: String, completion: @escaping (_ bibleLocation: BibleLocation?, _ error: NSString?) -> ()) {
-        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+
         dynamoDBObjectMapper.load(AWSBibleLocation.self, hashKey: name, rangeKey: nil).continueWith(executor: AWSExecutor.mainThread(), block: { (task: AWSTask!) -> AnyObject! in
             if let result = task.result as? AWSBibleLocation {
                 print(result.name!, result.displayName!, result.lat!, result.long!)
@@ -95,7 +95,7 @@ class AWSClient: NSObject {
     }
     
     func getChapterLocations(chapter: String, completion: @escaping (_ chapterLocations: [String]?, _ error: NSString?) -> ()) {
-        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+
         dynamoDBObjectMapper.load(AWSChapterLocations.self, hashKey: chapter, rangeKey: nil).continueWith(executor: AWSExecutor.mainThread(), block: { (task: AWSTask!) -> AnyObject! in
             if let result = task.result as? AWSChapterLocations {
                 let chapterLocations = result.locations
@@ -105,6 +105,84 @@ class AWSClient: NSObject {
             }
             return nil
         })
+    }
+    
+    func getTours(search: String, completion: @escaping (_ tours: [AWSTour]?, _ error: NSString?) -> ()) {
+        let queryExpression = AWSDynamoDBScanExpression()
+        queryExpression.filterExpression = "begins_with(lowercasedOrganization, :search)"
+        queryExpression.expressionAttributeValues = [":search": search]
+        dynamoDBObjectMapper.scan(AWSTour.self, expression: queryExpression).continueWith(executor: AWSExecutor.mainThread(), block: { (task: AWSTask!) -> AnyObject! in
+            if let results = task.result {
+                completion(results.items as? [AWSTour], nil)
+            } else {
+                completion(nil, "Could not retrieve Chapter Locations")
+            }
+            return nil
+        })
+    }
+    
+    func getMyTourKeys(email: String, completion: @escaping (_ tourKeys: [String]?, _ error: NSString?) -> ()) {
+        
+        dynamoDBObjectMapper.load(AWSUser.self, hashKey: email, rangeKey: nil).continueWith(executor: AWSExecutor.mainThread(), block: { (task: AWSTask!) -> AnyObject! in
+            if let result = task.result as? AWSUser {
+                let tourKeys = result.tours
+                completion(tourKeys, nil)
+            } else {
+                completion(nil, "Could not retrieve Tour Keys")
+            }
+            return nil
+        })
+    }
+    
+    func getTour(uid: String, completion: @escaping (_ tour: AWSTour?, _ error: NSString?) -> ()) {
+        
+        dynamoDBObjectMapper.load(AWSTour.self, hashKey: uid, rangeKey: nil).continueWith(executor: AWSExecutor.mainThread(), block: { (task: AWSTask!) -> AnyObject! in
+            if let result = task.result as? AWSTour {
+                completion(result, nil)
+            } else {
+                completion(nil, "Could not retrieve Tour")
+            }
+            return nil
+        })
+        
+    }
+    
+    func updateMyTours(email: String, tourKeys: [String], completion: @escaping (_ success: Bool?, _ error: String?) -> ()) {
+        
+        let updateItemInput = AWSDynamoDBUpdateItemInput()
+        
+        updateItemInput?.tableName = "TourTheBibleUsers"
+        
+        let keyVal = AWSDynamoDBAttributeValue()
+        keyVal?.s = email
+        updateItemInput?.key = ["email": keyVal!]
+        
+        updateItemInput?.updateExpression = "set tours = :t"
+        
+        var tourKeysValues: [AWSDynamoDBAttributeValue] = []
+        for key in tourKeys {
+            let newTourKeysValue = AWSDynamoDBAttributeValue()
+            newTourKeysValue?.s = key
+            tourKeysValues.append(newTourKeysValue!)
+        }
+        let tourKeysValue = AWSDynamoDBAttributeValue()
+        tourKeysValue?.l = tourKeysValues
+        
+        updateItemInput?.expressionAttributeValues = [
+            ":t": tourKeysValue!
+        ]
+        
+        let dynamoDB = AWSDynamoDB.default()
+        
+        dynamoDB.updateItem(updateItemInput!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask!) -> AnyObject! in
+            if (task.error == nil) {
+                completion(true, nil)
+            } else {
+                completion(false, task.error?.localizedDescription)
+            }
+            return nil
+        })
+        
     }
     
     static let sharedInstance = AWSClient()

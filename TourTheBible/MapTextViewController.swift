@@ -64,7 +64,6 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var numberOfChapters: Int?
     var selectedBible: String?
     var delegate: MapTextViewControllerDelegate?
-    var locations: [String : [String : [String]]]?
     var pinsForBook = [Pin]()
     var currentBook: Book? = nil
     var lastAnnotation: MKAnnotation?
@@ -75,6 +74,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var screenSize: CGRect!
     var gesture: UITapGestureRecognizer?
     var dimView: UIView!
+    var dismissButtonText: String!
     
     var tappedBibleLocation: BibleLocation?
     
@@ -266,6 +266,8 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     func viewTapped(_ sender: UITapGestureRecognizer) {
+        myTextView.isUserInteractionEnabled = true
+        gesture?.isEnabled = false
         if appDelegate.currentState == .LeftPanelExpanded {
             delegate?.toggleLeftPanel!()
             let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
@@ -275,7 +277,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
             appDelegate.myMapView?.setCenter(center, animated: true)
         } else if appDelegate.currentState == .RightPanelExpanded {
             delegate?.toggleRightPanel!()
-            self.setTappedBibleLocation(locationName: self.tappedLocation)
+            self.setTappedBibleLocation(name: self.tappedLocation)
             let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(tappedBibleLocation!.lat,tappedBibleLocation!.long)
             appDelegate.myMapView?.setCenter(center, animated: true)
         } else {
@@ -424,12 +426,19 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     
     @IBAction func menuButtonPressed(_ sender: Any) {
         appDelegate.chapterIndex = chapterIndex!
-        delegate?.toggleLeftPanel?()
         let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
         let lat = appDelegate.myMapView.centerCoordinate.latitude
         let long = appDelegate.myMapView.centerCoordinate.longitude
-        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long + currentLongDelta/4)
-        appDelegate.myMapView?.setCenter(center, animated: true)
+        if appDelegate.currentState == .LeftPanelExpanded {
+            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long - currentLongDelta/4)
+            appDelegate.myMapView?.setCenter(center, animated: true)
+        } else {
+            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat,long + currentLongDelta/4)
+            appDelegate.myMapView?.setCenter(center, animated: true)
+        }
+        delegate?.toggleLeftPanel?()
+        myTextView.isUserInteractionEnabled = false
+        gesture?.isEnabled = true
     }
     
     //Map View*********************************************************************************
@@ -460,14 +469,13 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
         if appDelegate.currentState != .RightPanelExpanded && appDelegate.currentState != .LeftPanelExpanded {
             showFetchingAppearancesView()
-            tappedLocation = (view.annotation?.title!)!
-            var tappedLocationSubtitle = (view.annotation?.subtitle!)!
-            self.setTappedBibleLocation(locationName: tappedLocationSubtitle)
+            tappedLocation = (view.annotation as! CustomPointAnnotation).name!
+            setTappedBibleLocation(name: tappedLocation)
             
-            AWSClient.sharedInstance.getChapterAppearances(location: (tappedBibleLocation?.name)!, completion: { (chapterAppearances, error) -> () in
+            AWSClient.sharedInstance.getChapterAppearances(location: tappedLocation, completion: { (chapterAppearances, error) -> () in
                 self.dismissFetchingAppearancesView()
                 if let chapterAppearances = chapterAppearances {
-                    print(chapterAppearances)
+                    self.myTextView.isUserInteractionEnabled = false
                     self.chapterAppearances = chapterAppearances
                     self.delegate?.toggleRightPanel?()
                     let currentLongDelta = self.appDelegate.myMapView.region.span.longitudeDelta
@@ -499,13 +507,9 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         fetchingAppearancesAiv.stopAnimating()
     }
     
-    func setTappedBibleLocation(locationName: String) {
-        print(locationName)
-        print(" ")
+    func setTappedBibleLocation(name: String) {
         for loc in selectedLocations {
-            print(loc.name, loc.displayName, loc.lat, loc.long)
-            print(loc.name)
-            if loc.name == locationName {
+            if loc.name == name {
                 tappedBibleLocation = loc
             }
         }
@@ -531,11 +535,14 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
             appDelegate.myMapView.removeAnnotation(alreadyAddedAnnotation!)
         }
         
-        let annotation = MKPointAnnotation()
+        let annotation = CustomPointAnnotation()
         
         annotation.coordinate = CLLocationCoordinate2D(latitude: loc.lat, longitude: loc.long)
         annotation.title = loc.displayName
-        annotation.subtitle = loc.name
+        annotation.name = loc.name
+        if loc.displayName != loc.name {
+            annotation.subtitle = loc.name
+        }
         appDelegate.myMapView.addAnnotation(annotation)
         appDelegate.myMapView.selectAnnotation(annotation, animated: false)
         lastAnnotation = annotation
@@ -633,14 +640,13 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         return swipe
     }
     
-    func booksButtonPressed() {
+    func dismissButtonPressed() {
         appDelegate.myYouTubePlayer.stopVideo()
         if appDelegate.currentState == .RightPanelExpanded {
             delegate?.toggleRightPanel!()
         }
         delegate?.toggleLeftPanel?()
         dismiss(animated: true, completion: nil)
-        appDelegate.tbc?.selectedIndex = 0
     }
     
     func getCurrentBook() {
@@ -691,11 +697,14 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
         for pin in pinsForBook {
             
-            let annotation = MKPointAnnotation()
+            let annotation = CustomPointAnnotation()
             
             annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
             annotation.title = pin.title
-            annotation.subtitle = pin.subtitle
+            annotation.name = pin.subtitle
+            if pin.title != pin.subtitle {
+                annotation.subtitle = pin.subtitle
+            }
             appDelegate.myMapView.addAnnotation(annotation)
             let newLoc = BibleLocation(name: pin.subtitle!, displayName: pin.title! , lat: pin.lat, long: pin.long)
             selectedLocations.append(newLoc)
@@ -756,6 +765,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         //Set Bible Translation
         selectedBible = defaults.value(forKey: "selectedBible") as? String
         
+        myTextView.isUserInteractionEnabled = true
         self.showMap()
         self.book = book
         chapterTitles = getChapterTitlesFor(book: book)
@@ -867,6 +877,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
     
     func getChapterLocations() {
         let chapter = book! + " " + String(describing: chapterIndex!)
+        print(chapter)
         AWSClient.sharedInstance.getChapterLocations(chapter: chapter, completion: { (chapterLocations, error) -> () in
             if let chapterLocations = chapterLocations {
                 self.currentLocations = chapterLocations
@@ -954,7 +965,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                 appDelegate.myMapView.setCenter(center, animated: true)
             } else {
                 self.delegate?.toggleRightPanel?()
-                self.setTappedBibleLocation(locationName: self.tappedLocation)
+                //self.setTappedBibleLocation(title: self.tappedLocation)
                 let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake((tappedBibleLocation?.lat)!,(tappedBibleLocation?.long)!)
                 self.appDelegate.myMapView?.setCenter(center, animated: true)
             }

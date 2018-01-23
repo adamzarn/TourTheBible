@@ -64,6 +64,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     var delegate: GlossaryViewControllerDelegate?
     
     var selectedLocations: [BibleLocation] = []
+    var tappedBibleLocation: BibleLocation?
     var tappedLocation: String = ""
     var chapterAppearances: [[Chapter]] = []
     var bookAppearances: [String] = []
@@ -73,6 +74,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = .white
         screenSize = self.view.bounds
         
         dimView = UIView(frame: self.view.bounds)
@@ -348,10 +350,18 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
 
         for pin in pinsForBook {
             
-            let annotation = MKPointAnnotation()
+            let annotation = CustomPointAnnotation()
             
             annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
             annotation.title = pin.title
+            if let subtitle = pin.subtitle {
+                annotation.name = subtitle
+                if pin.title != subtitle {
+                    annotation.subtitle = subtitle
+                }
+            } else {
+                annotation.name = pin.title
+            }
             appDelegate.myMapView.addAnnotation(annotation)
             let newLoc = BibleLocation(name: pin.title!, displayName: "", lat: pin.lat, long: pin.long)
             selectedLocations.append(newLoc)
@@ -531,7 +541,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                     location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
                 }
                 selectedLocations.append(location)
-                setUpMap(name: location.name, lat: location.lat, long: location.long)
+                plotPin(loc: location)
                 savePin(location: location!)
                 y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
                 height = screenSize.height - y! - (tabBarController?.tabBar.frame.size.height)!
@@ -553,7 +563,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             } else {
                 let location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
                 selectedLocations.append(location)
-                setUpMap(name: location.name, lat: location.lat, long: location.long)
+                plotPin(loc: location)
                 savePin(location: location)
                 tableView.deselectRow(at: indexPath, animated: true)
                 tableView.scrollToRow(at: indexPath, at: .top, animated: false)
@@ -618,7 +628,8 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
         newPin.setValue(location.lat, forKey: "lat")
         newPin.setValue(location.long, forKey: "long")
-        newPin.setValue(location.name, forKey: "title")
+        newPin.setValue(location.name, forKey: "subtitle")
+        newPin.setValue(location.displayName, forKey: "title")
         newPin.setValue(currentBook, forKey: "pinToBook")
         pinsForBook.append(newPin)
 
@@ -626,9 +637,9 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         
     }
     
-    func setUpMap(name: String, lat: Double, long: Double) {
+    func plotPin(loc: BibleLocation) {
         
-        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        let coordinate = CLLocationCoordinate2D(latitude: loc.lat, longitude: loc.long)
         appDelegate.myMapView.setCenter(coordinate, animated: true)
 
         let allAnnotations = appDelegate.myMapView.annotations
@@ -636,7 +647,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         var alreadyAddedAnnotation: MKAnnotation?
         
         for annotation in allAnnotations {
-            if annotation.coordinate.latitude == lat && annotation.coordinate.longitude == long {
+            if annotation.coordinate.latitude == loc.lat && annotation.coordinate.longitude == loc.long {
                 shouldAddAnnotation = false
                 alreadyAddedAnnotation = annotation
             }
@@ -644,10 +655,14 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         
         if shouldAddAnnotation {
             
-            let annotation = MKPointAnnotation()
+            let annotation = CustomPointAnnotation()
             
-            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            annotation.title = name
+            annotation.coordinate = CLLocationCoordinate2D(latitude: loc.lat, longitude: loc.long)
+            annotation.title = loc.displayName
+            annotation.name = loc.name
+            if loc.displayName != loc.name {
+                annotation.subtitle = loc.name
+            }
             appDelegate.myMapView.addAnnotation(annotation)
             appDelegate.myMapView.selectAnnotation(annotation, animated: false)
             
@@ -697,7 +712,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         let tabBarHeight = (tabBarController?.tabBar.frame.size.height)!
         height = screenSize.height - y! - tabBarHeight
-        myTableView.frame = CGRect(x: 0.0, y: y! + height!*0.45 + 40, width: screenSize.width, height: height!*0.55 - 40)
+        myTableView.frame = CGRect(x: 0.0, y: height!*0.45 + 40, width: screenSize.width, height: height!*0.55 - 40)
         searchController.searchBar.text = ""
         adjustSubviews()
     }
@@ -721,7 +736,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         viewYouTubeChannelButton.isEnabled = false
         appDelegate.myMapView.isHidden = true
         appDelegate.myYouTubePlayer.isHidden = true
-        myTableView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: height!)
+        myTableView.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: height!)
         segmentedControl.isHidden = true
         segmentedControl.isUserInteractionEnabled = false
         clearMapButton.isEnabled = false
@@ -895,22 +910,25 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         showFetchingAppearancesView()
-        tappedLocation = (view.annotation?.title!)!
+        tappedLocation = (view.annotation as! CustomPointAnnotation).name!
+        setTappedBibleLocation(name: tappedLocation)
         
-        AWSClient.sharedInstance.getChapterAppearances(location: tappedLocation, completion: { (chapterAppearances, error) -> () in
-            self.dismissFetchingAppearancesView()
-            if let chapterAppearances = chapterAppearances {
-                self.chapterAppearances = chapterAppearances
-                self.delegate?.toggleRightPanel?()
-                let currentLongDelta = self.appDelegate.myMapView.region.span.longitudeDelta
-                let tappedBibleLocation = self.getTappedBibleLocation(locationName: self.tappedLocation)
-                let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(tappedBibleLocation.lat,tappedBibleLocation.long  - currentLongDelta/4)
-                self.appDelegate.myMapView?.setCenter(center, animated: true)
-                self.gesture?.isEnabled = true
-            } else {
-                print("error")
-            }
-        })
+        if let loc = tappedBibleLocation {
+            AWSClient.sharedInstance.getChapterAppearances(location: loc.name, completion: { (chapterAppearances, error) -> () in
+                self.dismissFetchingAppearancesView()
+                if let chapterAppearances = chapterAppearances {
+                    self.chapterAppearances = chapterAppearances
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "GlossaryPanelViewController") as! GlossaryPanelViewController
+                    vc.chapterAppearances = chapterAppearances
+                    vc.tappedLocation = self.tappedLocation
+                    vc.delegate = self
+                    vc.title = loc.name
+                    self.navigationController?.pushViewController(vc, animated: false)
+                } else {
+                    print("error")
+                }
+            })
+        }
     }
     
     func showFetchingAppearancesView() {
@@ -929,26 +947,21 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         fetchingAppearancesAiv.stopAnimating()
     }
     
-    func getTappedBibleLocation(locationName: String) -> BibleLocation {
-        var tappedBibleLocation: BibleLocation!
+    func setTappedBibleLocation(name: String) {
         for loc in selectedLocations {
-            if loc.name == locationName {
+            if loc.name == name {
                 tappedBibleLocation = loc
             }
-        }
-        if let location = tappedBibleLocation {
-            return location
-        } else {
-            return BibleLocation(name: "Jerusalem", displayName: "Jerusalem", lat: 31.7683, long: 35.2137)
         }
     }
     
     func viewTapped(_ sender: UITapGestureRecognizer) {
-        print("abc")
         delegate?.toggleRightPanel!()
-        let tappedBibleLocation = self.getTappedBibleLocation(locationName: self.tappedLocation)
-        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(tappedBibleLocation.lat,tappedBibleLocation.long)
-        appDelegate.myMapView?.setCenter(center, animated: true)
+        setTappedBibleLocation(name: self.tappedLocation)
+        if let loc = tappedBibleLocation {
+            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(loc.lat,loc.long)
+            appDelegate.myMapView?.setCenter(center, animated: true)
+        }
         gesture?.isEnabled = false
     }
     

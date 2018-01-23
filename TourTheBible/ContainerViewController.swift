@@ -24,6 +24,7 @@ class ContainerViewController: UIViewController {
     var leftViewController: SidePanelViewController?
     var rightViewController: SidePanelViewController?
     var book: String?
+    var dismissButtonText: String!
     var chapterIndex: Int = 1
     var addingRightPanel = false
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -72,6 +73,8 @@ extension ContainerViewController: MapTextViewControllerDelegate {
         appDelegate.currentState = .LeftPanelWillExpand
         if (leftViewController == nil) {
             leftViewController = UIStoryboard.leftViewController()
+            print(dismissButtonText)
+            leftViewController?.dismissButtonText = dismissButtonText
             leftViewController?.chapterTitles = MapTextViewController.chapterTitles
             leftViewController?.currentBook = MapTextViewController.book!
             leftViewController?.delegate = self.MapTextViewController

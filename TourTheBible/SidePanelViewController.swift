@@ -11,7 +11,7 @@ import UIKit
 @objc
 protocol SidePanelViewControllerDelegate {
     @objc optional func reloadMapTextView(book: String, chapterIndex: Int, shouldToggle: Bool, shouldReloadMap: Bool)
-    @objc optional func booksButtonPressed()
+    @objc optional func dismissButtonPressed()
 }
 
 class SidePanelViewController: UIViewController {
@@ -20,7 +20,6 @@ class SidePanelViewController: UIViewController {
     let bibles = ["King James Version", "World English Bible"]
     
     @IBOutlet weak var locationButton: UIButton!
-    @IBOutlet weak var booksButton: UIButton!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let defaults = UserDefaults.standard
     
@@ -38,14 +37,16 @@ class SidePanelViewController: UIViewController {
     var chapterAppearances: [[Chapter]] = []
     var tappedLocation: String = ""
     var currentBook: String = ""
+    var dismissButtonText: String = ""
     var delegate: SidePanelViewControllerDelegate?
+    @IBOutlet weak var dismissButton: UIButton!
     
     override func viewDidLoad() {
         
         selectedBible = defaults.value(forKey: "selectedBible") as? String
         
         if appDelegate.currentState == .LeftPanelWillExpand {
-            booksButton.titleLabel?.font = UIFont(name: "Papyrus", size: 24.0)
+            dismissButton.titleLabel?.font = UIFont(name: "Papyrus", size: 24.0)
             self.automaticallyAdjustsScrollViewInsets = false
         } else {
             let screenSize = UIScreen.main.bounds
@@ -69,6 +70,12 @@ class SidePanelViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if appDelegate.currentState == .LeftPanelWillExpand {
+            dismissButton.setTitle(dismissButtonText, for: .normal)
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         if appDelegate.currentState == .LeftPanelExpanded {
             let index = NSIndexPath(row: appDelegate.chapterIndex-1, section: 0) as IndexPath
@@ -76,8 +83,8 @@ class SidePanelViewController: UIViewController {
         }
     }
     
-    @IBAction func booksButtonPressed(_ sender: Any) {
-        delegate?.booksButtonPressed!()
+    @IBAction func dismissButtonPressed(_ sender: Any) {
+        delegate?.dismissButtonPressed!()
     }
 }
 

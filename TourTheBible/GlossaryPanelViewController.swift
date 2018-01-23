@@ -19,7 +19,6 @@ class GlossaryPanelViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     @IBOutlet var rightView: UIView!
-    @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var appearanceTableView: UITableView!
     
     var chapterAppearances: [[Chapter]] = []
@@ -29,15 +28,12 @@ class GlossaryPanelViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        let screenSize = UIScreen.main.bounds
-        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
-        locationButton.frame = CGRect(x:16,y:statusBarHeight + 12,width:screenSize.width/2 - 32,height:41)
-        locationButton.setTitle(tappedLocation,for: .normal)
-        locationButton.titleLabel?.font = UIFont(name: "Papyrus", size: 24.0)
-        locationButton.isUserInteractionEnabled = false
-        locationButton.titleLabel?.numberOfLines = 1
-        locationButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        appearanceTableView.frame = CGRect(x: 0.0, y: statusBarHeight + 60.0, width: screenSize.width, height: screenSize.height - 60.0 - appDelegate.tabBarHeight! - statusBarHeight)
+        self.automaticallyAdjustsScrollViewInsets = false
+        for book in chapterAppearances {
+            for chapter in book {
+                print(chapter.book, chapter.chapterNumber)
+            }
+        }
         
     }
 
@@ -48,37 +44,24 @@ class GlossaryPanelViewController: UIViewController {
 extension GlossaryPanelViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if appDelegate.glossaryState == .RightPanelExpanded {
-            return chapterAppearances.count
-        } else {
-            return 0
-        }
+        return chapterAppearances.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if appDelegate.glossaryState == .RightPanelExpanded {
-            return (chapterAppearances[section][0]).book
-        } else {
-            return nil
-        }
+        return (chapterAppearances[section][0]).book
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if appDelegate.glossaryState == .RightPanelExpanded {
-            return chapterAppearances[section].count
-        } else {
-            return 0
-        }
+        return chapterAppearances[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = CustomTableViewCell()
-        if appDelegate.glossaryState == .RightPanelExpanded {
-            cell = tableView.dequeueReusableCell(withIdentifier: "glossaryAppearancesCell") as! CustomTableViewCell
-            let currentChapter = chapterAppearances[indexPath.section][indexPath.row]
-            cell.textLabel?.text = currentChapter.book + " " + String(currentChapter.chapterNumber)
-            cell.textLabel?.font = UIFont(name: "Papyrus", size: 18.0)
-        }
+        cell = tableView.dequeueReusableCell(withIdentifier: "glossaryAppearancesCell") as! CustomTableViewCell
+        let currentChapter = chapterAppearances[indexPath.section][indexPath.row]
+        cell.textLabel?.text = currentChapter.book + " " + String(currentChapter.chapterNumber)
+        cell.textLabel?.font = UIFont(name: "Papyrus", size: 18.0)
         return cell
     }
     
@@ -90,10 +73,11 @@ extension GlossaryPanelViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: false)
         let currentChapter = chapterAppearances[indexPath.section][indexPath.row]
         
         let book = currentChapter.book
-        let chapterIndex = currentChapter.chapterNumber - 1
+        let chapterIndex = currentChapter.chapterNumber
         
         let prefix = "AJZ.WalkThroughTheBible."
         if !defaults.bool(forKey:"\(prefix)\(book)") && ["Exodus","Numbers","Acts"].contains(book) {
@@ -103,6 +87,7 @@ extension GlossaryPanelViewController: UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
         } else {
             let containerViewController = ContainerViewController()
+            containerViewController.dismissButtonText = "Glossary"
             containerViewController.book = book
             containerViewController.chapterIndex = chapterIndex
             self.present(containerViewController, animated: false, completion: nil)

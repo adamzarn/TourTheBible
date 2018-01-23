@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		BD4A85D3391762E11D3F3E62 /* Pods_TourTheBible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E7C3F8AD16C132D4ED8526 /* Pods_TourTheBible.framework */; };
 		C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */; };
-		DB106FCC1DD0D1D30033FFAA /* BiblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */; };
 		DB106FCF1DD0E9FB0033FFAA /* KingJamesVersion in Resources */ = {isa = PBXBuildFile; fileRef = DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */; };
 		DB1152B01E6DA331008BA289 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB1152AF1E6DA331008BA289 /* GoogleService-Info.plist */; };
 		DB1152B21E6E0096008BA289 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1152B11E6E0096008BA289 /* FirebaseClient.swift */; };
@@ -38,10 +37,15 @@
 		DB878C331E77630400A3B876 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB878C321E77630400A3B876 /* MainTabBarController.swift */; };
 		DB89240E1DE7C39B00EAC55E /* VirtualTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */; };
 		DB9B7EDB1DF38AEF0099033A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */; };
+		DBA184CE20122EE9002F3143 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA184CD20122EE9002F3143 /* CustomPointAnnotation.swift */; };
+		DBA184D02012429C002F3143 /* GlossaryLaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA184CF2012429C002F3143 /* GlossaryLaunchController.swift */; };
 		DBA91EFC1DA43FBB00E5E00A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */; };
 		DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFD1DA4468200E5E00A /* ProductCell.swift */; };
 		DBA91F001DA446C400E5E00A /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFF1DA446C400E5E00A /* Products.swift */; };
 		DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91F011DA446F900E5E00A /* IAPHelper.swift */; };
+		DBC05820201644A100AEE574 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC0581F201644A100AEE574 /* LoginViewController.swift */; };
+		DBC05822201644F400AEE574 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC05821201644F300AEE574 /* Constants.swift */; };
+		DBC0582420164F6E00AEE574 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC0582320164F6D00AEE574 /* AccountDetailViewController.swift */; };
 		DBC54556200FE3BA009D7629 /* AWSItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC54555200FE3BA009D7629 /* AWSItems.swift */; };
 		DBC54559200FF0B8009D7629 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC5455A200FF0B8009D7629 /* AWSCore.framework */; };
 		DBC5455B200FF0C0009D7629 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC5455C200FF0C0009D7629 /* AWSDynamoDB.framework */; };
@@ -52,6 +56,8 @@
 		DBEF4EA7201051890029E235 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEF4EA6201051890029E235 /* Chapter.swift */; };
 		DBEF4EA9201106450029E235 /* AWSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEF4EA8201106450029E235 /* AWSClient.swift */; };
 		DBEF4EAB20114A0E0029E235 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEF4EAA20114A0E0029E235 /* GlobalFunctions.swift */; };
+		DBF8D45D20153AC1004B0072 /* Site.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF8D45C20153AC1004B0072 /* Site.swift */; };
+		DBF8D45F201544A7004B0072 /* TourCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF8D45E201544A7004B0072 /* TourCell.swift */; };
 		DCC32D404B4C83870067E20A /* Pods_WalkThroughTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D8AE18AC01E5FF4294D61AF /* Pods_WalkThroughTheBibleTests.framework */; };
 		E1C3FDD47B8DBACCEDA9F63B /* Pods_TourTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B47567C0FC9382E64CD378 /* Pods_TourTheBibleUITests.framework */; };
 		EBDF0F408DD704358E28F520 /* Pods_TourTheBibleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F194AF171B28CFE645DBD045 /* Pods_TourTheBibleTests.framework */; };
@@ -88,7 +94,6 @@
 		B5F34327920B7F7BF1A95A05 /* Pods-WalkThroughTheBibleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests.release.xcconfig"; sourceTree = "<group>"; };
 		C0B47567C0FC9382E64CD378 /* Pods_TourTheBibleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TourTheBibleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible.debug.xcconfig"; sourceTree = "<group>"; };
-		DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiblesViewController.swift; sourceTree = "<group>"; };
 		DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KingJamesVersion; sourceTree = "<group>"; };
 		DB1152AF1E6DA331008BA289 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DB1152B11E6E0096008BA289 /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
@@ -123,10 +128,15 @@
 		DB878C321E77630400A3B876 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualTourViewController.swift; sourceTree = "<group>"; };
 		DB9B7EDA1DF38AEF0099033A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DBA184CD20122EE9002F3143 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		DBA184CF2012429C002F3143 /* GlossaryLaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryLaunchController.swift; sourceTree = "<group>"; };
 		DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DBA91EFD1DA4468200E5E00A /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		DBA91EFF1DA446C400E5E00A /* Products.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		DBA91F011DA446F900E5E00A /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		DBC0581F201644A100AEE574 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DBC05821201644F300AEE574 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DBC0582320164F6D00AEE574 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 		DBC54555200FE3BA009D7629 /* AWSItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSItems.swift; sourceTree = "<group>"; };
 		DBC5455A200FF0B8009D7629 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBC5455C200FF0C0009D7629 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSDynamoDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +147,8 @@
 		DBEF4EA6201051890029E235 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		DBEF4EA8201106450029E235 /* AWSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSClient.swift; sourceTree = "<group>"; };
 		DBEF4EAA20114A0E0029E235 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		DBF8D45C20153AC1004B0072 /* Site.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Site.swift; sourceTree = "<group>"; };
+		DBF8D45E201544A7004B0072 /* TourCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourCell.swift; sourceTree = "<group>"; };
 		E3A981FF38F354846A24BE79 /* Pods-TourTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TourTheBible/Pods-TourTheBible.debug.xcconfig"; sourceTree = "<group>"; };
 		F194AF171B28CFE645DBD045 /* Pods_TourTheBibleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TourTheBibleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F87880F422AB05441B0B1F50 /* Pods-TourTheBibleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TourTheBibleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TourTheBibleUITests/Pods-TourTheBibleUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -225,7 +237,6 @@
 				DB1152B11E6E0096008BA289 /* FirebaseClient.swift */,
 				DBEF4EA8201106450029E235 /* AWSClient.swift */,
 				DBC54555200FE3BA009D7629 /* AWSItems.swift */,
-				DB1152B31E6E065C008BA289 /* Video.swift */,
 				DB20FBBB1DD2383F0017A8F2 /* About.txt */,
 				DB5C2EAE1D870F79002A5FAD /* Info.plist */,
 				DB1152AF1E6DA331008BA289 /* GoogleService-Info.plist */,
@@ -290,11 +301,14 @@
 		DBA91F031DA4480200E5E00A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DB1152B31E6E065C008BA289 /* Video.swift */,
 				DBA91EFF1DA446C400E5E00A /* Products.swift */,
 				DB4EE9951D987A6500A3C48B /* Books.swift */,
 				DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */,
 				DBC5455F20101014009D7629 /* BibleLocation.swift */,
 				DBEF4EA6201051890029E235 /* Chapter.swift */,
+				DBA184CD20122EE9002F3143 /* CustomPointAnnotation.swift */,
+				DBF8D45C20153AC1004B0072 /* Site.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -308,8 +322,11 @@
 				DB878C321E77630400A3B876 /* MainTabBarController.swift */,
 				DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */,
 				DB1152B51E6F3074008BA289 /* VirtualTourTableViewController.swift */,
-				DB106FCB1DD0D1D30033FFAA /* BiblesViewController.swift */,
 				DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */,
+				DBA184CF2012429C002F3143 /* GlossaryLaunchController.swift */,
+				DBC0581F201644A100AEE574 /* LoginViewController.swift */,
+				DBC05821201644F300AEE574 /* Constants.swift */,
+				DBC0582320164F6D00AEE574 /* AccountDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -323,6 +340,7 @@
 				DB5C2EA91D870F79002A5FAD /* Assets.xcassets */,
 				DB5C2EA31D870F79002A5FAD /* Main.storyboard */,
 				DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */,
+				DBF8D45E201544A7004B0072 /* TourCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -651,7 +669,6 @@
 				DB38D82C1E77705900B1D78B /* GlossaryContainerViewController.swift in Sources */,
 				DB89240E1DE7C39B00EAC55E /* VirtualTourViewController.swift in Sources */,
 				DB878C331E77630400A3B876 /* MainTabBarController.swift in Sources */,
-				DB106FCC1DD0D1D30033FFAA /* BiblesViewController.swift in Sources */,
 				DBC5456020101014009D7629 /* BibleLocation.swift in Sources */,
 				DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */,
 				DB38D82E1E7770BF00B1D78B /* GlossaryPanelViewController.swift in Sources */,
@@ -660,24 +677,31 @@
 				DB47B34D1DF1D42B005EC190 /* SidePanelViewController.swift in Sources */,
 				DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */,
 				DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */,
+				DBA184D02012429C002F3143 /* GlossaryLaunchController.swift in Sources */,
 				DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */,
 				DBEF4EA7201051890029E235 /* Chapter.swift in Sources */,
 				DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */,
+				DBC0582420164F6E00AEE574 /* AccountDetailViewController.swift in Sources */,
 				DBEF4EAB20114A0E0029E235 /* GlobalFunctions.swift in Sources */,
 				DB1152B41E6E065C008BA289 /* Video.swift in Sources */,
 				DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */,
 				DB866A8B1E789E1A0000A6E5 /* VirtualTourPanelViewController.swift in Sources */,
 				DB1152B21E6E0096008BA289 /* FirebaseClient.swift in Sources */,
+				DBF8D45F201544A7004B0072 /* TourCell.swift in Sources */,
 				DBEF4EA9201106450029E235 /* AWSClient.swift in Sources */,
 				DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */,
+				DBA184CE20122EE9002F3143 /* CustomPointAnnotation.swift in Sources */,
 				DBA91F001DA446C400E5E00A /* Products.swift in Sources */,
 				DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */,
 				DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */,
 				DB47B34B1DF1D03E005EC190 /* ContainerViewController.swift in Sources */,
 				DB4EE9961D987A6500A3C48B /* Books.swift in Sources */,
 				DB9B7EDB1DF38AEF0099033A /* Model.xcdatamodeld in Sources */,
+				DBC05820201644A100AEE574 /* LoginViewController.swift in Sources */,
 				DB6431651DEF97930061D670 /* MapTextViewController.swift in Sources */,
+				DBF8D45D20153AC1004B0072 /* Site.swift in Sources */,
 				DB1152B61E6F3074008BA289 /* VirtualTourTableViewController.swift in Sources */,
+				DBC05822201644F400AEE574 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

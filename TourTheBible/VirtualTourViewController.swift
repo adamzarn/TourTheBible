@@ -1,3 +1,4 @@
+
 //
 //  VirtualTourViewController.swift
 //  TourTheBible
@@ -23,6 +24,9 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var aiv: UIActivityIndicatorView!
+    @IBOutlet weak var fetchingAppearancesView: UIView!
+    @IBOutlet weak var fetchingAppearancesAiv: UIActivityIndicatorView!
+    @IBOutlet weak var fetchingAppearancesLabel: UILabel!
     
     var context: NSManagedObjectContext? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -40,15 +44,12 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     var hotelCount: Int = 1
     var currentBook: Book? = nil
     var pinsForBook = [Pin]()
-    var tour: String?
+    var tour: AWSTour!
+    var tappedLocation = ""
+    var currentLat: Double?
+    var currentLong: Double?
     
-    var sites: [[String]] = []
-    var days: [String] = []
-    var hotels: [[String]] = []
-    var stays: [String] = []
-    var hotelLocations: [[Any]] = []
-    var hotelNumbers: [String] = []
-    var hotelWebsites: [String] = []
+    var sites: [[Site]] = []
     var delegate: VirtualTourViewControllerDelegate?
     
     let colors = [UIColor.red
@@ -61,31 +62,30 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         ,UIColor.white
         ,UIColor.gray
     ]
-    
-    var locations: [String : [String : [String]]]?
-    var bibleLocations: [BibleLocation]?
-    var tappedLocation: String = ""
-    var tappedLocationKey: String = ""
-    var chapterAppearances = [[String]](repeating: [], count: 66)
-    var subtitles = [[String]](repeating: [], count: 66)
-    var bookAppearances: [String] = []
-    var gesture: UITapGestureRecognizer?
+
+    var chapterAppearances: [[Chapter]] = []
+    var gesture: UITapGestureRecognizer!
     var whiteBackground: UIView?
     var chapSel = false
+    var dimView: UIView!
     
     let books = Books.books
     
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        dimView = UIView(frame: self.view.bounds)
+        dimView.backgroundColor = UIColor(white: 0.4, alpha: 0.5)
         
         context = appDelegate.managedObjectContext
         
-        self.navItem.title = "Virtual Tour"
+        self.navItem.title = tour.name
         
         let coordinate = CLLocationCoordinate2D(latitude: 31.7683, longitude: 35.2137)
         appDelegate.myMapView.setRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 2.0, longitudeDelta: 2.0)), animated: true)
         
         y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-        height = screenSize.height - y! - (appDelegate.tbc?.tabBar.frame.size.height)!
+        height = screenSize.height - y!
         
         appDelegate.myMapView.delegate = self
         
@@ -106,14 +106,30 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         noConnectionLabel.textAlignment = .center
         noConnectionLabel.isHidden = true
         
-        gesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
-        gesture?.isEnabled = false
-        self.view.addGestureRecognizer(gesture!)
-        
         selectedBible = defaults.value(forKey: "selectedBible") as? String
+        
+        fetchingAppearancesView.isHidden = true
+        fetchingAppearancesView.layer.cornerRadius = 10;
+        fetchingAppearancesView.isUserInteractionEnabled = false
         
         adjustSubviews()
         
+        gesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
+        gesture.isEnabled = false
+        self.view.addGestureRecognizer(gesture)
+        
+    }
+    
+    func viewTapped(_ sender: UITapGestureRecognizer) {
+        myTableView.isUserInteractionEnabled = true
+        if appDelegate.tourState == .RightPanelExpanded {
+            gesture?.isEnabled = false
+            delegate?.toggleRightPanel!()
+            let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(currentLat!, currentLong!)
+            appDelegate.myMapView?.setCenter(center, animated: true)
+        } else {
+            return
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -137,35 +153,44 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     func adjustSubviews() {
         let y: CGFloat!
         if self.view.bounds.height < UIScreen.main.bounds.height {
-            print("Stupid Banner is showing")
             y = UIApplication.shared.statusBarFrame.size.height
         } else {
             y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
         }
-        let tabBarHeight = (appDelegate.tbc?.tabBar.frame.size.height)!
+        let tabBarHeight = CGFloat(44.0)
         height = screenSize.height - y! - tabBarHeight
         
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: y!, width: screenSize.width, height: (height!+tabBarHeight)*0.45)
-        segmentedControl.frame = CGRect(x: 5, y: y! + (height!+tabBarHeight)*0.45 + 5, width: screenSize.width - 10, height: 30)
-        myTableView.frame = CGRect(x: 0.0, y: y! + (height!+tabBarHeight)*0.45 + 40, width: screenSize.width, height: (height!+tabBarHeight)*0.55 - 40)
-        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: y! + (height!+tabBarHeight)*0.45 + 55, width: 20, height: 20)
-        noConnectionLabel.frame = CGRect(x: 0.0 , y: y! + (height!+tabBarHeight)*0.45 + 55, width: screenSize.width, height: 100)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: (height!+tabBarHeight)*0.45)
+        myTableView.frame = CGRect(x: 0.0, y: (height!+tabBarHeight)*0.45, width: screenSize.width, height: (height!+tabBarHeight)*0.55)
+        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: (height!+tabBarHeight)*0.45 + 55, width: 20, height: 20)
+        noConnectionLabel.frame = CGRect(x: 0.0 , y: (height!+tabBarHeight)*0.45 + 55, width: screenSize.width, height: 100)
+        
+        let w = screenSize.width - 80.0
+        fetchingAppearancesView.frame = CGRect(x: 40.0, y: (height!/2) - 40.0, width: w, height: 80.0)
+        fetchingAppearancesAiv.frame = CGRect(x:0.0, y: 10.0, width: w, height: 30.0)
+        fetchingAppearancesLabel.frame = CGRect(x: 10.0, y: 40.0, width: w - 20.0, height: 30.0)
+        
         self.view.bringSubview(toFront: mapTypeButton)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        gesture?.isEnabled = false
         adjustSubviews()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        let tbc = presentingViewController as! MainTabBarController
+        let tvc = tbc.viewControllers![2].childViewControllers[0] as! VirtualTourTableViewController
+        tvc.subscribeToKeyboardNotifications()
+    }
     
     @IBAction func toursButtonPressed(_ sender: Any) {
         if appDelegate.currentState == .RightPanelExpanded {
             delegate?.toggleRightPanel!()
         }
         dismiss(animated: true, completion: nil)
-        appDelegate.tbc?.selectedIndex = 2
+        let tbc = self.storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as! MainTabBarController
+        tbc.selectedIndex = 2
     }
     
     func chapterSelected(vc: ContainerViewController) {
@@ -176,169 +201,74 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         })
     }
     
-    func getData() {
-        
-        aiv.isHidden = false
-        aiv.startAnimating()
-        FirebaseClient.sharedInstance.getTour(name: tour!, completion: { (tour, error) -> () in
-            if let tour = tour {
-                let hotelDict = tour["Hotels"] as! NSDictionary
-                let siteDict =  tour["Sites"] as! NSDictionary
-                var dayKeys = siteDict.allKeys as! [String]
-                dayKeys.sort()
-                
-                self.stays = hotelDict.allKeys as! [String]
-                self.stays.sort()
-                self.days = siteDict.allKeys as! [String]
-                self.days.sort()
-                
-                for key in dayKeys {
-                    let day = siteDict[key] as! NSDictionary
-                    var keys = day.allKeys as! [String]
-                    keys.sort()
-                    var places: [String] = []
-                    for key in keys {
-                        let place = day[key] as! String
-                        places.append(place)
-                    }
-                    self.sites.append(places)
-                }
-                
-                for key in self.stays {
-                    let hotelInfo = hotelDict[key] as! NSDictionary
-                    let keys = hotelInfo.allKeys as! [String]
-                    for key in keys {
-                        let hotelName = key
-                        let hotelArray = [hotelName]
-                        self.hotels.append(hotelArray)
-                        let hotelData = hotelInfo[key] as! NSDictionary
-                        let hotelLocationArray = [hotelName,hotelName,hotelData["lat"]!,hotelData["long"]!]
-                        self.hotelLocations.append(hotelLocationArray)
-                        self.hotelNumbers.append(hotelData["phone"]! as! String)
-                        self.hotelWebsites.append(hotelData["website"] as! String)
-                    }
-                }
-                
-                self.myTableView.isHidden = false
-                self.segmentedControl.isUserInteractionEnabled = true
-                self.myTableView.reloadData()
-                self.aiv.isHidden = true
-                self.aiv.stopAnimating()
+    override func viewWillAppear(_ animated: Bool) {
+        loadingTableView()
+        var convertedSites: [Site] = []
+        if let tourSites = tour.sites {
+            for site in tourSites {
+                let newSite = Site(date: site["date"] as! String, lat: site["lat"] as! String, long: site["long"] as! String, name: site["name"] as! String, notes: site["notes"] as! String, stop: site["stop"] as! String)
+                convertedSites.append(newSite)
             }
-        })
-        
+            
+            convertedSites.sort { $0.date < $1.date }
+            var tempArray: [Site] = []
+            var lastSite = convertedSites[0]
+            for site in convertedSites {
+                if site.date == lastSite.date {
+                    tempArray.append(site)
+                } else {
+                    tempArray.sort { $0.stop < $1.stop }
+                    sites.append(tempArray)
+                    tempArray = []
+                    tempArray.append(site)
+                }
+                lastSite = site
+            }
+            sites.append(tempArray)
+            for day in sites {
+                for site in day {
+                    print(site.name)
+                }
+            }
+            
+            myTableView.reloadData()
+        }
+        doneLoadingTableView()
+
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        self.segmentedControl.isUserInteractionEnabled = false
-        
-        if FirebaseClient.sharedInstance.hasConnectivity() {
-            noConnectionLabel.isHidden = true
-            getData()
-        } else {
-            noConnectionLabel.isHidden = false
-            myTableView.isHidden = true
-            aiv.isHidden = true
-        }
-        
-        if !view.subviews.contains(appDelegate.myMapView) {
-            view.addSubview(appDelegate.myMapView)
-        }
-        appDelegate.myMapView.isHidden = false
-        self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
-        getCurrentBook()
-        getPinsForVirtualTour()
-        addSavedPinsToMap()
+    func loadingTableView() {
+        aiv.isHidden = false
+        aiv.startAnimating()
+        myTableView.isHidden = true
+    }
+    
+    func doneLoadingTableView() {
+        aiv.isHidden = true
+        aiv.stopAnimating()
+        myTableView.isHidden = false
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            return sites[section].count
-        } else {
-            return hotels[section].count
-        }
+        return sites[section].count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            return days.count
-        } else {
-            return stays.count
-        }
-    }
-    
-    func formatDate(date: String) -> String {
-        var month = date[date.index(date.startIndex, offsetBy: 4) ..< date.index(date.startIndex, offsetBy: 6)]
-        var day = date[date.index(date.startIndex, offsetBy: 6) ..< date.index(date.startIndex, offsetBy: 8)]
-        let year = date[date.index(date.startIndex, offsetBy: 0) ..< date.index(date.startIndex, offsetBy: 4)]
-        var month2 = ""
-        var day2 = ""
-        for c in month.characters {
-            if c == "0" && month2 == "" { continue }
-            month2.append(c)
-        }
-        for d in day.characters {
-            if d == "0" && day2 == "" { continue }
-            day2.append(d)
-        }
-        return "\(month2)/\(day2)/\(year)"
+        return sites.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            var formattedDays: [String] = []
-            for date in days {
-                let formattedDate = formatDate(date: date)
-                formattedDays.append(formattedDate)
-            }
-            return formattedDays[section]
-        } else {
-            var formattedStays: [String] = []
-            for stay in stays {
-                let stayComponents = stay.characters.split{$0 == "-"}.map(String.init)
-                let formattedStay = "\(formatDate(date: stayComponents[0]))-\(formatDate(date: stayComponents[1]))"
-                formattedStays.append(formattedStay)
-            }
-            return formattedStays[section]
-        }
+        return GlobalFunctions.shared.formatDate(date: sites[section][0].date)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")! as UITableViewCell
-        
-        if segmentedControl.selectedSegmentIndex == 0 {
-            cell.textLabel!.text = sites[indexPath.section][indexPath.row]
-            cell.textLabel!.font = UIFont(name: "Papyrus", size: 18.0)
-            cell.accessoryType = UITableViewCellAccessoryType.none
-        } else {
-            cell.textLabel!.text = hotels[indexPath.section][indexPath.row]
-            cell.textLabel!.font = UIFont(name: "Papyrus", size: 18.0)
-            cell.accessoryType = UITableViewCellAccessoryType.detailDisclosureButton
-        }
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! UITableViewCell
+        let site = sites[indexPath.section][indexPath.row]
+        cell.textLabel?.text = String(describing: site.stop!) + ". " + site.name
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-        }
-        let call = UIAlertAction(title: "Call", style: .default) { (action) in
-            self.call(phoneNumber: self.hotelNumbers[indexPath.section])
-        }
-        let visitWebsite = UIAlertAction(title: "Visit Website", style: .default) { (action) in
-            self.visit(website: self.hotelWebsites[indexPath.section])
-        }
-        
-        alertController.addAction(cancelAction)
-        alertController.addAction(call)
-        alertController.addAction(visitWebsite)
-        
-        self.present(alertController, animated: true, completion: nil)
         
     }
     
@@ -346,20 +276,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         let pinView = MKPinAnnotationView()
         let title = annotation.title!
-        
-        var data = sites
-        if segmentedControl.selectedSegmentIndex == 1 {
-            data = hotels
-        }
-        
-        for i in 0 ..< data.count {
-            for item in data[i] {
-                if title!.contains(item) {
-                    pinView.pinTintColor = colors[i]
-                }
-            }
-        }
-        
+    
         let button = UIButton(type: UIButtonType.detailDisclosure) as UIButton
         pinView.rightCalloutAccessoryView = button
         
@@ -371,99 +288,51 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
+        showFetchingAppearancesView()
         tappedLocation = (view.annotation?.title!)!
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BibleLocation")
+        currentLat = view.annotation?.coordinate.latitude
+        currentLong = view.annotation?.coordinate.longitude
         
-        let p = NSPredicate(format: "name = %@", tappedLocation)
-        fetchRequest.predicate = p
-        
-        do {
-            let results = try context!.fetch(fetchRequest)
-            bibleLocations = results as? [BibleLocation]
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-        
-        var titles: [String] = []
-        for i in 0...(bibleLocations?.count)! - 1 {
-            titles.append((bibleLocations?[i].name)!)
-        }
-        
-        chapterAppearances = [[String]](repeating: [], count: 66)
-        subtitles = [[String]](repeating: [], count: 66)
-        bookAppearances = []
-        
-        for book in books {
-            for i in 1...Books.booksDictionary[book]! {
-                let bookDict = locations?[book]!
-                let chapterArray = bookDict?[String(i)]!
-                for title in titles {
-                    if (chapterArray?.contains(title))! {
-                        if !chapterAppearances[books.index(of: book)!].contains("\(book) \(i)") {
-                            chapterAppearances[books.index(of: book)!].append("\(book) \(i)")
-                            subtitles[books.index(of: book)!].append(title)
-                        }
-                    }
-                }
-            }
-        }
-        
-        var i = 0
-        var j = 0
-        for book in chapterAppearances {
-            if book.count == 0 {
-                chapterAppearances.remove(at: i)
-                subtitles.remove(at: i)
+        AWSClient.sharedInstance.getChapterAppearances(location: tappedLocation, completion: { (chapterAppearances, error) -> () in
+            self.dismissFetchingAppearancesView()
+            if let chapterAppearances = chapterAppearances {
+                self.chapterAppearances = chapterAppearances
+                self.delegate?.toggleRightPanel?()
+                let currentLongDelta = self.appDelegate.myMapView.region.span.longitudeDelta
+                let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(self.currentLat!, self.currentLong! - (currentLongDelta/4))
+                self.appDelegate.myMapView?.setCenter(center, animated: true)
+                self.myTableView.isUserInteractionEnabled = false
+                self.gesture.isEnabled = true
             } else {
-                i += 1
-                bookAppearances.append(books[j])
+                print("error")
             }
-            j += 1
-        }
-        
-        delegate?.toggleRightPanel?()
-        
-        let currentLongDelta = appDelegate.myMapView.region.span.longitudeDelta
-        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long  - currentLongDelta/4)
-        appDelegate.myMapView?.setCenter(center, animated: false)
-        
-        gesture?.isEnabled = true
-        
+        })
     }
     
-    func viewTapped(_ sender: UITapGestureRecognizer) {
-        delegate?.toggleRightPanel!()
-        let center: CLLocationCoordinate2D = CLLocationCoordinate2DMake(bibleLocations![0].lat,bibleLocations![0].long)
-        appDelegate.myMapView?.setCenter(center, animated: false)
-        gesture?.isEnabled = false
+    func showFetchingAppearancesView() {
+        self.view.addSubview(dimView)
+        self.view.bringSubview(toFront: dimView)
+        fetchingAppearancesView.isHidden = false
+        fetchingAppearancesView.isUserInteractionEnabled = true
+        self.view.bringSubview(toFront: fetchingAppearancesView)
+        fetchingAppearancesAiv.startAnimating()
+    }
+    
+    func dismissFetchingAppearancesView() {
+        self.dimView.removeFromSuperview()
+        fetchingAppearancesView.isHidden = true
+        fetchingAppearancesView.isUserInteractionEnabled = false
+        fetchingAppearancesAiv.stopAnimating()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            siteCount = 0
-        } else {
-            hotelCount = 0
-        }
-        for i in 0 ..< indexPath.section {
-            if segmentedControl.selectedSegmentIndex == 0 {
-                siteCount += sites[i].count
-            } else {
-                hotelCount += hotels[i].count
-            }
-        }
-        if segmentedControl.selectedSegmentIndex == 0 {
-            siteCount += indexPath.row + 1
-        } else {
-            hotelCount += indexPath.row + 1
-        }
-        plot(section:indexPath.section,row:indexPath.row)
-        tableView.deselectRow(at: indexPath, animated: true)
-        updateCount()
+        plotPin(site: sites[indexPath.section][indexPath.row])
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
-    func setUpMap(name: String, lat: Double, long: Double) {
+    func plotPin(site: Site) {
         
-        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        let coordinate = CLLocationCoordinate2D(latitude: site.lat, longitude: site.long)
         appDelegate.myMapView.setCenter(coordinate, animated: true)
         
         let allAnnotations = appDelegate.myMapView.annotations
@@ -471,7 +340,7 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         var alreadyAddedAnnotation: MKAnnotation?
         
         for annotation in allAnnotations {
-            if annotation.coordinate.latitude == lat && annotation.coordinate.longitude == long {
+            if annotation.coordinate.latitude == site.lat && annotation.coordinate.longitude == site.long {
                 shouldAddAnnotation = false
                 alreadyAddedAnnotation = annotation
             }
@@ -479,10 +348,10 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         if shouldAddAnnotation {
             
-            let annotation = MKPointAnnotation()
+            let annotation = CustomPointAnnotation()
             
-            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            annotation.title = name
+            annotation.coordinate = CLLocationCoordinate2D(latitude: site.lat, longitude: site.long)
+            annotation.title = site.name
             appDelegate.myMapView.addAnnotation(annotation)
             appDelegate.myMapView.selectAnnotation(annotation, animated: false)
             
@@ -490,68 +359,6 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
             
             appDelegate.myMapView.selectAnnotation(alreadyAddedAnnotation!, animated: false)
             
-        }
-        
-    }
-    
-    func getCurrentBook() {
-        
-        let request: NSFetchRequest<Book> = Book.fetchRequest()
-        
-        var name: String?
-        if segmentedControl.selectedSegmentIndex == 0 {
-            name = "Sites"
-        } else {
-            name = "Hotels"
-        }
-        
-        do {
-            let results = try context!.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
-            
-            for book in results as! [Book] {
-                if book.name == name {
-                    currentBook = book
-                    return
-                }
-            }
-            
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-        
-        let newBook = NSEntityDescription.insertNewObject(forEntityName: "Book", into: context!) as! Book
-        newBook.name = name
-        currentBook = newBook
-        return
-        
-    }
-    
-    func getPinsForVirtualTour() {
-        
-        let request: NSFetchRequest<Pin> = Pin.fetchRequest()
-        
-        let p = NSPredicate(format: "pinToBook = %@", currentBook!)
-        request.predicate = p
-        
-        pinsForBook = []
-        do {
-            let results = try context!.fetch(request as! NSFetchRequest<NSFetchRequestResult>)
-            pinsForBook = results as! [Pin]
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
-        }
-        
-    }
-    
-    func addSavedPinsToMap() {
-        
-        self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
-        
-        for pin in pinsForBook {
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: pin.lat, longitude: pin.long)
-            annotation.title = pin.title
-            appDelegate.myMapView.addAnnotation(annotation)
         }
         
     }
@@ -564,14 +371,6 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         }
         let removePins = UIAlertAction(title: "Remove Pins from Map", style: .default) { (action) in
             self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
-            for pin in self.pinsForBook {
-                self.context!.delete(pin)
-            }
-            if self.segmentedControl.selectedSegmentIndex == 0 {
-                self.siteCount = 1
-            } else {
-                self.hotelCount = 1
-            }
         }
         
         alertController.addAction(cancelAction)
@@ -581,122 +380,9 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
     }
     
-    @IBAction func playButtonPressed(_ sender: Any) {
-        var index = 1
-        var localCount = 0
-        
-        var data = sites
-        localCount = siteCount
-        if segmentedControl.selectedSegmentIndex == 1 {
-            data = hotels
-            localCount = hotelCount
-        }
-        
-        for i in 0 ..< data.count {
-            for j in 0 ..< data[i].count {
-                let section = i
-                let row = j
-                if index == localCount {
-                    plot(section:section,row:row)
-                    updateCount()
-                    return
-                }
-                index += 1
-            }
-        }
-    }
-    
-    func updateCount() {
-        var localCount = 0
-        
-        var data = sites
-        localCount = siteCount
-        if segmentedControl.selectedSegmentIndex == 1 {
-            data = hotels
-            localCount = hotelCount
-        }
-        var totalItems = 0
-        for item in data {
-            totalItems += item.count
-        }
-        
-        localCount += 1
-        if localCount - 1 == totalItems {
-            localCount = 1
-        }
-        
-        if segmentedControl.selectedSegmentIndex == 0 {
-            siteCount = localCount
-        } else {
-            hotelCount = localCount
-        }
-        
-    }
-    
-    func plot(section:Int,row:Int) {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            let siteToPlot = sites[section][row]
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "BibleLocation")
-            
-            let p = NSPredicate(format: "name = %@", siteToPlot)
-            fetchRequest.predicate = p
-            
-            var bibleLocations: [BibleLocation]?
-            do {
-                let results = try context!.fetch(fetchRequest)
-                bibleLocations = results as? [BibleLocation]
-            } catch let error as NSError {
-                print("Could not fetch \(error), \(error.userInfo)")
-            }
-            
-            if bibleLocations?.count != 0 {
-                
-                let bibleLocation = bibleLocations?[0]
-                
-                setUpMap(name: (bibleLocation?.name)!, lat: (bibleLocation?.lat)!, long: (bibleLocation?.long)!)
-                
-                let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
-                newPin.setValue(bibleLocation?.lat, forKey: "lat")
-                newPin.setValue(bibleLocation?.long, forKey: "long")
-                newPin.setValue(bibleLocation?.name, forKey: "title")
-                newPin.setValue(currentBook, forKey: "pinToBook")
-                pinsForBook.append(newPin)
-                
-                appDelegate.saveContext()
-                
-            } else {
-                print(siteToPlot)
-            }
-            
-        } else {
-            let siteToPlot = hotels[section][row]
-            for location in hotelLocations {
-                if siteToPlot == String(describing: location[0]) {
-                    if String(describing: location[2]) != "" {
-                        setUpMap(name: String(describing: location[1]), lat: location[2] as! Double, long: location[3] as! Double)
-                        let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: context!) as! Pin
-                        newPin.setValue(location[2], forKey: "lat")
-                        newPin.setValue(location[3], forKey: "long")
-                        newPin.setValue(location[1], forKey: "title")
-                        newPin.setValue(currentBook, forKey: "pinToBook")
-                        pinsForBook.append(newPin)
-                        
-                        appDelegate.saveContext()
-                    }
-                }
-            }
-            
-        }
-        
-    }
-    
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
         
         self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
-        
-        getCurrentBook()
-        getPinsForVirtualTour()
-        addSavedPinsToMap()
         
         myTableView.reloadData()
         myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)

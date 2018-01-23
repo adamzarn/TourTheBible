@@ -13,6 +13,7 @@ target ‘TourTheBible' do
     pod 'Firebase/Auth'
 
     pod 'AWSCognito'
+    pod 'AWSCognitoIdentityProvider'
     pod 'AWSDynamoDB'
 
   target ‘TourTheBibleTests' do

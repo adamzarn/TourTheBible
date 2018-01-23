@@ -254,6 +254,7 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
             productID = "AJZ.WalkThroughTheBible.\(OTbooks[indexPath.row])"
             if !["Exodus","Numbers"].contains(OTbooks[indexPath.row]) || defaults.bool(forKey: productID) {
                 containerViewController.book = OTbooks[indexPath.row]
+                containerViewController.dismissButtonText = "Books"
                 if let chapterIndex = defaults.value(forKey: OTbooks[indexPath.row]) {
                     containerViewController.chapterIndex = chapterIndex as! Int
                 } else {
@@ -263,8 +264,9 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         } else {
             productID = "AJZ.WalkThroughTheBible.\(NTbooks[indexPath.row])"
-            if !["Acts"].contains(OTbooks[indexPath.row]) || defaults.bool(forKey: productID) {
+            if !["Acts"].contains(NTbooks[indexPath.row]) || defaults.bool(forKey: productID) {
                 containerViewController.book = NTbooks[indexPath.row]
+                containerViewController.dismissButtonText = "Books"
                 if let chapterIndex = defaults.value(forKey: NTbooks[indexPath.row]) {
                     containerViewController.chapterIndex = chapterIndex as! Int
                 } else {

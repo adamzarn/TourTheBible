@@ -20,7 +20,7 @@ class VirtualTourContainerViewController: UIViewController {
     var centerNavigationController: UINavigationController!
     var VirtualTourViewController: VirtualTourViewController!
     var rightPanelViewController: VirtualTourPanelViewController?
-    var tour: String!
+    var tour: AWSTour!
     var addingRightPanel = false
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -59,9 +59,7 @@ extension VirtualTourContainerViewController: VirtualTourViewControllerDelegate 
         if (rightPanelViewController == nil) {
             rightPanelViewController = UIStoryboard.rightPanelViewController()
             rightPanelViewController?.chapterAppearances = VirtualTourViewController.chapterAppearances
-            rightPanelViewController?.bookAppearances = VirtualTourViewController.bookAppearances
             rightPanelViewController?.tappedLocation = VirtualTourViewController.tappedLocation
-            rightPanelViewController?.subtitles = VirtualTourViewController.subtitles
             rightPanelViewController?.delegate = self.VirtualTourViewController
             
             addChildSidePanelController(sidePanelController: rightPanelViewController!)
