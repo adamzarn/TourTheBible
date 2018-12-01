@@ -73,7 +73,6 @@ extension ContainerViewController: MapTextViewControllerDelegate {
         appDelegate.currentState = .LeftPanelWillExpand
         if (leftViewController == nil) {
             leftViewController = UIStoryboard.leftViewController()
-            print(dismissButtonText)
             leftViewController?.dismissButtonText = dismissButtonText
             leftViewController?.chapterTitles = MapTextViewController.chapterTitles
             leftViewController?.currentBook = MapTextViewController.book!

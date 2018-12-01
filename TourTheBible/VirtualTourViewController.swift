@@ -22,7 +22,6 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var clearMapButton: UIBarButtonItem!
     @IBOutlet weak var myTableView: UITableView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var aiv: UIActivityIndicatorView!
     @IBOutlet weak var fetchingAppearancesView: UIView!
     @IBOutlet weak var fetchingAppearancesAiv: UIActivityIndicatorView!
@@ -151,19 +150,14 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     }
     
     func adjustSubviews() {
-        let y: CGFloat!
-        if self.view.bounds.height < UIScreen.main.bounds.height {
-            y = UIApplication.shared.statusBarFrame.size.height
-        } else {
-            y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
-        }
-        let tabBarHeight = CGFloat(44.0)
-        height = screenSize.height - y! - tabBarHeight
+        let y = (navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.size.height
+
+        height = screenSize.height - y
         
-        appDelegate.myMapView.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: (height!+tabBarHeight)*0.45)
-        myTableView.frame = CGRect(x: 0.0, y: (height!+tabBarHeight)*0.45, width: screenSize.width, height: (height!+tabBarHeight)*0.55)
-        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: (height!+tabBarHeight)*0.45 + 55, width: 20, height: 20)
-        noConnectionLabel.frame = CGRect(x: 0.0 , y: (height!+tabBarHeight)*0.45 + 55, width: screenSize.width, height: 100)
+        appDelegate.myMapView.frame = CGRect(x: 0.0, y: 0.0, width: screenSize.width, height: height!*0.45)
+        myTableView.frame = CGRect(x: 0.0, y: height!*0.45, width: screenSize.width, height: height!*0.55)
+        aiv.frame = CGRect(x: (screenSize.width/2) - 10, y: height!*0.45 + 55, width: 20, height: 20)
+        noConnectionLabel.frame = CGRect(x: 0.0 , y: height!*0.45 + 55, width: screenSize.width, height: 100)
         
         let w = screenSize.width - 80.0
         fetchingAppearancesView.frame = CGRect(x: 40.0, y: (height!/2) - 40.0, width: w, height: 80.0)
@@ -225,11 +219,6 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
                 lastSite = site
             }
             sites.append(tempArray)
-            for day in sites {
-                for site in day {
-                    print(site.name)
-                }
-            }
             
             myTableView.reloadData()
         }
@@ -262,20 +251,15 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         let site = sites[indexPath.section][indexPath.row]
         cell.textLabel?.text = String(describing: site.stop!) + ". " + site.name
         return cell
     }
     
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        
-    }
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let pinView = MKPinAnnotationView()
-        let title = annotation.title!
     
         let button = UIButton(type: UIButtonType.detailDisclosure) as UIButton
         pinView.rightCalloutAccessoryView = button
@@ -378,27 +362,6 @@ class VirtualTourViewController: UIViewController, MKMapViewDelegate, UITableVie
         
         self.present(alertController, animated: true, completion: nil)
         
-    }
-    
-    @IBAction func segmentedControlValueChanged(_ sender: Any) {
-        
-        self.appDelegate.myMapView.removeAnnotations(self.appDelegate.myMapView.annotations)
-        
-        myTableView.reloadData()
-        myTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-    }
-    
-    private func call(phoneNumber:String) {
-        if let phoneCallURL: NSURL = NSURL(string: "tel://\(phoneNumber)") {
-            let application:UIApplication = UIApplication.shared
-            if (application.canOpenURL(phoneCallURL as URL)) {
-                application.openURL(phoneCallURL as URL)
-            }
-        }
-    }
-    
-    private func visit(website:String) {
-        UIApplication.shared.openURL(NSURL(string:website) as! URL)
     }
     
 }

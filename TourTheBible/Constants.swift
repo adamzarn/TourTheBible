@@ -19,8 +19,8 @@ import Foundation
 import AWSCognitoIdentityProvider
 
 let CognitoIdentityUserPoolRegion: AWSRegionType = .USEast2
-let CognitoIdentityUserPoolId = "us-east-2_zvlV5SAfo"
-let CognitoIdentityUserPoolAppClientId = "5lhavckicfkuh6h2oeoo0totcb"
+let CognitoIdentityUserPoolId = "us-east-2_OPizz9hnW"
+let CognitoIdentityUserPoolAppClientId = "4gg2bjghckt0pho6le6dvuhjqv"
 //let CognitoIdentityUserPoolAppClientSecret = nil
 
 let AWSCognitoUserPoolsSignInProviderKey = "UserPool"

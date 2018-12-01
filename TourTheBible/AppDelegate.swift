@@ -17,6 +17,7 @@ import AVFoundation
 import AWSCore
 import AWSCognito
 import AWSCognitoIdentityProvider
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var pool: AWSCognitoIdentityUserPool?
     
     var loginViewController: LoginViewController?
+    var currentlyLoggedIn: Bool = false
+    var virtualTourTableViewController: VirtualTourTableViewController?
+    var accountDetailViewController: AccountDetailViewController?
     var navigationController: UINavigationController?
     var storyboard: UIStoryboard?
     var rememberDeviceCompletionSource: AWSTaskCompletionSource<NSNumber>?
@@ -114,7 +118,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Unable to start notifier")
         }
         
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         return true
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        let handled: Bool = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        // Add any custom logic here.
+        return handled
     }
 
     func reachabilityChanged(note: NSNotification) {
@@ -236,16 +248,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
-    
+
     func startPasswordAuthentication() -> AWSCognitoIdentityPasswordAuthentication {
         if (self.navigationController == nil) {
-            self.navigationController = self.storyboard?.instantiateViewController(withIdentifier: "loginNavigationController") as? UINavigationController
+            self.navigationController = self.storyboard?.instantiateViewController(withIdentifier: "LoginNavigationController") as? UINavigationController
         }
-        
-        if (self.loginViewController == nil) {
-            self.loginViewController = self.navigationController?.viewControllers[0] as? LoginViewController
-        }
-        
+
+        self.loginViewController = self.navigationController?.viewControllers[0] as? LoginViewController
+        self.loginViewController?.virtualToursDelegate = virtualTourTableViewController
+        self.loginViewController?.accountDetailDelegate = accountDetailViewController
+        self.loginViewController?.currentlyLoggedIn = currentlyLoggedIn
+
         DispatchQueue.main.async {
             self.navigationController!.popToRootViewController(animated: true)
             if (!self.navigationController!.isViewLoaded
@@ -254,11 +267,11 @@ extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
                                                          animated: true,
                                                          completion: nil)
             }
-            
+
         }
         return self.loginViewController!
     }
-    
+
     func startRememberDevice() -> AWSCognitoIdentityRememberDevice {
         return self
     }
@@ -296,7 +309,7 @@ extension AppDelegate: AWSCognitoIdentityRememberDevice {
                 let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
                                                         message: error.userInfo["message"] as? String,
                                                         preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "ok", style: .default, handler: nil)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alertController.addAction(okAction)
                 DispatchQueue.main.async {
                     self.window?.rootViewController?.present(alertController, animated: true, completion: nil)

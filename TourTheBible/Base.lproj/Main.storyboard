@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6rZ-sC-5rG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6rZ-sC-5rG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,10 +14,6 @@
         <scene sceneID="FMc-oE-afM">
             <objects>
                 <viewController storyboardIdentifier="BooksTableViewController" id="9yy-wX-d3J" customClass="BooksTableViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Eba-ch-lUu"/>
-                        <viewControllerLayoutGuide type="bottom" id="Psx-TH-5RE"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="l06-4h-FKN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,7 +31,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-2q-Nbq">
-                                                    <rect key="frame" x="27" y="11" width="136" height="38"/>
+                                                    <rect key="frame" x="27" y="10.5" width="136" height="38.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -66,7 +61,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CAQ-2w-MgQ">
                                                     <rect key="frame" x="107" y="15" width="60" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="yH5-yx-DCv"/>
+                                                        <constraint firstAttribute="width" constant="60" id="ddE-Ep-me8"/>
                                                     </constraints>
                                                     <state key="normal" title="The Price">
                                                         <color key="titleColor" red="0.10980392156862745" green="0.24313725490196078" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
@@ -118,7 +113,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="1Et-rA-ZJG">
-                                                    <rect key="frame" x="27" y="11" width="134" height="38"/>
+                                                    <rect key="frame" x="27" y="10.5" width="134" height="38.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -148,7 +143,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ay-BL-Hrh">
                                                     <rect key="frame" x="105" y="15" width="60" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="05A-qB-b1z"/>
+                                                        <constraint firstAttribute="width" constant="60" id="bdV-ao-dYL"/>
                                                     </constraints>
                                                     <state key="normal" title="The Price">
                                                         <color key="titleColor" red="0.10980392156862745" green="0.24313725490196078" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
@@ -189,6 +184,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Uug-Yp-mew"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tour the Bible" id="8JD-AP-yk2"/>
                     <connections>
@@ -204,10 +200,6 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="MapTextViewController" id="BYZ-38-t0r" customClass="MapTextViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -280,9 +272,11 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="BXE-is-twS" secondAttribute="trailing" constant="6" id="BPx-kj-jOl"/>
-                            <constraint firstItem="BXE-is-twS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="skB-1O-Hhs"/>
+                            <constraint firstItem="BXE-is-twS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BsM-4L-Rhs" secondAttribute="leading" constant="20" symbolic="YES" id="9EO-oW-1QC"/>
+                            <constraint firstItem="BsM-4L-Rhs" firstAttribute="trailing" secondItem="BXE-is-twS" secondAttribute="trailing" constant="6" id="BPx-kj-jOl"/>
+                            <constraint firstItem="BXE-is-twS" firstAttribute="top" secondItem="BsM-4L-Rhs" secondAttribute="top" constant="8" id="skB-1O-Hhs"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="BsM-4L-Rhs"/>
                     </view>
                     <navigationItem key="navigationItem" id="JMQ-g1-Xls">
                         <barButtonItem key="leftBarButtonItem" image="Menu" id="M7t-7h-Jkm">
@@ -330,16 +324,12 @@
         <scene sceneID="enu-sX-NjV">
             <objects>
                 <viewController storyboardIdentifier="RightViewController" title="Right View Controller" id="yzk-rE-xwG" customClass="SidePanelViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cqZ-nk-q52"/>
-                        <viewControllerLayoutGuide type="bottom" id="zSU-6i-s14"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="z1y-Wh-9oI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ivc-6I-TpK">
-                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="590"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="appearancesCell" textLabel="r43-c8-cJt" style="IBUITableViewCellStyleDefault" id="EKP-ff-KFc" customClass="CustomTableViewCell" customModule="TourTheBible" customModuleProvider="target">
@@ -375,13 +365,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zSU-6i-s14" firstAttribute="top" secondItem="ivc-6I-TpK" secondAttribute="bottom" id="Vxr-xE-A9M"/>
+                            <constraint firstItem="ivc-6I-TpK" firstAttribute="top" secondItem="1xm-e2-too" secondAttribute="bottom" constant="8" id="Rot-9v-nNg"/>
+                            <constraint firstItem="dej-Xp-ok5" firstAttribute="bottom" secondItem="ivc-6I-TpK" secondAttribute="bottom" id="Vxr-xE-A9M"/>
                             <constraint firstItem="1xm-e2-too" firstAttribute="leading" secondItem="z1y-Wh-9oI" secondAttribute="leadingMargin" id="XAC-Tx-j7g"/>
-                            <constraint firstAttribute="trailing" secondItem="ivc-6I-TpK" secondAttribute="trailing" id="fuo-Jh-MRc"/>
-                            <constraint firstItem="1xm-e2-too" firstAttribute="top" secondItem="cqZ-nk-q52" secondAttribute="bottom" constant="8" id="oJH-5Q-u4A"/>
-                            <constraint firstItem="ivc-6I-TpK" firstAttribute="top" secondItem="cqZ-nk-q52" secondAttribute="bottom" constant="60" id="tKQ-qn-1gn"/>
-                            <constraint firstItem="ivc-6I-TpK" firstAttribute="leading" secondItem="z1y-Wh-9oI" secondAttribute="leading" id="wQj-SF-8ph"/>
+                            <constraint firstItem="dej-Xp-ok5" firstAttribute="trailing" secondItem="ivc-6I-TpK" secondAttribute="trailing" id="fuo-Jh-MRc"/>
+                            <constraint firstItem="1xm-e2-too" firstAttribute="top" secondItem="dej-Xp-ok5" secondAttribute="top" constant="8" id="oJH-5Q-u4A"/>
+                            <constraint firstItem="dej-Xp-ok5" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1xm-e2-too" secondAttribute="trailingMargin" id="pEw-nI-JNJ"/>
+                            <constraint firstItem="ivc-6I-TpK" firstAttribute="leading" secondItem="dej-Xp-ok5" secondAttribute="leading" id="wQj-SF-8ph"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="dej-Xp-ok5"/>
                     </view>
                     <connections>
                         <outlet property="appearanceTableView" destination="ivc-6I-TpK" id="cZt-OP-92n"/>
@@ -397,10 +389,6 @@
         <scene sceneID="6ss-li-deO">
             <objects>
                 <viewController storyboardIdentifier="GlossaryViewController" id="kOu-I4-RaN" customClass="GlossaryViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="QPK-fw-RdF"/>
-                        <viewControllerLayoutGuide type="bottom" id="UWy-yh-TYh"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wEu-Tl-O3o">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -418,7 +406,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-ro-Pp6">
-                                                    <rect key="frame" x="28" y="11" width="40" height="36"/>
+                                                    <rect key="frame" x="28" y="11" width="40" height="35.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="VyB-qV-ubf"/>
                                                     </constraints>
@@ -443,6 +431,7 @@
                                                 <constraint firstItem="i3O-Ri-vhL" firstAttribute="trailing" secondItem="IXJ-i0-HZM" secondAttribute="trailingMargin" id="Wun-S7-fQm"/>
                                                 <constraint firstItem="dXH-ny-Ce0" firstAttribute="leading" secondItem="IB3-ro-Pp6" secondAttribute="trailing" constant="21" id="aKY-QI-R9I"/>
                                                 <constraint firstItem="IB3-ro-Pp6" firstAttribute="top" secondItem="IXJ-i0-HZM" secondAttribute="topMargin" id="aMR-fr-eRh"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dXH-ny-Ce0" secondAttribute="trailing" constant="20" symbolic="YES" id="eju-0T-cOe"/>
                                                 <constraint firstItem="IB3-ro-Pp6" firstAttribute="leading" secondItem="IXJ-i0-HZM" secondAttribute="leadingMargin" constant="13" id="nPR-tZ-j0y"/>
                                                 <constraint firstItem="i3O-Ri-vhL" firstAttribute="top" secondItem="IXJ-i0-HZM" secondAttribute="topMargin" constant="3" id="zbm-EF-r6n"/>
                                             </constraints>
@@ -535,9 +524,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Jfl-Cp-v6r" secondAttribute="trailing" constant="6" id="6mA-YI-8Zi"/>
-                            <constraint firstItem="Jfl-Cp-v6r" firstAttribute="top" secondItem="QPK-fw-RdF" secondAttribute="bottom" constant="8" id="CVf-yg-dTR"/>
+                            <constraint firstItem="4EJ-cM-55K" firstAttribute="trailing" secondItem="Jfl-Cp-v6r" secondAttribute="trailing" constant="6" id="6mA-YI-8Zi"/>
+                            <constraint firstItem="Jfl-Cp-v6r" firstAttribute="top" secondItem="4EJ-cM-55K" secondAttribute="top" constant="8" id="CVf-yg-dTR"/>
+                            <constraint firstItem="Jfl-Cp-v6r" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4EJ-cM-55K" secondAttribute="leading" constant="20" symbolic="YES" id="hCB-84-u27"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="4EJ-cM-55K"/>
                     </view>
                     <navigationItem key="navigationItem" title="Glossary" id="z5B-XI-Q0t">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="g4m-dr-bEW">
@@ -562,7 +553,7 @@
                         <outlet property="segmentedControl" destination="gC7-Kc-gIN" id="1ig-We-Cl1"/>
                         <outlet property="viewInYouTubeButton" destination="z1e-C0-bxG" id="GWW-b5-MAj"/>
                         <outlet property="viewYouTubeChannelButton" destination="Tiz-WF-f7w" id="pob-BA-sZM"/>
-                        <segue destination="s1X-1L-X9a" kind="push" id="FBM-dX-zKu"/>
+                        <segue destination="s1X-1L-X9a" kind="show" id="398-ua-1Ls"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yVz-h3-Vvq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -589,10 +580,6 @@
         <scene sceneID="SxA-ww-z9i">
             <objects>
                 <viewController storyboardIdentifier="VirtualTourTableViewController" id="P9V-F6-vxe" customClass="VirtualTourTableViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Joz-v4-JaA"/>
-                        <viewControllerLayoutGuide type="bottom" id="e2H-N9-4vk"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cNH-CP-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -690,7 +677,7 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ddy-yC-7ez">
-                                <rect key="frame" x="177" y="144" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="144" width="20" height="20"/>
                             </activityIndicatorView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="IZm-fv-qtk">
                                 <rect key="frame" x="8" y="72" width="359" height="29"/>
@@ -706,16 +693,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ddy-yC-7ez" firstAttribute="centerX" secondItem="cNH-CP-2f1" secondAttribute="centerX" id="CmL-vB-fJV"/>
-                            <constraint firstItem="IZm-fv-qtk" firstAttribute="leading" secondItem="cNH-CP-2f1" secondAttribute="leading" constant="8" id="IMm-wd-G0P"/>
-                            <constraint firstItem="e2H-N9-4vk" firstAttribute="top" secondItem="rzw-b5-xm5" secondAttribute="bottom" id="MFg-mS-QUk"/>
-                            <constraint firstItem="rzw-b5-xm5" firstAttribute="leading" secondItem="cNH-CP-2f1" secondAttribute="leading" id="YPl-Cn-anw"/>
-                            <constraint firstAttribute="trailing" secondItem="IZm-fv-qtk" secondAttribute="trailing" constant="8" id="aEa-Hc-3O8"/>
-                            <constraint firstItem="ddy-yC-7ez" firstAttribute="top" secondItem="Joz-v4-JaA" secondAttribute="bottom" constant="80" id="dSx-Kx-8PC"/>
+                            <constraint firstItem="ddy-yC-7ez" firstAttribute="centerX" secondItem="mnC-sI-vjA" secondAttribute="centerX" id="CmL-vB-fJV"/>
+                            <constraint firstItem="IZm-fv-qtk" firstAttribute="leading" secondItem="mnC-sI-vjA" secondAttribute="leading" constant="8" id="IMm-wd-G0P"/>
+                            <constraint firstItem="mnC-sI-vjA" firstAttribute="bottom" secondItem="rzw-b5-xm5" secondAttribute="bottom" id="MFg-mS-QUk"/>
+                            <constraint firstItem="rzw-b5-xm5" firstAttribute="leading" secondItem="mnC-sI-vjA" secondAttribute="leading" id="YPl-Cn-anw"/>
+                            <constraint firstItem="mnC-sI-vjA" firstAttribute="trailing" secondItem="IZm-fv-qtk" secondAttribute="trailing" constant="8" id="aEa-Hc-3O8"/>
+                            <constraint firstItem="ddy-yC-7ez" firstAttribute="top" secondItem="mnC-sI-vjA" secondAttribute="top" constant="80" id="dSx-Kx-8PC"/>
                             <constraint firstItem="rzw-b5-xm5" firstAttribute="top" secondItem="IZm-fv-qtk" secondAttribute="bottom" constant="8" id="mQu-2g-6AM"/>
-                            <constraint firstItem="IZm-fv-qtk" firstAttribute="top" secondItem="Joz-v4-JaA" secondAttribute="bottom" constant="8" id="y8H-i2-XYJ"/>
-                            <constraint firstAttribute="trailing" secondItem="rzw-b5-xm5" secondAttribute="trailing" id="yEp-7c-yg6"/>
+                            <constraint firstItem="IZm-fv-qtk" firstAttribute="top" secondItem="mnC-sI-vjA" secondAttribute="top" constant="8" id="y8H-i2-XYJ"/>
+                            <constraint firstItem="mnC-sI-vjA" firstAttribute="trailing" secondItem="rzw-b5-xm5" secondAttribute="trailing" id="yEp-7c-yg6"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="mnC-sI-vjA"/>
                     </view>
                     <navigationItem key="navigationItem" title="Virtual Tours" id="paP-5b-koG">
                         <barButtonItem key="backBarButtonItem" title="Tours" id="Vs8-9d-WxK"/>
@@ -735,10 +723,6 @@
         <scene sceneID="gj4-Kc-Sa2">
             <objects>
                 <viewController storyboardIdentifier="VirtualTourViewController" id="CS3-AV-9gT" customClass="VirtualTourViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="QTu-RY-yfe"/>
-                        <viewControllerLayoutGuide type="bottom" id="hDa-KN-5NF"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8wT-mD-f5k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -767,7 +751,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BTl-h9-GzW">
-                                <rect key="frame" x="323" y="72" width="46" height="30"/>
+                                <rect key="frame" x="323" y="64" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="mapTypeButtonPressed:" destination="CS3-AV-9gT" eventType="touchUpInside" id="2nc-Gh-ecI"/>
@@ -801,9 +785,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="BTl-h9-GzW" firstAttribute="top" secondItem="QTu-RY-yfe" secondAttribute="bottom" constant="8" symbolic="YES" id="UXo-PO-66J"/>
-                            <constraint firstAttribute="trailing" secondItem="BTl-h9-GzW" secondAttribute="trailing" constant="6" id="sev-mr-JED"/>
+                            <constraint firstItem="BTl-h9-GzW" firstAttribute="top" secondItem="A1q-HC-1ra" secondAttribute="top" constant="8" symbolic="YES" id="UXo-PO-66J"/>
+                            <constraint firstItem="BTl-h9-GzW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="A1q-HC-1ra" secondAttribute="leading" constant="20" symbolic="YES" id="gNE-8g-rSP"/>
+                            <constraint firstItem="A1q-HC-1ra" firstAttribute="trailing" secondItem="BTl-h9-GzW" secondAttribute="trailing" constant="6" id="sev-mr-JED"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="A1q-HC-1ra"/>
                     </view>
                     <navigationItem key="navigationItem" title="Virtual Tour" id="e5g-cX-Pxv">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="nzz-Ka-imx">
@@ -842,7 +828,6 @@
                     <tabBarItem key="tabBarItem" title="Glossary" id="Xzd-vL-tb7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z0z-Ud-Q6m">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -858,16 +843,12 @@
         <scene sceneID="6iB-he-EDp">
             <objects>
                 <viewController storyboardIdentifier="AboutViewController" id="jTS-WN-mB5" customClass="AboutViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="N67-U7-BF6"/>
-                        <viewControllerLayoutGuide type="bottom" id="tkn-lB-t4t"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WaL-vb-lZu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WfP-68-bcL">
-                                <rect key="frame" x="8" y="72" width="359" height="250"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WfP-68-bcL">
+                                <rect key="frame" x="16" y="72" width="343" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="b9O-Mk-nXG"/>
                                 </constraints>
@@ -885,7 +866,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Vy-vz-SbM">
-                                <rect key="frame" x="112" y="332" width="150" height="84"/>
+                                <rect key="frame" x="112.5" y="332" width="150" height="84"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="CX9-4u-GCo"/>
                                     <constraint firstAttribute="height" constant="84" id="eUG-O9-bGE"/>
@@ -896,13 +877,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support me on Patreon!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ply-H2-Gwp">
-                                <rect key="frame" x="120.5" y="424" width="135" height="14.5"/>
+                                <rect key="frame" x="120" y="424" width="135" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBk-J0-RgH">
-                                <rect key="frame" x="153.5" y="448.5" width="67" height="30"/>
+                                <rect key="frame" x="154" y="448.5" width="67" height="30"/>
                                 <state key="normal" title="Email me!">
                                     <color key="titleColor" red="0.10980392156862745" green="0.24313725490196078" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -913,21 +894,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="NeW-cU-NiF" secondAttribute="trailing" id="1bl-NZ-X7V"/>
-                            <constraint firstItem="TBk-J0-RgH" firstAttribute="centerX" secondItem="WaL-vb-lZu" secondAttribute="centerX" id="3Pm-zv-PoI"/>
+                            <constraint firstItem="7fx-5k-Jqs" firstAttribute="trailing" secondItem="NeW-cU-NiF" secondAttribute="trailing" id="1bl-NZ-X7V"/>
+                            <constraint firstItem="TBk-J0-RgH" firstAttribute="centerX" secondItem="7fx-5k-Jqs" secondAttribute="centerX" id="3Pm-zv-PoI"/>
                             <constraint firstItem="Ply-H2-Gwp" firstAttribute="top" secondItem="2Vy-vz-SbM" secondAttribute="bottom" constant="8" id="6E8-gP-vOC"/>
-                            <constraint firstItem="WfP-68-bcL" firstAttribute="top" secondItem="N67-U7-BF6" secondAttribute="bottom" constant="8" id="EUr-D2-V7t"/>
-                            <constraint firstItem="2Vy-vz-SbM" firstAttribute="centerX" secondItem="WaL-vb-lZu" secondAttribute="centerX" id="EjH-NU-T91"/>
+                            <constraint firstItem="WfP-68-bcL" firstAttribute="top" secondItem="7fx-5k-Jqs" secondAttribute="top" constant="8" id="EUr-D2-V7t"/>
+                            <constraint firstItem="2Vy-vz-SbM" firstAttribute="centerX" secondItem="7fx-5k-Jqs" secondAttribute="centerX" id="EjH-NU-T91"/>
                             <constraint firstItem="2Vy-vz-SbM" firstAttribute="top" secondItem="WfP-68-bcL" secondAttribute="bottom" constant="10" id="Vw0-N7-4wP"/>
-                            <constraint firstAttribute="trailing" secondItem="NeW-cU-NiF" secondAttribute="trailing" id="Vzv-Dy-5Yj"/>
-                            <constraint firstItem="tkn-lB-t4t" firstAttribute="top" secondItem="NeW-cU-NiF" secondAttribute="bottom" id="Wx2-HE-oyU"/>
-                            <constraint firstItem="NeW-cU-NiF" firstAttribute="leading" secondItem="WaL-vb-lZu" secondAttribute="leading" id="Z6D-AT-3KW"/>
-                            <constraint firstItem="NeW-cU-NiF" firstAttribute="leading" secondItem="WaL-vb-lZu" secondAttribute="leading" id="bcv-MU-H5g"/>
-                            <constraint firstItem="Ply-H2-Gwp" firstAttribute="centerX" secondItem="WaL-vb-lZu" secondAttribute="centerX" id="fpX-AI-e6Z"/>
-                            <constraint firstAttribute="trailing" secondItem="WfP-68-bcL" secondAttribute="trailing" constant="8" id="sJr-Kn-dt3"/>
-                            <constraint firstItem="WfP-68-bcL" firstAttribute="leading" secondItem="WaL-vb-lZu" secondAttribute="leading" constant="8" id="u0X-8r-FLa"/>
+                            <constraint firstItem="7fx-5k-Jqs" firstAttribute="trailing" secondItem="NeW-cU-NiF" secondAttribute="trailing" id="Vzv-Dy-5Yj"/>
+                            <constraint firstItem="7fx-5k-Jqs" firstAttribute="bottom" secondItem="NeW-cU-NiF" secondAttribute="bottom" id="Wx2-HE-oyU"/>
+                            <constraint firstItem="NeW-cU-NiF" firstAttribute="leading" secondItem="7fx-5k-Jqs" secondAttribute="leading" id="Z6D-AT-3KW"/>
+                            <constraint firstItem="NeW-cU-NiF" firstAttribute="leading" secondItem="7fx-5k-Jqs" secondAttribute="leading" id="bcv-MU-H5g"/>
+                            <constraint firstItem="Ply-H2-Gwp" firstAttribute="centerX" secondItem="7fx-5k-Jqs" secondAttribute="centerX" id="fpX-AI-e6Z"/>
+                            <constraint firstItem="7fx-5k-Jqs" firstAttribute="trailing" secondItem="WfP-68-bcL" secondAttribute="trailing" constant="16" id="sJr-Kn-dt3"/>
+                            <constraint firstItem="WfP-68-bcL" firstAttribute="leading" secondItem="7fx-5k-Jqs" secondAttribute="leading" constant="16" id="u0X-8r-FLa"/>
                             <constraint firstItem="TBk-J0-RgH" firstAttribute="top" secondItem="Ply-H2-Gwp" secondAttribute="bottom" constant="10" id="yvM-YK-hkh"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="7fx-5k-Jqs"/>
                     </view>
                     <navigationItem key="navigationItem" title="About" id="pFh-XV-AES"/>
                     <connections>
@@ -939,14 +921,10 @@
             </objects>
             <point key="canvasLocation" x="2558" y="2591"/>
         </scene>
-        <!--Account Detail View Controller-->
+        <!--Account-->
         <scene sceneID="Dkr-qb-G8b">
             <objects>
                 <viewController storyboardIdentifier="AccountDetailViewController" id="oPL-RT-tvE" customClass="AccountDetailViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zs6-k2-E7a"/>
-                        <viewControllerLayoutGuide type="bottom" id="vGo-RR-6e6"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kJN-Jf-H4L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -990,13 +968,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="bzB-h9-qNs" secondAttribute="bottom" id="0xU-QQ-zaD"/>
-                            <constraint firstAttribute="trailing" secondItem="bzB-h9-qNs" secondAttribute="trailing" id="Em0-Mb-Phr"/>
+                            <constraint firstItem="wVm-1p-qdj" firstAttribute="trailing" secondItem="bzB-h9-qNs" secondAttribute="trailing" id="Em0-Mb-Phr"/>
                             <constraint firstItem="bzB-h9-qNs" firstAttribute="top" secondItem="kJN-Jf-H4L" secondAttribute="top" id="F3O-Wz-FMi"/>
-                            <constraint firstItem="bzB-h9-qNs" firstAttribute="leading" secondItem="kJN-Jf-H4L" secondAttribute="leading" id="xTo-MS-EWP"/>
+                            <constraint firstItem="bzB-h9-qNs" firstAttribute="leading" secondItem="wVm-1p-qdj" secondAttribute="leading" id="xTo-MS-EWP"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="wVm-1p-qdj"/>
                     </view>
-                    <navigationItem key="navigationItem" id="AHW-WR-04a"/>
+                    <navigationItem key="navigationItem" title="Account" id="AHW-WR-04a">
+                        <barButtonItem key="rightBarButtonItem" id="fRg-TN-eHC">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="oPL-RT-tvE" id="aPh-p1-EDo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="logoutButton" destination="fRg-TN-eHC" id="C0H-60-1ZD"/>
                         <outlet property="tableView" destination="bzB-h9-qNs" id="XIB-EY-Hwt"/>
                     </connections>
                 </viewController>
@@ -1035,7 +1022,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="N0n-Yh-764">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1054,7 +1040,6 @@
                     <tabBarItem key="tabBarItem" title="Virtual Tours" id="8Qn-k1-Bbt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RXx-Mg-ifZ">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1069,7 +1054,7 @@
         <!--Navigation Controller-->
         <scene sceneID="rJh-Tl-Kdr">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0CX-oK-9Rq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MapTextNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="0CX-oK-9Rq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="D3C-ij-Q4U">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1088,17 +1073,12 @@
         <scene sceneID="9hq-18-9Cm">
             <objects>
                 <viewController storyboardIdentifier="LeftViewController" title="Left View Controller" id="JvT-hS-sR9" customClass="SidePanelViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XLj-ZK-1fU"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZKh-Zo-Aqy"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tEX-3x-Ca8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dMJ-Py-AUV">
-                                <rect key="frame" x="0.0" y="306" width="375" height="361"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dMJ-Py-AUV">
+                                <rect key="frame" x="0.0" y="277" width="375" height="390"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chaptersCell" id="KwE-Ew-MvV" customClass="CustomTableViewCell" customModule="TourTheBible" customModuleProvider="target">
@@ -1116,19 +1096,21 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSr-8l-40E">
-                                <rect key="frame" x="16" y="28" width="30" height="41"/>
+                                <rect key="frame" x="16" y="28" width="65" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal">
+                                <state key="normal" title="Books">
                                     <color key="titleColor" red="0.10980392160000001" green="0.24313725489999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="dismissButtonPressed:" destination="JvT-hS-sR9" eventType="touchUpInside" id="fp6-aC-McS"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R7g-6m-gPg">
-                                <rect key="frame" x="0.0" y="96" width="375" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R7g-6m-gPg">
+                                <rect key="frame" x="0.0" y="77" width="375" height="200"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="X8F-h2-RZb"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chaptersCell" id="tZW-8i-dsd" customClass="CustomTableViewCell" customModule="TourTheBible" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -1147,9 +1129,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DSr-8l-40E" firstAttribute="top" secondItem="XLj-ZK-1fU" secondAttribute="bottom" constant="8" id="5LJ-UK-dyJ"/>
+                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="top" secondItem="R7g-6m-gPg" secondAttribute="bottom" id="FND-ha-KP4"/>
+                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="bottom" secondItem="hFy-4i-Gui" secondAttribute="bottom" id="FaS-xI-8iP"/>
                             <constraint firstItem="DSr-8l-40E" firstAttribute="leading" secondItem="tEX-3x-Ca8" secondAttribute="leadingMargin" id="FnD-dI-tTp"/>
+                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="leading" secondItem="hFy-4i-Gui" secondAttribute="leading" id="Ir6-LA-7uT"/>
+                            <constraint firstItem="DSr-8l-40E" firstAttribute="top" secondItem="hFy-4i-Gui" secondAttribute="top" constant="8" id="MvY-zN-fie"/>
+                            <constraint firstItem="R7g-6m-gPg" firstAttribute="leading" secondItem="hFy-4i-Gui" secondAttribute="leading" id="UlT-A3-4v7"/>
+                            <constraint firstItem="dMJ-Py-AUV" firstAttribute="trailing" secondItem="hFy-4i-Gui" secondAttribute="trailing" id="aeK-IP-YCC"/>
+                            <constraint firstItem="R7g-6m-gPg" firstAttribute="trailing" secondItem="hFy-4i-Gui" secondAttribute="trailing" id="hv5-06-AzQ"/>
+                            <constraint firstItem="R7g-6m-gPg" firstAttribute="top" secondItem="DSr-8l-40E" secondAttribute="bottom" constant="8" id="p7L-19-wpk"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="hFy-4i-Gui"/>
                     </view>
                     <navigationItem key="navigationItem" title="Chapters" id="WB4-gG-XNe"/>
                     <connections>
@@ -1160,16 +1150,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0LT-Y4-Z0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3850" y="161"/>
+            <point key="canvasLocation" x="3848.8000000000002" y="160.56971514242881"/>
         </scene>
         <!--Glossary Panel View Controller-->
         <scene sceneID="Laa-fR-acC">
             <objects>
                 <viewController storyboardIdentifier="GlossaryPanelViewController" title="Glossary Panel View Controller" id="s1X-1L-X9a" customClass="GlossaryPanelViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y8q-at-ldC"/>
-                        <viewControllerLayoutGuide type="bottom" id="J0y-Bl-HcL"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Kdw-dX-09l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1204,11 +1190,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="uYd-F3-Nfo" secondAttribute="trailing" id="5Da-5X-l8i"/>
-                            <constraint firstItem="uYd-F3-Nfo" firstAttribute="leading" secondItem="Kdw-dX-09l" secondAttribute="leading" id="GMB-KS-jGt"/>
+                            <constraint firstItem="gve-q5-0w5" firstAttribute="trailing" secondItem="uYd-F3-Nfo" secondAttribute="trailing" id="5Da-5X-l8i"/>
+                            <constraint firstItem="uYd-F3-Nfo" firstAttribute="leading" secondItem="gve-q5-0w5" secondAttribute="leading" id="GMB-KS-jGt"/>
                             <constraint firstItem="uYd-F3-Nfo" firstAttribute="top" secondItem="Kdw-dX-09l" secondAttribute="top" id="T8U-Ve-YbU"/>
-                            <constraint firstItem="J0y-Bl-HcL" firstAttribute="top" secondItem="uYd-F3-Nfo" secondAttribute="bottom" id="wI8-bq-mai"/>
+                            <constraint firstItem="gve-q5-0w5" firstAttribute="bottom" secondItem="uYd-F3-Nfo" secondAttribute="bottom" id="wI8-bq-mai"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="gve-q5-0w5"/>
                     </view>
                     <navigationItem key="navigationItem" id="jER-10-jTa"/>
                     <connections>
@@ -1224,10 +1211,6 @@
         <scene sceneID="ZTS-Lh-b1S">
             <objects>
                 <viewController storyboardIdentifier="VirtualTourPanelViewController" title="Virtual Tour Panel View Controller" id="PMc-eY-L3y" customClass="VirtualTourPanelViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="G44-IT-yxV"/>
-                        <viewControllerLayoutGuide type="bottom" id="ueg-3W-dew"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gGK-Ay-aPm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1270,6 +1253,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="3WR-3v-rYW"/>
                     </view>
                     <connections>
                         <outlet property="appearanceTableView" destination="o3K-2f-LZK" id="fwn-3Y-Bc2"/>
@@ -1288,7 +1272,6 @@
                     <tabBarItem key="tabBarItem" title="Read" id="Ebp-1l-zba"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bzb-xy-0bl">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1300,32 +1283,33 @@
             </objects>
             <point key="canvasLocation" x="1620" y="303"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Login-->
         <scene sceneID="MfU-YA-WEK">
             <objects>
                 <viewController storyboardIdentifier="LoginViewController" id="cm5-DE-oGR" customClass="LoginViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qiY-Fu-RNg"/>
-                        <viewControllerLayoutGuide type="bottom" id="KC8-7y-v4V"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XlX-5o-WnB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="0YM-HF-GJc">
-                                <rect key="frame" x="20" y="196" width="335" height="275.5"/>
+                                <rect key="frame" x="20" y="94" width="335" height="245.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="XyK-wa-obj">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="275.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="245.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kR4-DT-8K2">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="42"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OKt-Df-15S">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="atN-Ij-C04">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.10980392160000001" green="0.24313725489999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="d2h-XB-Eke">
-                                                <rect key="frame" x="0.0" y="90.5" width="335" height="185"/>
+                                                <rect key="frame" x="0.0" y="60.5" width="335" height="185"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y5r-1l-0Wt">
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
@@ -1355,7 +1339,7 @@
                                                         <rect key="frame" x="141" y="104" width="53" height="39"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                         <state key="normal" title="Login">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleColor" red="0.10980392160000001" green="0.24313725489999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="LoginPressed:" destination="cm5-DE-oGR" eventType="touchUpInside" id="eRX-kR-rMQ"/>
@@ -1364,8 +1348,11 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dxu-Jt-UY4">
                                                         <rect key="frame" x="106" y="155" width="123" height="30"/>
                                                         <state key="normal" title="Forgot Password?">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="titleColor" red="0.10980392160000001" green="0.24313725489999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="forgotPasswordButtonPressed:" destination="cm5-DE-oGR" eventType="touchUpInside" id="bYL-vL-ZqO"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -1384,43 +1371,56 @@
                                 <rect key="frame" x="113.5" y="608" width="148" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Create Account">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.10980392160000001" green="0.24313725489999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="createAccountButtonPressed:" destination="cm5-DE-oGR" eventType="touchUpInside" id="nLd-rk-mTR"/>
+                                </connections>
                             </button>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ky8-Hw-s0m">
-                                <rect key="frame" x="177.5" y="491.5" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="359.5" width="20" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="color" red="0.10980392160000001" green="0.24313725489999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logging in..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkh-GK-dh2">
-                                <rect key="frame" x="16" y="519" width="343" height="18"/>
+                                <rect key="frame" x="16" y="387.5" width="343" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.10980392156862745" green="0.24313725490196078" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rkh-GK-dh2" firstAttribute="leading" secondItem="XlX-5o-WnB" secondAttribute="leadingMargin" id="1Tc-8a-3hQ"/>
-                            <constraint firstItem="Ky8-Hw-s0m" firstAttribute="centerX" secondItem="XlX-5o-WnB" secondAttribute="centerX" id="97r-wu-8t1"/>
-                            <constraint firstItem="0YM-HF-GJc" firstAttribute="centerY" secondItem="XlX-5o-WnB" secondAttribute="centerY" id="Iqj-Hh-4aG"/>
+                            <constraint firstItem="0YM-HF-GJc" firstAttribute="top" secondItem="d1Z-fe-caj" secondAttribute="top" constant="30" id="3EK-7C-nSL"/>
+                            <constraint firstItem="Ky8-Hw-s0m" firstAttribute="centerX" secondItem="d1Z-fe-caj" secondAttribute="centerX" id="97r-wu-8t1"/>
                             <constraint firstItem="rkh-GK-dh2" firstAttribute="trailing" secondItem="XlX-5o-WnB" secondAttribute="trailingMargin" id="JZP-DE-g78"/>
                             <constraint firstItem="Ky8-Hw-s0m" firstAttribute="top" secondItem="0YM-HF-GJc" secondAttribute="bottom" constant="20" id="Ken-6b-wWf"/>
-                            <constraint firstItem="0YM-HF-GJc" firstAttribute="leading" secondItem="XlX-5o-WnB" secondAttribute="leading" constant="20" id="QFy-YL-Q3I"/>
-                            <constraint firstItem="2RY-H4-tYM" firstAttribute="centerX" secondItem="XlX-5o-WnB" secondAttribute="centerX" id="Xn6-KL-Zbr"/>
-                            <constraint firstItem="0YM-HF-GJc" firstAttribute="centerX" secondItem="XlX-5o-WnB" secondAttribute="centerX" id="lwh-gf-o1I"/>
-                            <constraint firstItem="2RY-H4-tYM" firstAttribute="centerX" secondItem="XlX-5o-WnB" secondAttribute="centerX" id="new-ai-bdY"/>
+                            <constraint firstItem="0YM-HF-GJc" firstAttribute="leading" secondItem="d1Z-fe-caj" secondAttribute="leading" constant="20" id="QFy-YL-Q3I"/>
+                            <constraint firstItem="2RY-H4-tYM" firstAttribute="centerX" secondItem="d1Z-fe-caj" secondAttribute="centerX" id="Xn6-KL-Zbr"/>
+                            <constraint firstItem="0YM-HF-GJc" firstAttribute="centerX" secondItem="d1Z-fe-caj" secondAttribute="centerX" id="lwh-gf-o1I"/>
+                            <constraint firstItem="2RY-H4-tYM" firstAttribute="centerX" secondItem="d1Z-fe-caj" secondAttribute="centerX" id="new-ai-bdY"/>
                             <constraint firstItem="rkh-GK-dh2" firstAttribute="top" secondItem="Ky8-Hw-s0m" secondAttribute="bottom" constant="8" id="qgf-df-B6G"/>
-                            <constraint firstItem="KC8-7y-v4V" firstAttribute="top" secondItem="2RY-H4-tYM" secondAttribute="bottom" constant="20" id="s3U-RI-2sB"/>
-                            <constraint firstAttribute="trailing" secondItem="0YM-HF-GJc" secondAttribute="trailing" constant="20" id="t4K-QN-IKf"/>
+                            <constraint firstItem="d1Z-fe-caj" firstAttribute="bottom" secondItem="2RY-H4-tYM" secondAttribute="bottom" constant="20" id="s3U-RI-2sB"/>
+                            <constraint firstItem="d1Z-fe-caj" firstAttribute="trailing" secondItem="0YM-HF-GJc" secondAttribute="trailing" constant="20" id="t4K-QN-IKf"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="d1Z-fe-caj"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mia-v8-RDz"/>
+                    <navigationItem key="navigationItem" title="Login" id="mia-v8-RDz">
+                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="Dng-i7-QqV">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="dismissButtonPressed:" destination="cm5-DE-oGR" id="hjy-df-V0J"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="aiv" destination="Ky8-Hw-s0m" id="cBd-7m-De8"/>
+                        <outlet property="aiv" destination="Ky8-Hw-s0m" id="AyK-BD-LT7"/>
                         <outlet property="emailTextField" destination="Y5r-1l-0Wt" id="TuC-l1-hr2"/>
                         <outlet property="passwordTextField" destination="bl4-lP-WmO" id="hZK-c2-lNa"/>
+                        <outlet property="promptLabel" destination="atN-Ij-C04" id="JFR-YN-p39"/>
+                        <segue destination="8i8-T5-plv" kind="show" identifier="showCreateAccount" id="1pM-v2-h5t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tKw-4z-Dxj" sceneMemberID="firstResponder"/>
@@ -1431,16 +1431,12 @@
         <scene sceneID="hfB-B7-pWi">
             <objects>
                 <viewController storyboardIdentifier="CreateAccountViewController" id="8i8-T5-plv" customClass="CreateAccountViewController" customModule="TourTheBible" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZTD-OE-BXa"/>
-                        <viewControllerLayoutGuide type="bottom" id="10Q-L1-Uao"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B4Q-kw-9gb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="MBG-4k-lfx">
-                                <rect key="frame" x="20" y="30" width="335" height="324"/>
+                                <rect key="frame" x="20" y="74" width="335" height="324"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="EDq-ef-dgQ">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
@@ -1572,18 +1568,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="MBG-4k-lfx" secondAttribute="trailing" constant="20" id="3lg-TW-twV"/>
-                            <constraint firstItem="MBG-4k-lfx" firstAttribute="leading" secondItem="B4Q-kw-9gb" secondAttribute="leading" constant="20" id="DeM-RX-DL9"/>
-                            <constraint firstItem="MBG-4k-lfx" firstAttribute="top" secondItem="ZTD-OE-BXa" secondAttribute="bottom" constant="10" id="zpS-dc-EJy"/>
+                            <constraint firstItem="8tL-Ma-dqo" firstAttribute="trailing" secondItem="MBG-4k-lfx" secondAttribute="trailing" constant="20" id="3lg-TW-twV"/>
+                            <constraint firstItem="MBG-4k-lfx" firstAttribute="leading" secondItem="8tL-Ma-dqo" secondAttribute="leading" constant="20" id="DeM-RX-DL9"/>
+                            <constraint firstItem="MBG-4k-lfx" firstAttribute="top" secondItem="8tL-Ma-dqo" secondAttribute="top" constant="10" id="zpS-dc-EJy"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="8tL-Ma-dqo"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Account" id="A3R-24-6w5">
-                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="kox-YJ-Wk6">
-                            <connections>
-                                <action selector="cancelButtonPressed:" destination="8i8-T5-plv" id="dgZ-wp-2AO"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Create Account" id="A3R-24-6w5"/>
                     <connections>
                         <outlet property="aiv" destination="PcH-8T-AyZ" id="O7v-7Y-808"/>
                         <outlet property="emailTextField" destination="s8c-3B-i4x" id="ITe-ZE-Q2Q"/>
@@ -1596,12 +1587,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3DQ-cF-GIj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5988" y="1745.577211394303"/>
+            <point key="canvasLocation" x="6137" y="1746"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QnF-BN-nRs">
             <objects>
-                <navigationController storyboardIdentifier="loginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="D8x-Ts-x5B" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="D8x-Ts-x5B" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zaB-fW-tCF">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1623,7 +1614,6 @@
                     <tabBarItem key="tabBarItem" title="Account" id="WtF-gc-gAu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Lgz-c5-Xwl">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1637,7 +1627,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Map" width="50" height="50"/>
+        <image name="Map" width="40" height="40"/>
         <image name="Menu" width="50" height="50"/>
         <image name="Patreon" width="300" height="168"/>
     </resources>

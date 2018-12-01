@@ -6,6 +6,16 @@ PODS:
   - AWSCore (2.6.5)
   - AWSDynamoDB (2.6.5):
     - AWSCore (= 2.6.5)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - FBSDKCoreKit (4.28.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.28.0):
+    - FBSDKCoreKit
   - Firebase/Analytics (3.5.2):
     - FirebaseAnalytics (~> 3.3)
   - Firebase/Auth (3.5.2):
@@ -45,6 +55,7 @@ DEPENDENCIES:
   - AWSCognito
   - AWSCognitoIdentityProvider
   - AWSDynamoDB
+  - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -55,6 +66,9 @@ SPEC CHECKSUMS:
   AWSCognitoIdentityProvider: 7d55b4511ece28c22debeb8f2ab8bc82ed5f6705
   AWSCore: b4895b4a5256d0040f8825ad31f3477d081f508f
   AWSDynamoDB: 8723495e4f010b65e7012fdc59f813c3a0a30006
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  FBSDKCoreKit: ca961e279113f691fd83dc634c0bbad9d4e3f370
+  FBSDKLoginKit: b077381c27d800f21661757e8140cf2c80a91e4a
   Firebase: 94e63112efcad75226c0356a8f3032397b8547c9
   FirebaseAnalytics: d968d4d5f6aeb795cd64144337bcd233e530efc6
   FirebaseAuth: 26fd291c3b552fc9658420b867520d5ae080421c
@@ -67,6 +81,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 890debb5e37c9d7eac001b9c79eb9b434c1ae04a
+PODFILE CHECKSUM: efc0a2d6052642ac7e3fd8e6bc1cd1e29a9f38cb
 
 COCOAPODS: 1.2.1

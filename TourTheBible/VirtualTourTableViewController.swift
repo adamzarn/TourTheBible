@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import AWSCognitoIdentityProvider
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchControllerDelegate {
     
@@ -20,6 +22,7 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var userDetails: AWSCognitoIdentityUserGetDetailsResponse?
+    var fbUserDetails: NSDictionary?
     var email: String?
     var user: AWSCognitoIdentityUser?
     var pool: AWSCognitoIdentityUserPool?
@@ -50,23 +53,10 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
 
     override func viewWillAppear(_ animated: Bool) {
         subscribeToKeyboardNotifications()
-        print("subscribed")
-        if (self.user == nil) {
-            self.user = self.pool?.currentUser()
-        }
-        if (self.user == nil) {
-            let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-            self.present(loginVC, animated: true, completion: nil)
-        } else {
-            if segmentedControl.selectedSegmentIndex == 0 {
-                loadingTableView()
-                getUserDetails()
-            } else {
-                tours = []
-                myTableView.reloadData()
-                doneLoadingTableView()
-            }
-        }
+        appDelegate.virtualTourTableViewController = self
+        appDelegate.accountDetailViewController = nil
+        self.user = self.pool?.currentUser()
+        refresh()
     }
     
     @IBAction func segmentedControlValueChanged(_ sender: Any) {
@@ -134,7 +124,6 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewWillDisappear(_ animated: Bool) {
         unsubscribeFromKeyboardNotifications()
-        print("unsubscribed")
     }
     
     func loadingTableView() {
@@ -151,7 +140,6 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("reloading for some reason")
         let cell = tableView.dequeueReusableCell(withIdentifier: "tourCell") as! TourCell
         cell.setUpTourCell(tour: tours[indexPath.row])
         return cell
@@ -168,9 +156,14 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
             } else {
                 return nil
             }
-        } else {
-            return nil
+        } else if let fbUserDetails = fbUserDetails {
+            if segmentedControl.selectedSegmentIndex == 0 {
+                return (fbUserDetails["name"] as! String) + "'s Tours"
+            } else {
+                return nil
+            }
         }
+        return nil
     }
     
     func displayAlert(title: String, message: String) {
@@ -339,6 +332,17 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
         return keyboardSize.cgRectValue.height
     }
     
+    func getFBUserDetails() {
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields" : "email, name"])
+            .start(completionHandler:  { (connection, result, error) in
+            if let result = result {
+                self.fbUserDetails = result as? NSDictionary
+                self.email = self.fbUserDetails?.value(forKey: "email") as! String?
+                self.getMyTourKeys(email: self.email!)
+            }
+        })
+    }
+    
     func getUserDetails() {
         self.user?.getDetails().continueOnSuccessWith { (task) -> AnyObject? in
             DispatchQueue.main.async(execute: {
@@ -353,7 +357,7 @@ class VirtualTourTableViewController: UIViewController, UITableViewDelegate, UIT
             return nil
         }
     }
-    
+
 }
 
 extension VirtualTourTableViewController: UISearchResultsUpdating {
@@ -367,4 +371,27 @@ extension UISearchController {
         searchBar.text = ""
         isActive = false
     }
+}
+
+extension VirtualTourTableViewController: LoginViewControllerDelegate {
+    
+    func switchTabs(index: Int) {
+        self.tabBarController?.selectedIndex = index
+    }
+    
+    func refresh() {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            loadingTableView()
+            if FBSDKAccessToken.current() != nil {
+                getFBUserDetails()
+            } else {
+                getUserDetails()
+            }
+        } else {
+            tours = []
+            myTableView.reloadData()
+            doneLoadingTableView()
+        }
+    }
+    
 }

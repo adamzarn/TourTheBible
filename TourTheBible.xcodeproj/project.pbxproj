@@ -9,12 +9,9 @@
 /* Begin PBXBuildFile section */
 		BD4A85D3391762E11D3F3E62 /* Pods_TourTheBible.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E7C3F8AD16C132D4ED8526 /* Pods_TourTheBible.framework */; };
 		C4BE118125AC39BC94FE74D0 /* Pods_WalkThroughTheBibleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFE9F0BD379E57AAF15CA63 /* Pods_WalkThroughTheBibleUITests.framework */; };
-		DB106FCF1DD0E9FB0033FFAA /* KingJamesVersion in Resources */ = {isa = PBXBuildFile; fileRef = DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */; };
-		DB1152B01E6DA331008BA289 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB1152AF1E6DA331008BA289 /* GoogleService-Info.plist */; };
 		DB1152B21E6E0096008BA289 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1152B11E6E0096008BA289 /* FirebaseClient.swift */; };
 		DB1152B41E6E065C008BA289 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1152B31E6E065C008BA289 /* Video.swift */; };
 		DB1152B61E6F3074008BA289 /* VirtualTourTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1152B51E6F3074008BA289 /* VirtualTourTableViewController.swift */; };
-		DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */ = {isa = PBXBuildFile; fileRef = DB20FBBB1DD2383F0017A8F2 /* About.txt */; };
 		DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */; };
 		DB38D82C1E77705900B1D78B /* GlossaryContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38D82B1E77705900B1D78B /* GlossaryContainerViewController.swift */; };
 		DB38D82E1E7770BF00B1D78B /* GlossaryPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38D82D1E7770BF00B1D78B /* GlossaryPanelViewController.swift */; };
@@ -24,9 +21,7 @@
 		DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4A67B41DACA26500D52665 /* GlossaryCell.swift */; };
 		DB4EE9961D987A6500A3C48B /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB4EE9951D987A6500A3C48B /* Books.swift */; };
 		DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2E9F1D870F79002A5FAD /* AppDelegate.swift */; };
-		DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EA31D870F79002A5FAD /* Main.storyboard */; };
 		DB5C2EAA1D870F79002A5FAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EA91D870F79002A5FAD /* Assets.xcassets */; };
-		DB5C2EAD1D870F79002A5FAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */; };
 		DB5C2EB81D870F79002A5FAD /* TourTheBibleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EB71D870F79002A5FAD /* TourTheBibleTests.swift */; };
 		DB5C2EC31D870F79002A5FAD /* TourTheBibleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5C2EC21D870F79002A5FAD /* TourTheBibleUITests.swift */; };
 		DB5C2ED11D871109002A5FAD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB5C2ED01D871109002A5FAD /* MapKit.framework */; };
@@ -38,11 +33,11 @@
 		DB89240E1DE7C39B00EAC55E /* VirtualTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */; };
 		DB9B7EDB1DF38AEF0099033A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB9B7ED91DF38AEF0099033A /* Model.xcdatamodeld */; };
 		DBA184CE20122EE9002F3143 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA184CD20122EE9002F3143 /* CustomPointAnnotation.swift */; };
-		DBA184D02012429C002F3143 /* GlossaryLaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA184CF2012429C002F3143 /* GlossaryLaunchController.swift */; };
 		DBA91EFC1DA43FBB00E5E00A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */; };
 		DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFD1DA4468200E5E00A /* ProductCell.swift */; };
 		DBA91F001DA446C400E5E00A /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91EFF1DA446C400E5E00A /* Products.swift */; };
 		DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA91F011DA446F900E5E00A /* IAPHelper.swift */; };
+		DBAC81DC2018CA4100629D0D /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAC81DB2018CA4100629D0D /* CreateAccountViewController.swift */; };
 		DBC05820201644A100AEE574 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC0581F201644A100AEE574 /* LoginViewController.swift */; };
 		DBC05822201644F400AEE574 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC05821201644F300AEE574 /* Constants.swift */; };
 		DBC0582420164F6E00AEE574 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC0582320164F6D00AEE574 /* AccountDetailViewController.swift */; };
@@ -50,9 +45,15 @@
 		DBC54559200FF0B8009D7629 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC5455A200FF0B8009D7629 /* AWSCore.framework */; };
 		DBC5455B200FF0C0009D7629 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC5455C200FF0C0009D7629 /* AWSDynamoDB.framework */; };
 		DBC5456020101014009D7629 /* BibleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC5455F20101014009D7629 /* BibleLocation.swift */; };
+		DBC6AC9D21B2C801003F1856 /* LocationPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC6AC9C21B2C801003F1856 /* LocationPair.swift */; };
+		DBC6C4B221B31372003F1856 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB1152AF1E6DA331008BA289 /* GoogleService-Info.plist */; };
+		DBC6C4B321B313E7003F1856 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EA31D870F79002A5FAD /* Main.storyboard */; };
+		DBC6C4B421B313EA003F1856 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB5C2EAB1D870F79002A5FAD /* LaunchScreen.storyboard */; };
+		DBC6E16021B33402003F1856 /* KingJamesVersion in Resources */ = {isa = PBXBuildFile; fileRef = DBC6E15E21B33402003F1856 /* KingJamesVersion */; };
+		DBC6E16121B33402003F1856 /* WorldEnglishBible in Resources */ = {isa = PBXBuildFile; fileRef = DBC6E15F21B33402003F1856 /* WorldEnglishBible */; };
+		DBC6E16321B3403D003F1856 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC6E16221B3403D003F1856 /* Alerts.swift */; };
 		DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */; };
 		DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */; };
-		DBEBF3271ED5B7D9008665BA /* WorldEnglishBible in Resources */ = {isa = PBXBuildFile; fileRef = DBEBF3261ED5B7D9008665BA /* WorldEnglishBible */; };
 		DBEF4EA7201051890029E235 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEF4EA6201051890029E235 /* Chapter.swift */; };
 		DBEF4EA9201106450029E235 /* AWSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEF4EA8201106450029E235 /* AWSClient.swift */; };
 		DBEF4EAB20114A0E0029E235 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBEF4EAA20114A0E0029E235 /* GlobalFunctions.swift */; };
@@ -94,7 +95,6 @@
 		B5F34327920B7F7BF1A95A05 /* Pods-WalkThroughTheBibleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBibleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBibleTests/Pods-WalkThroughTheBibleTests.release.xcconfig"; sourceTree = "<group>"; };
 		C0B47567C0FC9382E64CD378 /* Pods_TourTheBibleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TourTheBibleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58A6641EBFD8F68C70FD2E3 /* Pods-WalkThroughTheBible.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkThroughTheBible.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WalkThroughTheBible/Pods-WalkThroughTheBible.debug.xcconfig"; sourceTree = "<group>"; };
-		DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KingJamesVersion; sourceTree = "<group>"; };
 		DB1152AF1E6DA331008BA289 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DB1152B11E6E0096008BA289 /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		DB1152B31E6E065C008BA289 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -129,11 +129,11 @@
 		DB89240D1DE7C39B00EAC55E /* VirtualTourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirtualTourViewController.swift; sourceTree = "<group>"; };
 		DB9B7EDA1DF38AEF0099033A /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DBA184CD20122EE9002F3143 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
-		DBA184CF2012429C002F3143 /* GlossaryLaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlossaryLaunchController.swift; sourceTree = "<group>"; };
 		DBA91EFB1DA43FBA00E5E00A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DBA91EFD1DA4468200E5E00A /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		DBA91EFF1DA446C400E5E00A /* Products.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		DBA91F011DA446F900E5E00A /* IAPHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		DBAC81DB2018CA4100629D0D /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		DBC0581F201644A100AEE574 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DBC05821201644F300AEE574 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DBC0582320164F6D00AEE574 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
@@ -141,9 +141,12 @@
 		DBC5455A200FF0B8009D7629 /* AWSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBC5455C200FF0C0009D7629 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWSDynamoDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBC5455F20101014009D7629 /* BibleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleLocation.swift; sourceTree = "<group>"; };
+		DBC6AC9C21B2C801003F1856 /* LocationPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPair.swift; sourceTree = "<group>"; };
+		DBC6E15E21B33402003F1856 /* KingJamesVersion */ = {isa = PBXFileReference; lastKnownFileType = folder; path = KingJamesVersion; sourceTree = "<group>"; };
+		DBC6E15F21B33402003F1856 /* WorldEnglishBible */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WorldEnglishBible; sourceTree = "<group>"; };
+		DBC6E16221B3403D003F1856 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		DBD297BC1DA997EB002A8A83 /* GlossaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryViewController.swift; sourceTree = "<group>"; };
 		DBE58B6A1D9D53D9009A7BFA /* CustomBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBookCell.swift; sourceTree = "<group>"; };
-		DBEBF3261ED5B7D9008665BA /* WorldEnglishBible */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WorldEnglishBible; sourceTree = "<group>"; };
 		DBEF4EA6201051890029E235 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		DBEF4EA8201106450029E235 /* AWSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSClient.swift; sourceTree = "<group>"; };
 		DBEF4EAA20114A0E0029E235 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
@@ -246,6 +249,7 @@
 				DBA91F051DA4484700E5E00A /* View */,
 				DBA91F041DA4480900E5E00A /* Controller */,
 				DBEF4EAA20114A0E0029E235 /* GlobalFunctions.swift */,
+				DBC6E16221B3403D003F1856 /* Alerts.swift */,
 			);
 			path = TourTheBible;
 			sourceTree = "<group>";
@@ -309,6 +313,7 @@
 				DBEF4EA6201051890029E235 /* Chapter.swift */,
 				DBA184CD20122EE9002F3143 /* CustomPointAnnotation.swift */,
 				DBF8D45C20153AC1004B0072 /* Site.swift */,
+				DBC6AC9C21B2C801003F1856 /* LocationPair.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -323,8 +328,8 @@
 				DB5C2ED21D888294002A5FAD /* BooksTableViewController.swift */,
 				DB1152B51E6F3074008BA289 /* VirtualTourTableViewController.swift */,
 				DB20FBBD1DD239530017A8F2 /* AboutViewController.swift */,
-				DBA184CF2012429C002F3143 /* GlossaryLaunchController.swift */,
 				DBC0581F201644A100AEE574 /* LoginViewController.swift */,
+				DBAC81DB2018CA4100629D0D /* CreateAccountViewController.swift */,
 				DBC05821201644F300AEE574 /* Constants.swift */,
 				DBC0582320164F6D00AEE574 /* AccountDetailViewController.swift */,
 			);
@@ -348,8 +353,8 @@
 		DBBAC8571DC7E10E00305451 /* Books */ = {
 			isa = PBXGroup;
 			children = (
-				DBEBF3261ED5B7D9008665BA /* WorldEnglishBible */,
-				DB106FCE1DD0E9FB0033FFAA /* KingJamesVersion */,
+				DBC6E15E21B33402003F1856 /* KingJamesVersion */,
+				DBC6E15F21B33402003F1856 /* WorldEnglishBible */,
 			);
 			name = Books;
 			sourceTree = "<group>";
@@ -445,7 +450,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Adam Zarn";
 				TargetAttributes = {
 					DB5C2E9B1D870F78002A5FAD = {
@@ -497,13 +502,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB5C2EAD1D870F79002A5FAD /* LaunchScreen.storyboard in Resources */,
-				DBEBF3271ED5B7D9008665BA /* WorldEnglishBible in Resources */,
-				DB106FCF1DD0E9FB0033FFAA /* KingJamesVersion in Resources */,
+				DBC6C4B321B313E7003F1856 /* Main.storyboard in Resources */,
+				DBC6E16021B33402003F1856 /* KingJamesVersion in Resources */,
+				DBC6C4B421B313EA003F1856 /* LaunchScreen.storyboard in Resources */,
+				DBC6C4B221B31372003F1856 /* GoogleService-Info.plist in Resources */,
 				DB5C2EAA1D870F79002A5FAD /* Assets.xcassets in Resources */,
-				DB5C2EA51D870F79002A5FAD /* Main.storyboard in Resources */,
-				DB1152B01E6DA331008BA289 /* GoogleService-Info.plist in Resources */,
-				DB20FBBC1DD2383F0017A8F2 /* About.txt in Resources */,
+				DBC6E16121B33402003F1856 /* WorldEnglishBible in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,13 +675,13 @@
 				DB878C331E77630400A3B876 /* MainTabBarController.swift in Sources */,
 				DBC5456020101014009D7629 /* BibleLocation.swift in Sources */,
 				DBA91F021DA446F900E5E00A /* IAPHelper.swift in Sources */,
+				DBC6AC9D21B2C801003F1856 /* LocationPair.swift in Sources */,
 				DB38D82E1E7770BF00B1D78B /* GlossaryPanelViewController.swift in Sources */,
 				DB866A891E789DFC0000A6E5 /* VirtualTourContainerViewController.swift in Sources */,
 				DBC54556200FE3BA009D7629 /* AWSItems.swift in Sources */,
 				DB47B34D1DF1D42B005EC190 /* SidePanelViewController.swift in Sources */,
 				DB4A67B51DACA26500D52665 /* GlossaryCell.swift in Sources */,
 				DBA91EFE1DA4468200E5E00A /* ProductCell.swift in Sources */,
-				DBA184D02012429C002F3143 /* GlossaryLaunchController.swift in Sources */,
 				DB5C2ED31D888294002A5FAD /* BooksTableViewController.swift in Sources */,
 				DBEF4EA7201051890029E235 /* Chapter.swift in Sources */,
 				DB5C2EA01D870F79002A5FAD /* AppDelegate.swift in Sources */,
@@ -686,11 +690,13 @@
 				DB1152B41E6E065C008BA289 /* Video.swift in Sources */,
 				DBE58B6B1D9D53D9009A7BFA /* CustomBookCell.swift in Sources */,
 				DB866A8B1E789E1A0000A6E5 /* VirtualTourPanelViewController.swift in Sources */,
+				DBC6E16321B3403D003F1856 /* Alerts.swift in Sources */,
 				DB1152B21E6E0096008BA289 /* FirebaseClient.swift in Sources */,
 				DBF8D45F201544A7004B0072 /* TourCell.swift in Sources */,
 				DBEF4EA9201106450029E235 /* AWSClient.swift in Sources */,
 				DB445EFE1DD4E782002CC686 /* Reachability.swift in Sources */,
 				DBA184CE20122EE9002F3143 /* CustomPointAnnotation.swift in Sources */,
+				DBAC81DC2018CA4100629D0D /* CreateAccountViewController.swift in Sources */,
 				DBA91F001DA446C400E5E00A /* Products.swift in Sources */,
 				DBD297BD1DA997EB002A8A83 /* GlossaryViewController.swift in Sources */,
 				DB20FBBE1DD239530017A8F2 /* AboutViewController.swift in Sources */,
@@ -765,14 +771,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -814,14 +826,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

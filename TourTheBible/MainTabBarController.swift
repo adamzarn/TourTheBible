@@ -32,7 +32,7 @@ class MainTabBarController: UITabBarController {
         glossaryItem?.image = resizeImage(image: UIImage(named:"List")!)
         tourItem?.image = resizeImage(image: UIImage(named:"Tourist")!)
         aboutItem?.image = resizeImage(image: UIImage(named:"About")!)
-        //accountItem?.image = resizeImage(image: UIImage(named:"Account")!)
+        accountItem?.image = resizeImage(image: UIImage(named:"Menu")!)
     }
     
     func resizeImage(image: UIImage) -> UIImage {

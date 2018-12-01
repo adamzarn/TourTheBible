@@ -59,7 +59,6 @@ class BooksTableViewController: UIViewController, UITableViewDelegate, UITableVi
     }
  
     override func viewWillAppear(_ animated: Bool) {
-        print("aaa")
         appDelegate.myMapView.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.isUserInteractionEnabled = true

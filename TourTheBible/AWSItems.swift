@@ -12,7 +12,6 @@ import AWSDynamoDB
 class AWSBibleLocation: AWSDynamoDBObjectModel, AWSDynamoDBModeling  {
 
     var name: String?
-    var displayName: String?
     var lat: String?
     var long: String?
         
@@ -24,6 +23,11 @@ class AWSBibleLocation: AWSDynamoDBObjectModel, AWSDynamoDBModeling  {
         return "name"
     }
     
+}
+
+enum CSVIndex: Int {
+    case asItAppears
+    case properName
 }
 
 class AWSChapterLocations: AWSDynamoDBObjectModel, AWSDynamoDBModeling  {
@@ -40,6 +44,14 @@ class AWSChapterLocations: AWSDynamoDBObjectModel, AWSDynamoDBModeling  {
     
     class func hashKeyAttribute() -> String {
         return "chapter"
+    }
+    
+    func getLocationComponent(csvIndex: CSVIndex) -> [String] {
+        if let locations = locations {
+            return locations.map { $0.components(separatedBy: ",")[csvIndex.rawValue] }
+        } else {
+            return []
+        }
     }
     
 }

@@ -16,6 +16,8 @@ target ‘TourTheBible' do
     pod 'AWSCognitoIdentityProvider'
     pod 'AWSDynamoDB'
 
+    pod 'FBSDKLoginKit'
+
   target ‘TourTheBibleTests' do
     inherit! :search_paths
     # Pods for testing

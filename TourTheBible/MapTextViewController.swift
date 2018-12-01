@@ -68,13 +68,14 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     var currentBook: Book? = nil
     var lastAnnotation: MKAnnotation?
     var shouldToggle = false
-    var currentLocations: [String] = []
+    var currentLocations: [LocationPair] = []
     var shouldReloadMap = false
     var currentVideoID: String?
     var screenSize: CGRect!
     var gesture: UITapGestureRecognizer?
     var dimView: UIView!
     var dismissButtonText: String!
+    var settingUpText: Bool = false
     
     var tappedBibleLocation: BibleLocation?
     
@@ -215,16 +216,11 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         titleView.addSubview(title)
         titleView.addSubview(subtitle)
         
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(menuButtonPressed(_:)))
+        titleView.addGestureRecognizer(gesture)
+        
         self.navItem.titleView = titleView
     }
-    
-//    func frame(buttonItem: UIBarButtonItem) -> CGRect {
-//        if let view = (buttonItem.value(forKey: "view") as? UIView) {
-//            return view!.frame
-//        } else {
-//            return CGRect(
-//        }
-//    }
     
     @IBAction func mapTypeButtonPressed(_ sender: Any) {
         if appDelegate.myMapView.mapType == MKMapType.standard {
@@ -340,7 +336,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         }
         
         let URLstring = URL.absoluteString
-        if URLstring.characters.count > 7 {
+        if URLstring.count > 7 {
             let substring = URLstring.startIndex..<URLstring.index(URLstring.startIndex,offsetBy:7)
             prefix = URLstring[substring]
         }
@@ -357,17 +353,21 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         if prefix != "videoID" {
             showMap()
             let decodedURL = URL.absoluteString.replacingOccurrences(of: "%20", with: " ")
+            let properName = self.currentLocations.filter { $0.asItAppears == decodedURL }[0].properName
             
-            AWSClient.sharedInstance.getBibleLocation(name: decodedURL, completion: { (bibleLocation, error) -> () in
+            AWSClient.sharedInstance.getBibleLocation(name: properName, completion: { (bibleLocation, error) -> () in
                 if let location = bibleLocation {
+                    
+                    let properName = location.name
+                    let asItAppears = self.currentLocations.filter { $0.properName == properName }[0].asItAppears
                     
                     self.plotPin(loc: location)
                     
                     let newPin = NSEntityDescription.insertNewObject(forEntityName: "Pin", into: self.context!) as! Pin
                     newPin.lat = location.lat
                     newPin.long = location.long
-                    newPin.title = location.displayName
-                    newPin.subtitle = location.name
+                    newPin.title = properName
+                    newPin.subtitle = asItAppears
                     newPin.pinToBook = self.currentBook
                     self.pinsForBook.append(newPin)
                     
@@ -469,7 +469,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
         if appDelegate.currentState != .RightPanelExpanded && appDelegate.currentState != .LeftPanelExpanded {
             showFetchingAppearancesView()
-            tappedLocation = (view.annotation as! CustomPointAnnotation).name!
+            tappedLocation = (view.annotation as! CustomPointAnnotation).title!
             setTappedBibleLocation(name: tappedLocation)
             
             AWSClient.sharedInstance.getChapterAppearances(location: tappedLocation, completion: { (chapterAppearances, error) -> () in
@@ -537,11 +537,14 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
         
         let annotation = CustomPointAnnotation()
         
+        let properName = loc.name
+        let asItAppears = currentLocations.filter { $0.properName == properName }[0].asItAppears
+        
         annotation.coordinate = CLLocationCoordinate2D(latitude: loc.lat, longitude: loc.long)
-        annotation.title = loc.displayName
-        annotation.name = loc.name
-        if loc.displayName != loc.name {
-            annotation.subtitle = loc.name
+        annotation.title = properName
+        annotation.name = properName
+        if asItAppears != properName {
+            annotation.subtitle = asItAppears
         }
         appDelegate.myMapView.addAnnotation(annotation)
         appDelegate.myMapView.selectAnnotation(annotation, animated: false)
@@ -551,28 +554,25 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     func swipeLeft() {
+        
+        if settingUpText {
+            return
+        }
+        
         let prefix = "AJZ.WalkThroughTheBible."
         let currentIndex = books.index(of: book!)
+        
         if chapterIndex != numberOfChapters {
             chapterIndex! += 1
             swipeActions()
             return
-        } else if book == "Genesis" {
-            if defaults.bool(forKey:"\(prefix)Exodus") {
-                book = "Exodus"
+        // if next book is a paid book
+        } else if Books.paidBookIndices.contains(currentIndex!+1) {
+            let paidBook = Books.books[currentIndex!+1]
+            if defaults.bool(forKey:"\(prefix)\(paidBook)") {
+                book = paidBook
             } else {
-                return
-            }
-        } else if book == "Leviticus" {
-            if defaults.bool(forKey:"\(prefix)Numbers") {
-                book = "Numbers"
-            } else {
-                return
-            }
-        } else if book == "John" {
-            if defaults.bool(forKey:"\(prefix)Acts") {
-                book = "Acts"
-            } else {
+                displayBookNotPurchasedAlert(book: paidBook)
                 return
             }
         } else {
@@ -582,6 +582,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
                 book = books[currentIndex!+1]
             }
         }
+        
         shouldReloadMap = true
         completeRawText = nil
         numberOfChapters = Books.booksDictionary[book!]
@@ -590,28 +591,27 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
     }
     
     func swipeRight() {
+        
+        if settingUpText {
+            return
+        }
+        
         let prefix = "AJZ.WalkThroughTheBible."
         let currentIndex = books.index(of: book!)
+        
         if chapterIndex != 1 {
             chapterIndex! -= 1
             swipeActions()
             return
-        } else if book == "Leviticus" {
-            if defaults.bool(forKey:"\(prefix)Exodus") {
-                book = "Exodus"
+        // if previous book is a paid book
+        } else if Books.paidBookIndices.contains(currentIndex!-1) {
+            print(Books.paidBookIndices)
+            print("previousBookIndex = \(currentIndex!-1)")
+            let paidBook = Books.books[currentIndex!-1]
+            if defaults.bool(forKey:"\(prefix)\(paidBook)") {
+                book = paidBook
             } else {
-                return
-            }
-        } else if book == "Deuteronomy" {
-            if defaults.bool(forKey:"\(prefix)Numbers") {
-                book = "Numbers"
-            } else {
-                return
-            }
-        } else if book == "Romans" {
-            if defaults.bool(forKey:"\(prefix)Acts") {
-                book = "Acts"
-            } else {
+                displayBookNotPurchasedAlert(book: paidBook)
                 return
             }
         } else {
@@ -621,6 +621,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
                 book = books[currentIndex!-1]
             }
         }
+        
         shouldReloadMap = true
         completeRawText = nil
         numberOfChapters = Books.booksDictionary[book!]
@@ -706,7 +707,7 @@ class MapTextViewController: UIViewController, UITextViewDelegate, MKMapViewDele
                 annotation.subtitle = pin.subtitle
             }
             appDelegate.myMapView.addAnnotation(annotation)
-            let newLoc = BibleLocation(name: pin.subtitle!, displayName: pin.title! , lat: pin.lat, long: pin.long)
+            let newLoc = BibleLocation(name: pin.subtitle ?? pin.title ?? "", lat: pin.lat, long: pin.long)
             selectedLocations.append(newLoc)
             
         }
@@ -774,6 +775,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         aiv.startAnimating()
         myTextView.text = ""
         DispatchQueue.main.async {
+            self.settingUpText = true
             self.setUpText(book: book, chapterIndex: chapterIndex, shouldToggle: shouldToggle)
         }
         if shouldReloadMap {
@@ -799,36 +801,37 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         return verseNumbers
     }
     
-    func getCompleteRawText() {
+    func getRawText(book: String, chapterIndex: Int) {
         
-        let directory = selectedBible?.replacingOccurrences(of: " ", with: "")
-        let path = Bundle.main.path(forResource: book, ofType: "txt", inDirectory: directory)
-        
+        guard let selectedBible = selectedBible else { return }
+        let bible = String(describing: selectedBible.replacingOccurrences(of: " ", with: ""))
+        let directory = "\(bible)/\(book)"
+        let resource = "\(book) \(chapterIndex)"
+        guard let path = Bundle.main.path(forResource: resource, ofType: "txt", inDirectory: directory) else { return }
         do {
-            completeRawText = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
-            print("Text Retrieved")
+            completeRawText = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
+            self.formatCompleteRawText()
         } catch {
             print("Contents of File could not be retrieved")
         }
     }
     
-    func formatCompleteRawText() {
-        self.totalChars = completeRawText?.characters.count
-        if let theRange = completeRawText?.range(of: completeRawText!) {
-            let startString = "\(chapterIndex!):1"
-            let endString = "\(chapterIndex!+1):1"
-            let startRange = (completeRawText! as NSString).range(of: startString)
-            let endRange = (completeRawText! as NSString).range(of: endString)
-            let low = completeRawText?.index(theRange.lowerBound, offsetBy: startRange.location)
+    func recursivePathsForResources(type: String, in directoryPath: String) -> [String] {
+        let enumerator = FileManager.default.enumerator(atPath: directoryPath)
+        var filePaths: [String] = []
+        
+        while let filePath = enumerator?.nextObject() as? String {
             
-            if endRange.location > self.totalChars! {
-                rawText = completeRawText?.substring(from: low!)
-            } else {
-                let high = completeRawText?.index(theRange.lowerBound, offsetBy: endRange.location)
-                let subRange = low! ..< high!
-                rawText = completeRawText?[subRange]
+            if URL(fileURLWithPath: filePath).pathExtension == type {
+                filePaths.append(directoryPath.appending(filePath))
             }
         }
+        return filePaths
+    }
+    
+    func formatCompleteRawText() {
+        self.totalChars = completeRawText?.count
+        rawText = completeRawText
         rawText = rawText?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         attributedText = NSMutableAttributedString(string: rawText! as String)
         let allTextRange = (rawText! as NSString).range(of: rawText!)
@@ -840,7 +843,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
         if videosForBook!.count > 0 {
             for video in videosForBook! {
                 let value = video.videoID
-                let verseComponents = video.verses.characters.split{$0 == ":"}.map(String.init)
+                let verseComponents = video.verses.split{$0 == ":"}.map(String.init)
                 if verseComponents[0] == String(describing: chapterIndex!) {
                     if let theRange = rawText?.range(of: rawText!) {
                         let startString = "\(chapterIndex!):\(verseComponents[1])"
@@ -851,7 +854,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                         let startRange = (rawText! as NSString).range(of: startString)
                         let endRange = (rawText! as NSString).range(of: endString)
                         
-                        let low = rawText?.index(theRange.lowerBound, offsetBy: startRange.location + verseComponents[0].characters.count + 1)
+                        let low = rawText?.index(theRange.lowerBound, offsetBy: startRange.location + verseComponents[0].count + 1)
                         let high: String.Index!
                         var subRangeString: String!
                         
@@ -859,8 +862,12 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                             subRangeString = rawText?.substring(from: low!)
                         } else {
                             high = rawText?.index(theRange.lowerBound, offsetBy: endRange.location - 1)
-                            let subRange = low! ..< high!
-                            subRangeString = rawText?[subRange]
+                            if low!.encodedOffset < high!.encodedOffset {
+                                let subRange = low! ..< high!
+                                subRangeString = rawText?[subRange]
+                            } else {
+                                return
+                            }
                         }
                         
                         let range = (rawText! as NSString).range(of: subRangeString!)
@@ -876,14 +883,17 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
     }
     
     func getChapterLocations() {
+        currentLocations = []
         let chapter = book! + " " + String(describing: chapterIndex!)
-        print(chapter)
         AWSClient.sharedInstance.getChapterLocations(chapter: chapter, completion: { (chapterLocations, error) -> () in
             if let chapterLocations = chapterLocations {
-                self.currentLocations = chapterLocations
+                for location in chapterLocations {
+                    let asItAppears = location.components(separatedBy: ",")[0]
+                    let properName = location.components(separatedBy: ",")[1]
+                    self.currentLocations.append(LocationPair(asItAppears: asItAppears, properName: properName))
+                }
                 self.addLocationHyperlinks()
             } else {
-                print(error)
                 self.formatVerseNumbers(verseNumbers: self.setUpVerseArray())
             }
         })
@@ -892,13 +902,14 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
     func addLocationHyperlinks() {
         
         if currentLocations.count > 0 {
-            for loc in currentLocations {
-                var range = (rawText! as NSString).range(of: loc)
+            for locationPair in currentLocations {
+                let asItAppears = locationPair.asItAppears
+                var range = (rawText! as NSString).range(of: asItAppears)
                 var offset = 0
-                let totalCharacters = rawText?.characters.count
+                let totalCharacters = rawText?.count
                 while range.location < self.totalChars! {
                     
-                    let value = loc.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    let value = asItAppears.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                     
                     attributedText?.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:16.0)!, range: range)
                     attributedText?.addAttribute(NSLinkAttributeName, value: value!, range: range)
@@ -907,7 +918,7 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                     let startIndex = rawText?.index((rawText?.startIndex)!, offsetBy: offset)
                     let newText = rawText?.substring(from: startIndex!)
                     
-                    range = (newText! as NSString).range(of: loc)
+                    range = (newText! as NSString).range(of: asItAppears)
                     
                     if range.location < self.totalChars! {
                         if offset + range.location < totalCharacters! {
@@ -923,15 +934,17 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
     func formatVerseNumbers(verseNumbers: [String]) {
         var charactersRemoved = 0
         var replacementString = ""
-        for verse in verseNumbers {
-            let range = (rawText! as NSString).range(of: verse)
-            let a = String(describing: chapterIndex!).characters.count + 1
+        for i in 0...verseNumbers.count - 1 {
+            let verse = verseNumbers[i]
+            let range = (rawText! as NSString).range(of: verse + " ")
+            var a = 0
             if range.location < self.totalChars! {
+                a = String(describing: chapterIndex!).count + 1
                 let start = range.location - charactersRemoved
                 let len = range.length
                 let toDelete = NSMakeRange(start, a)
                 var newRange = NSMakeRange(start, len - a)
-                if charactersRemoved == 0 {
+                if i == 0 {
                     replacementString = ""
                 } else {
                     replacementString = "\n\n"
@@ -944,12 +957,20 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                     }
                 }
                 attributedText?.replaceCharacters(in: toDelete, with: replacementString)
-                attributedText?.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:12.0)!, range: newRange)
-                attributedText?.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: newRange)
+                applyAttributes(attributedText: attributedText, range: newRange)
             }
-            charactersRemoved = charactersRemoved + a - replacementString.characters.count
+            charactersRemoved = charactersRemoved + a - replacementString.count
+        }
+        if attributedText?.string.first != "1" {
+            attributedText?.insert(NSAttributedString(string: "1 "), at: 0)
+            applyAttributes(attributedText: attributedText, range: NSMakeRange(0,2))
         }
         displayText()
+    }
+    
+    private func applyAttributes(attributedText: NSMutableAttributedString?, range: NSRange) {
+        attributedText?.addAttribute(NSFontAttributeName, value: UIFont(name:"Helvetica-Bold", size:12.0)!, range: range)
+        attributedText?.addAttribute(NSForegroundColorAttributeName, value: UIColor.black, range: range)
     }
     
     func setUpText(book: String, chapterIndex: Int, shouldToggle: Bool) {
@@ -971,8 +992,8 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
             }
         }
         
-        self.getCompleteRawText()
-        self.formatCompleteRawText()
+        self.getRawText(book: book, chapterIndex: chapterIndex)
+        
         if FirebaseClient.sharedInstance.hasConnectivity() {
             FirebaseClient.sharedInstance.getVideoIDs(book: book, completion: { (videos, error) -> () in
                 if let videos = videos {
@@ -980,11 +1001,14 @@ extension MapTextViewController: SidePanelViewControllerDelegate {
                 } else {
                     self.videosForBook = []
                 }
+                guard self.completeRawText != nil else { return }
                 self.addVerseHyperlinks()
                 self.getChapterLocations()
+                self.settingUpText = false
             })
         } else {
             displayText()
+            self.settingUpText = false
         }
     }
     

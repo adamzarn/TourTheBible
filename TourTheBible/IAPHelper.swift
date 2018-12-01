@@ -75,10 +75,6 @@ extension IAPHelper: SKProductsRequestDelegate {
         let products = response.products
         productsRequestCompletionHandler?(true, products)
         clearRequestAndHandler()
-        
-        for p in products {
-            print("Found product: \(p.productIdentifier) \(p.localizedTitle) \(p.price.floatValue)")
-        }
     }
     
     public func request(_ request: SKRequest, didFailWithError error: Error) {
@@ -132,9 +128,9 @@ extension IAPHelper: SKPaymentTransactionObserver {
     
     private func fail(transaction: SKPaymentTransaction) {
         print("fail...")
-        if let transactionError = transaction.error as? NSError {
+        if let transactionError = transaction.error as NSError? {
             if transactionError.code != SKError.paymentCancelled.rawValue {
-                print("Transaction Error: \(transaction.error?.localizedDescription)")
+                print("Transaction Error: \(String(describing: transaction.error?.localizedDescription))")
             }
         }
         

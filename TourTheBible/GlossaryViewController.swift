@@ -168,12 +168,12 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         AWSClient.sharedInstance.getBibleLocations(completion: { (bibleLocations, error) -> () in
             if let bibleLocations = bibleLocations {
                 self.masterGlossary = bibleLocations
+                self.segmentedControl.setTitle("Locations (\(self.masterGlossary.count))", forSegmentAt: 0)
                 self.sortGlossary()
                 self.myTableView.reloadData()
                 self.doneLoadingTableView()
             } else {
                 self.doneLoadingTableView()
-                print(error?.localizedLowercase as! NSString)
             }
         })
     }
@@ -183,7 +183,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         for bibleLocation in masterGlossary {
             let name = bibleLocation.name
             var i = 0
-            for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters {
+            for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" {
                 if name[name.startIndex] == char {
                     sortedGlossary[i].append(bibleLocation)
                 }
@@ -235,7 +235,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             }
         } else {
             filteredSongList = masterSongList.filter { video in
-                let vc = video.verses.characters.split{$0 == ":"}.map(String.init)
+                let vc = video.verses.split{$0 == ":"}.map(String.init)
                 if vc[1] == vc[2] {
                     return ("\(video.book) \(vc[0]):\(vc[1])".lowercased().contains(searchText.lowercased()))
                 } else {
@@ -363,7 +363,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                 annotation.name = pin.title
             }
             appDelegate.myMapView.addAnnotation(annotation)
-            let newLoc = BibleLocation(name: pin.title!, displayName: "", lat: pin.lat, long: pin.long)
+            let newLoc = BibleLocation(name: pin.title ?? pin.subtitle ?? "", lat: pin.lat, long: pin.long)
             selectedLocations.append(newLoc)
             
         }
@@ -472,7 +472,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             video = videos?[indexPath.row]
         }
 
-        let vc = video?.verses.characters.split{$0 == ":"}.map(String.init)
+        let vc = video?.verses.split{$0 == ":"}.map(String.init)
         let chapterIndexString = vc?[0]
         let chapterIndex = Int(chapterIndexString!)
         
@@ -480,9 +480,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         let goToScripture = UIAlertAction(title: "Go to \(book!) \(chapterIndex!)", style: .default) { (action) in
             let prefix = "AJZ.WalkThroughTheBible."
             if !self.defaults.bool(forKey:"\(prefix)\(book!)") && ["Exodus","Numbers","Acts"].contains(book!) {
-                let alert = UIAlertController(title: "Book not Purchased", message: "In order to view this content, you must first purchase the book of \(book!).", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                self.displayBookNotPurchasedAlert(book: book!)
                 tableView.deselectRow(at: indexPath, animated: true)
             } else {
                 let containerViewController = ContainerViewController()
@@ -553,13 +551,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                 tableView.deselectRow(at: indexPath, animated: true)
                 tableView.reloadData()
                 
-//                let startingLetter = String(describing: location.name.characters.first!).uppercased()
-//                let letterIndex = letters.index(of: startingLetter)
-//                let row = sortedGlossary[letterIndex!].index(of: location)
-//                let ip = IndexPath(row: row!, section: letterIndex!)
-//
-//                tableView.scrollToRow(at: ip as IndexPath, at: .top, animated: false)
-                
             } else {
                 let location = sortedGlossary[indexPath.section][indexPath.row] as BibleLocation
                 selectedLocations.append(location)
@@ -629,7 +620,6 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
         newPin.setValue(location.lat, forKey: "lat")
         newPin.setValue(location.long, forKey: "long")
         newPin.setValue(location.name, forKey: "subtitle")
-        newPin.setValue(location.displayName, forKey: "title")
         newPin.setValue(currentBook, forKey: "pinToBook")
         pinsForBook.append(newPin)
 
@@ -658,11 +648,8 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
             let annotation = CustomPointAnnotation()
             
             annotation.coordinate = CLLocationCoordinate2D(latitude: loc.lat, longitude: loc.long)
-            annotation.title = loc.displayName
+            annotation.title = loc.name
             annotation.name = loc.name
-            if loc.displayName != loc.name {
-                annotation.subtitle = loc.name
-            }
             appDelegate.myMapView.addAnnotation(annotation)
             appDelegate.myMapView.selectAnnotation(annotation, animated: false)
             
@@ -797,7 +784,7 @@ class GlossaryViewController: UIViewController, MKMapViewDelegate, UITableViewDa
                                     let unsortedVideos = videoLibrary[book]
                                     var tempVideos: [Video] = []
                                     for video in unsortedVideos! {
-                                        let vc = video.verses.characters.split{$0 == ":"}.map(String.init)
+                                        let vc = video.verses.split{$0 == ":"}.map(String.init)
                                         let sequence = Int(vc[0])!*1000 + Int(vc[1])!
                                         let newVideo = Video(verses: video.verses, videoID: video.videoID, sequence: sequence, bookSequence: bookSequence, book: video.book)
                                         tempVideos.append(newVideo)

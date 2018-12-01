@@ -29,11 +29,6 @@ class GlossaryPanelViewController: UIViewController {
     override func viewDidLoad() {
         
         self.automaticallyAdjustsScrollViewInsets = false
-        for book in chapterAppearances {
-            for chapter in book {
-                print(chapter.book, chapter.chapterNumber)
-            }
-        }
         
     }
 
@@ -81,9 +76,7 @@ extension GlossaryPanelViewController: UITableViewDelegate {
         
         let prefix = "AJZ.WalkThroughTheBible."
         if !defaults.bool(forKey:"\(prefix)\(book)") && ["Exodus","Numbers","Acts"].contains(book) {
-            let alert = UIAlertController(title: "Book not Purchased", message: "In order to view this content, you must first purchase the book of \(book).", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            displayBookNotPurchasedAlert(book: book)
             tableView.deselectRow(at: indexPath, animated: true)
         } else {
             let containerViewController = ContainerViewController()
